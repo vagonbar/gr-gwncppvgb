@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="api_8h" kind="file" language="C++">
+    <compoundname>api.h</compoundname>
+    <includes local="no">gnuradio/attributes.h</includes>
+    <includedby refid="gwnblock_8h" local="no">gwnblock.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="0">
+        <label>api.h</label>
+        <link refid="api.h"/>
+        <childnode refid="1" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>gwnblock_impl.h</label>
+        <link refid="gwnblock__impl_8h"/>
+      </node>
+      <node id="5">
+        <label>gwnblock_impl_1.h</label>
+        <link refid="gwnblock__impl__1_8h"/>
+      </node>
+      <node id="3">
+        <label>gwnblock.h</label>
+        <link refid="gwnblock_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>api.h</label>
+        <link refid="api.h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="api_8h_1a897bd1a933f81deb3c147ba98f0afe6a" prot="public" static="no">
+        <name>GWNCPPVGB_API</name>
+        <initializer>__GR_ATTR_IMPORT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/api.h" line="30" column="12" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/api.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/api.h"/>
+  </compounddef>
+</doxygen>

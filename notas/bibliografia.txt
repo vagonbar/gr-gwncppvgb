@@ -1,0 +1,21 @@
+GW: de Python a C++
+
+
+
+=== Bibliografía, referencias
+
+A Transition Guide: Python to C++ - Denison University
+Michael H. Goldwasser David Letscher This is a supplement to the book, Object-Oriented Programming in Python, Prentice-Hall, 2007.
+http://personal.denison.edu/~krone/cs173/files/PythontoC++.pdf
+
+cplusplus.com Tutoriales de C++ desde básicos hasta últimas facilidades
+http://www.cplusplus.com/
+
+
+
+=== Documentos propios
+
+GNU Wireless Network - Migración de Python a C++. Gonzalo Belcredi. Última edición:  12/10/17
+https://docs.google.com/document/d/1_4E0T3U3UgwBwkkfYH0yW6ni-uaKGohJBiCTGF_gBi8/edit#heading=h.nuueb4ozof3e
+
+

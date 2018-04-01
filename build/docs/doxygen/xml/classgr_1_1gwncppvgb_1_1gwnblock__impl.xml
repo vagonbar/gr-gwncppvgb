@@ -1,0 +1,361 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classgr_1_1gwncppvgb_1_1gwnblock__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::gwncppvgb::gwnblock_impl</compoundname>
+    <basecompoundref refid="classgr_1_1gwncppvgb_1_1gwnblock" prot="public" virt="non-virtual">gr::gwncppvgb::gwnblock</basecompoundref>
+    <basecompoundref refid="classgr_1_1gwncppvgb_1_1gwnblock" prot="public" virt="non-virtual">gr::gwncppvgb::gwnblock</basecompoundref>
+    <includes refid="gwnblock__impl_8h" local="no">gwnblock_impl.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a4c171ee450ef37c95ef7c397859bfe36" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string gr::gwncppvgb::gwnblock_impl::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="41" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a365069e4751880006ce670bf82b96bbd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::gwncppvgb::gwnblock_impl::number_in</definition>
+        <argsstring></argsstring>
+        <name>number_in</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="42" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1afb69ae19c7bf36e675b7b1a3573b9e19" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::gwncppvgb::gwnblock_impl::number_out</definition>
+        <argsstring></argsstring>
+        <name>number_out</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="42" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a304220a1ccb781e31ea9432a7e1c15e0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::gwncppvgb::gwnblock_impl::number_timers</definition>
+        <argsstring></argsstring>
+        <name>number_timers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="42" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a221c005428a382c1e9578c4d8e7f800f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::gwncppvgb::gwnblock_impl::number_timeouts</definition>
+        <argsstring></argsstring>
+        <name>number_timeouts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="42" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a888df4d5bb932ba43d11c0daf8040ded" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::gwncppvgb::gwnblock_impl::gwnblock_impl</definition>
+        <argsstring>(std::string name, int number_in, int number_out, int number_timers, int number_timeouts)</argsstring>
+        <name>gwnblock_impl</name>
+        <param>
+          <type>std::string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>number_in</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>number_out</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>number_timers</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>number_timeouts</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1aa09632e9e078abfdf68f2055cfd4a9c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::gwncppvgb::gwnblock_impl::~gwnblock_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~gwnblock_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="38" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ac4559d879ac1af4c2706889a17a41eaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::gwncppvgb::gwnblock_impl::forecast</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items_required)</argsstring>
+        <name>forecast</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items_required</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="49" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a7f3f1105b7f18234b45aaa5fa30e4050" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::gwncppvgb::gwnblock_impl::general_work</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>general_work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a50f0676561337956ea5047e05bde527a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::gwncppvgb::gwnblock_impl::gwnblock_impl</definition>
+        <argsstring>(std::string p_name, int p_number_in, int p_number_out, int p_number_timers, int p_number_timeouts)</argsstring>
+        <name>gwnblock_impl</name>
+        <param>
+          <type>std::string</type>
+          <declname>p_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>p_number_in</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>p_number_out</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>p_number_timers</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>p_number_timeouts</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl_1.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1aa09632e9e078abfdf68f2055cfd4a9c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::gwncppvgb::gwnblock_impl::~gwnblock_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~gwnblock_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl_1.h" line="63" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ac4559d879ac1af4c2706889a17a41eaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::gwncppvgb::gwnblock_impl::forecast</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items_required)</argsstring>
+        <name>forecast</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items_required</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl_1.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a7f3f1105b7f18234b45aaa5fa30e4050" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::gwncppvgb::gwnblock_impl::general_work</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>general_work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl_1.h" line="71" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a049c1d9f07e31e9a62ab2f9b95999a0a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::gwncppvgb::gwnblock_impl::set_out_size</definition>
+        <argsstring>(int number_out)</argsstring>
+        <name>set_out_size</name>
+        <param>
+          <type>int</type>
+          <declname>number_out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl_1.h" line="56" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>gr::gwncppvgb::gwnblock_impl</label>
+        <link refid="classgr_1_1gwncppvgb_1_1gwnblock__impl"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>gr::block</label>
+      </node>
+      <node id="6">
+        <label>gr::gwncppvgb::gwnblock</label>
+        <link refid="classgr_1_1gwncppvgb_1_1gwnblock"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="12">
+        <label>std::basic_string&lt; char &gt;</label>
+      </node>
+      <node id="8">
+        <label>gr::gwncppvgb::gwnblock_impl</label>
+        <link refid="classgr_1_1gwncppvgb_1_1gwnblock__impl"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>gr::block</label>
+      </node>
+      <node id="9">
+        <label>gr::gwncppvgb::gwnblock</label>
+        <link refid="classgr_1_1gwncppvgb_1_1gwnblock"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>std::string</label>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" line="33" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h" bodystart="32" bodyend="55"/>
+    <listofallmembers>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ac4559d879ac1af4c2706889a17a41eaf" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>forecast</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ac4559d879ac1af4c2706889a17a41eaf" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>forecast</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a7f3f1105b7f18234b45aaa5fa30e4050" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>general_work</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a7f3f1105b7f18234b45aaa5fa30e4050" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>general_work</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a888df4d5bb932ba43d11c0daf8040ded" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>gwnblock_impl</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a50f0676561337956ea5047e05bde527a" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>gwnblock_impl</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock_1a77261fd728de06f274772730652b9e53" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a4c171ee450ef37c95ef7c397859bfe36" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>name</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a365069e4751880006ce670bf82b96bbd" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>number_in</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1afb69ae19c7bf36e675b7b1a3573b9e19" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>number_out</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a221c005428a382c1e9578c4d8e7f800f" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>number_timeouts</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a304220a1ccb781e31ea9432a7e1c15e0" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>number_timers</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a049c1d9f07e31e9a62ab2f9b95999a0a" prot="private" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>set_out_size</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock_1af509332ce1cd55adefc33a2ed50dcf00" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1aa09632e9e078abfdf68f2055cfd4a9c9" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>~gwnblock_impl</name></member>
+      <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1aa09632e9e078abfdf68f2055cfd4a9c9" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock_impl</scope><name>~gwnblock_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

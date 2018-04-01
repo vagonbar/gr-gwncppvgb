@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="namespacegr_1_1gwncppvgb" kind="namespace" language="C++">
+    <compoundname>gr::gwncppvgb</compoundname>
+    <innerclass refid="classgr_1_1gwncppvgb_1_1gwnblock" prot="public">gr::gwncppvgb::gwnblock</innerclass>
+    <innerclass refid="classgr_1_1gwncppvgb_1_1gwnblock__impl" prot="public">gr::gwncppvgb::gwnblock_impl</innerclass>
+    <innerclass refid="classgr_1_1gwncppvgb_1_1GWNOutPort" prot="public">gr::gwncppvgb::GWNOutPort</innerclass>
+    <innerclass refid="classgr_1_1gwncppvgb_1_1GWNPort" prot="public">gr::gwncppvgb::GWNPort</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>

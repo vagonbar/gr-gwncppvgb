@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.11">
+  <compound refid="classgr_1_1gwncppvgb_1_1gwnblock" kind="class"><name>gr::gwncppvgb::gwnblock</name>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock_1af509332ce1cd55adefc33a2ed50dcf00" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock_1a77261fd728de06f274772730652b9e53" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1gwncppvgb_1_1gwnblock__impl" kind="class"><name>gr::gwncppvgb::gwnblock_impl</name>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a4c171ee450ef37c95ef7c397859bfe36" kind="variable"><name>name</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a365069e4751880006ce670bf82b96bbd" kind="variable"><name>number_in</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1afb69ae19c7bf36e675b7b1a3573b9e19" kind="variable"><name>number_out</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a304220a1ccb781e31ea9432a7e1c15e0" kind="variable"><name>number_timers</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a221c005428a382c1e9578c4d8e7f800f" kind="variable"><name>number_timeouts</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a888df4d5bb932ba43d11c0daf8040ded" kind="function"><name>gwnblock_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1aa09632e9e078abfdf68f2055cfd4a9c9" kind="function"><name>~gwnblock_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ac4559d879ac1af4c2706889a17a41eaf" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a7f3f1105b7f18234b45aaa5fa30e4050" kind="function"><name>general_work</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a50f0676561337956ea5047e05bde527a" kind="function"><name>gwnblock_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1aa09632e9e078abfdf68f2055cfd4a9c9" kind="function"><name>~gwnblock_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ac4559d879ac1af4c2706889a17a41eaf" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a7f3f1105b7f18234b45aaa5fa30e4050" kind="function"><name>general_work</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a049c1d9f07e31e9a62ab2f9b95999a0a" kind="function"><name>set_out_size</name></member>
+  </compound>
+  <compound refid="classgr_1_1gwncppvgb_1_1GWNOutPort" kind="class"><name>gr::gwncppvgb::GWNOutPort</name>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNOutPort_1abe09c94237b02cecfb77efcf2a4440f9" kind="function"><name>GWNOutPort</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNOutPort_1a0d99785e8af5fac6973d67d930fd34e1" kind="function"><name>GWNOutPort</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNOutPort_1a5cbd016a09eb8f4136fe05614d574b9c" kind="function"><name>post_message</name></member>
+  </compound>
+  <compound refid="classgr_1_1gwncppvgb_1_1GWNPort" kind="class"><name>gr::gwncppvgb::GWNPort</name>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1a53120d1ba2cd2a3d22a09db502aef72e" kind="variable"><name>block</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1aa09efe8e671f92ddc9707aa6ce599119" kind="variable"><name>port</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1aa9c887ab4fd822163b9d0f602a01c26a" kind="variable"><name>port_nr</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1a09cb9cd9597a4dcd0de435a522ceee4f" kind="function"><name>GWNPort</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1ada6c61d74a06af2569b0013d219323cc" kind="function"><name>__str__</name></member>
+  </compound>
+  <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1gwncppvgb" kind="namespace"><name>gr::gwncppvgb</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="api_8h" kind="file"><name>api.h</name>
+    <member refid="api_8h_1a897bd1a933f81deb3c147ba98f0afe6a" kind="define"><name>GWNCPPVGB_API</name></member>
+  </compound>
+  <compound refid="group__defs_8dox" kind="file"><name>group_defs.dox</name>
+  </compound>
+  <compound refid="gwnblock_8h" kind="file"><name>gwnblock.h</name>
+  </compound>
+  <compound refid="gwnblock__impl_8h" kind="file"><name>gwnblock_impl.h</name>
+  </compound>
+  <compound refid="gwnblock__impl__1_8h" kind="file"><name>gwnblock_impl_1.h</name>
+  </compound>
+  <compound refid="main__page_8dox" kind="file"><name>main_page.dox</name>
+  </compound>
+  <compound refid="group__block" kind="group"><name>block</name>
+  </compound>
+  <compound refid="dir_a041fbb352500434603e81f6361d61a8" kind="dir"><name>gwncppvgb</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_97aefd0d527b934f1d99a682da8fe6a9" kind="dir"><name>lib</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

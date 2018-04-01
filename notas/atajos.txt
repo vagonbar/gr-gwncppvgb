@@ -1,0 +1,29 @@
+GWN: de Python a C++ atajos para edición
+
+=== Comandos útiles
+
+Editar gwnblock Gonzalo, VGB, Python:
+gvim -geometry 210x100 -O ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwn/python/gwnblock.py
+
+
+
+
+
+Visualizar todos los archivos de gwnblock:
+  gvim lib/gwnblock_impl.h lib/gwnblock_impl.cc include/gwn/gwnblock.h
+
+gwnblock Gonzalo
+gvim ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.h ~/IIE/GNURadio/gr-gwncpp/include/gwncpp/gwnblock.h 
+
+
+gwnblock VGB
+
+
+gwnblock comparaciones
+
+
+gvim ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.h ~/IIE/GNURadio/gr-gwncpp/include/gwncpp/gwnblock.h 
+
+gvim ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.h ~/IIE/GNURadio/gr-gwn/python/gwnblock.py
+
+
