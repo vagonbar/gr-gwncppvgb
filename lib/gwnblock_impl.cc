@@ -26,9 +26,10 @@
 #include "gwnblock_impl.h"
 
 // GWN additions
- //#include <stdio.h>   // for snprintf
 #include<sstream>   // for to_string
 
+#include <pmt/pmt.h>              // for messages
+#include <gnuradio/blocks/pdu.h>  // for messages
 
 namespace gr {
   namespace gwncppvgb {
@@ -68,7 +69,7 @@ namespace gr {
       if (debug) {
         std::cout << "GWNPort, port name: " << port << 
           ", port number: " << port_nr << ", in block name: " <<
-          "block->name" << std::endl;
+          block->name << std::endl;
       }
       return ss;
     }
@@ -76,7 +77,7 @@ namespace gr {
 
     /* GWNOutPort */
 
-    GWNOutPort::GWNOutPort(gwnblock * p_block, 
+    GWNOutPort::GWNOutPort(gwnblock_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort() {
       block = p_block;
       port = p_port;
@@ -97,9 +98,28 @@ namespace gr {
       // string instead of ev, for debug in development
       if (debug) { 
         std::cout << "GWNOutPort, post_message, port: " << 
-          port_nr << " in block: " << "block->name" << std::endl;
+          port_nr << " in block: " << block->name << std::endl;
         std::cout << "...message: " << ev << std::endl;
       }
+
+      // send message on output port
+      std::string ev_str = ev;     // transmit strings, for now
+
+      //pmt::pmt_t pmt_msg = pmt::intern(ev_str);
+
+      // from Python gwnblock, pmt:_mp from message_strobe
+      /*pmt::pmt_t pmt_msg = pmt::cons(pmt::PMT_NIL, 
+        pmt::mp(ev_str) );
+      pmt::pmt_t pmt_port = pmt::mp(port);
+      block->message_port_pub(pmt_port, pmt::cons(pmt::PMT_NIL, pmt_msg) ); */
+      
+      // from gwncpp  
+      //block->gr::basic_block::message_port_pub (pmt_port, pmt_msg);
+      //block->gr::basic_block::_post (pmt_port, pmt_msg );
+
+      // from message_strobe
+      block->message_port_pub (pmt::mp(port), pmt::mp(ev_str));
+
     }
        
 
@@ -133,30 +153,42 @@ namespace gr {
       // for early stage debug
       if (debug) { 
         std::cout << "gwnblock, private constructor; " <<
-        "block name: " << this->name << std::endl; }
+        "block name: " << this->name << std::endl; 
+      }
 
       // set_out_size, now inline, convert to function,
       // must solve visibility of GWNOutPort in function
-      GWNOutPort ports_out_ar [number_out];    // local variable
-      ports_out = ports_out_ar;                // member variable
+
+      // cannot assign, maybe use <vector>
+      //GWNOutPort * ports_out_ar [number_out];    // local variable
+      //ports_out = ports_out_ar;                // member variable
+
       int i;
-      std::string port_name;
+      std::string out_port;
       std::string message;
+
+      pmt::pmt_t pmt_out_port;
 
       for ( i=0; i < number_out; i++) {
 
-        port_name = "port_" + to_string(i);
-        ports_out[i] = GWNOutPort(this, port_name, i);
-        //ports_out[i].block = this;   // NO LO ASIGNA!!!
+        out_port = "port_" + to_string(i);
+        GWNOutPort port_new = GWNOutPort(this, out_port, i);
+        if (debug) {
+          std::cout << "... port_new.block->name: " << 
+            port_new.block->name << std::endl;
+        }
+        ports_out[i] = &port_new;
 
-        std::cout << "  this->name en gwnblock: " << this->name << std::endl;
-        //std::cout << "  ports_out[i].block->name: " << ports_out[i].block->name >> std::endl; // ERROR
+        // from Python gwnblock
+        //pmt_out_port = pmt::intern(out_port);
+
+        // from message_strobe
+        message_port_register_out(pmt::mp(out_port) ); 
+
 
         if (debug) {
-          ports_out[i].__str__();
-          message = "a test message in port " + to_string(i);
-          std::cout << "to_string message: " << message << std::endl;
-          ports_out[i].post_message(message);
+          ports_out[i]->__str__();
+          //std::cout << "to_string message: " << message << std::endl;
         }
       }
     }
@@ -171,9 +203,6 @@ namespace gr {
       std::string ss = "__str__() Block name: " + this->name; 
       return ss;
     }
-    /*std::string gwnblock::my__str__() {
-      __str__();
-    }*/
 
     /* GNU Radio */
 

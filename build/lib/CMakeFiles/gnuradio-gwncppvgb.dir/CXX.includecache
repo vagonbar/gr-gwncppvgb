@@ -25,6 +25,10 @@ gwnblock_impl.h
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h
 sstream
 -
+pmt/pmt.h
+-
+gnuradio/blocks/pdu.h
+-
 
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h
 gwncppvgb/gwnblock.h
@@ -84,6 +88,18 @@ gnuradio/api.h
 gnuradio/basic_block.h
 -
 map
+-
+
+/home/victor/IIE/GNURadio/prefix/default/include/gnuradio/blocks/api.h
+gnuradio/attributes.h
+-
+
+/home/victor/IIE/GNURadio/prefix/default/include/gnuradio/blocks/pdu.h
+gnuradio/blocks/api.h
+-
+gnuradio/gr_complex.h
+-
+pmt/pmt.h
 -
 
 /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/config.h

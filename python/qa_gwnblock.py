@@ -25,6 +25,8 @@ from gnuradio import blocks
 # corrected, gr_modtool creation said gwncppvgb_swig, not found!
 import gwncppvgb.gwncppvgb_swig as gwncppvgb
 
+import time
+
 class qa_gwnblock (gr_unittest.TestCase):
 
     def setUp (self):
@@ -34,7 +36,8 @@ class qa_gwnblock (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        myblock = gwncppvgb.gwnblock('block_1', 0, 1, 0, 0)
+        print "\n========= TEST 1 =========\n"
+        myblock = gwncppvgb.gwnblock('block_1', 0, 3, 0, 0)
         #print myblock
         print "myblock.__str__()", myblock.__str__()
 
@@ -42,6 +45,19 @@ class qa_gwnblock (gr_unittest.TestCase):
         # set up fg
         self.tb.run ()
         # check data
+
+    def test_out_port (self):
+        print "\n========= TEST 2 =========\n"
+        src = gwncppvgb.gwnblock('block_2', 0, 1, 0, 0)
+        dbg = blocks.message_debug()
+        #self.tb.msg_connect(src, src.ports_out[0].port,
+        #                    dbg, "print")   # ports_out not published!
+        self.tb.msg_connect( (src, "port_0"), (dbg, "print") )
+  
+
+        self.tb.start ()
+        time.sleep(3)
+        self.tb.stop()
 
 
 if __name__ == '__main__':

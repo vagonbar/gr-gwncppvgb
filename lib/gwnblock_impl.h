@@ -26,30 +26,8 @@
 namespace gr {
   namespace gwncppvgb {
 
-
-    /* GWNPort */
-
-    class GWNPort
-    {
-      protected:
-        std::string port;
-        int port_nr;
-      public:
-        gwnblock * block;
-        GWNPort();
-        std::string __str__();
-    }; 
-
-
-    /* GWNOutPort */
-
-    class GWNOutPort: public GWNPort { 
-      public:
-        GWNOutPort(gwnblock *, std::string, int);
-        GWNOutPort();    // required to initialize array
-        void post_message(std::string);
-     };
-
+    class GWNPort;
+    class GWNOutPort;
 
 
     /* gwnblock */
@@ -66,7 +44,7 @@ namespace gr {
       std::string name;
       int number_in, number_out, number_timers, number_timeouts;
 
-      GWNOutPort * ports_out; 
+      GWNOutPort * ports_out [3];   // how to assign size later?
       std::string __str__();
 
 
@@ -78,6 +56,31 @@ namespace gr {
            gr_vector_const_void_star &input_items,
            gr_vector_void_star &output_items);
     };
+
+
+
+    /* GWNPort */
+
+    class GWNPort
+    {
+      protected:
+        std::string port;
+        int port_nr;
+      public:
+        gwnblock_impl * block;
+        GWNPort();
+        std::string __str__();
+    }; 
+
+
+    /* GWNOutPort */
+
+    class GWNOutPort: public GWNPort { 
+      public:
+        GWNOutPort(gwnblock_impl *, std::string, int);
+        GWNOutPort();    // required to initialize array
+        void post_message(std::string);
+     };
 
 
 

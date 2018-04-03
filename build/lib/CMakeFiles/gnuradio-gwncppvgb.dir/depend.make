@@ -10,6 +10,8 @@ lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURa
 lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/basic_block.h
 lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/block.h
 lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/block_registry.h
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/blocks/api.h
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/blocks/pdu.h
 lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/config.h
 lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/gr_complex.h
 lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/io_signature.h
