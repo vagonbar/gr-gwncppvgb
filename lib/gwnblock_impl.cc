@@ -222,8 +222,13 @@ namespace gr {
       int *out = (int *) output_items[0];
 
       // Do <+signal processing+>
+
+      std::cout << "gwnblock, in work() function" << std::endl;
+
       // Tell runtime system how many input items we consumed on
       // each input stream.
+
+
       consume_each (noutput_items);
 
       // Tell runtime system how many output items we produced.
