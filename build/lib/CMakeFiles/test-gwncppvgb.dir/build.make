@@ -105,9 +105,33 @@ lib/CMakeFiles/test-gwncppvgb.dir/qa_gwncppvgb.cc.o.provides: lib/CMakeFiles/tes
 lib/CMakeFiles/test-gwncppvgb.dir/qa_gwncppvgb.cc.o.provides.build: lib/CMakeFiles/test-gwncppvgb.dir/qa_gwncppvgb.cc.o
 
 
+lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o: lib/CMakeFiles/test-gwncppvgb.dir/flags.make
+lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o: ../lib/qa_message_passer.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o"
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_message_passer.cc
+
+lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.i"
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_message_passer.cc > CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.i
+
+lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.s"
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_message_passer.cc -o CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.s
+
+lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o.requires:
+
+.PHONY : lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o.requires
+
+lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o.provides: lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o.requires
+	$(MAKE) -f lib/CMakeFiles/test-gwncppvgb.dir/build.make lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o.provides.build
+.PHONY : lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o.provides
+
+lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o.provides.build: lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o
+
+
 lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o: lib/CMakeFiles/test-gwncppvgb.dir/flags.make
 lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o: ../lib/qa_gwnblock.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o"
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_gwnblock.cc
 
 lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.i: cmake_force
@@ -133,6 +157,7 @@ lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o.provides.build: lib/CMakeFile
 test__gwncppvgb_OBJECTS = \
 "CMakeFiles/test-gwncppvgb.dir/test_gwncppvgb.cc.o" \
 "CMakeFiles/test-gwncppvgb.dir/qa_gwncppvgb.cc.o" \
+"CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o" \
 "CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o"
 
 # External object files for target test-gwncppvgb
@@ -140,6 +165,7 @@ test__gwncppvgb_EXTERNAL_OBJECTS =
 
 lib/test-gwncppvgb: lib/CMakeFiles/test-gwncppvgb.dir/test_gwncppvgb.cc.o
 lib/test-gwncppvgb: lib/CMakeFiles/test-gwncppvgb.dir/qa_gwncppvgb.cc.o
+lib/test-gwncppvgb: lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o
 lib/test-gwncppvgb: lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o
 lib/test-gwncppvgb: lib/CMakeFiles/test-gwncppvgb.dir/build.make
 lib/test-gwncppvgb: /home/victor/IIE/GNURadio/prefix/default/lib/libgnuradio-runtime.so
@@ -155,7 +181,7 @@ lib/test-gwncppvgb: /usr/lib/liblog4cpp.so
 lib/test-gwncppvgb: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/test-gwncppvgb: /usr/lib/x86_64-linux-gnu/libboost_system.so
 lib/test-gwncppvgb: lib/CMakeFiles/test-gwncppvgb.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable test-gwncppvgb"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable test-gwncppvgb"
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test-gwncppvgb.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -165,6 +191,7 @@ lib/CMakeFiles/test-gwncppvgb.dir/build: lib/test-gwncppvgb
 
 lib/CMakeFiles/test-gwncppvgb.dir/requires: lib/CMakeFiles/test-gwncppvgb.dir/test_gwncppvgb.cc.o.requires
 lib/CMakeFiles/test-gwncppvgb.dir/requires: lib/CMakeFiles/test-gwncppvgb.dir/qa_gwncppvgb.cc.o.requires
+lib/CMakeFiles/test-gwncppvgb.dir/requires: lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o.requires
 lib/CMakeFiles/test-gwncppvgb.dir/requires: lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o.requires
 
 .PHONY : lib/CMakeFiles/test-gwncppvgb.dir/requires

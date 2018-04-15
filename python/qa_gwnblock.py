@@ -26,6 +26,7 @@ from gnuradio import blocks
 import gwncppvgb.gwncppvgb_swig as gwncppvgb
 
 import time
+import pmt
 
 class qa_gwnblock (gr_unittest.TestCase):
 
@@ -35,10 +36,10 @@ class qa_gwnblock (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_001_t (self):
-        print "\n========= TEST 1 =========\n"
-        myblock = gwncppvgb.gwnblock('block_1', 0, 3, 0, 0)
-        #print myblock
+    def test_constructor (self):
+        print "\n===\n=== TEST gwnblock constructor \n===\n"
+        gwncppvgb.set_debug(False)
+        myblock = gwncppvgb.gwnblock('block_1', 1, 3, 0, 0)
         print "myblock.__str__()", myblock.__str__()
 
 
@@ -46,17 +47,19 @@ class qa_gwnblock (gr_unittest.TestCase):
         self.tb.run ()
         # check data
 
-    def test_out_port (self):
-        print "\n========= TEST 2 =========\n"
-        src = gwncppvgb.gwnblock('block_2', 0, 1, 0, 0)
-        dbg = blocks.message_debug()
-        #self.tb.msg_connect(src, src.ports_out[0].port,
-        #                    dbg, "print")   # ports_out not published!
-        self.tb.msg_connect( (src, "port_0"), (dbg, "print") )
+    def test_ports (self):
+        print "\n===\n=== TEST gwnblock input and output ports \n===\n"
+        tst_msg = "--- A test message from message strobe"
+        src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
+        pss = gwncppvgb.gwnblock('block_2', 1, 1, 0, 0)
+        dbg = blocks.message_debug() 
+        self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
+        self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
+        #self.tb.msg_connect( (src, "port_out_0"), (dbg, "print") )
   
 
         self.tb.start ()
-        time.sleep(3)
+        time.sleep(6)
         self.tb.stop()
 
 

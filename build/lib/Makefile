@@ -222,6 +222,33 @@ gwnblock_impl.cc.s:
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(MAKE) -f lib/CMakeFiles/gnuradio-gwncppvgb.dir/build.make lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.s
 .PHONY : gwnblock_impl.cc.s
 
+message_passer_impl.o: message_passer_impl.cc.o
+
+.PHONY : message_passer_impl.o
+
+# target to build an object file
+message_passer_impl.cc.o:
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(MAKE) -f lib/CMakeFiles/gnuradio-gwncppvgb.dir/build.make lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o
+.PHONY : message_passer_impl.cc.o
+
+message_passer_impl.i: message_passer_impl.cc.i
+
+.PHONY : message_passer_impl.i
+
+# target to preprocess a source file
+message_passer_impl.cc.i:
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(MAKE) -f lib/CMakeFiles/gnuradio-gwncppvgb.dir/build.make lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.i
+.PHONY : message_passer_impl.cc.i
+
+message_passer_impl.s: message_passer_impl.cc.s
+
+.PHONY : message_passer_impl.s
+
+# target to generate assembly for a file
+message_passer_impl.cc.s:
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(MAKE) -f lib/CMakeFiles/gnuradio-gwncppvgb.dir/build.make lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.s
+.PHONY : message_passer_impl.cc.s
+
 qa_gwnblock.o: qa_gwnblock.cc.o
 
 .PHONY : qa_gwnblock.o
@@ -276,6 +303,33 @@ qa_gwncppvgb.cc.s:
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(MAKE) -f lib/CMakeFiles/test-gwncppvgb.dir/build.make lib/CMakeFiles/test-gwncppvgb.dir/qa_gwncppvgb.cc.s
 .PHONY : qa_gwncppvgb.cc.s
 
+qa_message_passer.o: qa_message_passer.cc.o
+
+.PHONY : qa_message_passer.o
+
+# target to build an object file
+qa_message_passer.cc.o:
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(MAKE) -f lib/CMakeFiles/test-gwncppvgb.dir/build.make lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o
+.PHONY : qa_message_passer.cc.o
+
+qa_message_passer.i: qa_message_passer.cc.i
+
+.PHONY : qa_message_passer.i
+
+# target to preprocess a source file
+qa_message_passer.cc.i:
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(MAKE) -f lib/CMakeFiles/test-gwncppvgb.dir/build.make lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.i
+.PHONY : qa_message_passer.cc.i
+
+qa_message_passer.s: qa_message_passer.cc.s
+
+.PHONY : qa_message_passer.s
+
+# target to generate assembly for a file
+qa_message_passer.cc.s:
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(MAKE) -f lib/CMakeFiles/test-gwncppvgb.dir/build.make lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.s
+.PHONY : qa_message_passer.cc.s
+
 test_gwncppvgb.o: test_gwncppvgb.cc.o
 
 .PHONY : test_gwncppvgb.o
@@ -321,12 +375,18 @@ help:
 	@echo "... gwnblock_impl.o"
 	@echo "... gwnblock_impl.i"
 	@echo "... gwnblock_impl.s"
+	@echo "... message_passer_impl.o"
+	@echo "... message_passer_impl.i"
+	@echo "... message_passer_impl.s"
 	@echo "... qa_gwnblock.o"
 	@echo "... qa_gwnblock.i"
 	@echo "... qa_gwnblock.s"
 	@echo "... qa_gwncppvgb.o"
 	@echo "... qa_gwncppvgb.i"
 	@echo "... qa_gwncppvgb.s"
+	@echo "... qa_message_passer.o"
+	@echo "... qa_message_passer.i"
+	@echo "... qa_message_passer.s"
 	@echo "... test_gwncppvgb.o"
 	@echo "... test_gwncppvgb.i"
 	@echo "... test_gwncppvgb.s"

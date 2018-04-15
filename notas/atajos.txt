@@ -2,9 +2,12 @@ GWN: de Python a C++ atajos para edición
 
 === Comandos útiles
 
+Editar gwnblock VGB C++y Python:
+gvim -geometry 210x70 -O ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.h ~/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwn/python/gwnblock.py
+
+
 Editar gwnblock Gonzalo, VGB, Python:
 gvim -geometry 210x100 -O ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwn/python/gwnblock.py
-
 
 
 

@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.cc" "/home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o"
+  "/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.cc" "/home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

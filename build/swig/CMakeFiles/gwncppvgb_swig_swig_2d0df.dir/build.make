@@ -71,6 +71,7 @@ swig/gwncppvgb_swig_swig_2d0df.cpp: /home/victor/IIE/GNURadio/prefix/default/inc
 swig/gwncppvgb_swig_swig_2d0df.cpp: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/swig/gnuradio.i
 swig/gwncppvgb_swig_swig_2d0df.cpp: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/swig/msg_handler.i
 swig/gwncppvgb_swig_swig_2d0df.cpp: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/swig/gr_types.i
+swig/gwncppvgb_swig_swig_2d0df.cpp: swig/gwncppvgb_swig_doc.i
 swig/gwncppvgb_swig_swig_2d0df.cpp: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/swig/msg_queue.i
 swig/gwncppvgb_swig_swig_2d0df.cpp: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/swig/basic_block.i
 swig/gwncppvgb_swig_swig_2d0df.cpp: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/swig/sync_decimator.i
@@ -91,14 +92,23 @@ swig/gwncppvgb_swig_swig_2d0df.cpp: /home/victor/IIE/GNURadio/prefix/default/inc
 swig/gwncppvgb_swig_swig_2d0df.cpp: swig/gwncppvgb_swig.tag
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig && /usr/bin/cmake -E copy /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb_swig_swig_2d0df.cpp.in /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb_swig_swig_2d0df.cpp
 
+swig/gwncppvgb_swig_doc.i: swig/gwncppvgb_swig_doc_swig_docs/xml/index.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating python docstrings for gwncppvgb_swig_doc"
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/docs/doxygen && /usr/bin/python2 -B /home/victor/IIE/GNURadio/gr-gwncppvgb/docs/doxygen/swig_doc.py /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb_swig_doc_swig_docs/xml /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb_swig_doc.i
+
 swig/gwncppvgb_swig.tag: swig/_gwncppvgb_swig_swig_tag
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating gwncppvgb_swig.tag"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating gwncppvgb_swig.tag"
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig && ./_gwncppvgb_swig_swig_tag
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig && /usr/bin/cmake -E touch /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb_swig.tag
 
+swig/gwncppvgb_swig_doc_swig_docs/xml/index.xml: swig/_gwncppvgb_swig_doc_tag
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating doxygen xml for gwncppvgb_swig_doc docs"
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig && ./_gwncppvgb_swig_doc_tag
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig && /usr/bin/doxygen /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb_swig_doc_swig_docs/Doxyfile
+
 swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/gwncppvgb_swig_swig_2d0df.cpp.o: swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/flags.make
 swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/gwncppvgb_swig_swig_2d0df.cpp.o: swig/gwncppvgb_swig_swig_2d0df.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/gwncppvgb_swig_swig_2d0df.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/gwncppvgb_swig_swig_2d0df.cpp.o"
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/gwncppvgb_swig_swig_2d0df.cpp.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb_swig_swig_2d0df.cpp
 
 swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/gwncppvgb_swig_swig_2d0df.cpp.i: cmake_force
@@ -130,7 +140,7 @@ gwncppvgb_swig_swig_2d0df_EXTERNAL_OBJECTS =
 swig/gwncppvgb_swig_swig_2d0df: swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/gwncppvgb_swig_swig_2d0df.cpp.o
 swig/gwncppvgb_swig_swig_2d0df: swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/build.make
 swig/gwncppvgb_swig_swig_2d0df: swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable gwncppvgb_swig_swig_2d0df"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable gwncppvgb_swig_swig_2d0df"
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Swig source"
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig && /usr/bin/cmake -E make_directory /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig
@@ -150,7 +160,9 @@ swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/clean:
 .PHONY : swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/clean
 
 swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/depend: swig/gwncppvgb_swig_swig_2d0df.cpp
+swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/depend: swig/gwncppvgb_swig_doc.i
 swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/depend: swig/gwncppvgb_swig.tag
+swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/depend: swig/gwncppvgb_swig_doc_swig_docs/xml/index.xml
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/IIE/GNURadio/gr-gwncppvgb /home/victor/IIE/GNURadio/gr-gwncppvgb/swig /home/victor/IIE/GNURadio/gr-gwncppvgb/build /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : swig/CMakeFiles/gwncppvgb_swig_swig_2d0df.dir/depend
 

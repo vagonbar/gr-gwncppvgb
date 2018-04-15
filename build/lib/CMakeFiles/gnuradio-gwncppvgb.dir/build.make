@@ -81,14 +81,40 @@ lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o.provides: lib/CMakeFile
 lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o.provides.build: lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o
 
 
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o: lib/CMakeFiles/gnuradio-gwncppvgb.dir/flags.make
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o: ../lib/message_passer_impl.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o"
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.cc
+
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.i"
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.cc > CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.i
+
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.s"
+	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.cc -o CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.s
+
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o.requires:
+
+.PHONY : lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o.requires
+
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o.provides: lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o.requires
+	$(MAKE) -f lib/CMakeFiles/gnuradio-gwncppvgb.dir/build.make lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o.provides.build
+.PHONY : lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o.provides
+
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o.provides.build: lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o
+
+
 # Object files for target gnuradio-gwncppvgb
 gnuradio__gwncppvgb_OBJECTS = \
-"CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o"
+"CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o" \
+"CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o"
 
 # External object files for target gnuradio-gwncppvgb
 gnuradio__gwncppvgb_EXTERNAL_OBJECTS =
 
 lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o
+lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o
 lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-gwncppvgb.dir/build.make
 lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/libboost_system.so
@@ -96,7 +122,7 @@ lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: /home/victor/IIE/GNURadio/prefix/de
 lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: /home/victor/IIE/GNURadio/prefix/default/lib/libgnuradio-pmt.so
 lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: /usr/lib/liblog4cpp.so
 lib/libgnuradio-gwncppvgb-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-gwncppvgb.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library libgnuradio-gwncppvgb-1.0.0git.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libgnuradio-gwncppvgb-1.0.0git.so"
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gnuradio-gwncppvgb.dir/link.txt --verbose=$(VERBOSE)
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && $(CMAKE_COMMAND) -E cmake_symlink_library libgnuradio-gwncppvgb-1.0.0git.so.0.0.0 libgnuradio-gwncppvgb-1.0.0git.so.0.0.0 libgnuradio-gwncppvgb-1.0.0git.so
 	cd /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib && /usr/bin/cmake -E create_symlink libgnuradio-gwncppvgb-1.0.0git.so.0.0.0 /home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib/libgnuradio-gwncppvgb.so
@@ -112,6 +138,7 @@ lib/CMakeFiles/gnuradio-gwncppvgb.dir/build: lib/libgnuradio-gwncppvgb-1.0.0git.
 .PHONY : lib/CMakeFiles/gnuradio-gwncppvgb.dir/build
 
 lib/CMakeFiles/gnuradio-gwncppvgb.dir/requires: lib/CMakeFiles/gnuradio-gwncppvgb.dir/gwnblock_impl.cc.o.requires
+lib/CMakeFiles/gnuradio-gwncppvgb.dir/requires: lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o.requires
 
 .PHONY : lib/CMakeFiles/gnuradio-gwncppvgb.dir/requires
 

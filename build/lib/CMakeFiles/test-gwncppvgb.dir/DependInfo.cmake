@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_gwnblock.cc" "/home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib/CMakeFiles/test-gwncppvgb.dir/qa_gwnblock.cc.o"
   "/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_gwncppvgb.cc" "/home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib/CMakeFiles/test-gwncppvgb.dir/qa_gwncppvgb.cc.o"
+  "/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_message_passer.cc" "/home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib/CMakeFiles/test-gwncppvgb.dir/qa_message_passer.cc.o"
   "/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/test_gwncppvgb.cc" "/home/victor/IIE/GNURadio/gr-gwncppvgb/build/lib/CMakeFiles/test-gwncppvgb.dir/test_gwncppvgb.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

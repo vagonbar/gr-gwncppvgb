@@ -22,5 +22,6 @@
 ########################################################################
 install(FILES
     api.h
-    gwnblock.h DESTINATION include/gwncppvgb
+    gwnblock.h
+    message_passer.h DESTINATION include/gwncppvgb
 )

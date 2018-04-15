@@ -22,12 +22,17 @@
 #define INCLUDED_GWNCPPVGB_GWNBLOCK_IMPL_H
 
 #include <gwncppvgb/gwnblock.h>
+#include <vector>
 
 namespace gr {
   namespace gwncppvgb {
 
-    class GWNPort;
-    class GWNOutPort;
+    void set_debug(bool);
+
+    class GWNPort;        // forward declaration
+    class GWNOutPort;     // forward declaration
+    class GWNInPort;      // forward declaration
+  
 
 
     /* gwnblock */
@@ -37,14 +42,18 @@ namespace gr {
     private:
 
     public:
-      gwnblock_impl(std::string name, int number_in, int number_out, int number_timers, int number_timeouts);
+      gwnblock_impl(std::string name, int number_in, int number_out,
+        int number_timers, int number_timeouts);
       ~gwnblock_impl();
 
       // GWN
       std::string name;
       int number_in, number_out, number_timers, number_timeouts;
-
-      GWNOutPort * ports_out [3];   // how to assign size later?
+      std::vector<GWNOutPort *> ports_out; 
+      std::vector<GWNInPort *> ports_in;
+      void post_message(std::string, std::string);
+      void handle_msg(pmt::pmt_t);
+      void process_data(std::string);
       std::string __str__();
 
 
@@ -64,11 +73,11 @@ namespace gr {
     class GWNPort
     {
       protected:
-        std::string port;
         int port_nr;
       public:
         gwnblock_impl * block;
         GWNPort();
+        std::string port;
         std::string __str__();
     }; 
 
@@ -79,8 +88,15 @@ namespace gr {
       public:
         GWNOutPort(gwnblock_impl *, std::string, int);
         GWNOutPort();    // required to initialize array
-        void post_message(std::string);
+        //void post_message(std::string);
      };
+
+    class GWNInPort: public GWNPort {
+      public:
+        GWNInPort(gwnblock_impl *, std::string, int);
+        GWNInPort();    // required to initialize array
+    }; 
+        
 
 
 

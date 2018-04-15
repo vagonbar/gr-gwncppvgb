@@ -16,6 +16,20 @@ gwncppvgb/api.h
 gnuradio/block.h
 -
 
+../include/gwncppvgb/message_passer.h
+gwncppvgb/api.h
+-
+gnuradio/sync_block.h
+-
+../../lib/gwnblock_impl.h
+../lib/gwnblock_impl.h
+
+../lib/gwnblock_impl.h
+gwncppvgb/gwnblock.h
+-
+vector
+-
+
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.cc
 config.h
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/config.h
@@ -25,14 +39,36 @@ gwnblock_impl.h
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h
 sstream
 -
+iostream
+-
+string
+-
 pmt/pmt.h
 -
 gnuradio/blocks/pdu.h
+-
+stdio.h
 -
 
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h
 gwncppvgb/gwnblock.h
 -
+vector
+-
+
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.cc
+config.h
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/config.h
+gnuradio/io_signature.h
+-
+message_passer_impl.h
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.h
+
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.h
+gwncppvgb/message_passer.h
+-
+gwnblock_impl.h
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h
 
 /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/api.h
 gnuradio/attributes.h
@@ -256,6 +292,12 @@ gnuradio/types.h
 gnuradio/api.h
 -
 boost/shared_ptr.hpp
+-
+
+/home/victor/IIE/GNURadio/prefix/default/include/gnuradio/sync_block.h
+gnuradio/api.h
+-
+gnuradio/block.h
 -
 
 /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/tags.h

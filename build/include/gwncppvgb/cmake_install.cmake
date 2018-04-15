@@ -36,6 +36,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/gwncppvgb" TYPE FILE FILES
     "/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/api.h"
     "/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h"
+    "/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/message_passer.h"
     )
 endif()
 

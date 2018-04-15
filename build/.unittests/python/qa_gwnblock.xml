@@ -1,6 +1,13 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="2" time="3.183">
-  <testcase classname="__main__.qa_gwnblock" name="test_001_t" time="0.0338"></testcase>
-  <testcase classname="__main__.qa_gwnblock" name="test_out_port" time="3.1488"></testcase>
+<testsuite errors="1" failures="0" name="unittest.suite.TestSuite" tests="2" time="6.009">
+  <testcase classname="__main__.qa_gwnblock" name="test_constructor" time="0.0003">
+    <error type="exceptions.AttributeError">'module' object has no attribute 'set_debug'
+  File "/usr/lib/python2.7/unittest/case.py", line 329, in run
+    testMethod()
+  File "../python/qa_gwnblock.py", line 41, in test_constructor
+    gwncppvgb.set_debug(False)
+    </error>
+  </testcase>
+  <testcase classname="__main__.qa_gwnblock" name="test_ports" time="6.0087"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

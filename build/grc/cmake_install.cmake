@@ -33,6 +33,9 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES "/home/victor/IIE/GNURadio/gr-gwncppvgb/grc/gwncppvgb_gwnblock.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES
+    "/home/victor/IIE/GNURadio/gr-gwncppvgb/grc/gwncppvgb_gwnblock.xml"
+    "/home/victor/IIE/GNURadio/gr-gwncppvgb/grc/gwncppvgb_message_passer.xml"
+    )
 endif()
 

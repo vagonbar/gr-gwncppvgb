@@ -26,10 +26,15 @@
 #include "gwnblock_impl.h"
 
 // GWN additions
-#include<sstream>   // for to_string
+#include <sstream>   // for to_string
+
+#include <iostream>  // for string support
+#include <string>    // for string concatenation
 
 #include <pmt/pmt.h>              // for messages
 #include <gnuradio/blocks/pdu.h>  // for messages
+
+#include <stdio.h>   // for printf
 
 namespace gr {
   namespace gwncppvgb {
@@ -49,15 +54,16 @@ namespace gr {
     }
 
 
-
-
     bool debug = true;    // if true prints debug messages
+    void set_debug(bool dbg) {
+      debug = dbg;
+      std::cout << "Debug flag set to " << debug << std::endl;
+    }
+
 
     /* GWNPort */
 
     GWNPort::GWNPort() {
-      //block = void pointer, will receive pointer to gwnblock
-      //block = nullptr; // necessary, possible?
       port = "";      // null port name
       port_nr = -1;   // first working port will be 0
       if (debug) { std::cout << "GWNPort, default constructor"
@@ -65,63 +71,52 @@ namespace gr {
     }
 
     std::string GWNPort::__str__() {
-      std::string ss = "__str__ string to return";
-      if (debug) {
-        std::cout << "GWNPort, port name: " << port << 
-          ", port number: " << port_nr << ", in block name: " <<
-          block->name << std::endl;
-      }
+      std::string ss = "GWNPort port name: " + port + 
+        ", port number: " + to_string(port_nr) + 
+        ", in block name: " + block->name + "\n";
       return ss;
     }
 
 
+
     /* GWNOutPort */
+
+    GWNOutPort::GWNOutPort() : GWNPort() {}
 
     GWNOutPort::GWNOutPort(gwnblock_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort() {
       block = p_block;
       port = p_port;
       port_nr = p_port_nr;
-      /*if (debug) { 
-         std::cout << "GWNOutPort, constructor, block name: " <<
-          block->name << std::endl;} */
     }
 
-
-    GWNOutPort::GWNOutPort() : GWNPort() {
-       if (debug) { 
-         std::cout << "GWNOutPort, default constructor" << 
-           std::endl;}
-    }
-
+    /*
     void GWNOutPort::post_message(std::string ev) {
-      // string instead of ev, for debug in development
+      // receives string, creates PMT, outputs PMT message
       if (debug) { 
         std::cout << "GWNOutPort, post_message, port: " << 
           port_nr << " in block: " << block->name << std::endl;
         std::cout << "...message: " << ev << std::endl;
       }
+      pmt::pmt_t pmt_port = pmt::string_to_symbol(port);
+      pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev); 
+      //block->message_port_pub(pmt_port, pmt_msg);
+      //block->message_port_pub(pmt::mp("out_port_0"), pmt::mp(ev));
+    } */
 
-      // send message on output port
-      std::string ev_str = ev;     // transmit strings, for now
-
-      //pmt::pmt_t pmt_msg = pmt::intern(ev_str);
-
-      // from Python gwnblock, pmt:_mp from message_strobe
-      /*pmt::pmt_t pmt_msg = pmt::cons(pmt::PMT_NIL, 
-        pmt::mp(ev_str) );
-      pmt::pmt_t pmt_port = pmt::mp(port);
-      block->message_port_pub(pmt_port, pmt::cons(pmt::PMT_NIL, pmt_msg) ); */
-      
-      // from gwncpp  
-      //block->gr::basic_block::message_port_pub (pmt_port, pmt_msg);
-      //block->gr::basic_block::_post (pmt_port, pmt_msg );
-
-      // from message_strobe
-      block->message_port_pub (pmt::mp(port), pmt::mp(ev_str));
-
-    }
        
+
+    /* GWNInPort */
+
+    GWNInPort::GWNInPort() : GWNPort() {}
+
+    GWNInPort::GWNInPort(gwnblock_impl * p_block, 
+        std::string p_port, int p_port_nr) : GWNPort() {
+      block = p_block;
+      port = p_port;
+      port_nr = p_port_nr;
+    }
+
 
 
     /* gwnblock */
@@ -133,7 +128,49 @@ namespace gr {
         (new gwnblock_impl(name, number_in, number_out, number_timers, number_timeouts));
     }
 
+
+    std::string gwnblock_impl::__str__() {
+      std::string ss = "__str__() Block name: " + this->name; 
+      return ss;
+    }
+
+
+    void gwnblock_impl::handle_msg (pmt::pmt_t pmt_msg) {
+      std::string ev = pmt::symbol_to_string(pmt_msg);
+      if (debug) { 
+        std::cout << "Handle msg, received: " << ev << std::endl;
+      }
+      process_data(ev);
+    } 
+
+    
+    void gwnblock_impl::post_message(std::string port,
+        std::string ev) {
+      if (debug) {
+        std::cout << "Post message, sent: " 
+          << ev << std::endl;
+      }
+      pmt::pmt_t pmt_port = pmt::string_to_symbol(port);
+      pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev); 
+      message_port_pub(pmt_port, pmt_msg);
+    }
+
+    void gwnblock_impl::process_data(std::string ev) {
+      // to be rewritten in descedant class
+      if (debug) {
+        std::cout << "Process_data, received and sent: " << ev << std::endl;
+        //std::cout << ports_out[0]->__str__() << std::endl;
+        //std::cout << ports_out[0]->port << std::endl;
+        post_message("out_port_0", ev);
+        //ports_out[0]->post_message(ev);
+        //message_port_pub(pmt::mp("out_port_0"), pmt::mp(ev));
+      }
+    }
+
+
+
     /* gwnblock: the private constructor */
+
     gwnblock_impl::gwnblock_impl(std::string p_name,
       int p_number_in, int p_number_out, int p_number_timers,
       int p_number_timeouts)
@@ -150,48 +187,50 @@ namespace gr {
       number_timeouts = p_number_timeouts;
 
 
-      // for early stage debug
-      if (debug) { 
-        std::cout << "gwnblock, private constructor; " <<
-        "block name: " << this->name << std::endl; 
-      }
-
-      // set_out_size, now inline, convert to function,
-      // must solve visibility of GWNOutPort in function
-
-      // cannot assign, maybe use <vector>
-      //GWNOutPort * ports_out_ar [number_out];    // local variable
-      //ports_out = ports_out_ar;                // member variable
-
+      // gwnblock::set_out_size (int number_out)
+      ports_out.resize(number_out);
       int i;
       std::string out_port;
       std::string message;
-
       pmt::pmt_t pmt_out_port;
 
       for ( i=0; i < number_out; i++) {
-
-        out_port = "port_" + to_string(i);
+        out_port = "out_port_" + to_string(i);
         GWNOutPort port_new = GWNOutPort(this, out_port, i);
-        if (debug) {
-          std::cout << "... port_new.block->name: " << 
-            port_new.block->name << std::endl;
-        }
         ports_out[i] = &port_new;
-
-        // from Python gwnblock
-        //pmt_out_port = pmt::intern(out_port);
-
-        // from message_strobe
-        message_port_register_out(pmt::mp(out_port) ); 
-
-
+        pmt_out_port = pmt::string_to_symbol(out_port);
+        message_port_register_out(pmt_out_port); 
         if (debug) {
-          ports_out[i]->__str__();
-          //std::cout << "to_string message: " << message << std::endl;
+          std::cout << ports_out[i]->__str__() << std::endl; 
+          std::string dbg_msg = "Post Message debug\n...";
+          dbg_msg += ports_out[i]->__str__();
+          std::cout << dbg_msg << std::endl;
+        }
+        std::cout << ports_out[0]->__str__() << std::endl;
+      }
+
+
+      // gwnblock::set_n_size (int number_in)
+      //int i;                  // already declared
+      ports_in.resize(number_in);
+      std::string in_port;  
+      //std::string message;    // already declared
+      pmt::pmt_t pmt_in_port;
+
+      for ( i=0; i < number_in; i++) {
+        in_port = "in_port_" + to_string(i);
+        GWNInPort port_new = GWNInPort(this, in_port, i);
+        ports_in[i] = &port_new;
+        pmt_in_port = pmt::string_to_symbol(in_port);
+        message_port_register_in(pmt_in_port);
+        set_msg_handler(pmt_in_port,
+          boost::bind(&gwnblock_impl::handle_msg, this, _1));
+        if (debug) {
+          std::cout << ports_in[i]->__str__() << std::endl; 
         }
       }
     }
+
 
     /* gwnblock: our virtual destructor */
     gwnblock_impl::~gwnblock_impl()
@@ -199,10 +238,7 @@ namespace gr {
     }
 
 
-    std::string gwnblock_impl::__str__() {
-      std::string ss = "__str__() Block name: " + this->name; 
-      return ss;
-    }
+
 
     /* GNU Radio */
 
