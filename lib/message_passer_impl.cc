@@ -24,6 +24,7 @@
 
 #include <gnuradio/io_signature.h>
 #include "message_passer_impl.h"
+#include "gwnblock_impl.h"
 
 
 

@@ -48,9 +48,6 @@ namespace gr {
        */
       static sptr make(std::string name, int number_in, int number_out, int number_timers, int number_timeouts);
 
-      std::string my__str__();
-
-
     };
 
   } // namespace gwncppvgb

@@ -27,15 +27,15 @@
 namespace gr {
   namespace gwncppvgb {
 
-    class message_passer_impl : public message_passer, gwnblock_impl
+    class message_passer_impl : public message_passer, public gwnblock_impl
     {
      private:
       // Nothing to declare in this block.
 
      public:
       //message_passer_impl(int number, std::string message);
-      message_passer_impl(int number, std::string message) 
-        : gwnblock_impl::gwnblock_impl (std::string, int, int, int, int);
+      message_passer_impl(int, std::string) ;
+        //: gwnblock_impl::gwnblock_impl (std::string, int, int, int, int);
 
       ~message_passer_impl();
 

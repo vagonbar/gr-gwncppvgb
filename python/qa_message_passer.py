@@ -21,7 +21,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-import gwncppvgb_swig as gwncppvgb
+import gwncppvgb.gwncppvgb_swig as gwncppvgb
 
 class qa_message_passer (gr_unittest.TestCase):
 
@@ -33,6 +33,9 @@ class qa_message_passer (gr_unittest.TestCase):
 
     def test_001_t (self):
         # set up fg
+
+        blkpass = gwncppvgb.message_passer(10, "Message in passer")
+
         self.tb.run ()
         # check data
 
