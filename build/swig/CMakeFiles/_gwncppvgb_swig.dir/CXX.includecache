@@ -16,6 +16,14 @@ gwncppvgb/api.h
 gnuradio/block.h
 -
 
+../include/gwncppvgb/message_passer.h
+gwncppvgb/api.h
+-
+gnuradio/sync_block.h
+-
+gwncppvgb/gwnblock.h
+../include/gwncppvgb/gwncppvgb/gwnblock.h
+
 /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb_swigPYTHON_wrap.cxx
 Python.h
 -
@@ -63,6 +71,8 @@ limits.h
 -
 gwncppvgb/gwnblock.h
 /home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb/gwnblock.h
+gwncppvgb/message_passer.h
+/home/victor/IIE/GNURadio/gr-gwncppvgb/build/swig/gwncppvgb/message_passer.h
 float.h
 -
 math.h

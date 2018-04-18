@@ -16,6 +16,14 @@ gwncppvgb/api.h
 gnuradio/block.h
 -
 
+../include/gwncppvgb/message_passer.h
+gwncppvgb/api.h
+-
+gnuradio/sync_block.h
+-
+gwncppvgb/gwnblock.h
+../include/gwncppvgb/gwncppvgb/gwnblock.h
+
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_gwnblock.cc
 gnuradio/attributes.h
 -
@@ -37,11 +45,29 @@ qa_gwncppvgb.h
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_gwncppvgb.h
 qa_gwnblock.h
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_gwnblock.h
+qa_message_passer.h
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_message_passer.h
 
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_gwncppvgb.h
 gnuradio/attributes.h
 -
 cppunit/TestSuite.h
+-
+
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_message_passer.cc
+gnuradio/attributes.h
+-
+cppunit/TestAssert.h
+-
+qa_message_passer.h
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_message_passer.h
+gwncppvgb/message_passer.h
+-
+
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/qa_message_passer.h
+cppunit/extensions/HelperMacros.h
+-
+cppunit/TestCase.h
 -
 
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/test_gwncppvgb.cc
@@ -270,6 +296,12 @@ gnuradio/types.h
 gnuradio/api.h
 -
 boost/shared_ptr.hpp
+-
+
+/home/victor/IIE/GNURadio/prefix/default/include/gnuradio/sync_block.h
+gnuradio/api.h
+-
+gnuradio/block.h
 -
 
 /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/tags.h

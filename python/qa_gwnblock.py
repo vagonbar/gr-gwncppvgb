@@ -38,9 +38,9 @@ class qa_gwnblock (gr_unittest.TestCase):
 
     def test_constructor (self):
         print "\n===\n=== TEST gwnblock constructor \n===\n"
-        gwncppvgb.set_debug(False)
+        #gwncppvgb.set_debug(True)   # does now work as expected
         myblock = gwncppvgb.gwnblock('block_1', 1, 3, 0, 0)
-        print "myblock.__str__()", myblock.__str__()
+        #print "myblock.__str__()", myblock.__str__()  # not as expected
 
 
         # set up fg

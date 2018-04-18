@@ -3,6 +3,7 @@
   <compounddef id="namespacegr_1_1gwncppvgb" kind="namespace" language="C++">
     <compoundname>gr::gwncppvgb</compoundname>
     <innerclass refid="classgr_1_1gwncppvgb_1_1gwnblock" prot="public">gr::gwncppvgb::gwnblock</innerclass>
+    <innerclass refid="classgr_1_1gwncppvgb_1_1message__passer" prot="public">gr::gwncppvgb::message_passer</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

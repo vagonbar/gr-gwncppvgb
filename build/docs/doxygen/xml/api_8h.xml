@@ -4,6 +4,7 @@
     <compoundname>api.h</compoundname>
     <includes local="no">gnuradio/attributes.h</includes>
     <includedby refid="gwnblock_8h" local="no">gwnblock.h</includedby>
+    <includedby refid="message__passer_8h" local="no">message_passer.h</includedby>
     <incdepgraph>
       <node id="1">
         <label>gnuradio/attributes.h</label>
@@ -19,23 +20,39 @@
       <node id="4">
         <label>gwnblock_impl.h</label>
         <link refid="gwnblock__impl_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
-      <node id="5">
+      <node id="7">
         <label>gwnblock_impl_1.h</label>
         <link refid="gwnblock__impl__1_8h"/>
+      </node>
+      <node id="5">
+        <label>message_passer.h</label>
+        <link refid="message__passer_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="3">
         <label>gwnblock.h</label>
         <link refid="gwnblock_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
+      </node>
+      <node id="6">
+        <label>message_passer_impl.h</label>
+        <link refid="message__passer__impl_8h"/>
       </node>
       <node id="2">
         <label>api.h</label>
         <link refid="api.h"/>
         <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

@@ -37,3 +37,27 @@ Args:
     number_out : 
     number_timers : 
     number_timeouts : "
+
+%feature("docstring") gr::gwncppvgb::message_passer "<+description of block+>
+
+Constructor Specific Documentation:
+
+Return a shared_ptr to a new instance of gwncppvgb::message_passer.
+
+To avoid accidental use of raw pointers, gwncppvgb::message_passer's constructor is in a private implementation class. gwncppvgb::message_passer::make is the public interface for creating new instances.
+
+Args:
+    number : 
+    message : "
+
+%feature("docstring") gr::gwncppvgb::message_passer::make "<+description of block+>
+
+Constructor Specific Documentation:
+
+Return a shared_ptr to a new instance of gwncppvgb::message_passer.
+
+To avoid accidental use of raw pointers, gwncppvgb::message_passer's constructor is in a private implementation class. gwncppvgb::message_passer::make is the public interface for creating new instances.
+
+Args:
+    number : 
+    message : "

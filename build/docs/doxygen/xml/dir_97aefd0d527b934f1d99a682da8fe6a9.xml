@@ -4,6 +4,7 @@
     <compoundname>lib</compoundname>
     <innerfile refid="gwnblock__impl_8h">gwnblock_impl.h</innerfile>
     <innerfile refid="gwnblock__impl__1_8h">gwnblock_impl_1.h</innerfile>
+    <innerfile refid="message__passer__impl_8h">message_passer_impl.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

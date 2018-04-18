@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
   <compounddef id="namespacegr" kind="namespace" language="C++">
     <compoundname>gr</compoundname>
+    <innernamespace refid="namespacegr_1_1blocks">gr::blocks</innernamespace>
     <innernamespace refid="namespacegr_1_1gwncppvgb">gr::gwncppvgb</innernamespace>
     <briefdescription>
     </briefdescription>

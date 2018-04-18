@@ -4,6 +4,7 @@
     <compoundname>/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb</compoundname>
     <innerfile refid="api_8h">api.h</innerfile>
     <innerfile refid="gwnblock_8h">gwnblock.h</innerfile>
+    <innerfile refid="message__passer_8h">message_passer.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

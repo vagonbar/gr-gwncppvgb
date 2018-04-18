@@ -21,14 +21,8 @@ gwncppvgb/api.h
 -
 gnuradio/sync_block.h
 -
-../../lib/gwnblock_impl.h
-../lib/gwnblock_impl.h
-
-../lib/gwnblock_impl.h
 gwncppvgb/gwnblock.h
--
-vector
--
+../include/gwncppvgb/gwncppvgb/gwnblock.h
 
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.cc
 config.h
@@ -63,6 +57,8 @@ gnuradio/io_signature.h
 -
 message_passer_impl.h
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.h
+gwnblock_impl.h
+/home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h
 
 /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.h
 gwncppvgb/message_passer.h

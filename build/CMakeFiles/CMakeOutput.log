@@ -28,28 +28,28 @@ The C compiler identification is GNU, found in "/home/victor/IIE/GNURadio/gr-gwn
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_389bf/fast"
-/usr/bin/make -f CMakeFiles/cmTC_389bf.dir/build.make CMakeFiles/cmTC_389bf.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_a8329/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a8329.dir/build.make CMakeFiles/cmTC_a8329.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_389bf.dir/testCXXCompiler.cxx.o
-/usr/bin/c++      -o CMakeFiles/cmTC_389bf.dir/testCXXCompiler.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_389bf
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_389bf.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_389bf.dir/testCXXCompiler.cxx.o  -o cmTC_389bf -rdynamic 
+Building CXX object CMakeFiles/cmTC_a8329.dir/testCXXCompiler.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_a8329.dir/testCXXCompiler.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_a8329
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a8329.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_a8329.dir/testCXXCompiler.cxx.o  -o cmTC_a8329 -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3ee30/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3ee30.dir/build.make CMakeFiles/cmTC_3ee30.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4fb6d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4fb6d.dir/build.make CMakeFiles/cmTC_4fb6d.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++      -o CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_3ee30
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ee30.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_3ee30 -rdynamic  
+Building CXX object CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++      -o CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_4fb6d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4fb6d.dir/link.txt --verbose=1
+/usr/bin/c++       -v CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4fb6d -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -59,8 +59,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/home/victor/IIE/GNURadio/prefix/default/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/home/victor/IIE/GNURadio/prefix/default/lib/:./:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3ee30' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZFzFEu.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_3ee30 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/home/victor/IIE/GNURadio/prefix/default/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/home/victor/IIE/GNURadio/prefix/default/lib -L. -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4fb6d' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cciR5oS4.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_4fb6d /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/home/victor/IIE/GNURadio/prefix/default/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/home/victor/IIE/GNURadio/prefix/default/lib -L. -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
@@ -68,14 +68,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_3ee30/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_3ee30.dir/build.make CMakeFiles/cmTC_3ee30.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_4fb6d/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_4fb6d.dir/build.make CMakeFiles/cmTC_4fb6d.dir/build]
   ignore line: [make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_3ee30]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ee30.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_3ee30 -rdynamic  ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_4fb6d]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4fb6d.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4fb6d -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -85,13 +85,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/home/victor/IIE/GNURadio/prefix/default/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/home/victor/IIE/GNURadio/prefix/default/lib/:./:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3ee30' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZFzFEu.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_3ee30 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/home/victor/IIE/GNURadio/prefix/default/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/home/victor/IIE/GNURadio/prefix/default/lib -L. -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4fb6d' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cciR5oS4.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_4fb6d /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/home/victor/IIE/GNURadio/prefix/default/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/home/victor/IIE/GNURadio/prefix/default/lib -L. -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccZFzFEu.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cciR5oS4.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -109,7 +109,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_3ee30] ==> ignore
+    arg [cmTC_4fb6d] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -124,7 +124,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/home/victor/IIE/GNURadio/prefix/default/lib] ==> dir [/home/victor/IIE/GNURadio/prefix/default/lib]
     arg [-L.] ==> ignore
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_3ee30.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_4fb6d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -158,14 +158,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7d75f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_7d75f.dir/build.make CMakeFiles/cmTC_7d75f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_88331/fast"
+/usr/bin/make -f CMakeFiles/cmTC_88331.dir/build.make CMakeFiles/cmTC_88331.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_7d75f.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_7d75f.dir/feature_tests.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_7d75f
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7d75f.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_7d75f.dir/feature_tests.cxx.o  -o cmTC_7d75f -rdynamic 
+Building CXX object CMakeFiles/cmTC_88331.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_88331.dir/feature_tests.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_88331
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_88331.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_88331.dir/feature_tests.cxx.o  -o cmTC_88331 -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
@@ -231,14 +231,14 @@ make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CM
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5d4eb/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5d4eb.dir/build.make CMakeFiles/cmTC_5d4eb.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_efcfa/fast"
+/usr/bin/make -f CMakeFiles/cmTC_efcfa.dir/build.make CMakeFiles/cmTC_efcfa.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5d4eb.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_5d4eb.dir/feature_tests.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_5d4eb
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5d4eb.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_5d4eb.dir/feature_tests.cxx.o  -o cmTC_5d4eb -rdynamic 
+Building CXX object CMakeFiles/cmTC_efcfa.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_efcfa.dir/feature_tests.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_efcfa
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_efcfa.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_efcfa.dir/feature_tests.cxx.o  -o cmTC_efcfa -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
@@ -304,14 +304,14 @@ make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CM
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5744c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5744c.dir/build.make CMakeFiles/cmTC_5744c.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c4489/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c4489.dir/build.make CMakeFiles/cmTC_c4489.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5744c.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_5744c.dir/feature_tests.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_5744c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5744c.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_5744c.dir/feature_tests.cxx.o  -o cmTC_5744c -rdynamic 
+Building CXX object CMakeFiles/cmTC_c4489.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_c4489.dir/feature_tests.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_c4489
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4489.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_c4489.dir/feature_tests.cxx.o  -o cmTC_c4489 -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
@@ -375,28 +375,28 @@ make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CM
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c4a76/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c4a76.dir/build.make CMakeFiles/cmTC_c4a76.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_45dda/fast"
+/usr/bin/make -f CMakeFiles/cmTC_45dda.dir/build.make CMakeFiles/cmTC_45dda.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c4a76.dir/testCCompiler.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_c4a76.dir/testCCompiler.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_c4a76
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4a76.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_c4a76.dir/testCCompiler.c.o  -o cmTC_c4a76 -rdynamic 
+Building C object CMakeFiles/cmTC_45dda.dir/testCCompiler.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_45dda.dir/testCCompiler.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_45dda
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_45dda.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_45dda.dir/testCCompiler.c.o  -o cmTC_45dda -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_69b14/fast"
-/usr/bin/make -f CMakeFiles/cmTC_69b14.dir/build.make CMakeFiles/cmTC_69b14.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_aea01/fast"
+/usr/bin/make -f CMakeFiles/cmTC_aea01.dir/build.make CMakeFiles/cmTC_aea01.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_69b14
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_69b14.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o  -o cmTC_69b14 -rdynamic  
+Building C object CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_aea01
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aea01.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o  -o cmTC_aea01 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -406,8 +406,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/home/victor/IIE/GNURadio/prefix/default/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/home/victor/IIE/GNURadio/prefix/default/lib/:./:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_69b14' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5kqJCn.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_69b14 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/home/victor/IIE/GNURadio/prefix/default/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/home/victor/IIE/GNURadio/prefix/default/lib -L. -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_aea01' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc86XWEW.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_aea01 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/home/victor/IIE/GNURadio/prefix/default/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/home/victor/IIE/GNURadio/prefix/default/lib -L. -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
@@ -415,14 +415,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_69b14/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_69b14.dir/build.make CMakeFiles/cmTC_69b14.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_aea01/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_aea01.dir/build.make CMakeFiles/cmTC_aea01.dir/build]
   ignore line: [make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_69b14]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_69b14.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o  -o cmTC_69b14 -rdynamic  ]
+  ignore line: [Building C object CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_aea01]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aea01.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o  -o cmTC_aea01 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -432,13 +432,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/home/victor/IIE/GNURadio/prefix/default/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/home/victor/IIE/GNURadio/prefix/default/lib/:./:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_69b14' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5kqJCn.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_69b14 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/home/victor/IIE/GNURadio/prefix/default/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/home/victor/IIE/GNURadio/prefix/default/lib -L. -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_aea01' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc86XWEW.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_aea01 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/home/victor/IIE/GNURadio/prefix/default/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/home/victor/IIE/GNURadio/prefix/default/lib -L. -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cc5kqJCn.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc86XWEW.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -456,7 +456,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_69b14] ==> ignore
+    arg [cmTC_aea01] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -471,7 +471,7 @@ Parsed C implicit link information from above output:
     arg [-L/home/victor/IIE/GNURadio/prefix/default/lib] ==> dir [/home/victor/IIE/GNURadio/prefix/default/lib]
     arg [-L.] ==> ignore
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_69b14.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_aea01.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -507,14 +507,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_19cb4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_19cb4.dir/build.make CMakeFiles/cmTC_19cb4.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_f348b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f348b.dir/build.make CMakeFiles/cmTC_f348b.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_19cb4.dir/feature_tests.c.o
-/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_19cb4.dir/feature_tests.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_19cb4
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_19cb4.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_19cb4.dir/feature_tests.c.o  -o cmTC_19cb4 -rdynamic 
+Building C object CMakeFiles/cmTC_f348b.dir/feature_tests.c.o
+/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_f348b.dir/feature_tests.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_f348b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f348b.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_f348b.dir/feature_tests.c.o  -o cmTC_f348b -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
@@ -527,14 +527,14 @@ make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CM
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1adf2/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1adf2.dir/build.make CMakeFiles/cmTC_1adf2.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_ece9c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ece9c.dir/build.make CMakeFiles/cmTC_ece9c.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1adf2.dir/feature_tests.c.o
-/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_1adf2.dir/feature_tests.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_1adf2
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1adf2.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_1adf2.dir/feature_tests.c.o  -o cmTC_1adf2 -rdynamic 
+Building C object CMakeFiles/cmTC_ece9c.dir/feature_tests.c.o
+/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_ece9c.dir/feature_tests.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_ece9c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ece9c.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_ece9c.dir/feature_tests.c.o  -o cmTC_ece9c -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
@@ -547,14 +547,14 @@ make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CM
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e5316/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e5316.dir/build.make CMakeFiles/cmTC_e5316.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_52390/fast"
+/usr/bin/make -f CMakeFiles/cmTC_52390.dir/build.make CMakeFiles/cmTC_52390.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e5316.dir/feature_tests.c.o
-/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_e5316.dir/feature_tests.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_e5316
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e5316.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_e5316.dir/feature_tests.c.o  -o cmTC_e5316 -rdynamic 
+Building C object CMakeFiles/cmTC_52390.dir/feature_tests.c.o
+/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_52390.dir/feature_tests.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_52390
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_52390.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_52390.dir/feature_tests.c.o  -o cmTC_52390 -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
@@ -565,84 +565,84 @@ make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CM
 Determining if the include file sys/types.h exists passed with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_28d2e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_28d2e.dir/build.make CMakeFiles/cmTC_28d2e.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_9edd0/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9edd0.dir/build.make CMakeFiles/cmTC_9edd0.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_28d2e.dir/CheckIncludeFile.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_28d2e.dir/CheckIncludeFile.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_28d2e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28d2e.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_28d2e.dir/CheckIncludeFile.c.o  -o cmTC_28d2e -rdynamic 
+Building C object CMakeFiles/cmTC_9edd0.dir/CheckIncludeFile.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_9edd0.dir/CheckIncludeFile.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_9edd0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9edd0.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_9edd0.dir/CheckIncludeFile.c.o  -o cmTC_9edd0 -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file stdint.h exists passed with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_56038/fast"
-/usr/bin/make -f CMakeFiles/cmTC_56038.dir/build.make CMakeFiles/cmTC_56038.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_a3576/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a3576.dir/build.make CMakeFiles/cmTC_a3576.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_56038.dir/CheckIncludeFile.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_56038.dir/CheckIncludeFile.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_56038
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_56038.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_56038.dir/CheckIncludeFile.c.o  -o cmTC_56038 -rdynamic 
+Building C object CMakeFiles/cmTC_a3576.dir/CheckIncludeFile.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_a3576.dir/CheckIncludeFile.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_a3576
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a3576.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_a3576.dir/CheckIncludeFile.c.o  -o cmTC_a3576 -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file stddef.h exists passed with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_dc5d6/fast"
-/usr/bin/make -f CMakeFiles/cmTC_dc5d6.dir/build.make CMakeFiles/cmTC_dc5d6.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_45183/fast"
+/usr/bin/make -f CMakeFiles/cmTC_45183.dir/build.make CMakeFiles/cmTC_45183.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_dc5d6.dir/CheckIncludeFile.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_dc5d6.dir/CheckIncludeFile.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_dc5d6
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc5d6.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_dc5d6.dir/CheckIncludeFile.c.o  -o cmTC_dc5d6 -rdynamic 
+Building C object CMakeFiles/cmTC_45183.dir/CheckIncludeFile.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_45183.dir/CheckIncludeFile.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_45183
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_45183.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_45183.dir/CheckIncludeFile.c.o  -o cmTC_45183 -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
 Determining size of size_t passed with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_07021/fast"
-/usr/bin/make -f CMakeFiles/cmTC_07021.dir/build.make CMakeFiles/cmTC_07021.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_81f7e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_81f7e.dir/build.make CMakeFiles/cmTC_81f7e.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_07021.dir/SIZEOF_SIZE_T.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_07021.dir/SIZEOF_SIZE_T.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CheckTypeSize/SIZEOF_SIZE_T.c
-Linking C executable cmTC_07021
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_07021.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_07021.dir/SIZEOF_SIZE_T.c.o  -o cmTC_07021 -rdynamic 
+Building C object CMakeFiles/cmTC_81f7e.dir/SIZEOF_SIZE_T.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_81f7e.dir/SIZEOF_SIZE_T.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CheckTypeSize/SIZEOF_SIZE_T.c
+Linking C executable cmTC_81f7e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81f7e.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_81f7e.dir/SIZEOF_SIZE_T.c.o  -o cmTC_81f7e -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
 Determining size of unsigned int passed with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_df266/fast"
-/usr/bin/make -f CMakeFiles/cmTC_df266.dir/build.make CMakeFiles/cmTC_df266.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_589d4/fast"
+/usr/bin/make -f CMakeFiles/cmTC_589d4.dir/build.make CMakeFiles/cmTC_589d4.dir/build
 make[1]: se entra en el directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_df266.dir/SIZEOF_UINT.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_df266.dir/SIZEOF_UINT.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CheckTypeSize/SIZEOF_UINT.c
-Linking C executable cmTC_df266
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df266.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_df266.dir/SIZEOF_UINT.c.o  -o cmTC_df266 -rdynamic 
+Building C object CMakeFiles/cmTC_589d4.dir/SIZEOF_UINT.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_589d4.dir/SIZEOF_UINT.c.o   -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CheckTypeSize/SIZEOF_UINT.c
+Linking C executable cmTC_589d4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_589d4.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_589d4.dir/SIZEOF_UINT.c.o  -o cmTC_589d4 -rdynamic 
 make[1]: se sale del directorio '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 
 Performing C++ SOURCE FILE Test HAVE_WNO_UNUSED_BUT_SET_VARIABLE succeeded with the following output:
 Change Dir: /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_206ff/fast"
-/usr/bin/make -f CMakeFiles/cmTC_206ff.dir/build.make CMakeFiles/cmTC_206ff.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_f38ad/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f38ad.dir/build.make CMakeFiles/cmTC_f38ad.dir/build
 make[1]: Entering directory '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_206ff.dir/src.cxx.o
-/usr/bin/c++     -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE   -Wno-unused-but-set-variable -o CMakeFiles/cmTC_206ff.dir/src.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_206ff
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_206ff.dir/link.txt --verbose=1
-/usr/bin/c++    -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE    CMakeFiles/cmTC_206ff.dir/src.cxx.o  -o cmTC_206ff -rdynamic 
+Building CXX object CMakeFiles/cmTC_f38ad.dir/src.cxx.o
+/usr/bin/c++     -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE   -Wno-unused-but-set-variable -o CMakeFiles/cmTC_f38ad.dir/src.cxx.o -c /home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f38ad
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f38ad.dir/link.txt --verbose=1
+/usr/bin/c++    -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE    CMakeFiles/cmTC_f38ad.dir/src.cxx.o  -o cmTC_f38ad -rdynamic 
 make[1]: Leaving directory '/home/victor/IIE/GNURadio/gr-gwncppvgb/build/CMakeFiles/CMakeTmp'
 
 Source file was:

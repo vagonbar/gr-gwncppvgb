@@ -12,6 +12,7 @@ gwn/logs/
 *.py~
 *.txt~ 
 *.sh~
+*.swp
 *~
 top_block.py
 python/.unittests/

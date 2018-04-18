@@ -4,6 +4,7 @@
     <compoundname>api.h</compoundname>
     <includes local="no">gnuradio/attributes.h</includes>
     <includedby refid="gwnblock_8h" local="no">/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h</includedby>
+    <includedby refid="message__passer_8h" local="no">/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/message_passer.h</includedby>
     <incdepgraph>
       <node id="1">
         <label>gnuradio/attributes.h</label>
@@ -16,6 +17,10 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="4">
+        <label>/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/message_passer.h</label>
+        <link refid="message__passer_8h"/>
+      </node>
       <node id="3">
         <label>/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h</label>
         <link refid="gwnblock_8h"/>
@@ -24,6 +29,8 @@
         <label>/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/api.h</label>
         <link refid="api.h"/>
         <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

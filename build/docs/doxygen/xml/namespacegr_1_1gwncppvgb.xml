@@ -4,8 +4,11 @@
     <compoundname>gr::gwncppvgb</compoundname>
     <innerclass refid="classgr_1_1gwncppvgb_1_1gwnblock" prot="public">gr::gwncppvgb::gwnblock</innerclass>
     <innerclass refid="classgr_1_1gwncppvgb_1_1gwnblock__impl" prot="public">gr::gwncppvgb::gwnblock_impl</innerclass>
+    <innerclass refid="classgr_1_1gwncppvgb_1_1GWNInPort" prot="public">gr::gwncppvgb::GWNInPort</innerclass>
     <innerclass refid="classgr_1_1gwncppvgb_1_1GWNOutPort" prot="public">gr::gwncppvgb::GWNOutPort</innerclass>
     <innerclass refid="classgr_1_1gwncppvgb_1_1GWNPort" prot="public">gr::gwncppvgb::GWNPort</innerclass>
+    <innerclass refid="classgr_1_1gwncppvgb_1_1message__passer" prot="public">gr::gwncppvgb::message_passer</innerclass>
+    <innerclass refid="classgr_1_1gwncppvgb_1_1message__passer__impl" prot="public">gr::gwncppvgb::message_passer_impl</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

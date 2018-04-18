@@ -75,8 +75,8 @@ namespace gr {
       protected:
         int port_nr;
       public:
-        gwnblock_impl * block;
         GWNPort();
+        gwnblock_impl * block;
         std::string port;
         std::string __str__();
     }; 
@@ -87,14 +87,14 @@ namespace gr {
     class GWNOutPort: public GWNPort { 
       public:
         GWNOutPort(gwnblock_impl *, std::string, int);
-        GWNOutPort();    // required to initialize array
-        //void post_message(std::string);
+        //GWNOutPort();    // NOT required to initialize <vector>
+        //void post_message(std::string);  // moved to gwnblock_impl
      };
 
     class GWNInPort: public GWNPort {
       public:
         GWNInPort(gwnblock_impl *, std::string, int);
-        GWNInPort();    // required to initialize array
+        //GWNInPort();    // NOT required to initialize <vector>
     }; 
         
 

@@ -3019,40 +3019,42 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_boost__shared_ptrT_gr__flat_flowgraph_t swig_types[7]
 #define SWIGTYPE_p_boost__shared_ptrT_gr__flowgraph_t swig_types[8]
 #define SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__gwnblock_t swig_types[9]
-#define SWIGTYPE_p_boost__shared_ptrT_gr__hier_block2_t swig_types[10]
-#define SWIGTYPE_p_boost__shared_ptrT_gr__io_signature_t swig_types[11]
-#define SWIGTYPE_p_boost__shared_ptrT_gr__top_block_t swig_types[12]
-#define SWIGTYPE_p_char swig_types[13]
-#define SWIGTYPE_p_const_reference swig_types[14]
-#define SWIGTYPE_p_difference_type swig_types[15]
-#define SWIGTYPE_p_gr__basic_block swig_types[16]
-#define SWIGTYPE_p_gr__block swig_types[17]
-#define SWIGTYPE_p_gr__block_gateway swig_types[18]
-#define SWIGTYPE_p_gr__endianness_t swig_types[19]
-#define SWIGTYPE_p_gr__gwncppvgb__gwnblock swig_types[20]
-#define SWIGTYPE_p_gr__hier_block2 swig_types[21]
-#define SWIGTYPE_p_gr__rt_status_t swig_types[22]
-#define SWIGTYPE_p_gr__sync_block swig_types[23]
-#define SWIGTYPE_p_gr__sync_decimator swig_types[24]
-#define SWIGTYPE_p_gr__sync_interpolator swig_types[25]
-#define SWIGTYPE_p_gr__tagged_stream_block swig_types[26]
-#define SWIGTYPE_p_gr__top_block swig_types[27]
-#define SWIGTYPE_p_int swig_types[28]
-#define SWIGTYPE_p_long_long swig_types[29]
-#define SWIGTYPE_p_reference swig_types[30]
-#define SWIGTYPE_p_short swig_types[31]
-#define SWIGTYPE_p_signed_char swig_types[32]
-#define SWIGTYPE_p_size_type swig_types[33]
-#define SWIGTYPE_p_sptr swig_types[34]
-#define SWIGTYPE_p_std__complexT_double_t swig_types[35]
-#define SWIGTYPE_p_std__complexT_float_t swig_types[36]
-#define SWIGTYPE_p_unsigned_char swig_types[37]
-#define SWIGTYPE_p_unsigned_int swig_types[38]
-#define SWIGTYPE_p_unsigned_long_long swig_types[39]
-#define SWIGTYPE_p_unsigned_short swig_types[40]
-#define SWIGTYPE_p_value_type swig_types[41]
-static swig_type_info *swig_types[43];
-static swig_module_info swig_module = {swig_types, 42, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t swig_types[10]
+#define SWIGTYPE_p_boost__shared_ptrT_gr__hier_block2_t swig_types[11]
+#define SWIGTYPE_p_boost__shared_ptrT_gr__io_signature_t swig_types[12]
+#define SWIGTYPE_p_boost__shared_ptrT_gr__top_block_t swig_types[13]
+#define SWIGTYPE_p_char swig_types[14]
+#define SWIGTYPE_p_const_reference swig_types[15]
+#define SWIGTYPE_p_difference_type swig_types[16]
+#define SWIGTYPE_p_gr__basic_block swig_types[17]
+#define SWIGTYPE_p_gr__block swig_types[18]
+#define SWIGTYPE_p_gr__block_gateway swig_types[19]
+#define SWIGTYPE_p_gr__endianness_t swig_types[20]
+#define SWIGTYPE_p_gr__gwncppvgb__gwnblock swig_types[21]
+#define SWIGTYPE_p_gr__gwncppvgb__message_passer swig_types[22]
+#define SWIGTYPE_p_gr__hier_block2 swig_types[23]
+#define SWIGTYPE_p_gr__rt_status_t swig_types[24]
+#define SWIGTYPE_p_gr__sync_block swig_types[25]
+#define SWIGTYPE_p_gr__sync_decimator swig_types[26]
+#define SWIGTYPE_p_gr__sync_interpolator swig_types[27]
+#define SWIGTYPE_p_gr__tagged_stream_block swig_types[28]
+#define SWIGTYPE_p_gr__top_block swig_types[29]
+#define SWIGTYPE_p_int swig_types[30]
+#define SWIGTYPE_p_long_long swig_types[31]
+#define SWIGTYPE_p_reference swig_types[32]
+#define SWIGTYPE_p_short swig_types[33]
+#define SWIGTYPE_p_signed_char swig_types[34]
+#define SWIGTYPE_p_size_type swig_types[35]
+#define SWIGTYPE_p_sptr swig_types[36]
+#define SWIGTYPE_p_std__complexT_double_t swig_types[37]
+#define SWIGTYPE_p_std__complexT_float_t swig_types[38]
+#define SWIGTYPE_p_unsigned_char swig_types[39]
+#define SWIGTYPE_p_unsigned_int swig_types[40]
+#define SWIGTYPE_p_unsigned_long_long swig_types[41]
+#define SWIGTYPE_p_unsigned_short swig_types[42]
+#define SWIGTYPE_p_value_type swig_types[43]
+static swig_type_info *swig_types[45];
+static swig_module_info swig_module = {swig_types, 44, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4368,6 +4370,7 @@ SWIG_From_long_SS_long  (long long value)
 
 
 #include "gwncppvgb/gwnblock.h"
+#include "gwncppvgb/message_passer.h"
 
 
 SWIGINTERN swig_type_info*
@@ -8331,6 +8334,335 @@ SWIGINTERN PyObject *gwnblock_sptr_swigregister(PyObject *SWIGUNUSEDPARM(self), 
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_message_passer_make(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  std::string arg2 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  char *  kwnames[] = {
+    (char *) "number",(char *) "message", NULL 
+  };
+  gr::gwncppvgb::message_passer::sptr result;
+  
+  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OO:message_passer_make",kwnames,&obj0,&obj1)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "message_passer_make" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(obj1, &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "message_passer_make" "', argument " "2"" of type '" "std::string""'"); 
+    }
+    arg2 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  {
+    try {
+      result = gr::gwncppvgb::message_passer::make(arg1,arg2);
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_NewPointerObj((new gr::gwncppvgb::message_passer::sptr(static_cast< const gr::gwncppvgb::message_passer::sptr& >(result))), SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_message_passer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  gr::gwncppvgb::message_passer *result = 0 ;
+  
+  if(!PyArg_UnpackTuple(args,(char *)"new_message_passer",0,0)) SWIG_fail;
+  {
+    try {
+      result = (gr::gwncppvgb::message_passer *)new gr::gwncppvgb::message_passer();
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_gr__gwncppvgb__message_passer, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_message_passer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  gr::gwncppvgb::message_passer *arg1 = (gr::gwncppvgb::message_passer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if(!PyArg_UnpackTuple(args,(char *)"delete_message_passer",1,1,&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_gr__gwncppvgb__message_passer, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_message_passer" "', argument " "1"" of type '" "gr::gwncppvgb::message_passer *""'"); 
+  }
+  arg1 = reinterpret_cast< gr::gwncppvgb::message_passer * >(argp1);
+  {
+    try {
+      delete arg1;
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *message_passer_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_UnpackTuple(args,(char*)"swigregister", 1, 1,&obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_gr__gwncppvgb__message_passer, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_message_passer_sptr__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  boost::shared_ptr< gr::gwncppvgb::message_passer > *result = 0 ;
+  
+  if(!PyArg_UnpackTuple(args,(char *)"new_message_passer_sptr",0,0)) SWIG_fail;
+  {
+    try {
+      result = (boost::shared_ptr< gr::gwncppvgb::message_passer > *)new boost::shared_ptr< gr::gwncppvgb::message_passer >();
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_message_passer_sptr__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  gr::gwncppvgb::message_passer *arg1 = (gr::gwncppvgb::message_passer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  boost::shared_ptr< gr::gwncppvgb::message_passer > *result = 0 ;
+  
+  if(!PyArg_UnpackTuple(args,(char *)"new_message_passer_sptr",1,1,&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_gr__gwncppvgb__message_passer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_message_passer_sptr" "', argument " "1"" of type '" "gr::gwncppvgb::message_passer *""'"); 
+  }
+  arg1 = reinterpret_cast< gr::gwncppvgb::message_passer * >(argp1);
+  {
+    try {
+      result = (boost::shared_ptr< gr::gwncppvgb::message_passer > *)new boost::shared_ptr< gr::gwncppvgb::message_passer >(arg1);
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_message_passer_sptr(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[2] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 1) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 0) {
+    return _wrap_new_message_passer_sptr__SWIG_0(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_gr__gwncppvgb__message_passer, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_message_passer_sptr__SWIG_1(self, args);
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_message_passer_sptr'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    boost::shared_ptr< gr::gwncppvgb::message_passer >::shared_ptr()\n"
+    "    boost::shared_ptr< gr::gwncppvgb::message_passer >::shared_ptr(gr::gwncppvgb::message_passer *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_message_passer_sptr___deref__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  boost::shared_ptr< gr::gwncppvgb::message_passer > *arg1 = (boost::shared_ptr< gr::gwncppvgb::message_passer > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  gr::gwncppvgb::message_passer *result = 0 ;
+  
+  if(!PyArg_UnpackTuple(args,(char *)"message_passer_sptr___deref__",1,1,&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "message_passer_sptr___deref__" "', argument " "1"" of type '" "boost::shared_ptr< gr::gwncppvgb::message_passer > *""'"); 
+  }
+  arg1 = reinterpret_cast< boost::shared_ptr< gr::gwncppvgb::message_passer > * >(argp1);
+  {
+    try {
+      result = (gr::gwncppvgb::message_passer *)(arg1)->operator ->();
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_gr__gwncppvgb__message_passer, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_message_passer_sptr(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  boost::shared_ptr< gr::gwncppvgb::message_passer > *arg1 = (boost::shared_ptr< gr::gwncppvgb::message_passer > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if(!PyArg_UnpackTuple(args,(char *)"delete_message_passer_sptr",1,1,&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_message_passer_sptr" "', argument " "1"" of type '" "boost::shared_ptr< gr::gwncppvgb::message_passer > *""'"); 
+  }
+  arg1 = reinterpret_cast< boost::shared_ptr< gr::gwncppvgb::message_passer > * >(argp1);
+  {
+    try {
+      delete arg1;
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_message_passer_sptr_make(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  boost::shared_ptr< gr::gwncppvgb::message_passer > *arg1 = (boost::shared_ptr< gr::gwncppvgb::message_passer > *) 0 ;
+  int arg2 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  char *  kwnames[] = {
+    (char *) "self",(char *) "number",(char *) "message", NULL 
+  };
+  gr::gwncppvgb::message_passer::sptr result;
+  
+  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OOO:message_passer_sptr_make",kwnames,&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "message_passer_sptr_make" "', argument " "1"" of type '" "boost::shared_ptr< gr::gwncppvgb::message_passer > *""'"); 
+  }
+  arg1 = reinterpret_cast< boost::shared_ptr< gr::gwncppvgb::message_passer > * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "message_passer_sptr_make" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(obj2, &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "message_passer_sptr_make" "', argument " "3"" of type '" "std::string""'"); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  {
+    try {
+      result = (*arg1)->make(arg2,arg3);
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_NewPointerObj((new gr::gwncppvgb::message_passer::sptr(static_cast< const gr::gwncppvgb::message_passer::sptr& >(result))), SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *message_passer_sptr_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_UnpackTuple(args,(char*)"swigregister", 1, 1,&obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { (char *)"high_res_timer_now", _wrap_high_res_timer_now, METH_VARARGS, (char *)"high_res_timer_now() -> gr::high_res_timer_type"},
@@ -8464,6 +8796,46 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"gwnblock_sptr_message_ports_out", _wrap_gwnblock_sptr_message_ports_out, METH_VARARGS, (char *)"gwnblock_sptr_message_ports_out(gwnblock_sptr self) -> swig_int_ptr"},
 	 { (char *)"gwnblock_sptr_message_subscribers", (PyCFunction) _wrap_gwnblock_sptr_message_subscribers, METH_VARARGS | METH_KEYWORDS, (char *)"gwnblock_sptr_message_subscribers(gwnblock_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
 	 { (char *)"gwnblock_sptr_swigregister", gwnblock_sptr_swigregister, METH_VARARGS, NULL},
+	 { (char *)"message_passer_make", (PyCFunction) _wrap_message_passer_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
+		"message_passer_make(int number, std::string message) -> message_passer_sptr\n"
+		"\n"
+		"<+description of block+>\n"
+		"\n"
+		"Constructor Specific Documentation:\n"
+		"\n"
+		"Return a shared_ptr to a new instance of gwncppvgb::message_passer.\n"
+		"\n"
+		"To avoid accidental use of raw pointers, gwncppvgb::message_passer's constructor is in a private implementation class. gwncppvgb::message_passer::make is the public interface for creating new instances.\n"
+		"\n"
+		"Args:\n"
+		"    number : \n"
+		"    message : \n"
+		""},
+	 { (char *)"new_message_passer", _wrap_new_message_passer, METH_VARARGS, (char *)"new_message_passer() -> message_passer"},
+	 { (char *)"delete_message_passer", _wrap_delete_message_passer, METH_VARARGS, (char *)"delete_message_passer(message_passer self)"},
+	 { (char *)"message_passer_swigregister", message_passer_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_message_passer_sptr", _wrap_new_message_passer_sptr, METH_VARARGS, (char *)"\n"
+		"message_passer_sptr()\n"
+		"new_message_passer_sptr(message_passer p) -> message_passer_sptr\n"
+		""},
+	 { (char *)"message_passer_sptr___deref__", _wrap_message_passer_sptr___deref__, METH_VARARGS, (char *)"message_passer_sptr___deref__(message_passer_sptr self) -> message_passer"},
+	 { (char *)"delete_message_passer_sptr", _wrap_delete_message_passer_sptr, METH_VARARGS, (char *)"delete_message_passer_sptr(message_passer_sptr self)"},
+	 { (char *)"message_passer_sptr_make", (PyCFunction) _wrap_message_passer_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
+		"message_passer_sptr_make(message_passer_sptr self, int number, std::string message) -> message_passer_sptr\n"
+		"\n"
+		"<+description of block+>\n"
+		"\n"
+		"Constructor Specific Documentation:\n"
+		"\n"
+		"Return a shared_ptr to a new instance of gwncppvgb::message_passer.\n"
+		"\n"
+		"To avoid accidental use of raw pointers, gwncppvgb::message_passer's constructor is in a private implementation class. gwncppvgb::message_passer::make is the public interface for creating new instances.\n"
+		"\n"
+		"Args:\n"
+		"    number : \n"
+		"    message : \n"
+		""},
+	 { (char *)"message_passer_sptr_swigregister", message_passer_sptr_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -8525,6 +8897,7 @@ static swig_type_info _swigt__p_boost__shared_ptrT_gr__buffer_t = {"_p_boost__sh
 static swig_type_info _swigt__p_boost__shared_ptrT_gr__flat_flowgraph_t = {"_p_boost__shared_ptrT_gr__flat_flowgraph_t", "boost::shared_ptr< gr::flat_flowgraph > *|gr::flat_flowgraph_sptr *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_gr__flowgraph_t = {"_p_boost__shared_ptrT_gr__flowgraph_t", "boost::shared_ptr< gr::flowgraph > *|gr::flowgraph_sptr *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_gr__gwncppvgb__gwnblock_t = {"_p_boost__shared_ptrT_gr__gwncppvgb__gwnblock_t", "gr::gwncppvgb::gwnblock::sptr *|boost::shared_ptr< gr::gwncppvgb::gwnblock > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t = {"_p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t", "gr::gwncppvgb::message_passer::sptr *|boost::shared_ptr< gr::gwncppvgb::message_passer > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_gr__hier_block2_t = {"_p_boost__shared_ptrT_gr__hier_block2_t", "boost::shared_ptr< gr::hier_block2 > *|gr::hier_block2_sptr *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_gr__io_signature_t = {"_p_boost__shared_ptrT_gr__io_signature_t", "gr::io_signature::sptr *|boost::shared_ptr< gr::io_signature > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_gr__top_block_t = {"_p_boost__shared_ptrT_gr__top_block_t", "boost::shared_ptr< gr::top_block > *|gr::top_block_sptr *", 0, 0, (void*)0, 0};
@@ -8542,6 +8915,7 @@ static swig_type_info _swigt__p_gr__top_block = {"_p_gr__top_block", 0, 0, 0, 0,
 static swig_type_info _swigt__p_gr__block = {"_p_gr__block", "gr::block *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_gr__endianness_t = {"_p_gr__endianness_t", "enum gr::endianness_t *|gr::endianness_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_gr__gwncppvgb__gwnblock = {"_p_gr__gwncppvgb__gwnblock", "gr::gwncppvgb::gwnblock *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_gr__gwncppvgb__message_passer = {"_p_gr__gwncppvgb__message_passer", "gr::gwncppvgb::message_passer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_gr__rt_status_t = {"_p_gr__rt_status_t", "enum gr::rt_status_t *|gr::rt_status_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "intptr_t *|int *|int_least32_t *|int_fast32_t *|int32_t *|int_fast16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_long_long = {"_p_long_long", "gr::high_res_timer_type *|int_least64_t *|int_fast64_t *|int64_t *|long long *|intmax_t *", 0, 0, (void*)0, 0};
@@ -8569,6 +8943,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrT_gr__flat_flowgraph_t,
   &_swigt__p_boost__shared_ptrT_gr__flowgraph_t,
   &_swigt__p_boost__shared_ptrT_gr__gwncppvgb__gwnblock_t,
+  &_swigt__p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t,
   &_swigt__p_boost__shared_ptrT_gr__hier_block2_t,
   &_swigt__p_boost__shared_ptrT_gr__io_signature_t,
   &_swigt__p_boost__shared_ptrT_gr__top_block_t,
@@ -8580,6 +8955,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_gr__block_gateway,
   &_swigt__p_gr__endianness_t,
   &_swigt__p_gr__gwncppvgb__gwnblock,
+  &_swigt__p_gr__gwncppvgb__message_passer,
   &_swigt__p_gr__hier_block2,
   &_swigt__p_gr__rt_status_t,
   &_swigt__p_gr__sync_block,
@@ -8613,6 +8989,7 @@ static swig_cast_info _swigc__p_boost__shared_ptrT_gr__buffer_t[] = {  {&_swigt_
 static swig_cast_info _swigc__p_boost__shared_ptrT_gr__flat_flowgraph_t[] = {  {&_swigt__p_boost__shared_ptrT_gr__flat_flowgraph_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_gr__flowgraph_t[] = {  {&_swigt__p_boost__shared_ptrT_gr__flowgraph_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_gr__gwncppvgb__gwnblock_t[] = {  {&_swigt__p_boost__shared_ptrT_gr__gwncppvgb__gwnblock_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t[] = {  {&_swigt__p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_gr__hier_block2_t[] = {  {&_swigt__p_boost__shared_ptrT_gr__hier_block2_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_gr__io_signature_t[] = {  {&_swigt__p_boost__shared_ptrT_gr__io_signature_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_gr__top_block_t[] = {  {&_swigt__p_boost__shared_ptrT_gr__top_block_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -8630,6 +9007,7 @@ static swig_cast_info _swigc__p_gr__basic_block[] = {  {&_swigt__p_gr__gwncppvgb
 static swig_cast_info _swigc__p_gr__block[] = {  {&_swigt__p_gr__gwncppvgb__gwnblock, _p_gr__gwncppvgb__gwnblockTo_p_gr__block, 0, 0},  {&_swigt__p_gr__sync_decimator, _p_gr__sync_decimatorTo_p_gr__block, 0, 0},  {&_swigt__p_gr__block, 0, 0, 0},  {&_swigt__p_gr__sync_block, _p_gr__sync_blockTo_p_gr__block, 0, 0},  {&_swigt__p_gr__tagged_stream_block, _p_gr__tagged_stream_blockTo_p_gr__block, 0, 0},  {&_swigt__p_gr__block_gateway, _p_gr__block_gatewayTo_p_gr__block, 0, 0},  {&_swigt__p_gr__sync_interpolator, _p_gr__sync_interpolatorTo_p_gr__block, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_gr__endianness_t[] = {  {&_swigt__p_gr__endianness_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_gr__gwncppvgb__gwnblock[] = {  {&_swigt__p_gr__gwncppvgb__gwnblock, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_gr__gwncppvgb__message_passer[] = {  {&_swigt__p_gr__gwncppvgb__message_passer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_gr__rt_status_t[] = {  {&_swigt__p_gr__rt_status_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -8657,6 +9035,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrT_gr__flat_flowgraph_t,
   _swigc__p_boost__shared_ptrT_gr__flowgraph_t,
   _swigc__p_boost__shared_ptrT_gr__gwncppvgb__gwnblock_t,
+  _swigc__p_boost__shared_ptrT_gr__gwncppvgb__message_passer_t,
   _swigc__p_boost__shared_ptrT_gr__hier_block2_t,
   _swigc__p_boost__shared_ptrT_gr__io_signature_t,
   _swigc__p_boost__shared_ptrT_gr__top_block_t,
@@ -8668,6 +9047,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_gr__block_gateway,
   _swigc__p_gr__endianness_t,
   _swigc__p_gr__gwncppvgb__gwnblock,
+  _swigc__p_gr__gwncppvgb__message_passer,
   _swigc__p_gr__hier_block2,
   _swigc__p_gr__rt_status_t,
   _swigc__p_gr__sync_block,

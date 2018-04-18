@@ -42,7 +42,7 @@ namespace gr {
      * The private constructor
      */
     message_passer_impl::message_passer_impl(int number, std::string message) : 
-      gwnblock_impl::gwnblock_impl("message_passer", 1, 1, 0, 0)
+      gwnblock_impl("message_passer", 1, 1, 0, 0)
     //  : gr::sync_block("message_passer",
     //          gr::io_signature::make(<+MIN_IN+>, <+MAX_IN+>, sizeof(<+ITYPE+>)),
     //          gr::io_signature::make(<+MIN_OUT+>, <+MAX_OUT+>, sizeof(<+OTYPE+>)))

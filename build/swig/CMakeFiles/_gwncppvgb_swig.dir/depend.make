@@ -3,6 +3,7 @@
 
 swig/CMakeFiles/_gwncppvgb_swig.dir/gwncppvgb_swigPYTHON_wrap.cxx.o: ../include/gwncppvgb/api.h
 swig/CMakeFiles/_gwncppvgb_swig.dir/gwncppvgb_swigPYTHON_wrap.cxx.o: ../include/gwncppvgb/gwnblock.h
+swig/CMakeFiles/_gwncppvgb_swig.dir/gwncppvgb_swigPYTHON_wrap.cxx.o: ../include/gwncppvgb/message_passer.h
 swig/CMakeFiles/_gwncppvgb_swig.dir/gwncppvgb_swigPYTHON_wrap.cxx.o: swig/gwncppvgb_swigPYTHON_wrap.cxx
 swig/CMakeFiles/_gwncppvgb_swig.dir/gwncppvgb_swigPYTHON_wrap.cxx.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/api.h
 swig/CMakeFiles/_gwncppvgb_swig.dir/gwncppvgb_swigPYTHON_wrap.cxx.o: /home/victor/IIE/GNURadio/prefix/default/include/gnuradio/attributes.h

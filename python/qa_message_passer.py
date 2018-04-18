@@ -23,6 +23,10 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 import gwncppvgb.gwncppvgb_swig as gwncppvgb
 
+
+import sys   # for exit, when not running tb
+import time
+
 class qa_message_passer (gr_unittest.TestCase):
 
     def setUp (self):
@@ -34,11 +38,18 @@ class qa_message_passer (gr_unittest.TestCase):
     def test_001_t (self):
         # set up fg
 
+
+        #blkgwn = gwncppvgb.gwnblock("mm", 1,1,0,0)
         blkpass = gwncppvgb.message_passer(10, "Message in passer")
 
-        self.tb.run ()
-        # check data
+        self.tb.start ()
+        print "Waiting some secondds..."
+        time.sleep(3)
+        self.tb.stop()
 
+        #self.tb.run ()
+        # check data
+        #sys.exit()
 
 if __name__ == '__main__':
     gr_unittest.run(qa_message_passer, "qa_message_passer.xml")

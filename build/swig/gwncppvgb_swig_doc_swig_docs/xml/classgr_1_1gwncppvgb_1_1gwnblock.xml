@@ -80,7 +80,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" line="37" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" bodystart="36" bodyend="50"/>
+    <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" line="37" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" bodystart="36" bodyend="51"/>
     <listofallmembers>
       <member refid="classgr_1_1gwncppvgb_1_1gwnblock_1a77261fd728de06f274772730652b9e53" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock</scope><name>make</name></member>
       <member refid="classgr_1_1gwncppvgb_1_1gwnblock_1af509332ce1cd55adefc33a2ed50dcf00" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock</scope><name>sptr</name></member>

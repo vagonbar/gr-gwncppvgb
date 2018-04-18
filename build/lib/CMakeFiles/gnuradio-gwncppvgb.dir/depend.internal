@@ -41,7 +41,6 @@ lib/CMakeFiles/gnuradio-gwncppvgb.dir/message_passer_impl.cc.o
  ../include/gwncppvgb/api.h
  ../include/gwncppvgb/gwnblock.h
  ../include/gwncppvgb/message_passer.h
- ../lib/gwnblock_impl.h
  /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.h
  /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.cc
  /home/victor/IIE/GNURadio/gr-gwncppvgb/lib/message_passer_impl.h

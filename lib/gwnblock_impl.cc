@@ -81,13 +81,16 @@ namespace gr {
 
     /* GWNOutPort */
 
-    GWNOutPort::GWNOutPort() : GWNPort() {}
+    //GWNOutPort::GWNOutPort() : GWNPort() {}
 
     GWNOutPort::GWNOutPort(gwnblock_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort() {
       block = p_block;
       port = p_port;
       port_nr = p_port_nr;
+      if (debug) {
+        std::cout << "GWNOutPort, constructor" << std::endl;
+      }
     }
 
     /*
@@ -108,13 +111,16 @@ namespace gr {
 
     /* GWNInPort */
 
-    GWNInPort::GWNInPort() : GWNPort() {}
+    //GWNInPort::GWNInPort() : GWNPort() {}
 
     GWNInPort::GWNInPort(gwnblock_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort() {
       block = p_block;
       port = p_port;
       port_nr = p_port_nr;
+      if (debug) {
+        std::cout << "GWNInPort, constructor" << std::endl;
+      }
     }
 
 
@@ -186,6 +192,12 @@ namespace gr {
       number_timers = p_number_timers;
       number_timeouts = p_number_timeouts;
 
+      if (debug) {
+        std::cout << "gwnblock, constructor, name " << 
+          name << ", number_in " << number_in << 
+          ", number_out " << number_out << std::endl;
+      }
+
 
       // gwnblock::set_out_size (int number_out)
       ports_out.resize(number_out);
@@ -206,8 +218,7 @@ namespace gr {
           dbg_msg += ports_out[i]->__str__();
           std::cout << dbg_msg << std::endl;
         }
-        std::cout << ports_out[0]->__str__() << std::endl;
-      }
+      }  
 
 
       // gwnblock::set_n_size (int number_in)
@@ -227,8 +238,8 @@ namespace gr {
           boost::bind(&gwnblock_impl::handle_msg, this, _1));
         if (debug) {
           std::cout << ports_in[i]->__str__() << std::endl; 
-        }
-      }
+        } 
+      } 
     }
 
 

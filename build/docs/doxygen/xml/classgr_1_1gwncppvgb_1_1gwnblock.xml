@@ -69,6 +69,12 @@
         <childnode refid="0" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="3">
+        <label>gr::gwncppvgb::message_passer_impl</label>
+        <link refid="classgr_1_1gwncppvgb_1_1message__passer__impl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>gr::block</label>
       </node>
@@ -80,17 +86,17 @@
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="4">
+      <node id="5">
         <label>gr::block</label>
       </node>
-      <node id="3">
+      <node id="4">
         <label>gr::gwncppvgb::gwnblock</label>
         <link refid="classgr_1_1gwncppvgb_1_1gwnblock"/>
-        <childnode refid="4" relation="public-inheritance">
+        <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" line="37" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" bodystart="36" bodyend="50"/>
+    <location file="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" line="37" column="1" bodyfile="/home/victor/IIE/GNURadio/gr-gwncppvgb/include/gwncppvgb/gwnblock.h" bodystart="36" bodyend="51"/>
     <listofallmembers>
       <member refid="classgr_1_1gwncppvgb_1_1gwnblock_1a77261fd728de06f274772730652b9e53" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock</scope><name>make</name></member>
       <member refid="classgr_1_1gwncppvgb_1_1gwnblock_1af509332ce1cd55adefc33a2ed50dcf00" prot="public" virt="non-virtual"><scope>gr::gwncppvgb::gwnblock</scope><name>sptr</name></member>

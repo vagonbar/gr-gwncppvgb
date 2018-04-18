@@ -10,29 +10,70 @@
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1afb69ae19c7bf36e675b7b1a3573b9e19" kind="variable"><name>number_out</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a304220a1ccb781e31ea9432a7e1c15e0" kind="variable"><name>number_timers</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a221c005428a382c1e9578c4d8e7f800f" kind="variable"><name>number_timeouts</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a12e10275c7032f275896674bedc3e238" kind="variable"><name>ports_out</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ad05cff5a5406a70d6e9543d6f350baa8" kind="variable"><name>ports_in</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a888df4d5bb932ba43d11c0daf8040ded" kind="function"><name>gwnblock_impl</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1aa09632e9e078abfdf68f2055cfd4a9c9" kind="function"><name>~gwnblock_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a58736e98b6574637a589f8ff55a710dc" kind="function"><name>post_message</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a50b92691cf841da26165e92c19e2bc3b" kind="function"><name>handle_msg</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a2296c179469cd1f339eb1cd574344198" kind="function"><name>process_data</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a3751dd9a8be5dcda7eb0bfae05490b0e" kind="function"><name>__str__</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ac4559d879ac1af4c2706889a17a41eaf" kind="function"><name>forecast</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a7f3f1105b7f18234b45aaa5fa30e4050" kind="function"><name>general_work</name></member>
-    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a50f0676561337956ea5047e05bde527a" kind="function"><name>gwnblock_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a888df4d5bb932ba43d11c0daf8040ded" kind="function"><name>gwnblock_impl</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1aa09632e9e078abfdf68f2055cfd4a9c9" kind="function"><name>~gwnblock_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a3751dd9a8be5dcda7eb0bfae05490b0e" kind="function"><name>__str__</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1ac4559d879ac1af4c2706889a17a41eaf" kind="function"><name>forecast</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a7f3f1105b7f18234b45aaa5fa30e4050" kind="function"><name>general_work</name></member>
-    <member refid="classgr_1_1gwncppvgb_1_1gwnblock__impl_1a049c1d9f07e31e9a62ab2f9b95999a0a" kind="function"><name>set_out_size</name></member>
+  </compound>
+  <compound refid="classgr_1_1gwncppvgb_1_1GWNInPort" kind="class"><name>gr::gwncppvgb::GWNInPort</name>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNInPort_1aa21e89bc80ae37fd10e9bacb8aa175a5" kind="function"><name>GWNInPort</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNInPort_1a230af5aa816dec2717508b173a01f968" kind="function"><name>GWNInPort</name></member>
   </compound>
   <compound refid="classgr_1_1gwncppvgb_1_1GWNOutPort" kind="class"><name>gr::gwncppvgb::GWNOutPort</name>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNOutPort_1abe09c94237b02cecfb77efcf2a4440f9" kind="function"><name>GWNOutPort</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNOutPort_1a0d99785e8af5fac6973d67d930fd34e1" kind="function"><name>GWNOutPort</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1GWNOutPort_1abe09c94237b02cecfb77efcf2a4440f9" kind="function"><name>GWNOutPort</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1GWNOutPort_1a0d99785e8af5fac6973d67d930fd34e1" kind="function"><name>GWNOutPort</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1GWNOutPort_1a5cbd016a09eb8f4136fe05614d574b9c" kind="function"><name>post_message</name></member>
   </compound>
   <compound refid="classgr_1_1gwncppvgb_1_1GWNPort" kind="class"><name>gr::gwncppvgb::GWNPort</name>
-    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1a53120d1ba2cd2a3d22a09db502aef72e" kind="variable"><name>block</name></member>
-    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1aa09efe8e671f92ddc9707aa6ce599119" kind="variable"><name>port</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1aa9c887ab4fd822163b9d0f602a01c26a" kind="variable"><name>port_nr</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1ac5fafdddc0c4581458081c2060e0129e" kind="variable"><name>block</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1aa09efe8e671f92ddc9707aa6ce599119" kind="variable"><name>port</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1a09cb9cd9597a4dcd0de435a522ceee4f" kind="function"><name>GWNPort</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1ada6c61d74a06af2569b0013d219323cc" kind="function"><name>__str__</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1a09cb9cd9597a4dcd0de435a522ceee4f" kind="function"><name>GWNPort</name></member>
     <member refid="classgr_1_1gwncppvgb_1_1GWNPort_1ada6c61d74a06af2569b0013d219323cc" kind="function"><name>__str__</name></member>
   </compound>
+  <compound refid="classgr_1_1gwncppvgb_1_1message__passer" kind="class"><name>gr::gwncppvgb::message_passer</name>
+    <member refid="classgr_1_1gwncppvgb_1_1message__passer_1a6d7bd9e4e2c7cefef9f382764cc98a13" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1message__passer_1a6650121e5911b096f4b459dfbf1c6915" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1gwncppvgb_1_1message__passer__impl" kind="class"><name>gr::gwncppvgb::message_passer_impl</name>
+    <member refid="classgr_1_1gwncppvgb_1_1message__passer__impl_1ad850b804788c8d9f377922308f69502a" kind="function"><name>message_passer_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1message__passer__impl_1aabdac2c6aa0ac6ccfbf3b268d5383a15" kind="function"><name>~message_passer_impl</name></member>
+    <member refid="classgr_1_1gwncppvgb_1_1message__passer__impl_1a7571ecd851445d847d0eb1c8ba609caa" kind="function"><name>work</name></member>
+  </compound>
+  <compound refid="classgr_1_1blocks_1_1message__strobe__impl" kind="class"><name>gr::blocks::message_strobe_impl</name>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a0263872116fd5c58bf6aac96cfa26204" kind="variable"><name>d_thread</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a386a2c466e9369aa99f615ec26aedebf" kind="variable"><name>d_finished</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a0c37f2fb5a88b567b0a783f3cf058b1f" kind="variable"><name>d_period_ms</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1ac17d7a71957b7366f4a408038d6dc10b" kind="variable"><name>d_msg</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1ab262d174ef3b038e87ab7ca8ce591296" kind="variable"><name>d_port</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a3892270cccad86b50cdef6117f0949a3" kind="function"><name>run</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a73901e989a81a31dbf27ba476f7e7447" kind="function"><name>message_strobe_impl</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a9b02e07fed0424f36a71a2f345a68445" kind="function"><name>~message_strobe_impl</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1ac93d7665bc8148630ce3ee95eb2f05e0" kind="function"><name>set_msg</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a8830ddb5587927ea478969aeed99c062" kind="function"><name>msg</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1aa366f0efa559472fd82c6d8c161770aa" kind="function"><name>set_period</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1ab1c833dfa514c5f8303cc2d3f31f01be" kind="function"><name>period</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a58c336b893e316347138b51c0a9dffda" kind="function"><name>start</name></member>
+    <member refid="classgr_1_1blocks_1_1message__strobe__impl_1a692837927b0bd66fd8740e22fd52d313" kind="function"><name>stop</name></member>
+  </compound>
   <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1blocks" kind="namespace"><name>gr::blocks</name>
   </compound>
   <compound refid="namespacegr_1_1gwncppvgb" kind="namespace"><name>gr::gwncppvgb</name>
   </compound>
@@ -51,6 +92,14 @@
   </compound>
   <compound refid="main__page_8dox" kind="file"><name>main_page.dox</name>
   </compound>
+  <compound refid="message__debug__impl_8h" kind="file"><name>message_debug_impl.h</name>
+  </compound>
+  <compound refid="message__passer_8h" kind="file"><name>message_passer.h</name>
+  </compound>
+  <compound refid="message__passer__impl_8h" kind="file"><name>message_passer_impl.h</name>
+  </compound>
+  <compound refid="message__strobe__impl_8h" kind="file"><name>message_strobe_impl.h</name>
+  </compound>
   <compound refid="group__block" kind="group"><name>block</name>
   </compound>
   <compound refid="dir_a041fbb352500434603e81f6361d61a8" kind="dir"><name>gwncppvgb</name>
@@ -58,6 +107,8 @@
   <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
   </compound>
   <compound refid="dir_97aefd0d527b934f1d99a682da8fe6a9" kind="dir"><name>lib</name>
+  </compound>
+  <compound refid="dir_850dd1276afe63c642cd2acb95c7ba3a" kind="dir"><name>notas</name>
   </compound>
   <compound refid="indexpage" kind="page"><name>index</name>
   </compound>

@@ -25,7 +25,8 @@
 #include <gwncppvgb/api.h>
 #include <gnuradio/sync_block.h>
 
-#include "../../lib/gwnblock_impl.h"
+#include "gwncppvgb/gwnblock.h"
+//#include "../../lib/gwnblock_impl.h"
 
 
 namespace gr {
@@ -36,7 +37,11 @@ namespace gr {
      * \ingroup gwncppvgb
      *
      */
-    class GWNCPPVGB_API message_passer //: 
+    class GWNCPPVGB_API message_passer : 
+      virtual public gwnblock
+
+
+
       //virtual public gwnblock_impl //, virtual public gr::block
     //class GWNCPPVGB_API message_passer : virtual public gr::sync_block
     {

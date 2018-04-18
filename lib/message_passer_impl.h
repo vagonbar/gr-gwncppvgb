@@ -33,9 +33,26 @@ namespace gr {
       // Nothing to declare in this block.
 
      public:
-      //message_passer_impl(int number, std::string message);
-      message_passer_impl(int, std::string) ;
-        //: gwnblock_impl::gwnblock_impl (std::string, int, int, int, int);
+       message_passer_impl(int number, std::string message);
+
+      //message_passer_impl(int, std::string) :
+      //  gwnblock_impl("message_passer", 1, 1, 0, 0);
+      //error: expected ‘{’ at end of input
+      //   gwnblock_impl("message_passer", 1, 1, 0, 0);
+
+
+      //message_passer_impl(int, std::string) :
+      //  gwnblock_impl (std::string, int, int, int, int);
+      //error: expected primary-expression before ‘,’ token
+      //   gwnblock_impl (std::string, int, int, int, int);
+
+
+      //message_passer_impl(int, std::string) :
+      //  gwnblock_impl::gwnblock_impl (std::string, int, int, int, int);
+      //error: expected primary-expression before ‘,’ token
+      //   gwnblock_impl::gwnblock_impl (std::string, int, int, int, int);
+
+
 
       ~message_passer_impl();
 

@@ -541,5 +541,122 @@ gwnblock_sptr_swigregister(gwnblock_sptr)
 gwnblock_sptr.__repr__ = lambda self: "<gr_block %s (%d)>" % (self.name(), self.unique_id())
 gwnblock = gwnblock.make;
 
+class message_passer(object):
+    """
+    <+description of block+>
+
+    Constructor Specific Documentation:
+
+    Return a shared_ptr to a new instance of gwncppvgb::message_passer.
+
+    To avoid accidental use of raw pointers, gwncppvgb::message_passer's constructor is in a private implementation class. gwncppvgb::message_passer::make is the public interface for creating new instances.
+
+    Args:
+        number : 
+        message : 
+    """
+
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def make(number, message):
+        """
+        make(int number, std::string message) -> message_passer_sptr
+
+        <+description of block+>
+
+        Constructor Specific Documentation:
+
+        Return a shared_ptr to a new instance of gwncppvgb::message_passer.
+
+        To avoid accidental use of raw pointers, gwncppvgb::message_passer's constructor is in a private implementation class. gwncppvgb::message_passer::make is the public interface for creating new instances.
+
+        Args:
+            number : 
+            message : 
+        """
+        return _gwncppvgb_swig.message_passer_make(number, message)
+
+    make = staticmethod(make)
+
+    def __init__(self):
+        """__init__(gr::gwncppvgb::message_passer self) -> message_passer"""
+        this = _gwncppvgb_swig.new_message_passer()
+        try:
+            self.this.append(this)
+        except Exception:
+            self.this = this
+    __swig_destroy__ = _gwncppvgb_swig.delete_message_passer
+    __del__ = lambda self: None
+message_passer_swigregister = _gwncppvgb_swig.message_passer_swigregister
+message_passer_swigregister(message_passer)
+
+def message_passer_make(number, message):
+    """
+    message_passer_make(int number, std::string message) -> message_passer_sptr
+
+    <+description of block+>
+
+    Constructor Specific Documentation:
+
+    Return a shared_ptr to a new instance of gwncppvgb::message_passer.
+
+    To avoid accidental use of raw pointers, gwncppvgb::message_passer's constructor is in a private implementation class. gwncppvgb::message_passer::make is the public interface for creating new instances.
+
+    Args:
+        number : 
+        message : 
+    """
+    return _gwncppvgb_swig.message_passer_make(number, message)
+
+class message_passer_sptr(object):
+    """Proxy of C++ boost::shared_ptr<(gr::gwncppvgb::message_passer)> class."""
+
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        """
+        __init__(boost::shared_ptr<(gr::gwncppvgb::message_passer)> self) -> message_passer_sptr
+        __init__(boost::shared_ptr<(gr::gwncppvgb::message_passer)> self, message_passer p) -> message_passer_sptr
+        """
+        this = _gwncppvgb_swig.new_message_passer_sptr(*args)
+        try:
+            self.this.append(this)
+        except Exception:
+            self.this = this
+
+    def __deref__(self):
+        """__deref__(message_passer_sptr self) -> message_passer"""
+        return _gwncppvgb_swig.message_passer_sptr___deref__(self)
+
+    __swig_destroy__ = _gwncppvgb_swig.delete_message_passer_sptr
+    __del__ = lambda self: None
+
+    def make(self, number, message):
+        """
+        make(message_passer_sptr self, int number, std::string message) -> message_passer_sptr
+
+        <+description of block+>
+
+        Constructor Specific Documentation:
+
+        Return a shared_ptr to a new instance of gwncppvgb::message_passer.
+
+        To avoid accidental use of raw pointers, gwncppvgb::message_passer's constructor is in a private implementation class. gwncppvgb::message_passer::make is the public interface for creating new instances.
+
+        Args:
+            number : 
+            message : 
+        """
+        return _gwncppvgb_swig.message_passer_sptr_make(self, number, message)
+
+message_passer_sptr_swigregister = _gwncppvgb_swig.message_passer_sptr_swigregister
+message_passer_sptr_swigregister(message_passer_sptr)
+
+
+message_passer_sptr.__repr__ = lambda self: "<gr_block %s (%d)>" % (self.name(), self.unique_id())
+message_passer = message_passer.make;
+
 
 
