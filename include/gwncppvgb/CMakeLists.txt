@@ -23,5 +23,5 @@
 install(FILES
     api.h
     gwnblock.h
-    message_passer.h DESTINATION include/gwncppvgb
+    DESTINATION include/gwncppvgb
 )

@@ -73,11 +73,11 @@ namespace gr {
     class GWNPort
     {
       protected:
-        int port_nr;
       public:
         GWNPort();
         gwnblock_impl * block;
         std::string port;
+        int port_nr;
         std::string __str__();
     }; 
 

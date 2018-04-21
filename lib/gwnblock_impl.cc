@@ -200,16 +200,21 @@ namespace gr {
 
 
       // gwnblock::set_out_size (int number_out)
+
       ports_out.resize(number_out);
       int i;
       std::string out_port;
       std::string message;
       pmt::pmt_t pmt_out_port;
 
+      // GWNOutPort out_port_new;  // requires default constructor
+      //GWNOutPort out_port_new = GWNOutPort(this, "out_port", 0);
+
       for ( i=0; i < number_out; i++) {
         out_port = "out_port_" + to_string(i);
-        GWNOutPort port_new = GWNOutPort(this, out_port, i);
-        ports_out[i] = &port_new;
+        GWNOutPort out_port_new = GWNOutPort(this, out_port, i);
+        //out_port_new = GWNOutPort(this, out_port, i);
+        ports_out[i] = &out_port_new;
         pmt_out_port = pmt::string_to_symbol(out_port);
         message_port_register_out(pmt_out_port); 
         if (debug) {
@@ -223,15 +228,19 @@ namespace gr {
 
       // gwnblock::set_n_size (int number_in)
       //int i;                  // already declared
+      i = 0;                  // already declared
       ports_in.resize(number_in);
       std::string in_port;  
       //std::string message;    // already declared
       pmt::pmt_t pmt_in_port;
 
+      //GWNInPort in_port_new;  // requires default constructor
+      //GWNInPort in_port_new = GWNInPort(this, "in_port", 0);
       for ( i=0; i < number_in; i++) {
         in_port = "in_port_" + to_string(i);
-        GWNInPort port_new = GWNInPort(this, in_port, i);
-        ports_in[i] = &port_new;
+        GWNInPort in_port_new = GWNInPort(this, in_port, i);
+        //in_port_new = GWNInPort(this, in_port, i);
+        ports_in[i] = &in_port_new;
         pmt_in_port = pmt::string_to_symbol(in_port);
         message_port_register_in(pmt_in_port);
         set_msg_handler(pmt_in_port,

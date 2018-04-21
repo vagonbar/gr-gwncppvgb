@@ -18,5 +18,5 @@
 # Boston, MA 02110-1301, USA.
 install(FILES
     gwncppvgb_gwnblock.xml
-    gwncppvgb_message_passer.xml DESTINATION share/gnuradio/grc/blocks
+    DESTINATION share/gnuradio/grc/blocks
 )
