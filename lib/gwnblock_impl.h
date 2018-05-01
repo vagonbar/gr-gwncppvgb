@@ -37,7 +37,7 @@ namespace gr {
 
     /* gwnblock */
 
-    class gwnblock_impl : public gwnblock
+    class gwnblock_impl : public virtual gwnblock
     {
     private:
 
@@ -84,14 +84,14 @@ namespace gr {
 
     /* GWNOutPort */
 
-    class GWNOutPort: public GWNPort { 
+    class GWNOutPort: public virtual GWNPort { 
       public:
         GWNOutPort(gwnblock_impl *, std::string, int);
         //GWNOutPort();    // NOT required to initialize <vector>
         //void post_message(std::string);  // moved to gwnblock_impl
      };
 
-    class GWNInPort: public GWNPort {
+    class GWNInPort: public virtual GWNPort {
       public:
         GWNInPort(gwnblock_impl *, std::string, int);
         //GWNInPort();    // NOT required to initialize <vector>

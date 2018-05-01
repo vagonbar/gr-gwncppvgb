@@ -71,9 +71,9 @@ namespace gr {
     }
 
     std::string GWNPort::__str__() {
-      std::string ss = "GWNPort port name: " + port + 
-        ", port number: " + to_string(port_nr) + 
-        ", in block name: " + block->name + "\n";
+      std::string ss = "GWNPort name: " + port + 
+        ", number: " + to_string(port_nr) + 
+        ", in block: " + block->name + "\n";
       return ss;
     }
 
@@ -207,23 +207,24 @@ namespace gr {
       std::string message;
       pmt::pmt_t pmt_out_port;
 
-      // GWNOutPort out_port_new;  // requires default constructor
-      //GWNOutPort out_port_new = GWNOutPort(this, "out_port", 0);
-
+      GWNOutPort * out_port_new;
       for ( i=0; i < number_out; i++) {
         out_port = "out_port_" + to_string(i);
-        GWNOutPort out_port_new = GWNOutPort(this, out_port, i);
-        //out_port_new = GWNOutPort(this, out_port, i);
-        ports_out[i] = &out_port_new;
+        out_port_new = new GWNOutPort(this, out_port, i);
+        ports_out[i] = out_port_new;
         pmt_out_port = pmt::string_to_symbol(out_port);
         message_port_register_out(pmt_out_port); 
-        if (debug) {
-          std::cout << ports_out[i]->__str__() << std::endl; 
-          std::string dbg_msg = "Post Message debug\n...";
-          dbg_msg += ports_out[i]->__str__();
-          std::cout << dbg_msg << std::endl;
-        }
       }  
+      if (debug) {    // print items in vector of out ports
+        std::cout << "=== gwnblock, out ports:" << std::endl;
+        for ( i=0; i < number_out; i++) {
+          std::cout << "  out port " << i << 
+            ": " << ports_out[i]->__str__() << std::endl; 
+          //std::string dbg_msg = "Post Message debug\n...";
+          //dbg_msg += ports_out[i]->__str__();
+          //std::cout << dbg_msg << std::endl;
+        }
+      }
 
 
       // gwnblock::set_n_size (int number_in)
@@ -234,21 +235,23 @@ namespace gr {
       //std::string message;    // already declared
       pmt::pmt_t pmt_in_port;
 
-      //GWNInPort in_port_new;  // requires default constructor
-      //GWNInPort in_port_new = GWNInPort(this, "in_port", 0);
+      GWNInPort * in_port_new;  // requires default constructor
       for ( i=0; i < number_in; i++) {
         in_port = "in_port_" + to_string(i);
-        GWNInPort in_port_new = GWNInPort(this, in_port, i);
-        //in_port_new = GWNInPort(this, in_port, i);
-        ports_in[i] = &in_port_new;
+        in_port_new = new GWNInPort(this, in_port, i);
+        ports_in[i] = in_port_new;
         pmt_in_port = pmt::string_to_symbol(in_port);
         message_port_register_in(pmt_in_port);
         set_msg_handler(pmt_in_port,
           boost::bind(&gwnblock_impl::handle_msg, this, _1));
-        if (debug) {
-          std::cout << ports_in[i]->__str__() << std::endl; 
-        } 
       } 
+      if (debug) {      // print items in vector of in ports
+        std::cout << "=== gwnblock, in ports:" << std::endl;
+        for ( i=0; i < number_in; i++) {
+          std::cout << "  in port " << i << 
+            ": " << ports_in[i]->__str__() << std::endl; 
+        }
+      }
     }
 
 

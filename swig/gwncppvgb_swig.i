@@ -9,8 +9,11 @@
 
 %{
 #include "gwncppvgb/gwnblock.h"
+#include "gwncppvgb/message_passer.h"
 %}
 
 %include "gwncppvgb/gwnblock.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, gwnblock);
 
+%include "gwncppvgb/message_passer.h"
+GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_passer);

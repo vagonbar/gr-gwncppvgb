@@ -26,7 +26,7 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 list(APPEND gwncppvgb_sources
     gwnblock_impl.cc
-    )
+    message_passer_impl.cc )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)
 if(NOT gwncppvgb_sources)
@@ -59,6 +59,7 @@ include_directories(${CPPUNIT_INCLUDE_DIRS})
 list(APPEND test_gwncppvgb_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/test_gwncppvgb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwncppvgb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/qa_message_passer.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwnblock.cc
     )
 
