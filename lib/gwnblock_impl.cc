@@ -207,19 +207,26 @@ namespace gr {
       std::string message;
       pmt::pmt_t pmt_out_port;
 
+      // create and register ports
+      bool debug_ports = true;
+
       GWNOutPort * out_port_new;
       for ( i=0; i < number_out; i++) {
         out_port = "out_port_" + to_string(i);
         out_port_new = new GWNOutPort(this, out_port, i);
         ports_out[i] = out_port_new;
         pmt_out_port = pmt::string_to_symbol(out_port);
+        if (debug_ports) {
+          std::cout << "...about to register out_port" << std::endl;}
         message_port_register_out(pmt_out_port); 
+        if (debug_ports) {
+          std::cout << "...registered out_port" << std::endl;}
       }  
-      if (debug) {    // print items in vector of out ports
+      if (debug_ports) {    // print items in vector of out ports
         std::cout << "=== gwnblock, out ports:" << std::endl;
         for ( i=0; i < number_out; i++) {
           std::cout << "  out port " << i << 
-            ": " << ports_out[i]->__str__() << std::endl; 
+            ": " << ports_out[i]->__str__(); // << std::endl; 
           //std::string dbg_msg = "Post Message debug\n...";
           //dbg_msg += ports_out[i]->__str__();
           //std::cout << dbg_msg << std::endl;
@@ -241,17 +248,27 @@ namespace gr {
         in_port_new = new GWNInPort(this, in_port, i);
         ports_in[i] = in_port_new;
         pmt_in_port = pmt::string_to_symbol(in_port);
+
+        if (debug_ports) {
+          std::cout << "...about to register in_port" << std::endl;}
         message_port_register_in(pmt_in_port);
+        if (debug_ports) {
+          std::cout << "...registered in_port" << std::endl;}
+
         set_msg_handler(pmt_in_port,
           boost::bind(&gwnblock_impl::handle_msg, this, _1));
       } 
-      if (debug) {      // print items in vector of in ports
+      if (debug_ports) {      // print items in vector of in ports
         std::cout << "=== gwnblock, in ports:" << std::endl;
         for ( i=0; i < number_in; i++) {
           std::cout << "  in port " << i << 
-            ": " << ports_in[i]->__str__() << std::endl; 
+            ": " << ports_in[i]->__str__(); // << std::endl; 
         }
       }
+
+      if (debug) {
+        std::cout << "=== gwnblock, receive and send test" <<
+          std::endl; }
     }
 
 
