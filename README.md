@@ -18,20 +18,20 @@ Say we want to create a new block called `message_repeat`, which receives a mess
   ../apps/gwn_modtool.sh message_repeat 1 1 0 0 
 ```
 
-`gwn_modtool` is a script which uses gr_modtool to create two blocks:
+`gwn_modtool` is a script which uses `gr_modtool` to create two blocks:
 
-- message_repeat, which inherits from GNU Radio general block, where all the GWN facilieties are coded.
-- message_repeat_pdata, a block of type `noblock`, where the function process_data resides.  
+- `message_repeat`, which inherits from GNU Radio general block, where all the GWN facilieties are coded.
+- `message_repeat_pdata`, a block of type `noblock`, where the function process_data resides.  
 
-The script takes its code from gwnblock, a template GWN block, and modifies names and parameter lists according to the parameters given to `gwn_modtool`: block name, number of input ports, number of output ports, number of timers, number of timeouts (the last two not yet implemented, so 0 is required).
+The script takes its code from `gwnblock`, a template GWN block, and modifies names and parameter list according to the parameters given to `gwn_modtool`: block name, number of input ports, number of output ports, number of timers, number of timeouts (the last two not yet implemented, so 0 is required).
 
-Once these blocks have been created, the programmer has at her disposal the necessary input and output message ports, and she only needs to customize the function process_data, found in block <name_of_new_block>_pdata.
+Once these blocks have been created, the programmer has at her disposal the necessary input and output message ports, and she only needs to customize the function process_data, found in block `<name_of_new_block>_pdata`.
 
 ## A new block creation test
 
 The following commands create a message_repeat block, using a process_data function coded in the template class gwnblock. The block contains an input and an output ports, and repeats the message received in the input port by sending it on the output port, in this flowgraph:
-    message_strobe --> message_repeat --> message_debug
-This test is included in the qa_message_repeat.py QA test code.
+    `message_strobe --> message_repeat --> message_debug`
+This test is included in the `qa_message_repeat.py` QA test code.
 
 The complete code to create and test the new block follows:
 
@@ -70,5 +70,5 @@ Post message, sent: ...message_repeat, event processed: --- A test message from 
 ************************************
 ```
 
-In the general case, a different number of input and output ports may be given, and proper customization of the process_data function expected, to accomplish the desired processing of messages received into messages sent.
+In the general case, a different number of input and output ports may be given, and proper customization of the `process_data` function expected, to accomplish the desired processing of messages received into messages sent.
 
