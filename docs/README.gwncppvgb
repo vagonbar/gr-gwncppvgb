@@ -1,4 +1,5 @@
-# GWN Cpp Vgb
+GWN Cpp Vgb
+===========
 
 This is a testing project to enhance the GWN project (GWN, GNU Wireless Network) by coding the core of GWN in C++ (at present it is coded in Python). Please see the GWN Project at https://github.com/vagonbar/gr-gwn/
 
@@ -8,7 +9,8 @@ The coding in C++ of the core classes in GWN is expected to improve in performan
 
 To simplify coding of new blocks, a block creation script was written, which produces two blocks: a first one with all necessary GWN code, and a second block with a function named process_data. This last function should be the only one to be modified in a new type of GWN block: it receives a message from the input ports of the new block, the programmer does some processing with this message, and optionally outputs another message on one or several of the output ports of the block.
 
-## Creation of a new block
+Creation of a new block
+-----------------------
 
 Say we want to create a new block called `message_repeat`, which receives a message on an input port and outputs the same message, eventually modified, on an output port. The commands to create this new block would be:
 
