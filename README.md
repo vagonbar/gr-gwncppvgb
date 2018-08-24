@@ -68,6 +68,18 @@ Post message, sent: ...message_repeat, event processed: --- A test message from 
 ******* MESSAGE DEBUG PRINT ********
 ...message_repeat, event processed: --- A test message from message strobe
 ************************************
+Handle msg, received: --- A test message from message strobe
+...message_repeat_data, event received: --- A test message from message strobe
+Post message, sent: ...message_repeat, event processed: --- A test message from message strobe
+******* MESSAGE DEBUG PRINT ********
+...message_repeat, event processed: --- A test message from message strobe
+************************************
+Handle msg, received: --- A test message from message strobe
+...message_repeat_data, event received: --- A test message from message strobe
+Post message, sent: ...message_repeat, event processed: --- A test message from message strobe
+******* MESSAGE DEBUG PRINT ********
+...message_repeat, event processed: --- A test message from message strobe
+************************************
 ```
 
 In the general case, a different number of input and output ports may be given, and proper customization of the `process_data` function expected, to accomplish the desired processing of messages received into messages sent.
