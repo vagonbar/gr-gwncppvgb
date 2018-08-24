@@ -1,6 +1,10 @@
 GWN: de Python a C++ atajos para edición
 
 === Comandos útiles
+Reconstruir directorio build, ejecutando desde el propio build:
+cd ..; rm -rf build; mkdir build; cd build; cmake -DCMAKE_INSTALL_PREFIX=/home/victor/IIE/GNURadio/prefix/default ../
+make; make install
+
 
 Editar gwnblock VGB C++y Python:
 gvim -geometry 210x70 -O ~/IIE/GNURadio/gr-gwncpp/lib/gwnblock_impl.h ~/IIE/GNURadio/gr-gwncppvgb/lib/gwnblock_impl.cc ~/IIE/GNURadio/gr-gwn/python/gwnblock.py

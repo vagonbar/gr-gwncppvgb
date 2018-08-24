@@ -21,9 +21,12 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
+
+# corrected, gr_modtool creation said gwncppvgb_swig, not found!
 import gwncppvgb.gwncppvgb_swig as gwncppvgb
 
 import time
+import pmt
 
 class qa_message_passer (gr_unittest.TestCase):
 
@@ -33,21 +36,32 @@ class qa_message_passer (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_001_t (self):
+    def test_constructor (self):
+        print "\n===\n=== TEST message_passer constructor \n===\n"
+        #gwncppvgb.set_debug(True)   # does now work as expected
+        myblock = gwncppvgb.message_passer('block_1', 2, 3, 0, 0)
+        #print "myblock.__str__()", myblock.__str__()  # not as expected
+
+
         # set up fg
-        #self.tb.run ()
+        self.tb.run ()
         # check data
 
-        blkpass = gwncppvgb.message_passer(10, "Message in passer")
+    def test_ports (self):
+        print "\n===\n=== TEST message_passer input and output ports \n===\n"
+        tst_msg = "--- A test message from message strobe"
+        src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
+        pss = gwncppvgb.message_passer('block_2', 1, 1, 0, 0)
+        dbg = blocks.message_debug() 
+        self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
+        self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
+        #self.tb.msg_connect( (src, "port_out_0"), (dbg, "print") )
+  
 
-        #self.tb.start ()
-        print "Waiting some secondds..."
-        time.sleep(3)
-        #self.tb.stop()
+        self.tb.start ()
+        time.sleep(6)
+        self.tb.stop()
 
-        #self.tb.run ()
-        # check data
-        #sys.exit()
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_message_passer, "qa_message_passer.xml")
+    gr_unittest.run(qa_message_passer, "qa_gwnblock.xml")

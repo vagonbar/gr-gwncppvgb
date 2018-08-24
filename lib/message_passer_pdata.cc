@@ -18,20 +18,35 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
-#include <gnuradio/attributes.h>
-#include <cppunit/TestAssert.h>
-#include "qa_message_passer.h"
-#include <gwncppvgb/message_passer.h>
+#include <gnuradio/io_signature.h>
+#include <gwncppvgb/message_passer_pdata.h>
+
+/* GWN inclusions */
+#include <stdio.h>
+#include <iostream>
+#include "message_passer_impl.h"
 
 namespace gr {
   namespace gwncppvgb {
 
-    void
-    qa_message_passer::t1()
+    /* GWN process_data function, rewrite for a new block */
+
+    std::string message_passer_pdata::process_data(std::string ev)
     {
-      // Put test here
+    std::cout << "...message_passer_pdata, event received: " <<
+      ev << std::endl;
+    std::string ev_proc = "...message_passer_pdata, event processed: " + ev;
+    return ev_proc;
     }
+
+
+    /* GWN process_data class, leave as it is in a new block */
+    message_passer_pdata::message_passer_pdata(std::string ev) { }
+    message_passer_pdata::~message_passer_pdata() { }
 
   } /* namespace gwncppvgb */
 } /* namespace gr */

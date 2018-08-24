@@ -46,11 +46,12 @@ namespace gr {
        * class. gwncppvgb::message_passer::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int counter, std::string message);
+      static sptr make(std::string name, int number_in, int number_out, int number_timers, int number_timeouts);
+
     };
 
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_MESSAGE_PASSER_H */
+#endif /* INCLUDED_GWNCPPVGB_GWNBLOCK_H */
 

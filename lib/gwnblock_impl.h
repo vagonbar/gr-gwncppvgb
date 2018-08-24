@@ -22,41 +22,57 @@
 #define INCLUDED_GWNCPPVGB_GWNBLOCK_IMPL_H
 
 #include <gwncppvgb/gwnblock.h>
+
+/*  GWN inclusions */
 #include <vector>
+
 
 namespace gr {
   namespace gwncppvgb {
 
-    void set_debug(bool);
-
-    class GWNPort;        // forward declaration
-    class GWNOutPort;     // forward declaration
-    class GWNInPort;      // forward declaration
-  
-
-
-    /* gwnblock */
+    /* GWN gwnblock, a model block */
 
     class gwnblock_impl : public virtual gwnblock
     {
     private:
+      /* GWN ports, nested class */
+    class GWNPort
+    {
+      protected:
+        bool d_debug;
+      public:
+        GWNPort();
+        gwnblock_impl * d_block;
+        std::string d_port;
+        int d_port_nr;
+        std::string __str__();
+    }; 
+    class GWNOutPort: public virtual GWNPort { 
+      public:
+        GWNOutPort(gwnblock_impl *, std::string, int);
+     };
+    class GWNInPort: public virtual GWNPort {
+      public:
+        GWNInPort(gwnblock_impl *, std::string, int);
+    }; 
 
     public:
       gwnblock_impl(std::string name, int number_in, int number_out,
         int number_timers, int number_timeouts);
       ~gwnblock_impl();
 
-      // GWN
-      std::string name;
-      int number_in, number_out, number_timers, number_timeouts;
-      std::vector<GWNOutPort *> ports_out; 
-      std::vector<GWNInPort *> ports_in;
+      /* GWN attributes and functions */
+      std::string d_name;
+      int d_number_in, d_number_out, d_number_timers, d_number_timeouts;
+      std::vector<GWNOutPort *> d_ports_out; 
+      std::vector<GWNInPort *> d_ports_in;
+      bool d_debug;
       void post_message(std::string, std::string);
       void handle_msg(pmt::pmt_t);
       void process_data(std::string);
       std::string __str__();
 
-
+      /* GNU Radio defaults */
       // Where all the action really happens
       void forecast (int noutput_items, gr_vector_int &ninput_items_required);
 
@@ -65,41 +81,6 @@ namespace gr {
            gr_vector_const_void_star &input_items,
            gr_vector_void_star &output_items);
     };
-
-
-
-    /* GWNPort */
-
-    class GWNPort
-    {
-      protected:
-      public:
-        GWNPort();
-        gwnblock_impl * block;
-        std::string port;
-        int port_nr;
-        std::string __str__();
-    }; 
-
-
-    /* GWNOutPort */
-
-    class GWNOutPort: public virtual GWNPort { 
-      public:
-        GWNOutPort(gwnblock_impl *, std::string, int);
-        //GWNOutPort();    // NOT required to initialize <vector>
-        //void post_message(std::string);  // moved to gwnblock_impl
-     };
-
-    class GWNInPort: public virtual GWNPort {
-      public:
-        GWNInPort(gwnblock_impl *, std::string, int);
-        //GWNInPort();    // NOT required to initialize <vector>
-    }; 
-        
-
-
-
 
   } // namespace gwncppvgb
 } // namespace gr

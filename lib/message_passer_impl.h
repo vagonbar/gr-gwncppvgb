@@ -23,21 +23,56 @@
 
 #include <gwncppvgb/message_passer.h>
 
-#include "gwnblock_impl.h"
+/*  GWN inclusions */
+#include <vector>
+
 
 namespace gr {
   namespace gwncppvgb {
 
-    //class message_passer_impl : public message_passer
-    class message_passer_impl : public message_passer, public gwnblock_impl
-    {
-     private:
-      // Nothing to declare in this block.
+    /* GWN message_passer, a model block */
 
-     public:
-      message_passer_impl(int counter, std::string message);
+    class message_passer_impl : public virtual message_passer
+    {
+    private:
+      /* GWN ports, nested class */
+      class GWNPort
+      {
+        protected:
+          bool d_debug;
+        public:
+          GWNPort();
+          message_passer_impl * d_block;
+          std::string d_port;
+          int d_port_nr;
+          std::string __str__();
+      }; 
+      class GWNOutPort: public virtual GWNPort { 
+        public:
+          GWNOutPort(message_passer_impl *, std::string, int);
+       };
+      class GWNInPort: public virtual GWNPort {
+        public:
+          GWNInPort(message_passer_impl *, std::string, int);
+      }; 
+
+    public:
+      message_passer_impl(std::string name, int number_in, int number_out,
+        int number_timers, int number_timeouts);
       ~message_passer_impl();
 
+      /* GWN attributes and functions */
+      std::string d_name;
+      int d_number_in, d_number_out, d_number_timers, d_number_timeouts;
+      std::vector<GWNOutPort *> d_ports_out; 
+      std::vector<GWNInPort *> d_ports_in;
+      bool d_debug;
+      void post_message(std::string, std::string);
+      void handle_msg(pmt::pmt_t);
+      void process_data(std::string);
+      std::string __str__();
+
+      /* GNU Radio defaults */
       // Where all the action really happens
       void forecast (int noutput_items, gr_vector_int &ninput_items_required);
 
@@ -50,5 +85,5 @@ namespace gr {
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_MESSAGE_PASSER_IMPL_H */
+#endif /* INCLUDED_GWNCPPVGB_GWNBLOCK_IMPL_H */
 

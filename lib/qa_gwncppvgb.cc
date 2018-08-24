@@ -27,14 +27,12 @@
 
 #include "qa_gwncppvgb.h"
 #include "qa_gwnblock.h"
-#include "qa_message_passer.h"
 
 CppUnit::TestSuite *
 qa_gwncppvgb::suite()
 {
   CppUnit::TestSuite *s = new CppUnit::TestSuite("gwncppvgb");
   s->addTest(gr::gwncppvgb::qa_gwnblock::suite());
-  s->addTest(gr::gwncppvgb::qa_message_passer::suite());
 
   return s;
 }

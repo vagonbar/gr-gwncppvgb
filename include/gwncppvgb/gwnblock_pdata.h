@@ -19,28 +19,35 @@
  */
 
 
-#ifndef _QA_MESSAGE_PASSER_H_
-#define _QA_MESSAGE_PASSER_H_
+#ifndef INCLUDED_GWNCPPVGB_GWNBLOCK_PDATA_H
+#define INCLUDED_GWNCPPVGB_GWNBLOCK_PDATA_H
 
-#include <cppunit/extensions/HelperMacros.h>
-#include <cppunit/TestCase.h>
+#include <gwncppvgb/api.h>
+
+#include <string>
 
 namespace gr {
   namespace gwncppvgb {
 
-    class qa_message_passer : public CppUnit::TestCase
+    /*!
+     * \brief <+description+>
+     *
+     */
+
+
+	//void process_data(std::string ev);
+
+    class GWNCPPVGB_API gwnblock_pdata
     {
     public:
-      CPPUNIT_TEST_SUITE(qa_message_passer);
-      CPPUNIT_TEST(t1);
-      CPPUNIT_TEST_SUITE_END();
-
+      gwnblock_pdata(std::string ev);
+      ~gwnblock_pdata();
+	  static std::string process_data(std::string ev);
     private:
-      void t1();
     };
 
-  } /* namespace gwncppvgb */
-} /* namespace gr */
+  } // namespace gwncppvgb
+} // namespace gr
 
-#endif /* _QA_MESSAGE_PASSER_H_ */
+#endif /* INCLUDED_GWNCPPVGB_GWNBLOCK_PDATA_H */
 

@@ -25,152 +25,107 @@
 #include <gnuradio/io_signature.h>
 #include "gwnblock_impl.h"
 
-// GWN additions
-#include <sstream>   // for to_string
-
+/* GWN inclusions */
 #include <iostream>  // for string support
 #include <string>    // for string concatenation
-
+#include <sstream>   // for to_string
 #include <pmt/pmt.h>              // for messages
 #include <gnuradio/blocks/pdu.h>  // for messages
+#include <gwncppvgb/gwnblock_pdata.h>  // process_data function
+//#include <stdio.h>   // for printf
 
-#include <stdio.h>   // for printf
 
 namespace gr {
   namespace gwncppvgb {
 
-
+    /* A template for conversion of types to string */
     template <typename T>
     std::string to_string(T value)
     {
-      //create an output string stream
       std::ostringstream os ;
-
-      //throw the value into the string stream
       os << value ;
-
-      //convert the string stream into a string and return
       return os.str() ;
     }
 
 
-    bool debug = true;    // if true prints debug messages
-    void set_debug(bool dbg) {
-      debug = dbg;
-      std::cout << "Debug flag set to " << debug << std::endl;
-    }
-
-
     /* GWNPort */
-
-    GWNPort::GWNPort() {
-      port = "";      // null port name
-      port_nr = -1;   // first working port will be 0
-      if (debug) { std::cout << "GWNPort, default constructor"
+    gwnblock_impl::GWNPort::GWNPort() {
+      d_port = "";      // null port name
+      d_port_nr = -1;   // first working port will be 0
+      if (d_debug) { std::cout << "GWNPort, default constructor"
         << std::endl; }
     }
-
-    std::string GWNPort::__str__() {
-      std::string ss = "GWNPort name: " + port + 
-        ", number: " + to_string(port_nr) + 
-        ", in block: " + block->name + "\n";
+    std::string gwnblock_impl::GWNPort::__str__() {
+      std::string ss = "GWNPort name: " + d_port + 
+        ", number: " + to_string(d_port_nr) + 
+        ", in block: " + d_block->d_name + "\n";
       return ss;
     }
 
 
-
     /* GWNOutPort */
-
-    //GWNOutPort::GWNOutPort() : GWNPort() {}
-
-    GWNOutPort::GWNOutPort(gwnblock_impl * p_block, 
+    gwnblock_impl::GWNOutPort::GWNOutPort(gwnblock_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort() {
-      block = p_block;
-      port = p_port;
-      port_nr = p_port_nr;
-      if (debug) {
+      d_block = p_block;
+      d_port = p_port;
+      d_port_nr = p_port_nr;
+      if (d_debug) {
         std::cout << "GWNOutPort, constructor" << std::endl;
       }
     }
 
-    /*
-    void GWNOutPort::post_message(std::string ev) {
-      // receives string, creates PMT, outputs PMT message
-      if (debug) { 
-        std::cout << "GWNOutPort, post_message, port: " << 
-          port_nr << " in block: " << block->name << std::endl;
-        std::cout << "...message: " << ev << std::endl;
-      }
-      pmt::pmt_t pmt_port = pmt::string_to_symbol(port);
-      pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev); 
-      //block->message_port_pub(pmt_port, pmt_msg);
-      //block->message_port_pub(pmt::mp("out_port_0"), pmt::mp(ev));
-    } */
-
-       
 
     /* GWNInPort */
-
-    //GWNInPort::GWNInPort() : GWNPort() {}
-
-    GWNInPort::GWNInPort(gwnblock_impl * p_block, 
+    gwnblock_impl::GWNInPort::GWNInPort(gwnblock_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort() {
-      block = p_block;
-      port = p_port;
-      port_nr = p_port_nr;
-      if (debug) {
+      d_block = p_block;
+      d_port = p_port;
+      d_port_nr = p_port_nr;
+      if (d_debug) {
         std::cout << "GWNInPort, constructor" << std::endl;
       }
     }
 
 
 
-    /* gwnblock */
+    /* GWN gwnblock */
 
+    /* GNU Radio defaults for block construction */
     gwnblock::sptr
     gwnblock::make(std::string name, int number_in, int number_out, int number_timers, int number_timeouts)
     {
       return gnuradio::get_initial_sptr
-        (new gwnblock_impl(name, number_in, number_out, number_timers, number_timeouts));
+        (new gwnblock_impl(name, number_in, number_out, number_timers, 
+          number_timeouts));
     }
 
 
+    /* GWN gwnblock attributes and functions */
+
     std::string gwnblock_impl::__str__() {
-      std::string ss = "__str__() Block name: " + this->name; 
+      std::string ss = "__str__() Block name: " + this->d_name; 
       return ss;
     }
 
-
     void gwnblock_impl::handle_msg (pmt::pmt_t pmt_msg) {
       std::string ev = pmt::symbol_to_string(pmt_msg);
-      if (debug) { 
+      if (d_debug) { 
         std::cout << "Handle msg, received: " << ev << std::endl;
       }
-      process_data(ev);
+      //process_data(ev);
+      std::string n_ev = gwnblock_pdata::process_data(ev);
+      post_message("out_port_0", n_ev);
     } 
 
-    
     void gwnblock_impl::post_message(std::string port,
         std::string ev) {
-      if (debug) {
+      if (d_debug) {
         std::cout << "Post message, sent: " 
           << ev << std::endl;
       }
       pmt::pmt_t pmt_port = pmt::string_to_symbol(port);
       pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev); 
       message_port_pub(pmt_port, pmt_msg);
-    }
-
-    void gwnblock_impl::process_data(std::string ev) {
-      // to be rewritten in descedant class
-      if (debug) {
-        std::cout << "Process_data, received and sent: " << ev << std::endl;
-        //std::cout << ports_out[0]->__str__() << std::endl;
-        //std::cout << ports_out[0]->port << std::endl;
-        post_message("out_port_0", ev);
-        //ports_out[0]->post_message(ev);
-        //message_port_pub(pmt::mp("out_port_0"), pmt::mp(ev));
-      }
     }
 
 
@@ -184,89 +139,80 @@ namespace gr {
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) )
     {
-      // different parameter and member names required
-      // for correct initialization of member
-      name = p_name;
-      number_in = p_number_in;
-      number_out = p_number_out;
-      number_timers = p_number_timers;
-      number_timeouts = p_number_timeouts;
+      d_name = p_name;
+      d_number_in = p_number_in;
+      d_number_out = p_number_out;
+      d_number_timers = p_number_timers;
+      d_number_timeouts = p_number_timeouts;
+      d_debug = true;
 
-      if (debug) {
+      if (d_debug) {
         std::cout << "gwnblock, constructor, name " << 
-          name << ", number_in " << number_in << 
-          ", number_out " << number_out << std::endl;
+          d_name << ", number_in " << d_number_in << 
+          ", number_out " << d_number_out << std::endl;
       }
 
-
-      // gwnblock::set_out_size (int number_out)
-
-      ports_out.resize(number_out);
+      // gwnblock, create out ports
       int i;
-      std::string out_port;
       std::string message;
+      d_ports_out.resize(d_number_out);
+      std::string out_port;
       pmt::pmt_t pmt_out_port;
 
-      // create and register ports
-      bool debug_ports = true;
-
       GWNOutPort * out_port_new;
-      for ( i=0; i < number_out; i++) {
+      for ( i=0; i < d_number_out; i++) {
         out_port = "out_port_" + to_string(i);
         out_port_new = new GWNOutPort(this, out_port, i);
-        ports_out[i] = out_port_new;
+        d_ports_out[i] = out_port_new;
         pmt_out_port = pmt::string_to_symbol(out_port);
-        if (debug_ports) {
+        if (d_debug) {
           std::cout << "...about to register out_port" << std::endl;}
         message_port_register_out(pmt_out_port); 
-        if (debug_ports) {
+        if (d_debug) {
           std::cout << "...registered out_port" << std::endl;}
       }  
-      if (debug_ports) {    // print items in vector of out ports
+      if (d_debug) {    // print items in vector of out ports
         std::cout << "=== gwnblock, out ports:" << std::endl;
-        for ( i=0; i < number_out; i++) {
+        for ( i=0; i < d_number_out; i++) {
           std::cout << "  out port " << i << 
-            ": " << ports_out[i]->__str__(); // << std::endl; 
+            ": " << d_ports_out[i]->__str__(); // << std::endl; 
           //std::string dbg_msg = "Post Message debug\n...";
           //dbg_msg += ports_out[i]->__str__();
           //std::cout << dbg_msg << std::endl;
         }
       }
 
-
-      // gwnblock::set_n_size (int number_in)
+      // gwnblock, create in ports
       //int i;                  // already declared
-      i = 0;                  // already declared
-      ports_in.resize(number_in);
-      std::string in_port;  
       //std::string message;    // already declared
+      d_ports_in.resize(d_number_in);
+      std::string in_port;  
       pmt::pmt_t pmt_in_port;
 
       GWNInPort * in_port_new;  // requires default constructor
-      for ( i=0; i < number_in; i++) {
+      for ( i=0; i < d_number_in; i++) {
         in_port = "in_port_" + to_string(i);
         in_port_new = new GWNInPort(this, in_port, i);
-        ports_in[i] = in_port_new;
+        d_ports_in[i] = in_port_new;
         pmt_in_port = pmt::string_to_symbol(in_port);
 
-        if (debug_ports) {
+        if (d_debug) {
           std::cout << "...about to register in_port" << std::endl;}
         message_port_register_in(pmt_in_port);
-        if (debug_ports) {
+        if (d_debug) {
           std::cout << "...registered in_port" << std::endl;}
-
         set_msg_handler(pmt_in_port,
           boost::bind(&gwnblock_impl::handle_msg, this, _1));
       } 
-      if (debug_ports) {      // print items in vector of in ports
+      if (d_debug) {      // print items in vector of in ports
         std::cout << "=== gwnblock, in ports:" << std::endl;
-        for ( i=0; i < number_in; i++) {
+        for ( i=0; i < d_number_in; i++) {
           std::cout << "  in port " << i << 
-            ": " << ports_in[i]->__str__(); // << std::endl; 
+            ": " << d_ports_in[i]->__str__(); // << std::endl; 
         }
       }
 
-      if (debug) {
+      if (d_debug) {
         std::cout << "=== gwnblock, receive and send test" <<
           std::endl; }
     }
@@ -279,8 +225,7 @@ namespace gr {
 
 
 
-
-    /* GNU Radio */
+    /* GNU Radio  defaults */
 
     void
     gwnblock_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
@@ -296,17 +241,11 @@ namespace gr {
     {
       const int *in = (const int *) input_items[0];
       int *out = (int *) output_items[0];
-
       // Do <+signal processing+>
-
       std::cout << "gwnblock, in work() function" << std::endl;
-
       // Tell runtime system how many input items we consumed on
       // each input stream.
-
-
       consume_each (noutput_items);
-
       // Tell runtime system how many output items we produced.
       return noutput_items;
     }

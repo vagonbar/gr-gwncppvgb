@@ -1,0 +1,20 @@
+<testsuite errors="2" failures="0" name="unittest.suite.TestSuite" tests="2" time="0.053">
+  <testcase classname="__main__.qa_gwnblock" name="test_constructor" time="0.0422">
+    <error type="exceptions.AttributeError">'module' object has no attribute 'gwnblock'
+  File "/usr/lib/python2.7/unittest/case.py", line 329, in run
+    testMethod()
+  File "python/qa_gwnblock.py", line 42, in test_constructor
+    myblock = gwncppvgb.gwnblock('block_1', 2, 3, 0, 0)
+    </error>
+  </testcase>
+  <testcase classname="__main__.qa_gwnblock" name="test_ports" time="0.0104">
+    <error type="exceptions.AttributeError">'module' object has no attribute 'gwnblock'
+  File "/usr/lib/python2.7/unittest/case.py", line 329, in run
+    testMethod()
+  File "python/qa_gwnblock.py", line 54, in test_ports
+    pss = gwncppvgb.gwnblock('block_2', 1, 1, 0, 0)
+    </error>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
