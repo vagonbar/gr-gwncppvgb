@@ -38,6 +38,8 @@ The complete code to create and test the new block follows:
 ```
   cd <project_root_directory>/build
   ../apps/gwn_modtool.sh message_repeat 1 1 0 0 
+  make
+  make install
   python ../python/qa_message_repeat.py
 ```
 
