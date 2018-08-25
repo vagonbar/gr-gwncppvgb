@@ -20,5 +20,6 @@ install(FILES
     gwncppvgb_gwnblock.xml
     gwncppvgb_gwnblock_pdata.xml
     gwncppvgb_message_passer.xml
-    gwncppvgb_message_passer_pdata.xml DESTINATION share/gnuradio/grc/blocks
+    gwncppvgb_message_passer_pdata.xml
+    DESTINATION share/gnuradio/grc/blocks
 )
