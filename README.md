@@ -15,8 +15,10 @@ Say we want to create a new block called `message_repeat`, which receives a mess
 
 ```
   cd <project_root_directory>/build
-  ../apps/gwn_modtool.sh message_repeat 1 1 0 0 
+  ../libgwn/gwn_modtool.sh message_repeat 1 1 0 0 
 ```
+
+You will be asked to enter a parameter list, such as "std::string message, int counter"; this list may be empty. If you insert a non-empty parameter list, you will have to account for it in files `./lib/message_repeat_impl.h` and `./lib/message_repeat_impl.cc`, e.g. to define attributes and assign parameter values to them. These attributes will then be accessible from the `process_data function`.
 
 `gwn_modtool.sh` is a bash script which uses GNU RAdio `gr_modtool` to create two blocks:
 
