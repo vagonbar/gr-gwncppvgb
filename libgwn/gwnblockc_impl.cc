@@ -23,7 +23,7 @@
 #endif
 
 #include <gnuradio/io_signature.h>
-#include "message_passer_impl.h"
+#include "gwnblockc_impl.h"
 
 /* GWN inclusions */
 #include <iostream>  // for string support
@@ -31,7 +31,7 @@
 #include <sstream>   // for to_string
 #include <pmt/pmt.h>              // for messages
 #include <gnuradio/blocks/pdu.h>  // for messages
-#include <gwncppvgb/message_passer_pdata.h>  // process_data function
+#include <gwncppvgb/gwnblockc_pdata.h>  // process_data function
 //#include <stdio.h>   // for printf
 
 
@@ -49,13 +49,13 @@ namespace gr {
 
 
     /* GWNPort */
-    message_passer_impl::GWNPort::GWNPort() {
+    gwnblockc_impl::GWNPort::GWNPort() {
       d_port = "";      // null port name
       d_port_nr = -1;   // first working port will be 0
       if (d_debug) { std::cout << "GWNPort, default constructor"
         << std::endl; }
     }
-    std::string message_passer_impl::GWNPort::__str__() {
+    std::string gwnblockc_impl::GWNPort::__str__() {
       std::string ss = "GWNPort name: " + d_port + 
         ", number: " + to_string(d_port_nr) + 
         ", in block: " + d_block->d_name + "\n";
@@ -64,7 +64,7 @@ namespace gr {
 
 
     /* GWNOutPort */
-    message_passer_impl::GWNOutPort::GWNOutPort(message_passer_impl * p_block, 
+    gwnblockc_impl::GWNOutPort::GWNOutPort(gwnblockc_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort() {
       d_block = p_block;
       d_port = p_port;
@@ -76,7 +76,7 @@ namespace gr {
 
 
     /* GWNInPort */
-    message_passer_impl::GWNInPort::GWNInPort(message_passer_impl * p_block, 
+    gwnblockc_impl::GWNInPort::GWNInPort(gwnblockc_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort() {
       d_block = p_block;
       d_port = p_port;
@@ -88,36 +88,36 @@ namespace gr {
 
 
 
-    /* GWN message_passer */
+    /* GWN gwnblockc */
 
     /* GNU Radio defaults for block construction */
-    message_passer::sptr
-    message_passer::make(std::string name, int number_in, int number_out, int number_timers, int number_timeouts)
+    gwnblockc::sptr
+    gwnblockc::make(std::string name, int number_in, int number_out, int number_timers, int number_timeouts)
     {
       return gnuradio::get_initial_sptr
-        (new message_passer_impl(name, number_in, number_out, number_timers, 
+        (new gwnblockc_impl(name, number_in, number_out, number_timers, 
           number_timeouts));
     }
 
 
-    /* GWN message_passer attributes and functions */
+    /* GWN gwnblockc attributes and functions */
 
-    std::string message_passer_impl::__str__() {
+    std::string gwnblockc_impl::__str__() {
       std::string ss = "__str__() Block name: " + this->d_name; 
       return ss;
     }
 
-    void message_passer_impl::handle_msg (pmt::pmt_t pmt_msg) {
+    void gwnblockc_impl::handle_msg (pmt::pmt_t pmt_msg) {
       std::string ev = pmt::symbol_to_string(pmt_msg);
       if (d_debug) { 
         std::cout << "Handle msg, received: " << ev << std::endl;
       }
       //process_data(ev);
-      std::string n_ev = message_passer_pdata::process_data(ev);
+      std::string n_ev = gwnblockc_pdata::process_data(ev);
       post_message("out_port_0", n_ev);
     } 
 
-    void message_passer_impl::post_message(std::string port,
+    void gwnblockc_impl::post_message(std::string port,
         std::string ev) {
       if (d_debug) {
         std::cout << "Post message, sent: " 
@@ -130,12 +130,12 @@ namespace gr {
 
 
 
-    /* message_passer: the private constructor */
+    /* gwnblockc: the private constructor */
 
-    message_passer_impl::message_passer_impl(std::string p_name,
+    gwnblockc_impl::gwnblockc_impl(std::string p_name,
       int p_number_in, int p_number_out, int p_number_timers,
       int p_number_timeouts)
-      : gr::block("message_passer",
+      : gr::block("gwnblockc",
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) )
     {
@@ -147,12 +147,12 @@ namespace gr {
       d_debug = true;
 
       if (d_debug) {
-        std::cout << "message_passer, constructor, name " << 
+        std::cout << "gwnblockc, constructor, name " << 
           d_name << ", number_in " << d_number_in << 
           ", number_out " << d_number_out << std::endl;
       }
 
-      // message_passer, create out ports
+      // gwnblockc, create out ports
       int i;
       std::string message;
       d_ports_out.resize(d_number_out);
@@ -172,7 +172,7 @@ namespace gr {
           std::cout << "...registered out_port" << std::endl;}
       }  
       if (d_debug) {    // print items in vector of out ports
-        std::cout << "=== message_passer, out ports:" << std::endl;
+        std::cout << "=== gwnblockc, out ports:" << std::endl;
         for ( i=0; i < d_number_out; i++) {
           std::cout << "  out port " << i << 
             ": " << d_ports_out[i]->__str__(); // << std::endl; 
@@ -182,7 +182,7 @@ namespace gr {
         }
       }
 
-      // message_passer, create in ports
+      // gwnblockc, create in ports
       //int i;                  // already declared
       //std::string message;    // already declared
       d_ports_in.resize(d_number_in);
@@ -202,10 +202,10 @@ namespace gr {
         if (d_debug) {
           std::cout << "...registered in_port" << std::endl;}
         set_msg_handler(pmt_in_port,
-          boost::bind(&message_passer_impl::handle_msg, this, _1));
+          boost::bind(&gwnblockc_impl::handle_msg, this, _1));
       } 
       if (d_debug) {      // print items in vector of in ports
-        std::cout << "=== message_passer, in ports:" << std::endl;
+        std::cout << "=== gwnblockc, in ports:" << std::endl;
         for ( i=0; i < d_number_in; i++) {
           std::cout << "  in port " << i << 
             ": " << d_ports_in[i]->__str__(); // << std::endl; 
@@ -213,13 +213,13 @@ namespace gr {
       }
 
       if (d_debug) {
-        std::cout << "=== message_passer, receive and send test" <<
+        std::cout << "=== gwnblockc, receive and send test" <<
           std::endl; }
     }
 
 
-    /* message_passer: our virtual destructor */
-    message_passer_impl::~message_passer_impl()
+    /* gwnblockc: our virtual destructor */
+    gwnblockc_impl::~gwnblockc_impl()
     {
     }
 
@@ -228,13 +228,13 @@ namespace gr {
     /* GNU Radio  defaults */
 
     void
-    message_passer_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
+    gwnblockc_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
       /* <+forecast+> e.g. ninput_items_required[0] = noutput_items */
     }
 
     int
-    message_passer_impl::general_work (int noutput_items,
+    gwnblockc_impl::general_work (int noutput_items,
                        gr_vector_int &ninput_items,
                        gr_vector_const_void_star &input_items,
                        gr_vector_void_star &output_items)
@@ -242,7 +242,7 @@ namespace gr {
       const int *in = (const int *) input_items[0];
       int *out = (int *) output_items[0];
       // Do <+signal processing+>
-      std::cout << "message_passer, in work() function" << std::endl;
+      std::cout << "gwnblockc, in work() function" << std::endl;
       // Tell runtime system how many input items we consumed on
       // each input stream.
       consume_each (noutput_items);

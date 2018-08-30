@@ -25,10 +25,6 @@ include(GrPlatform) #define LIB_SUFFIX
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 list(APPEND gwncppvgb_sources
-    gwnblock_impl.cc
-    gwnblock_pdata.cc
-    message_passer_impl.cc
-    message_passer_pdata.cc
     )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)
@@ -62,7 +58,6 @@ include_directories(${CPPUNIT_INCLUDE_DIRS})
 list(APPEND test_gwncppvgb_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/test_gwncppvgb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwncppvgb.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwnblock.cc
     )
 
 add_executable(test-gwncppvgb ${test_gwncppvgb_sources})

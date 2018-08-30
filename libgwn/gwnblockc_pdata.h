@@ -18,36 +18,36 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
-#include <gnuradio/io_signature.h>
-#include <gwncppvgb/message_passer_pdata.h>
+#ifndef INCLUDED_GWNCPPVGB_GWNBLOCKC_PDATA_H
+#define INCLUDED_GWNCPPVGB_GWNBLOCKC_PDATA_H
 
-/* GWN inclusions */
-#include <stdio.h>
-#include <iostream>
-#include "message_passer_impl.h"
+#include <gwncppvgb/api.h>
+
+#include <string>
 
 namespace gr {
   namespace gwncppvgb {
 
-    /* GWN process_data function, rewrite for a new block */
+    /*!
+     * \brief <+description+>
+     *
+     */
 
-    std::string message_passer_pdata::process_data(std::string ev)
+
+	//void process_data(std::string ev);
+
+    class GWNCPPVGB_API gwnblockc_pdata
     {
-    std::cout << "...message_passer_pdata, event received: " <<
-      ev << std::endl;
-    std::string ev_proc = "...message_passer_pdata, event processed: " + ev;
-    return ev_proc;
-    }
+    public:
+      gwnblockc_pdata(std::string ev);
+      ~gwnblockc_pdata();
+	  static std::string process_data(std::string ev);
+    private:
+    };
 
+  } // namespace gwncppvgb
+} // namespace gr
 
-    /* GWN process_data class, leave as it is in a new block */
-    message_passer_pdata::message_passer_pdata(std::string ev) { }
-    message_passer_pdata::~message_passer_pdata() { }
-
-  } /* namespace gwncppvgb */
-} /* namespace gr */
+#endif /* INCLUDED_GWNCPPVGB_GWNBLOCKC_PDATA_H */
 

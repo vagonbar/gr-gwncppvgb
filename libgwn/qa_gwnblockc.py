@@ -28,7 +28,7 @@ import gwncppvgb.gwncppvgb_swig as gwncppvgb
 import time
 import pmt
 
-class qa_message_passer (gr_unittest.TestCase):
+class qa_gwnblockc (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -37,9 +37,9 @@ class qa_message_passer (gr_unittest.TestCase):
         self.tb = None
 
     def test_constructor (self):
-        print "\n===\n=== TEST message_passer constructor \n===\n"
+        print "\n===\n=== TEST gwnblockc constructor \n===\n"
         #gwncppvgb.set_debug(True)   # does now work as expected
-        myblock = gwncppvgb.message_passer('block_1', 2, 3, 0, 0)
+        myblock = gwncppvgb.gwnblockc('block_1', 2, 3, 0, 0)
         #print "myblock.__str__()", myblock.__str__()  # not as expected
 
 
@@ -48,10 +48,10 @@ class qa_message_passer (gr_unittest.TestCase):
         # check data
 
     def test_ports (self):
-        print "\n===\n=== TEST message_passer input and output ports \n===\n"
+        print "\n===\n=== TEST gwnblockc input and output ports \n===\n"
         tst_msg = "--- A test message from message strobe"
         src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
-        pss = gwncppvgb.message_passer('block_2', 1, 1, 0, 0)
+        pss = gwncppvgb.gwnblockc('block_2', 1, 1, 0, 0)
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
@@ -64,4 +64,4 @@ class qa_message_passer (gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_message_passer, "qa_gwnblock.xml")
+    gr_unittest.run(qa_gwnblockc, "qa_gwnblockc.xml")

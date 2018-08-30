@@ -18,10 +18,10 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_GWNCPPVGB_GWNBLOCK_IMPL_H
-#define INCLUDED_GWNCPPVGB_GWNBLOCK_IMPL_H
+#ifndef INCLUDED_GWNCPPVGB_GWNBLOCKC_IMPL_H
+#define INCLUDED_GWNCPPVGB_GWNBLOCKC_IMPL_H
 
-#include <gwncppvgb/gwnblock.h>
+#include <gwncppvgb/gwnblockc.h>
 
 /*  GWN inclusions */
 #include <vector>
@@ -30,9 +30,9 @@
 namespace gr {
   namespace gwncppvgb {
 
-    /* GWN gwnblock, a model block */
+    /* GWN gwnblockc, a model block */
 
-    class gwnblock_impl : public virtual gwnblock
+    class gwnblockc_impl : public virtual gwnblockc
     {
     private:
       /* GWN ports, nested classes */
@@ -42,24 +42,24 @@ namespace gr {
         bool d_debug;
       public:
         GWNPort();
-        gwnblock_impl * d_block;
+        gwnblockc_impl * d_block;
         std::string d_port;
         int d_port_nr;
         std::string __str__();
     }; 
     class GWNOutPort: public virtual GWNPort { 
       public:
-        GWNOutPort(gwnblock_impl *, std::string, int);
+        GWNOutPort(gwnblockc_impl *, std::string, int);
      };
     class GWNInPort: public virtual GWNPort {
       public:
-        GWNInPort(gwnblock_impl *, std::string, int);
+        GWNInPort(gwnblockc_impl *, std::string, int);
     }; 
 
     public:
-      gwnblock_impl(std::string name, int number_in, int number_out,
+      gwnblockc_impl(std::string name, int number_in, int number_out,
         int number_timers, int number_timeouts);
-      ~gwnblock_impl();
+      ~gwnblockc_impl();
 
       /* GWN attributes and functions */
       std::string d_name;
@@ -85,5 +85,5 @@ namespace gr {
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_GWNBLOCK_IMPL_H */
+#endif /* INCLUDED_GWNCPPVGB_GWNBLOCKC_IMPL_H */
 

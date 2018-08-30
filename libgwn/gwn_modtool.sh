@@ -17,12 +17,13 @@ elif [ -z $GREPBUILD ]    # verify execution from ./build directory"
 then
   echo "gwn_modtool:"
   echo "  must be executed from the build directory"
+  exit
 else
   echo -n "About to create block $1; proceed(YyNn)? "
   read ANSWER
   if [ $ANSWER != "y" -a $ANSWER != "Y" ]
   then
-    echo Answer was $ANSWER
+    echo Answer was not "y" nor "Y": $ANSWER
     exit
   fi
 fi
@@ -37,8 +38,8 @@ NR_TIMEOUTS=$5
 BLOCK_NAME_CAPS=`echo $BLOCK_NAME | tr [a-z] [A-Z]`
 
 # sed substitution expressions
-SED_GWNBLOCK="s/gwnblock/${BLOCK_NAME}/g"
-SED_GWNBLOCK_CAPS="s/GWNBLOCK/${BLOCK_NAME_CAPS}/g"
+SED_GWNBLOCC="s/gwnblockc/${BLOCK_NAME}/g"
+SED_GWNBLOCC_CAPS="s/GWNBLOCC/${BLOCK_NAME_CAPS}/g"
 
 # create files for new blocks
 cd ..   # from build directory to module root directory
@@ -58,33 +59,32 @@ echo -en "... returned to module build directory:\n      "; pwd
 
 # block files
 echo "... processing ../include/gwncppvgb/${BLOCK_NAME}.h"
-sed -e $SED_GWNBLOCK -e $SED_GWNBLOCK_CAPS \
-  ../include/gwncppvgb/gwnblock.h > \
-  ../include/gwncppvgb/${BLOCK_NAME}.h
+sed -e $SED_GWNBLOCC -e $SED_GWNBLOCC_CAPS \
+  ../libgwn/gwnblockc.h > ../include/gwncppvgb/${BLOCK_NAME}.h
 
 echo "... processing ../lib/${BLOCK_NAME}_impl.h"
-sed -e $SED_GWNBLOCK -e $SED_GWNBLOCK_CAPS \
-  ../lib/gwnblock_impl.h > ../lib/${BLOCK_NAME}_impl.h
+sed -e $SED_GWNBLOCC -e $SED_GWNBLOCC_CAPS \
+  ../libgwn/gwnblockc_impl.h > ../lib/${BLOCK_NAME}_impl.h
 
 echo "... processing ../lib/${BLOCK_NAME}_impl.cc"
-sed -e $SED_GWNBLOCK -e $SED_GWNBLOCK_CAPS \
-  ../lib/gwnblock_impl.cc > ../lib/${BLOCK_NAME}_impl.cc
+sed -e $SED_GWNBLOCC -e $SED_GWNBLOCC_CAPS \
+  ../libgwn/gwnblockc_impl.cc > ../lib/${BLOCK_NAME}_impl.cc
 
 
 # QA file
 echo "... processing ../python/qa_${BLOCK_NAME}.py"
-sed -e $SED_GWNBLOCK \
-  ../python/qa_gwnblock.py > ../python/qa_${BLOCK_NAME}.py
+sed -e $SED_GWNBLOCC \
+  ../libgwn/qa_gwnblockc.py > ../python/qa_${BLOCK_NAME}.py
 
 
 # process data files
 echo "... processing ../include/gwncppvgb/${BLOCK_NAME}_pdata.h"
-sed -e $SED_GWNBLOCK -e $SED_GWNBLOCK_CAPS \
-  ../include/gwncppvgb/gwnblock_pdata.h > \
-  ../include/gwncppvgb/${BLOCK_NAME}_pdata.h
+sed -e $SED_GWNBLOCC -e $SED_GWNBLOCC_CAPS \
+  ../libgwn/gwnblockc_pdata.h > ../include/gwncppvgb/${BLOCK_NAME}_pdata.h
 
 echo "... processing ../lib/${BLOCK_NAME}_pdata.cc"
-sed -e $SED_GWNBLOCK -e $SED_GWNBLOCK_CAPS \
-  ../lib/gwnblock_pdata.cc > \
-  ../lib/${BLOCK_NAME}_pdata.cc
+sed -e $SED_GWNBLOCC -e $SED_GWNBLOCC_CAPS \
+  ../libgwn/gwnblockc_pdata.cc > ../lib/${BLOCK_NAME}_pdata.cc
+
+echo "... block $1 created."
 

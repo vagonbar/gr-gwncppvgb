@@ -18,29 +18,36 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
-#ifndef _QA_GWNBLOCK_H_
-#define _QA_GWNBLOCK_H_
+#include <gnuradio/io_signature.h>
+#include <gwncppvgb/gwnblockc_pdata.h>
 
-#include <cppunit/extensions/HelperMacros.h>
-#include <cppunit/TestCase.h>
+/* GWN inclusions */
+#include <stdio.h>
+#include <iostream>
+#include "gwnblockc_impl.h"
 
 namespace gr {
   namespace gwncppvgb {
 
-    class qa_gwnblock : public CppUnit::TestCase
-    {
-    public:
-      CPPUNIT_TEST_SUITE(qa_gwnblock);
-      CPPUNIT_TEST(t1);
-      CPPUNIT_TEST_SUITE_END();
+    /* GWN process_data function, rewrite for a new block */
 
-    private:
-      void t1();
-    };
+    std::string gwnblockc_pdata::process_data(std::string ev)
+    {
+    std::cout << "...gwnblockc_data, event received: " <<
+      ev << std::endl;
+    std::string ev_proc = "...gwnblockc, event processed: " + ev;
+    return ev_proc;
+    }
+
+
+    /* GWN process_data class, leave as it is in a new block */
+    gwnblockc_pdata::gwnblockc_pdata(std::string ev) { }
+    gwnblockc_pdata::~gwnblockc_pdata() { }
 
   } /* namespace gwncppvgb */
 } /* namespace gr */
-
-#endif /* _QA_GWNBLOCK_H_ */
 

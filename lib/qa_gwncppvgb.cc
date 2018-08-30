@@ -26,13 +26,11 @@
  */
 
 #include "qa_gwncppvgb.h"
-#include "qa_gwnblock.h"
 
 CppUnit::TestSuite *
 qa_gwncppvgb::suite()
 {
   CppUnit::TestSuite *s = new CppUnit::TestSuite("gwncppvgb");
-  s->addTest(gr::gwncppvgb::qa_gwnblock::suite());
 
   return s;
 }

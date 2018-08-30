@@ -19,35 +19,39 @@
  */
 
 
-#ifndef INCLUDED_GWNCPPVGB_MESSAGE_PASSER_PDATA_H
-#define INCLUDED_GWNCPPVGB_MESSAGE_PASSER_PDATA_H
+#ifndef INCLUDED_GWNCPPVGB_GWNBLOCKC_H
+#define INCLUDED_GWNCPPVGB_GWNBLOCKC_H
 
 #include <gwncppvgb/api.h>
-
-#include <string>
+#include <gnuradio/block.h>
 
 namespace gr {
   namespace gwncppvgb {
 
     /*!
-     * \brief <+description+>
+     * \brief <+description of block+>
+     * \ingroup gwncppvgb
      *
      */
-
-
-	//void process_data(std::string ev);
-
-    class GWNCPPVGB_API message_passer_pdata
+    class GWNCPPVGB_API gwnblockc : virtual public gr::block
     {
-    public:
-      message_passer_pdata(std::string ev);
-      ~message_passer_pdata();
-	  static std::string process_data(std::string ev);
-    private:
+     public:
+      typedef boost::shared_ptr<gwnblockc> sptr;
+
+      /*!
+       * \brief Return a shared_ptr to a new instance of gwncppvgb::gwnblockc.
+       *
+       * To avoid accidental use of raw pointers, gwncppvgb::gwnblockc's
+       * constructor is in a private implementation
+       * class. gwncppvgb::gwnblockc::make is the public interface for
+       * creating new instances.
+       */
+      static sptr make(std::string name, int number_in, int number_out, int number_timers, int number_timeouts);
+
     };
 
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_GWNBLOCK_PDATA_H */
+#endif /* INCLUDED_GWNCPPVGB_GWNBLOCKC_H */
 
