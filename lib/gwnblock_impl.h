@@ -35,7 +35,7 @@ namespace gr {
     class gwnblock_impl : public virtual gwnblock
     {
     private:
-      /* GWN ports, nested class */
+      /* GWN ports, nested classes */
     class GWNPort
     {
       protected:

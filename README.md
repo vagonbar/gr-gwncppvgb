@@ -43,6 +43,10 @@ The complete code to create and test the new block follows:
   python ../python/qa_message_repeat.py
 ```
 
+This is for a GNU Radio installation in user space, as described in 
+ `https://github.com/gnuradio/pybombs`.
+For a system wide GNU Radio installation, instead of `make install` you must write `sudo make install`. 
+
 An output similar to the following is expected:
 
 ```
