@@ -92,11 +92,10 @@ namespace gr {
 
     /* GNU Radio defaults for block construction */
     gwnblockc::sptr
-    gwnblockc::make(std::string name, int number_in, int number_out, int number_timers, int number_timeouts)
+    gwnblockc::make("GWN_parameter_list")
     {
       return gnuradio::get_initial_sptr
-        (new gwnblockc_impl(name, number_in, number_out, number_timers, 
-          number_timeouts));
+        (new gwnblockc_impl("GWN_variable_list"));
     }
 
 
@@ -132,18 +131,19 @@ namespace gr {
 
     /* gwnblockc: the private constructor */
 
-    gwnblockc_impl::gwnblockc_impl(std::string p_name,
-      int p_number_in, int p_number_out, int p_number_timers,
-      int p_number_timeouts)
+    //gwnblockc_impl::gwnblockc_impl(std::string p_name,
+    //  int p_number_in, int p_number_out, int p_number_timers,
+    //  int p_number_timeouts)
+    gwnblockc_impl::gwnblockc_impl("GWN_parameter_list")
       : gr::block("gwnblockc",
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) )
     {
-      d_name = p_name;
-      d_number_in = p_number_in;
-      d_number_out = p_number_out;
-      d_number_timers = p_number_timers;
-      d_number_timeouts = p_number_timeouts;
+      // GWN block name, ports and timers as block attributes
+      d_name = "no_name";
+      d_number_in = 0;
+      d_number_out = 0;
+      d_number_timers = 0;
       d_debug = true;
 
       if (d_debug) {
@@ -154,7 +154,6 @@ namespace gr {
 
       // gwnblockc, create out ports
       int i;
-      std::string message;
       d_ports_out.resize(d_number_out);
       std::string out_port;
       pmt::pmt_t pmt_out_port;
@@ -184,7 +183,6 @@ namespace gr {
 
       // gwnblockc, create in ports
       //int i;                  // already declared
-      //std::string message;    // already declared
       d_ports_in.resize(d_number_in);
       std::string in_port;  
       pmt::pmt_t pmt_in_port;

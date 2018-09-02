@@ -46,7 +46,7 @@ namespace gr {
        * class. gwncppvgb::gwnblockc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(std::string name, int number_in, int number_out, int number_timers, int number_timeouts);
+      static sptr make("GWN_parameter_list");
 
     };
 

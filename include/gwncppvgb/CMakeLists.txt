@@ -22,5 +22,12 @@
 ########################################################################
 install(FILES
     api.h
-    DESTINATION include/gwncppvgb
+    message_passer.h
+    message_passer_pdata.h
+    message_passer.h
+    message_passer_pdata.h
+    message_passer.h
+    message_passer_pdata.h
+    message_passer.h
+    message_passer_pdata.h DESTINATION include/gwncppvgb
 )

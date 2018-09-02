@@ -25,7 +25,14 @@ include(GrPlatform) #define LIB_SUFFIX
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 list(APPEND gwncppvgb_sources
-    )
+    message_passer_impl.cc
+    message_passer_pdata.cc
+    message_passer_impl.cc
+    message_passer_pdata.cc
+    message_passer_impl.cc
+    message_passer_pdata.cc
+    message_passer_impl.cc
+    message_passer_pdata.cc )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)
 if(NOT gwncppvgb_sources)

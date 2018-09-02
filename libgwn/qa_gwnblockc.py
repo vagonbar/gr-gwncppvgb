@@ -39,7 +39,7 @@ class qa_gwnblockc (gr_unittest.TestCase):
     def test_constructor (self):
         print "\n===\n=== TEST gwnblockc constructor \n===\n"
         #gwncppvgb.set_debug(True)   # does now work as expected
-        myblock = gwncppvgb.gwnblockc('block_1', 2, 3, 0, 0)
+        myblock = gwncppvgb.gwnblockc("GWN test message 1", 10)
         #print "myblock.__str__()", myblock.__str__()  # not as expected
 
 
@@ -51,7 +51,7 @@ class qa_gwnblockc (gr_unittest.TestCase):
         print "\n===\n=== TEST gwnblockc input and output ports \n===\n"
         tst_msg = "--- A test message from message strobe"
         src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
-        pss = gwncppvgb.gwnblockc('block_2', 1, 1, 0, 0)
+        pss = gwncppvgb.gwnblockc("GWN test message 2", 10)
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )

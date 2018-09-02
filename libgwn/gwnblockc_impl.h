@@ -57,8 +57,7 @@ namespace gr {
     }; 
 
     public:
-      gwnblockc_impl(std::string name, int number_in, int number_out,
-        int number_timers, int number_timeouts);
+      gwnblockc_impl("GWN_parameter_list");
       ~gwnblockc_impl();
 
       /* GWN attributes and functions */
