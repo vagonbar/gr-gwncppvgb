@@ -2,11 +2,11 @@
 # gwn_modtool : creates new block an converts code from block template
 
 
-### verify syntax and number of parameters, exec from build directory
+### verify syntax and number of arguments, exec from build directory
 CURDIR=`pwd`
 GREPBUILD=`echo $CURDIR | grep /build$`
 
-if [ $# -ne 4 ]           # verify number of parameters
+if [ $# -ne 4 ]           # verify number of arguments
 then
   echo "gwn_modtool syntax:"
   echo "  gwn_modtool block_name nr_inputs nr_outputs nr_timers"
@@ -20,48 +20,91 @@ then
   exit
 fi
 
+MODULE_NAME=`ls -1 ../include/ | cut -f2 -d"/"`
+echo "Module Name: "${MODULE_NAME}
 
-### parameters, default and user
-# block attributes from positional parameters
+### block properties: name, ports, timers
+
+# block properties from positional arguments
 BLOCK_NAME=$1
 NR_IN=$2
 NR_OUT=$3
 NR_TIMERS=$4
 
-### get user parameters list
-MSG_PARS="\"GWN_parameter_list\""
-MSG_VARS="\"GWN_variable_list\""
-echo -n "Enter parameter list: "; read USER_PARS
-#USER_PARS="std::string message, int counter"
-echo "User parameters:     " $USER_PARS
+# assign block block properties to object attributes
+SED_BLK_NAME="s/d_name = p_name/dname = $BLOCK_NAME/g"
+SED_NR_IN="s/d_number_in = $NR_IN/g"
+SED_NR_OUT="s/d_number_out = $NR_OUT/g"
+SED_TIMERS="s/d_number_timers = $NR_TIMERS/g"
 
-# extracts variable names from list of "type variable, ..."
-I=0
-for WORD in $USER_PARS
+
+### produce user arguments declaration and initialization
+
+# strings to substitute
+MSG_USER_ARGS="<GWN_user_argument_list>"
+MSG_USER_ARGS_DECL="// GWN user arguments declaration"
+MSG_USER_ARGS_INIT="// GWN user arguments initialization"
+MSG_USER_PARS="<GWN_user_parameter_list>"
+
+# user arguments list, create array of arguments
+echo -n "Enter argument list: "; read USER_ARGS
+#USER_ARGS="std::string message, int counter, std::string port"
+USER_ARGS_ARRAY=(`echo $USER_ARGS | tr " " "#" | tr "," " "`)
+
+# generate declaration and initialization sentences, parameter list
+USER_ARGS_DECL=""    # user arguments declaration
+USER_ARGS_INIT=""    # user arguments initialization
+USER_PARS=""
+
+for WD in ${USER_ARGS_ARRAY[*]}
 do
-  if [ $(($I % 2)) -eq 1 ]
-  then
-    if [ $I -eq 1 ]
+  LS_ITEM_ARGS=`echo $WD | tr "#" " "`
+  VAR=(${LS_ITEM_ARGS})
+
+  VAR_NR_LAST=$((${#VAR[@]} - 1))    # index of last argument
+  #echo "Last item in VAR" $VAR_NR_LAST
+  #echo "Var declaration": $WD
+  #echo -n "Items in declaraton:"
+
+  #echo; echo "VARIABLES y última"
+  ITEM_ARG_DECL=""
+  ITEM_ARG_INIT=""
+  ITEM_PAR=""
+  for I in "${!VAR[@]}"
+  do
+    if [ $I -eq $VAR_NR_LAST ]
     then
-      USER_VARS=$WORD
+      ITEM_ARG_DECL=$ITEM_ARG_DECL"d_"${VAR[$I]}";"
+      ITEM_ARG_INIT=$ITEM_ARG_INIT"d_"${VAR[$I]}" = "${VAR[$I]}";"
+      ITEM_PAR=${ITEM_PAR}${VAR[$I]}", "
     else
-      USER_VARS=${USER_VARS}" "${WORD}
+      ITEM_ARG_DECL=$ITEM_ARG_DECL${VAR[$I]}" "
     fi
-  fi
-  ((I += 1))
+  done
+  #echo $ITEM_ARG_DECL --- $ITEM_ARG_INIT
+
+  USER_ARGS_DECL=$USER_ARGS_DECL"\n      "$ITEM_ARG_DECL
+  USER_ARGS_INIT=$USER_ARGS_INIT"\n      "$ITEM_ARG_INIT
+  USER_PARS=${USER_PARS}${ITEM_PAR}
 done
-echo "User variables:" $USER_VARS
+USER_PARS=`echo ${USER_PARS} | sed -E "s/,\$//g"`  # delete last ","
+echo User argument list: "$USER_ARGS"
+echo -e User arguments declaration: "$USER_ARGS_DECL"
+echo -e User arguments initialization: "$USER_ARGS_INIT"
+echo User parameter list: "$USER_PARS"
 
 
 ### create block with gr_modtool
-echo -n "About to create block $1; proceed(YyNn)? "
-read ANSWER
-if [ $ANSWER != "y" -a $ANSWER != "Y" ]
+
+echo -n "About to create block $1; proceed(YyNn)? "; read ANSWER
+#ANSWER="N"
+if [ "$ANSWER" == "y" -o "$ANSWER" == "Y" ]
 then
-  echo Answer was not "y" nor "Y": $ANSWER
-  exit
+  echo "Creating block $1..."
+else
+  echo "Answer was not y nor Y:" $ANSWER
+#  exit
 fi
-echo "Creating block $1..."
 
 # sed substitution expressions
 BLOCK_NAME_CAPS=`echo $BLOCK_NAME | tr [a-z] [A-Z]`
@@ -86,25 +129,30 @@ echo -en "... returned to module build directory:\n      "; pwd
 ### transform files by substitution in template files
 
 # new block files
-echo "... processing ../include/gwncppvgb/${BLOCK_NAME}.h"
+echo "... processing ../include/${MODULE_NAME}/${BLOCK_NAME}.h"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
-  -e "s/$MSG_PARS/$USER_PARS/g" \
-  ../libgwn/gwnblockc.h > ../include/gwncppvgb/${BLOCK_NAME}.h
+  -e "s/$MSG_USER_ARGS/$USER_ARGS/g" \
+  ../libgwn/gwnblockc.h > ../include/${MODULE_NAME}/${BLOCK_NAME}.h
 
 echo "... processing ../lib/${BLOCK_NAME}_impl.h"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
-  -e "s/$MSG_PARS/$USER_PARS/g" \
+  -e "s/${MSG_USER_ARGS}/$USER_ARGS/g" \
+  -e "s/\/\/ GWN user arguments declaration/&${USER_ARGS_DECL}/g" \
   ../libgwn/gwnblockc_impl.h > ../lib/${BLOCK_NAME}_impl.h
+  #-e "s/${MSG_USER_ARGS_DECL}/&${USER_ARGS_DECL}/g" \
+  #../libgwn/gwnblockc_impl.h > ../lib/${BLOCK_NAME}_impl.h
 
 echo "... processing ../lib/${BLOCK_NAME}_impl.cc"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
-  -e "s/$MSG_PARS/$USER_PARS/g" \
-  -e "s/$MSG_VARS/$USER_VARS/g" \
+  -e "s/${MSG_USER_ARGS}/${USER_ARGS}/g" \
+  -e "s/${MSG_USER_PARS}/${USER_PARS}/g" \
+  -e "s/\/\/ GWN user arguments initialization/&${USER_ARGS_INIT}/g" \
   -e "s/d_name = \"no_name\"/d_name = \"$BLOCK_NAME\"/g" \
   -e "s/d_number_in = 0/d_number_in = $NR_IN/g" \
   -e "s/d_number_out = 0/d_number_out = $NR_OUT/g" \
   -e "s/d_number_timers = 0/d_number_timers = $NR_TIMERS/g" \
   ../libgwn/gwnblockc_impl.cc > ../lib/${BLOCK_NAME}_impl.cc
+  #-e "s/${MSG_USER_ARGS_INIT}/&${USER_ARGS_INIT}/g" \
 
 # new block QA file
 echo "... processing ../python/qa_${BLOCK_NAME}.py"
@@ -112,9 +160,9 @@ sed -e $SED_GWNBLOCKC \
   ../libgwn/qa_gwnblockc.py > ../python/qa_${BLOCK_NAME}.py
 
 # new block process data files
-echo "... processing ../include/gwncppvgb/${BLOCK_NAME}_pdata.h"
+echo "... processing ../include/${MODULE_NAME}/${BLOCK_NAME}_pdata.h"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
-  ../libgwn/gwnblockc_pdata.h > ../include/gwncppvgb/${BLOCK_NAME}_pdata.h
+  ../libgwn/gwnblockc_pdata.h > ../include/${MODULE_NAME}/${BLOCK_NAME}_pdata.h
 
 echo "... processing ../lib/${BLOCK_NAME}_pdata.cc"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \

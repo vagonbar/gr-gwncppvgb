@@ -15,17 +15,21 @@ Say we want to create a new block called `message_repeat`, which receives a mess
 
 ```
   cd <project_root_directory>/build
-  ../libgwn/gwn_modtool.sh message_repeat 1 1 0 0 
+  ../libgwn/gwn_modtool.sh message_repeat 1 1 0 
 ```
 
-You will be asked to enter a parameter list, such as "std::string message, int counter"; this list may be empty. If you insert a non-empty parameter list, you will have to account for it in files `./lib/message_repeat_impl.h` and `./lib/message_repeat_impl.cc`, e.g. to define attributes and assign parameter values to them. These attributes will then be accessible from the `process_data function`.
+You will be asked to enter an argument list, such as "std::string message, int counter"; this list may be empty. When you enter a non-empty parameter list, the script inserts the corresponding argument list and parameter list in the required places, declares an attribute `d_arg_name` of the same type for each argument called `arg_name`, and inserts an assignment `d_arg_name = arg_name` to capture the argument value (parameter) in the attribute variable. For a block called `message_repeat`, The former insertions occur in files `../include/<module_name>/message_repeat.h`, `../lib/message_repeat_impl.h`, and `./lib/message_repeat_impl.cc`.
+
+TODO: see how to make local attributes accessible from the `process_data function`, so as not to touch the new block files, and only touch the `process_data` function.
 
 `gwn_modtool.sh` is a bash script which uses GNU RAdio `gr_modtool` to create two blocks:
 
 - `message_repeat`, which inherits from GNU Radio general block; all the GWN facilieties are copied to this block from a template GWN block.
 - `message_repeat_pdata`, a block of type `noblock`, where the function `process_data` resides.  
 
-The script `gwn_modtool.sh` takes the code from `gwnblock`, a template GWN block, and modifies the parameter list according to the parameters given to `gwn_modtool.sh`: block name, number of input ports, number of output ports, number of timers, number of timeouts (the last two not yet implemented, so 0 is required).
+The script `gwn_modtool.sh` takes the code from `gwnblockc`, a template GWN block available in the ../libgwn directory, and modifies the argument list according to the argumets given to `gwn_modtool.sh` as positional parameters: block name, number of input ports, number of output ports, and number of timers (the last one not yet implemented, so 0 is required).
+
+TODO: implement timers.
 
 Once these blocks have been created, the programmer has at her disposal the necessary input and output message ports, and she only needs to customize the function `process_data`, found in block `<name_of_new_block>_pdata`.
 
@@ -39,7 +43,8 @@ The complete code to create and test the new block follows:
 
 ```
   cd <project_root_directory>/build
-  ../libgwn/gwn_modtool.sh message_repeat 1 1 0 0 
+  ../libgwn/gwn_modtool.sh message_repeat 1 1 0
+  (answer questions: argument list, confirm creation, add C++ QA code)
   make
   make install
   python ../python/qa_message_repeat.py

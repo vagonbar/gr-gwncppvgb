@@ -18,10 +18,10 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_GWNCPPVGB_GWNBLOCKC_IMPL_H
-#define INCLUDED_GWNCPPVGB_GWNBLOCKC_IMPL_H
+#ifndef INCLUDED_GWNCPPVGB_MESSAGE_PASSER_IMPL_H
+#define INCLUDED_GWNCPPVGB_MESSAGE_PASSER_IMPL_H
 
-#include <gwncppvgb/gwnblockc.h>
+#include <gwncppvgb/message_passer.h>
 
 /*  GWN inclusions */
 #include <vector>
@@ -30,9 +30,9 @@
 namespace gr {
   namespace gwncppvgb {
 
-    /* GWN gwnblockc, a model block */
+    /* GWN message_passer, a model block */
 
-    class gwnblockc_impl : public virtual gwnblockc
+    class message_passer_impl : public virtual message_passer
     {
     private:
       /* GWN ports, nested classes */
@@ -42,26 +42,28 @@ namespace gr {
         bool d_debug;
       public:
         GWNPort();
-        gwnblockc_impl * d_block;
+        message_passer_impl * d_block;
         std::string d_port;
         int d_port_nr;
         std::string __str__();
     }; 
     class GWNOutPort: public virtual GWNPort { 
       public:
-        GWNOutPort(gwnblockc_impl *, std::string, int);
+        GWNOutPort(message_passer_impl *, std::string, int);
      };
     class GWNInPort: public virtual GWNPort {
       public:
-        GWNInPort(gwnblockc_impl *, std::string, int);
+        GWNInPort(message_passer_impl *, std::string, int);
     }; 
 
     private:
       // GWN user arguments declaration
+      std::string d_message;
+      int d_counter;
 
     public:
-      gwnblockc_impl(<GWN_user_argument_list>);
-      ~gwnblockc_impl();
+      message_passer_impl(std::string message, int counter);
+      ~message_passer_impl();
 
       // GWN attributes and functions
       std::string d_name;
@@ -87,5 +89,5 @@ namespace gr {
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_GWNBLOCKC_IMPL_H */
+#endif /* INCLUDED_GWNCPPVGB_MESSAGE_PASSER_IMPL_H */
 

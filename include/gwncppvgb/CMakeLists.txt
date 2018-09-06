@@ -29,5 +29,7 @@ install(FILES
     message_passer.h
     message_passer_pdata.h
     message_passer.h
+    message_passer_pdata.h
+    message_passer.h
     message_passer_pdata.h DESTINATION include/gwncppvgb
 )

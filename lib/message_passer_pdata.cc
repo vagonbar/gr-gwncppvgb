@@ -18,40 +18,36 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
-#ifndef INCLUDED_GWNCPPVGB_GWNBLOCKC_H
-#define INCLUDED_GWNCPPVGB_GWNBLOCKC_H
+#include <gnuradio/io_signature.h>
+#include <gwncppvgb/message_passer_pdata.h>
 
-#include <gwncppvgb/api.h>
-#include <gnuradio/block.h>
+/* GWN inclusions */
+#include <stdio.h>
+#include <iostream>
+#include "message_passer_impl.h"
 
 namespace gr {
   namespace gwncppvgb {
 
-    /*!
-     * \brief <+description of block+>
-     * \ingroup gwncppvgb
-     *
-     */
-    class GWNCPPVGB_API gwnblockc : virtual public gr::block
+    /* GWN process_data function, rewrite for a new block */
+
+    std::string message_passer_pdata::process_data(std::string ev)
     {
-     public:
-      typedef boost::shared_ptr<gwnblockc> sptr;
+    std::cout << "...message_passer_data, event received: " <<
+      ev << std::endl;
+    std::string ev_proc = "...message_passer, event processed: " + ev;
+    return ev_proc;
+    }
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of gwncppvgb::gwnblockc.
-       *
-       * To avoid accidental use of raw pointers, gwncppvgb::gwnblockc's
-       * constructor is in a private implementation
-       * class. gwncppvgb::gwnblockc::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(<GWN_user_argument_list>);
 
-    };
+    /* GWN process_data class, leave as it is in a new block */
+    message_passer_pdata::message_passer_pdata(std::string ev) { }
+    message_passer_pdata::~message_passer_pdata() { }
 
-  } // namespace gwncppvgb
-} // namespace gr
-
-#endif /* INCLUDED_GWNCPPVGB_GWNBLOCKC_H */
+  } /* namespace gwncppvgb */
+} /* namespace gr */
 
