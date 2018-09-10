@@ -36,31 +36,30 @@ namespace gr {
     {
     private:
       /* GWN ports, nested classes */
-    class GWNPort
-    {
-      protected:
-        bool d_debug;
-      public:
-        GWNPort();
-        gwnblockc_impl * d_block;
-        std::string d_port;
-        int d_port_nr;
-        std::string __str__();
-    }; 
-    class GWNOutPort: public virtual GWNPort { 
-      public:
-        GWNOutPort(gwnblockc_impl *, std::string, int);
-     };
-    class GWNInPort: public virtual GWNPort {
-      public:
-        GWNInPort(gwnblockc_impl *, std::string, int);
-    }; 
+      class GWNPort
+      {
+        protected:
+          bool d_debug;
+        public:
+          GWNPort();
+          gwnblockc_impl * d_block;
+          std::string d_port;
+          int d_port_nr;
+          std::string __str__();
+      }; 
+      class GWNOutPort: public virtual GWNPort { 
+        public:
+          GWNOutPort(gwnblockc_impl *, std::string, int);
+       };
+      class GWNInPort: public virtual GWNPort {
+        public:
+          GWNInPort(gwnblockc_impl *, std::string, int);
+      }; 
 
-    private:
       // GWN user arguments declaration
 
     public:
-      gwnblockc_impl(<GWN_user_argument_list>);
+      gwnblockc_impl(<GWN user arguments list>);
       ~gwnblockc_impl();
 
       // GWN attributes and functions
@@ -69,7 +68,7 @@ namespace gr {
       std::vector<GWNOutPort *> d_ports_out; 
       std::vector<GWNInPort *> d_ports_in;
       bool d_debug;
-      void post_message(std::string, std::string);
+      void post_message(pmt::pmt_t, pmt::pmt_t);
       void handle_msg(pmt::pmt_t);
       void process_data(std::string);
       std::string __str__();

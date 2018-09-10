@@ -35,17 +35,22 @@ namespace gr {
 
     /* GWN process_data function, rewrite for a new block */
 
-    std::string gwnblockc_pdata::process_data(std::string ev)
+    pmt::pmt_t gwnblockc_pdata::process_data(std::string ev)
     {
-    std::cout << "...gwnblockc_data, event received: " <<
-      ev << std::endl;
-    std::string ev_proc = "...gwnblockc, event processed: " + ev;
-    return ev_proc;
+      std::cout << "...gwnblockc_data, event received: " <<
+        ev << std::endl;
+      std::string ev_proc = "...gwnblockc, event processed: " + ev;
+      pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
+      pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev_proc); 
+      return pmt::cons(pmt_port, pmt_msg);
     }
 
 
     /* GWN process_data class, leave as it is in a new block */
-    gwnblockc_pdata::gwnblockc_pdata(std::string ev) { }
+    gwnblockc_pdata::gwnblockc_pdata(<GWN user arguments list>)
+    {
+    // GWN user arguments initialization
+    }
     gwnblockc_pdata::~gwnblockc_pdata() { }
 
   } /* namespace gwncppvgb */

@@ -41,20 +41,22 @@ SED_TIMERS="s/d_number_timers = $NR_TIMERS/g"
 ### produce user arguments declaration and initialization
 
 # strings to substitute
-MSG_USER_ARGS="<GWN_user_argument_list>"
-MSG_USER_ARGS_DECL="// GWN user arguments declaration"
-MSG_USER_ARGS_INIT="// GWN user arguments initialization"
-MSG_USER_PARS="<GWN_user_parameter_list>"
+MSG_USER_ARGS="<GWN user arguments list>"
+MSG_USER_ARGS_DECL="GWN user arguments declaration"
+MSG_USER_ARGS_INIT="GWN user arguments initialization"
+MSG_USER_PARS="<GWN user parameters list>"
+
+# user parameters: signature, declaration, initialization
+USER_ARGS=""         # user arguments, signature of function
+USER_ARGS_DECL=""    # user arguments declaration
+USER_ARGS_INIT=""    # user arguments initialization
+USER_PARS=""         # user parameters, for function call
 
 # user arguments list, create array of arguments
 echo -n "Enter argument list: "; read USER_ARGS
-#USER_ARGS="std::string message, int counter, std::string port"
+#USER_ARGS="std::string message, int counter, std::string port"  # for testing
 USER_ARGS_ARRAY=(`echo $USER_ARGS | tr " " "#" | tr "," " "`)
 
-# generate declaration and initialization sentences, parameter list
-USER_ARGS_DECL=""    # user arguments declaration
-USER_ARGS_INIT=""    # user arguments initialization
-USER_PARS=""
 
 for WD in ${USER_ARGS_ARRAY[*]}
 do
@@ -88,10 +90,11 @@ do
   USER_PARS=${USER_PARS}${ITEM_PAR}
 done
 USER_PARS=`echo ${USER_PARS} | sed -E "s/,\$//g"`  # delete last ","
+
 echo User argument list: "$USER_ARGS"
+echo User parameter list: "$USER_PARS"
 echo -e User arguments declaration: "$USER_ARGS_DECL"
 echo -e User arguments initialization: "$USER_ARGS_INIT"
-echo User parameter list: "$USER_PARS"
 
 
 ### create block with gr_modtool
@@ -137,22 +140,19 @@ sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
 echo "... processing ../lib/${BLOCK_NAME}_impl.h"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
   -e "s/${MSG_USER_ARGS}/$USER_ARGS/g" \
-  -e "s/\/\/ GWN user arguments declaration/&${USER_ARGS_DECL}/g" \
+  -e "s/${MSG_USER_ARGS_DECL}/&${USER_ARGS_DECL}/g" \
   ../libgwn/gwnblockc_impl.h > ../lib/${BLOCK_NAME}_impl.h
-  #-e "s/${MSG_USER_ARGS_DECL}/&${USER_ARGS_DECL}/g" \
-  #../libgwn/gwnblockc_impl.h > ../lib/${BLOCK_NAME}_impl.h
 
 echo "... processing ../lib/${BLOCK_NAME}_impl.cc"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
   -e "s/${MSG_USER_ARGS}/${USER_ARGS}/g" \
   -e "s/${MSG_USER_PARS}/${USER_PARS}/g" \
-  -e "s/\/\/ GWN user arguments initialization/&${USER_ARGS_INIT}/g" \
+  -e "s/${MSG_USER_ARGS_INIT}/&${USER_ARGS_INIT}/g" \
   -e "s/d_name = \"no_name\"/d_name = \"$BLOCK_NAME\"/g" \
   -e "s/d_number_in = 0/d_number_in = $NR_IN/g" \
   -e "s/d_number_out = 0/d_number_out = $NR_OUT/g" \
   -e "s/d_number_timers = 0/d_number_timers = $NR_TIMERS/g" \
   ../libgwn/gwnblockc_impl.cc > ../lib/${BLOCK_NAME}_impl.cc
-  #-e "s/${MSG_USER_ARGS_INIT}/&${USER_ARGS_INIT}/g" \
 
 # new block QA file
 echo "... processing ../python/qa_${BLOCK_NAME}.py"
@@ -162,10 +162,15 @@ sed -e $SED_GWNBLOCKC \
 # new block process data files
 echo "... processing ../include/${MODULE_NAME}/${BLOCK_NAME}_pdata.h"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
+  -e "s/${MSG_USER_ARGS}/$USER_ARGS/g" \
+  -e "s/${MSG_USER_ARGS_DECL}/&${USER_ARGS_DECL}/g" \
   ../libgwn/gwnblockc_pdata.h > ../include/${MODULE_NAME}/${BLOCK_NAME}_pdata.h
 
 echo "... processing ../lib/${BLOCK_NAME}_pdata.cc"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
+  -e "s/${MSG_USER_ARGS}/${USER_ARGS}/g" \
+  -e "s/${MSG_USER_PARS}/${USER_PARS}/g" \
+  -e "s/${MSG_USER_ARGS_INIT}/&${USER_ARGS_INIT}/g" \
   ../libgwn/gwnblockc_pdata.cc > ../lib/${BLOCK_NAME}_pdata.cc
 
 echo "... block $1 created."

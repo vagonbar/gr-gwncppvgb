@@ -88,16 +88,7 @@ namespace gr {
 
 
 
-    /* GWN gwnblockc */
-
-    /* GNU Radio defaults for block construction */
-    gwnblockc::sptr
-    gwnblockc::make(<GWN_user_argument_list>)
-    {
-      return gnuradio::get_initial_sptr
-        (new gwnblockc_impl(<GWN_user_parameter_list>));
-    }
-
+    /* *** GWN gwnblockc *** */
 
     /* GWN gwnblockc attributes and functions */
 
@@ -111,27 +102,36 @@ namespace gr {
       if (d_debug) { 
         std::cout << "Handle msg, received: " << ev << std::endl;
       }
-      //process_data(ev);
-      std::string n_ev = gwnblockc_pdata::process_data(ev);
-      post_message("out_port_0", n_ev);
+      pmt::pmt_t port_ev = gwnblockc_pdata::process_data(ev);
+      pmt::pmt_t pmt_port_send = pmt::car(port_ev);
+      pmt::pmt_t pmt_msg_send = pmt::cdr(port_ev);
+      post_message(pmt_port_send, pmt_msg_send);
     } 
 
-    void gwnblockc_impl::post_message(std::string port,
-        std::string ev) {
+    void gwnblockc_impl::post_message(pmt::pmt_t pmt_port,
+        pmt::pmt_t pmt_msg_send) {
       if (d_debug) {
-        std::cout << "Post message, sent: " 
-          << ev << std::endl;
+        std::cout << "Post message, sent: <" 
+          << pmt::symbol_to_string(pmt_msg_send) << 
+          "> on port: " << pmt::symbol_to_string(pmt_port) << std::endl;
       }
-      pmt::pmt_t pmt_port = pmt::string_to_symbol(port);
-      pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev); 
-      message_port_pub(pmt_port, pmt_msg);
+      message_port_pub(pmt_port, pmt_msg_send);
     }
 
 
 
+    /* GNU Radio defaults for block construction */
+    gwnblockc::sptr
+    gwnblockc::make(<GWN user arguments list>)
+    {
+      return gnuradio::get_initial_sptr
+        (new gwnblockc_impl(<GWN user parameters list>));
+    }
+
+
     /* gwnblockc: the private constructor */
 
-    gwnblockc_impl::gwnblockc_impl(<GWN_user_argument_list>)
+    gwnblockc_impl::gwnblockc_impl(<GWN user arguments list>)
       : gr::block("gwnblockc",
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) )
@@ -142,7 +142,7 @@ namespace gr {
       d_number_out = 0;
       d_number_timers = 0;
 
-      // GWN user parameters initialization
+      // GWN user arguments initialization
 
       d_debug = true;
 
