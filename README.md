@@ -55,7 +55,7 @@ For a system wide GNU Radio installation, instead of `make install` you must wri
 
 ## An example block
 
-An example block is provided, which was created with the former commands,  inserting this argument list:
+An example block called `message_passer` is provided, which was created with the former commands,  inserting this argument list:
 
 ```
   std::string message, int counter
@@ -117,8 +117,8 @@ Post message, sent: <...process_data, received: --- A test message from message 
 ...process_data, received: --- A test message from message strobe
    User parameter message: GWN test message 2
    User parameter counter: 13
-
 ************************************
+
 Handle msg, received: --- A test message from message strobe
 Post message, sent: <...process_data, received: --- A test message from message strobe
    User parameter message: GWN test message 2
@@ -128,7 +128,6 @@ Post message, sent: <...process_data, received: --- A test message from message 
 ...process_data, received: --- A test message from message strobe
    User parameter message: GWN test message 2
    User parameter counter: 14
-
 ************************************
 ```
 
