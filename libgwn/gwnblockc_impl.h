@@ -31,7 +31,15 @@
 namespace gr {
   namespace gwncppvgb {
 
-    /* GWN gwnblockc, a model block */
+    /*
+     * Please consider some comments // and <text thus enclosed>
+     * will be substituted by the gwn_modtool.sh script when
+     * creating a new type of block. DO NOT ALTER, the script
+     * needs those comments for correct substitution.
+     */
+
+
+    /* GWN gwnblockc, a template block */
 
     class gwnblockc_impl : public virtual gwnblockc
     {
@@ -65,7 +73,7 @@ namespace gr {
       gwnblockc_impl(<GWN user arguments list>);
       ~gwnblockc_impl();
 
-      // GWN attributes and functions
+      /* GWN attributes and functions */
       std::string d_name;
       int d_number_in, d_number_out, d_number_timers, d_number_timeouts;
       std::vector<GWNOutPort *> d_ports_out; 

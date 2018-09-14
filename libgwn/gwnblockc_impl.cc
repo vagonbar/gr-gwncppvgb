@@ -38,6 +38,14 @@
 namespace gr {
   namespace gwncppvgb {
 
+    /*
+     * Please consider some comments // and <text thus enclosed>
+     * will be substituted by the gwn_modtool.sh script when
+     * creating a new type of block. DO NOT ALTER, the script
+     * needs those comments for correct substitution.
+     */
+
+
     /* A template for conversion of types to string */
     template <typename T>
     std::string to_string(T value)
@@ -143,10 +151,8 @@ namespace gr {
       d_number_timers = 0;
 
       // GWN user arguments initialization
-
       d_debug = true;
       pdata_obj = new gwnblockc_pdata(<GWN user parameters list>);
-
 
       if (d_debug) {
         std::cout << "gwnblockc, constructor, name " << 
@@ -177,9 +183,6 @@ namespace gr {
         for ( i=0; i < d_number_out; i++) {
           std::cout << "  out port " << i << 
             ": " << d_ports_out[i]->__str__(); // << std::endl; 
-          //std::string dbg_msg = "Post Message debug\n...";
-          //dbg_msg += ports_out[i]->__str__();
-          //std::cout << dbg_msg << std::endl;
         }
       }
 
@@ -189,7 +192,7 @@ namespace gr {
       std::string in_port;  
       pmt::pmt_t pmt_in_port;
 
-      GWNInPort * in_port_new;  // requires default constructor
+      GWNInPort * in_port_new;
       for ( i=0; i < d_number_in; i++) {
         in_port = "in_port_" + to_string(i);
         in_port_new = new GWNInPort(this, in_port, i);

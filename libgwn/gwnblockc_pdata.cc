@@ -33,12 +33,18 @@
 namespace gr {
   namespace gwncppvgb {
 
+    /*
+     * Please consider some comments // and <text thus enclosed>
+     * will be substituted by the gwn_modtool.sh script when
+     * creating a new type of block. DO NOT ALTER, the script
+     * needs those comments for correct substitution.
+     */
+
+
     /* GWN process_data function, rewrite for a new block */
 
     pmt::pmt_t gwnblockc_pdata::process_data(std::string ev)
     {
-      //std::cout << "...gwnblockc_data, event received: " <<
-      //  ev << std::endl;
       std::string ev_proc = "...process_data, received: " + ev 
         + "   \n"; 
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");

@@ -54,7 +54,6 @@ namespace gr {
       // GWN user arguments initialization
       d_message = message;
       d_counter = counter;
-
     }
     message_passer_pdata::~message_passer_pdata() { }
 

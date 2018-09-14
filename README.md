@@ -18,13 +18,13 @@ Say we want to create a new block called `message_repeat`, which receives a mess
   ../libgwn/gwn_modtool.sh message_repeat 1 1 0 
 ```
 
-The script `gwn_modtool.sh` takes the code from `gwnblockc`, a template GWN block available in the ../libgwn directory, and modifies the argument list according to the argumets given to `gwn_modtool.sh` as positional parameters: block name, number of input ports, number of output ports, and number of timers (the last one not yet implemented, so 0 is required).
+The script `gwn_modtool.sh` takes the code from `gwnblockc`, a template GWN block available in the `../libgwn` directory, and modifies the argument list according to the argumets given to `gwn_modtool.sh` as positional parameters: block name, number of input ports, number of output ports, and number of timers (the last one not yet implemented, so 0 is required).
 
-When running the script, the programmer will be asked to enter a user argument list of its own, such as "std::string message, int counter"; this list may be empty. 
+When running the script, the programmer will be asked to enter a user argument list of its own, such as `std::string message, int counter`; this list may be empty. 
 
 `gwn_modtool.sh` is a bash script which uses GNU RAdio `gr_modtool` to create two blocks:
 
-- `message_repeat`, which inherits from GNU Radio general block; all the GWN facilities for communicating with other blocks are copied into this block from a template GWN block. In most cases, the programmer needs not change anything in this block.
+- `message_repeat`, which inherits from GNU Radio general `gr::block`; all the GWN facilities for communicating with other blocks are copied into this block from a template GWN block. In most cases, the programmer needs not change anything in this block.
 
 - `message_repeat_pdata`, an auxiliary block of GNU Radio type `noblock`, where the function `process_data` resides, and where local attributes are defined to capture user parameters. More specifically, for an argument called `arg_name` in the user list, the script declares an attribute `d_arg_name` of the corresponding type, and inserts an assignment `d_arg_name = arg_name` to capture the argument value (parameter) in the attribute variable. The files which the programmer must modify to achieve her purposes are these two: `../include/<module_name>/message_repeat_pdata.h`, and `../lib/message_repeat_pdata.cc`.
 
@@ -32,8 +32,10 @@ TODO: implement timers.
 
 ## A new block creation test
 
-The following commands create a `message_repeat` block`. This block contains an input and an output ports, and repeats the message received in the input port by sending it on the output port, in this flowgraph:
+The following commands create a `message_repeat` block. This block contains an input and an output ports, and repeats the message received in the input port by sending it on the output port, in this flowgraph:
+
     `message_strobe --> message_repeat --> message_debug`
+
 This test will be included in the `qa_message_repeat.py` QA test code.
 
 The new block can be created with the following commands:
@@ -69,7 +71,6 @@ In file `lib/message_passer_pdata.cc` you will find the constructor and destruct
     d_counter = counter;
   }
   message_passer_pdata::~message_passer_pdata() { }
-
 ```
 
 As you can see, the user arguments have been inserted as the signature of the constructor, and the corresponding attributes initialized. Declarations for these functions and attributes can be found in `include/<module_name>/message_passer_pdata.h`:
@@ -88,7 +89,7 @@ As you can see, the user arguments have been inserted as the signature of the co
   };
 ```
 
-Declaration of function process_data also appears in this file. For the present example block, the process_data function has been changed to include in the output message the user parameters indicated:
+Declaration of function `process_data` also appears in this file. For the present example block, the `process_data` function has been changed to include in the output message the user parameters indicated:
 
 ```
   pmt::pmt_t message_passer_pdata::process_data(std::string ev)
@@ -133,7 +134,7 @@ Post message, sent: <...process_data, received: --- A test message from message 
 
 In the general case, a different number of input and output ports may be given, and proper customization of the `process_data` function is expected, to accomplish the desired processing of messages received into messages sent.
 
-TEMPORARY: in the former output, please note several debug messages can be seen; this is controlled by an attribute d_debug in the template class gwnblockc. This is set to `true` at this stage of development, when this project reaches production it will be set to `false` so as to omit debug messages.
+TEMPORARY: in the former output, please note several debug messages can be seen; this is controlled by an attribute `d_debug` in the template class `gwnblockc`. This is set to `true` at this stage of development, when this project reaches production it will be set to `false` so as to omit debug messages.
 
 
 

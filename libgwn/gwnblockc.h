@@ -29,10 +29,16 @@ namespace gr {
   namespace gwncppvgb {
 
     /*!
-     * \brief <+description of block+>
+     * \brief GWN template class for new block construction
      * \ingroup gwncppvgb
      *
+     * Please consider some comments // and <text thus enclosed>
+     * will be substituted by the gwn_modtool.sh script when
+     * creating a new type of block. DO NOT ALTER, the script
+     * needs those comments for correct substitution.
      */
+
+
     class GWNCPPVGB_API gwnblockc : virtual public gr::block
     {
      public:
