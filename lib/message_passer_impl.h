@@ -25,10 +25,13 @@
 
 /*  GWN inclusions */
 #include <vector>
+#include <gwncppvgb/message_passer_pdata.h>
 
 
 namespace gr {
   namespace gwncppvgb {
+
+    template <typename T> std::string to_string(T value);
 
     /* GWN message_passer, a model block */
 
@@ -36,30 +39,31 @@ namespace gr {
     {
     private:
       /* GWN ports, nested classes */
-    class GWNPort
-    {
-      protected:
-        bool d_debug;
-      public:
-        GWNPort();
-        message_passer_impl * d_block;
-        std::string d_port;
-        int d_port_nr;
-        std::string __str__();
-    }; 
-    class GWNOutPort: public virtual GWNPort { 
-      public:
-        GWNOutPort(message_passer_impl *, std::string, int);
-     };
-    class GWNInPort: public virtual GWNPort {
-      public:
-        GWNInPort(message_passer_impl *, std::string, int);
-    }; 
+      class GWNPort
+      {
+        protected:
+          bool d_debug;
+        public:
+          GWNPort();
+          message_passer_impl * d_block;
+          std::string d_port;
+          int d_port_nr;
+          std::string __str__();
+      }; 
+      class GWNOutPort: public virtual GWNPort { 
+        public:
+          GWNOutPort(message_passer_impl *, std::string, int);
+       };
+      class GWNInPort: public virtual GWNPort {
+        public:
+          GWNInPort(message_passer_impl *, std::string, int);
+      }; 
 
-    private:
       // GWN user arguments declaration
       std::string d_message;
       int d_counter;
+
+      message_passer_pdata * pdata_obj;
 
     public:
       message_passer_impl(std::string message, int counter);
@@ -71,7 +75,7 @@ namespace gr {
       std::vector<GWNOutPort *> d_ports_out; 
       std::vector<GWNInPort *> d_ports_in;
       bool d_debug;
-      void post_message(std::string, std::string);
+      void post_message(pmt::pmt_t, pmt::pmt_t);
       void handle_msg(pmt::pmt_t);
       void process_data(std::string);
       std::string __str__();

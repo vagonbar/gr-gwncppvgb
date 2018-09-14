@@ -25,6 +25,7 @@
 
 /*  GWN inclusions */
 #include <vector>
+#include <gwncppvgb/gwnblockc_pdata.h>
 
 
 namespace gr {
@@ -57,6 +58,8 @@ namespace gr {
       }; 
 
       // GWN user arguments declaration
+
+      gwnblockc_pdata * pdata_obj;
 
     public:
       gwnblockc_impl(<GWN user arguments list>);

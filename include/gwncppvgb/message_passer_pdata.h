@@ -25,6 +25,7 @@
 #include <gwncppvgb/api.h>
 
 #include <string>
+#include <pmt/pmt.h>
 
 namespace gr {
   namespace gwncppvgb {
@@ -40,10 +41,13 @@ namespace gr {
     class GWNCPPVGB_API message_passer_pdata
     {
     public:
-      message_passer_pdata(std::string ev);
+      message_passer_pdata(std::string message, int counter);
       ~message_passer_pdata();
-	  static std::string process_data(std::string ev);
+	    pmt::pmt_t process_data(std::string ev);
     private:
+      // GWN user arguments declaration
+      std::string d_message;
+      int d_counter;
     };
 
   } // namespace gwncppvgb

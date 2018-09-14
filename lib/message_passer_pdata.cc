@@ -35,17 +35,27 @@ namespace gr {
 
     /* GWN process_data function, rewrite for a new block */
 
-    std::string message_passer_pdata::process_data(std::string ev)
+    pmt::pmt_t message_passer_pdata::process_data(std::string ev)
     {
-    std::cout << "...message_passer_data, event received: " <<
-      ev << std::endl;
-    std::string ev_proc = "...message_passer, event processed: " + ev;
-    return ev_proc;
+      std::string ev_proc = "...process_data, received: " +
+        ev + "\n   User parameter message: " + d_message + 
+        "\n   User parameter counter: " + to_string(d_counter) +
+        "\n"; 
+      d_counter = d_counter + 1;
+      pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
+      pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev_proc); 
+      return pmt::cons(pmt_port, pmt_msg);
     }
 
 
     /* GWN process_data class, leave as it is in a new block */
-    message_passer_pdata::message_passer_pdata(std::string ev) { }
+    message_passer_pdata::message_passer_pdata(std::string message, int counter)
+    {
+      // GWN user arguments initialization
+      d_message = message;
+      d_counter = counter;
+
+    }
     message_passer_pdata::~message_passer_pdata() { }
 
   } /* namespace gwncppvgb */

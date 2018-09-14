@@ -27,14 +27,6 @@ link_directories(${Boost_LIBRARY_DIRS})
 list(APPEND gwncppvgb_sources
     message_passer_impl.cc
     message_passer_pdata.cc
-    message_passer_impl.cc
-    message_passer_pdata.cc
-    message_passer_impl.cc
-    message_passer_pdata.cc
-    message_passer_impl.cc
-    message_passer_pdata.cc
-    message_passer_impl.cc
-    message_passer_pdata.cc
     )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)

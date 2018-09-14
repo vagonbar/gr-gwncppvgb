@@ -88,16 +88,7 @@ namespace gr {
 
 
 
-    /* GWN message_passer */
-
-    /* GNU Radio defaults for block construction */
-    message_passer::sptr
-    message_passer::make(std::string message, int counter)
-    {
-      return gnuradio::get_initial_sptr
-        (new message_passer_impl(message, counter));
-    }
-
+    /* *** GWN message_passer *** */
 
     /* GWN message_passer attributes and functions */
 
@@ -111,22 +102,31 @@ namespace gr {
       if (d_debug) { 
         std::cout << "Handle msg, received: " << ev << std::endl;
       }
-      //process_data(ev);
-      std::string n_ev = message_passer_pdata::process_data(ev);
-      post_message("out_port_0", n_ev);
+      pmt::pmt_t port_ev = pdata_obj->process_data(ev);
+      pmt::pmt_t pmt_port_send = pmt::car(port_ev);
+      pmt::pmt_t pmt_msg_send = pmt::cdr(port_ev);
+      post_message(pmt_port_send, pmt_msg_send);
     } 
 
-    void message_passer_impl::post_message(std::string port,
-        std::string ev) {
+    void message_passer_impl::post_message(pmt::pmt_t pmt_port,
+        pmt::pmt_t pmt_msg_send) {
       if (d_debug) {
-        std::cout << "Post message, sent: " 
-          << ev << std::endl;
+        std::cout << "Post message, sent: <" 
+          << pmt::symbol_to_string(pmt_msg_send) << 
+          "> on port: " << pmt::symbol_to_string(pmt_port) << std::endl;
       }
-      pmt::pmt_t pmt_port = pmt::string_to_symbol(port);
-      pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev); 
-      message_port_pub(pmt_port, pmt_msg);
+      message_port_pub(pmt_port, pmt_msg_send);
     }
 
+
+
+    /* GNU Radio defaults for block construction */
+    message_passer::sptr
+    message_passer::make(std::string message, int counter)
+    {
+      return gnuradio::get_initial_sptr
+        (new message_passer_impl(message, counter));
+    }
 
 
     /* message_passer: the private constructor */
@@ -142,9 +142,13 @@ namespace gr {
       d_number_out = 1;
       d_number_timers = 0;
 
-      // GWN user parameters initialization
+      // GWN user arguments initialization
+      d_message = message;
+      d_counter = counter;
 
       d_debug = true;
+      pdata_obj = new message_passer_pdata(message, counter);
+
 
       if (d_debug) {
         std::cout << "message_passer, constructor, name " << 

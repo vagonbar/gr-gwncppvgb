@@ -43,7 +43,7 @@ namespace gr {
     public:
       gwnblockc_pdata(<GWN user arguments list>);
       ~gwnblockc_pdata();
-	  static pmt::pmt_t process_data(std::string ev);
+	    pmt::pmt_t process_data(std::string ev);
     private:
       // GWN user arguments declaration
     };

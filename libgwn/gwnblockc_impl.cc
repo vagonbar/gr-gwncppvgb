@@ -102,7 +102,7 @@ namespace gr {
       if (d_debug) { 
         std::cout << "Handle msg, received: " << ev << std::endl;
       }
-      pmt::pmt_t port_ev = gwnblockc_pdata::process_data(ev);
+      pmt::pmt_t port_ev = pdata_obj->process_data(ev);
       pmt::pmt_t pmt_port_send = pmt::car(port_ev);
       pmt::pmt_t pmt_msg_send = pmt::cdr(port_ev);
       post_message(pmt_port_send, pmt_msg_send);
@@ -145,6 +145,8 @@ namespace gr {
       // GWN user arguments initialization
 
       d_debug = true;
+      pdata_obj = new gwnblockc_pdata(<GWN user parameters list>);
+
 
       if (d_debug) {
         std::cout << "gwnblockc, constructor, name " << 
