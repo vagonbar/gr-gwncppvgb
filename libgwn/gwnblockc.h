@@ -29,7 +29,7 @@ namespace gr {
   namespace gwncppvgb {
 
     /*!
-     * \brief GWN template class for new block construction
+     * \brief GWN template class for new block construction. 
      * \ingroup gwncppvgb
      *
      * Please consider some comments // and <text thus enclosed>
