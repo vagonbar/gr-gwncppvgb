@@ -27,5 +27,6 @@ install(FILES
     gwncppvgb_message_passer_pdata.xml
     gwncppvgb_message_passer.xml
     gwncppvgb_message_passer_pdata.xml
-    gwncppvgb_gwnfsm.xml DESTINATION share/gnuradio/grc/blocks
+    gwncppvgb_gwnfsm.xml
+    gwncppvgb_gwntimer_strobe.xml DESTINATION share/gnuradio/grc/blocks
 )

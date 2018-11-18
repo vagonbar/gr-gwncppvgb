@@ -27,12 +27,14 @@
 
 #include "qa_gwncppvgb.h"
 #include "qa_gwnfsm.h"
+#include "qa_gwntimer_strobe.h"
 
 CppUnit::TestSuite *
 qa_gwncppvgb::suite()
 {
   CppUnit::TestSuite *s = new CppUnit::TestSuite("gwncppvgb");
   s->addTest(gr::gwncppvgb::qa_gwnfsm::suite());
+  s->addTest(gr::gwncppvgb::qa_gwntimer_strobe::suite());
 
   return s;
 }

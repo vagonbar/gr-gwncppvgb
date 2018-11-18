@@ -32,5 +32,6 @@ install(FILES
     message_passer_pdata.h
     message_passer.h
     message_passer_pdata.h
-    gwnfsm.h DESTINATION include/gwncppvgb
+    gwnfsm.h
+    gwntimer_strobe.h DESTINATION include/gwncppvgb
 )
