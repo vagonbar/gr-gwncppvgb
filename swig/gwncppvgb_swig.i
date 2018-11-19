@@ -19,3 +19,4 @@ GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_passer);
 %include "gwncppvgb/gwnfsm.h"
 %include "gwncppvgb/gwntimer_strobe.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, gwntimer_strobe);
+

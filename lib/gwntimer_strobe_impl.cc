@@ -80,7 +80,7 @@ namespace gr {
         if (d_counter > d_count)
         {
           d_finished = true;
-          std::cout << "  timer finished: " << d_msg <<
+          std::cout << "    === TIMER FINISHED: " << d_msg <<
             ", counter: " << d_counter << std::endl;
           break; //return;
         } // end if
@@ -109,18 +109,29 @@ namespace gr {
 
 
     gwntimer_strobe::sptr
-    gwntimer_strobe::make()
+    gwntimer_strobe::make (
+        std::string msg_1, float period_1, int count_1,
+        std::string msg_2, float period_2, int count_2 ) 
+
     {
       return gnuradio::get_initial_sptr
-        (new gwntimer_strobe_impl());
+        (new gwntimer_strobe_impl (
+          msg_1, period_1, count_1, msg_2, period_2, count_2
+        ) );
     }
 
 
     /* The private constructor */
-    gwntimer_strobe_impl::gwntimer_strobe_impl()
+    gwntimer_strobe_impl::gwntimer_strobe_impl (
+        std::string msg_1, float period_1, int count_1,
+        std::string msg_2, float period_2, int count_2) 
       : gr::block("gwntimer_strobe",
               gr::io_signature::make(0, 0, sizeof(int)),
-              gr::io_signature::make(0, 0, sizeof(int)))
+              gr::io_signature::make(0, 0, sizeof(int)) ),
+          d_msg_1(msg_1), d_period_1(period_1), d_count_1(count_1), 
+          d_msg_2(msg_2), d_period_2(period_2), d_count_2(count_2)
+          
+
     {
       // output port
       d_out_port = pmt::mp("strobe");
@@ -157,13 +168,13 @@ namespace gr {
     bool
     gwntimer_strobe_impl::start_timer()
     {
-      std::string msg_1 = "message timer 1";
-      std::string msg_2 = "message timer 2";
+      //std::string msg_1 = "message timer 1";
+      //std::string msg_2 = "message timer 2";
 
       GWNTimer * tm_1;
-      tm_1 = new GWNTimer(this, msg_1, 5, 1000.0);
+      tm_1 = new GWNTimer(this, d_msg_1, d_count_1, d_period_1);
       GWNTimer * tm_2;
-      tm_2 = new GWNTimer(this, msg_2, 3, 1000.0);
+      tm_2 = new GWNTimer(this, d_msg_2, d_count_2, d_period_2);
 
       tm_1->set_finished(false);
       tm_2->set_finished(false);

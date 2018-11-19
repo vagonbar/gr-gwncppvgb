@@ -28,7 +28,8 @@ list(APPEND gwncppvgb_sources
     message_passer_impl.cc
     message_passer_pdata.cc
     gwnfsm.cc
-    gwntimer_strobe_impl.cc )
+    gwntimer_strobe_impl.cc
+    )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)
 if(NOT gwncppvgb_sources)

@@ -45,7 +45,9 @@ namespace gr {
       /*!
        * \brief Public constructor.
        */
-      static sptr make();
+      static sptr make(
+        std::string msg_1, float period_1, int count_1,
+        std::string msg_2, float period_2, int count_2 );
     };
 
   } // namespace gwncppvgb

@@ -68,7 +68,9 @@ namespace gr {
 
 
      public:
-      gwntimer_strobe_impl();
+      gwntimer_strobe_impl (
+        std::string msg_1, float period_1, int count_1,
+        std::string msg_2, float period_2, int count_2 );
       ~gwntimer_strobe_impl();
 
       pmt::pmt_t d_pmt_msg;
@@ -89,6 +91,11 @@ namespace gr {
       */
       void mutex_prt(std::string msg);
 
+    private:
+      std::string d_msg_1, d_msg_2;
+      float d_period_1, d_period_2;
+      int d_count_1, d_count_2;
+ 
     };
 
   } // namespace gwncppvgb

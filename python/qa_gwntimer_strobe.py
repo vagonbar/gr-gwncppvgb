@@ -38,7 +38,7 @@ class qa_gwntimer_strobe (gr_unittest.TestCase):
         # set up fg
         #self.tb.run ()
 
-        tmr = gwncppvgb.gwntimer_strobe()
+        tmr = gwncppvgb.gwntimer_strobe ("Timer 1 msg", 1000.0, 8, "Timer 2 msg", 1000.0, 4)
         dst = blocks.message_debug()
         self.tb.msg_connect( (tmr, "strobe"), (dst, "print") )
 
