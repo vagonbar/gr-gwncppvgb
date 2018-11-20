@@ -81,7 +81,10 @@ namespace gr {
         {
           d_finished = true;
           std::cout << "    === TIMER FINISHED: " << d_msg <<
-            ", counter: " << d_counter << std::endl;
+            ", counter: " << d_counter << 
+            //", thread id: " << boost::this_thread::get_id() <<
+            ", thread id: " << d_thread->get_id() <<
+            std::endl;
           break; //return;
         } // end if
         else
@@ -89,7 +92,9 @@ namespace gr {
           //d_block->post_timer_msg(d_msg);
           pmt::pmt_t pmt_port = pmt::mp("timer_port");
           pmt::pmt_t pmt_msg = pmt::mp( 
-            d_msg + " msg nr " + std::to_string(d_counter));
+            d_msg + ", msg nr: " + std::to_string(d_counter) ); // +
+            //", thread id: " + 
+            //std::to_string( boost::this_thread::get_id() ) );
           
           d_mutex.lock();
           d_block->gr::basic_block::_post(pmt_port, pmt_msg);
@@ -168,9 +173,6 @@ namespace gr {
     bool
     gwntimer_strobe_impl::start_timer()
     {
-      //std::string msg_1 = "message timer 1";
-      //std::string msg_2 = "message timer 2";
-
       GWNTimer * tm_1;
       tm_1 = new GWNTimer(this, d_msg_1, d_count_1, d_period_1);
       GWNTimer * tm_2;
