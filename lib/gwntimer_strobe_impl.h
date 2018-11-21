@@ -45,7 +45,8 @@ namespace gr {
         protected:
           bool d_debug;
         public:
-          GWNTimer(gwntimer_strobe_impl * p_block, std::string p_msg, 
+          GWNTimer(gwntimer_strobe_impl * p_block, 
+            std::string p_msg, 
             int p_counter, float p_period_ms);
 
           gwntimer_strobe_impl * d_block;
@@ -57,7 +58,8 @@ namespace gr {
           boost::shared_ptr<gr::thread::thread> d_thread;
           bool d_finished;
 
-          void set_finished(bool val)  { d_finished = val; }
+          void set_finished(bool on_off)  { d_finished = on_off; }
+          void set_count(int count)  { d_count = count; }
           void run_timer();
 
           //std::string d_port;
@@ -73,11 +75,14 @@ namespace gr {
         std::string msg_2, float period_2, int count_2 );
       ~gwntimer_strobe_impl();
 
-      pmt::pmt_t d_pmt_msg;
+      // two timers
+      GWNTimer * tm_1;
+      GWNTimer * tm_2;
+
+      //pmt::pmt_t d_pmt_msg;
       pmt::pmt_t d_out_port;
       pmt::pmt_t d_timer_port;
 
-      //boost::mutex d_mutex;
 
       void handle_msg (pmt::pmt_t pmt_msg);
       void post_timer_msg(std::string msg);
@@ -89,7 +94,13 @@ namespace gr {
 
       @param msg string to print.
       */
+      //boost::mutex d_mutex;
       void mutex_prt(std::string msg);
+
+
+      void timer_reset(int timer_id);
+      void timer_interrupt(int timer_id, bool on_off);
+
 
     private:
       std::string d_msg_1, d_msg_2;

@@ -85,10 +85,14 @@ namespace gr {
             //", thread id: " << boost::this_thread::get_id() <<
             ", thread id: " << d_thread->get_id() <<
             std::endl;
+            d_thread->interrupt();  // end thread?
           break; //return;
         } // end if
         else
         {
+          // first sleep for d_period_ms milliseconds
+          boost::this_thread::sleep( 
+            boost::posix_time::milliseconds(d_period_ms));
           //d_block->post_timer_msg(d_msg);
           pmt::pmt_t pmt_port = pmt::mp("timer_port");
           pmt::pmt_t pmt_msg = pmt::mp( 
@@ -104,13 +108,11 @@ namespace gr {
           //  ", counter: " << d_counter << std::endl;
           //d_block->process_data(d_msg);
 
-          // sleep for d_period_ms milliseconds
-          boost::this_thread::sleep( 
-            boost::posix_time::milliseconds(d_period_ms));
         } // end else
       } // end while
       return;
     } // end run_timer()
+
 
 
     gwntimer_strobe::sptr
@@ -126,6 +128,7 @@ namespace gr {
     }
 
 
+
     /* The private constructor */
     gwntimer_strobe_impl::gwntimer_strobe_impl (
         std::string msg_1, float period_1, int count_1,
@@ -135,8 +138,6 @@ namespace gr {
               gr::io_signature::make(0, 0, sizeof(int)) ),
           d_msg_1(msg_1), d_period_1(period_1), d_count_1(count_1), 
           d_msg_2(msg_2), d_period_2(period_2), d_count_2(count_2)
-          
-
     {
       // output port
       d_out_port = pmt::mp("strobe");
@@ -155,6 +156,8 @@ namespace gr {
     { }
 
 
+
+    /* Handles message sent by timer threads */
     void
     gwntimer_strobe_impl::handle_msg(pmt::pmt_t pmt_msg) 
     {
@@ -170,21 +173,22 @@ namespace gr {
     }
 
 
+
+    /* Starts two timers */
     bool
     gwntimer_strobe_impl::start_timer()
     {
-      GWNTimer * tm_1;
       tm_1 = new GWNTimer(this, d_msg_1, d_count_1, d_period_1);
-      GWNTimer * tm_2;
       tm_2 = new GWNTimer(this, d_msg_2, d_count_2, d_period_2);
 
       tm_1->set_finished(false);
       tm_2->set_finished(false);
-
       //return block::start_timer();
       return true;
     }
 
+
+    /* Where actions happen; no used in this test */
     void
     gwntimer_strobe_impl::process_data(std::string msg)
     {
@@ -193,6 +197,7 @@ namespace gr {
     }
 
 
+    /* Mutually exclusive printing */
     void
     gwntimer_strobe_impl::mutex_prt(std::string msg)
     {
@@ -202,6 +207,39 @@ namespace gr {
       d_mutex.unlock();
       return;
     }
+
+
+
+    /* TODO Timer reset, counter back to 0 in indicated timer */
+    void
+    gwntimer_strobe_impl::timer_reset(int timer_id)
+    {
+      if ( timer_id == 1 ) 
+        tm_1->set_count(0);
+      else if ( timer_id == 2 ) 
+        tm_2->set_count(0);
+      else
+        return;
+      std::cout << "    Timer " << timer_id 
+        << " resetted to 0" << std::endl;
+    }
+
+
+
+    /* TODO Interrupts indicated timer, should allow restart... */
+    void
+    gwntimer_strobe_impl::timer_interrupt(int timer_id, bool on_off)
+    {
+      if ( timer_id == 1 ) 
+        tm_1->set_finished(on_off);
+      else if ( timer_id == 2 ) 
+        tm_2->set_finished(on_off);
+      else
+        return;
+      std::cout << "    Timer " << timer_id 
+        << " interrupt set to " << on_off << std::endl;
+    }
+
 
 
   } /* namespace gwncppvgb */

@@ -48,6 +48,10 @@ namespace gr {
       static sptr make(
         std::string msg_1, float period_1, int count_1,
         std::string msg_2, float period_2, int count_2 );
+      
+      //virtual void timer_reset(int timer_id);
+      //virtual void timer_interrupt(int timer_id, bool on_off);
+
     };
 
   } // namespace gwncppvgb
