@@ -29,13 +29,13 @@ namespace gr {
   namespace gwncppvgb {
 
     /*!
-     * \brief Emits two series of messages based on two timers.
-     * \ingroup gwncppvgb
-     *
-     * \detail A proof of concept to implement timers in GNU Radio. The
-     * block defines two timers instantiating a private class. Each timer
-     * emits a number of message periodically. Each timer emits its own
-     * message, has its own period and its own number of repeats.
+     \brief Emits two series of messages based on two timers.
+     \ingroup gwncppvgb
+     
+     \detail A proof of concept to implement timers in GNU Radio. The
+     block defines two timers instantiating a private class. Each timer
+     emits a number of message periodically. Each timer emits its own
+     message, has its own period and its own number of repeats.
      */
     class GWNCPPVGB_API gwntimer_strobe : virtual public gr::block
     {
@@ -49,6 +49,7 @@ namespace gr {
         std::string msg_1, float period_1, int count_1,
         std::string msg_2, float period_2, int count_2 );
       
+      // failed attempt to make functions visble in QA
       //virtual void timer_reset(int timer_id);
       //virtual void timer_interrupt(int timer_id, bool on_off);
 

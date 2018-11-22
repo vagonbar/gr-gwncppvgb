@@ -35,38 +35,59 @@ namespace gr {
      private:
 
       /** GWN Timer, a timer with message, period, and count
-       *
-       * A nested class implementing a timer which can be instantiated
-       * in the main block to receive messages periodically for a number
-       * of times.
-       */
+       
+      A nested class implementing a timer which can be instantiated
+      in a GWN block to receive internal messages periodically 
+      for a number of times.
+ 
+      The block containing the timer receives in an internal port messages from the timer. This internal port is a message port of the block, but it is not no connected to any external block. This internal port is called timer_port, and all timers in the block send their messages to this unique timer port.
+
+      When started, the timer waits for the indicated period of time before emitting its first message. Then, the timer goes on sending messages each period of time, until reaching the number indicated by a counter passed as a parameter. Once the counter has been reached, no more messages are sent, and the timer thread is terminated.
+
+      The timer can be suspended in its emission of messages. When suspended, the timer will cease to emit messages, and the counter is not incremented, but the timer thread remains alive. When taken out from suspension, messages continue to be emitted and the counter incremented from its last value.
+
+      The counter can be resetted, thus starting to emit messages as if it was recentrly started, for the number of timer originally indicated.
+ 
+      The timer can be stopped before reaching its assigned number of messages to emit. In this case, no messages are emitted any more, and the timer thread is terminated.
+      */
       class GWNTimer
       {
         protected:
           bool d_debug;
+
         public:
+
+          /** \brief GWNTimer, constructor
+
+          @param p_block A pointer to the block having the timer.
+          @param p_msg The message to emit periodically.
+          @param p_count The number of times to emit the message.
+          @param p_period: Tne period of emission in milliseconds.
+          */
           GWNTimer(gwntimer_strobe_impl * p_block, 
             std::string p_msg, 
             int p_counter, float p_period_ms);
 
+          /** A pointer to the block containing the timer. */ 
           gwntimer_strobe_impl * d_block;
           std::string d_msg;
           int d_counter;
-          int d_count;
+          int d_count;  /** Counts emitted messages. */
           float d_period_ms;
 
+          /** The timer thread. */
           boost::shared_ptr<gr::thread::thread> d_thread;
-          bool d_finished;
+          bool d_suspend;
 
-          void set_finished(bool on_off)  { d_finished = on_off; }
-          void set_count(int count)  { d_count = count; }
+          /** Suspends or continues emission of messages. */
+          void set_suspend(bool on_off)  { d_suspend = on_off; }
+          /** Sets or resets the counter, to 0 or other value. */
+          void set_count(int counter)  { d_counter = counter; }
+
+          /** \brief The function to run from the timer thread. */
           void run_timer();
 
-          //std::string d_port;
-          //int d_port_nr;
-          //const pmt::pmt_t d_port;
-          //std::string __str__();
-      }; 
+      };   // end GWNTimer
 
 
      public:
@@ -97,7 +118,7 @@ namespace gr {
       //boost::mutex d_mutex;
       void mutex_prt(std::string msg);
 
-
+      // failed attempt to make functions visble in QA
       void timer_reset(int timer_id);
       void timer_interrupt(int timer_id, bool on_off);
 

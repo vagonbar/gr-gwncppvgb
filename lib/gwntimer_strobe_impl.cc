@@ -39,13 +39,7 @@
 namespace gr {
   namespace gwncppvgb {
 
-    /** \brief GWNTimer, constructor
 
-      @param p_block A pointer to the block having the timer.
-      @param p_msg The message to emit periodically.
-      @param p_count The number of times the message will be emitted.
-      @param p_period: Tne period of emission in milliseconds.
-    */
     gwntimer_strobe_impl::GWNTimer::GWNTimer(
       gwntimer_strobe_impl * p_block, 
       std::string p_msg, int p_count, float p_period_ms)
@@ -57,8 +51,7 @@ namespace gr {
       d_count = p_count;
       d_counter = 0;
       d_period_ms = p_period_ms;
-
-      d_finished = true;
+      d_suspend = false;  // always emits first message
 
       d_thread = boost::shared_ptr<gr::thread::thread>
         (new gr::thread::thread(boost::bind (
@@ -67,32 +60,21 @@ namespace gr {
     }  // end GWNTimer::GWNTimer
 
 
-    /** \brief The function to run from the timer thread.
-    */
+
     void
     gwntimer_strobe_impl::GWNTimer::run_timer()
     {
-
       boost::mutex d_mutex;
 
-      while(!d_finished) {
+      while( d_counter < d_count) {
+
         d_counter = d_counter + 1;
-        if (d_counter > d_count)
+        // first sleep for d_period_ms milliseconds
+        boost::this_thread::sleep( 
+          boost::posix_time::milliseconds(d_period_ms));
+
+        if ( d_suspend == false ) // timer is not suspended
         {
-          d_finished = true;
-          std::cout << "    === TIMER FINISHED: " << d_msg <<
-            ", counter: " << d_counter << 
-            //", thread id: " << boost::this_thread::get_id() <<
-            ", thread id: " << d_thread->get_id() <<
-            std::endl;
-            d_thread->interrupt();  // end thread?
-          break; //return;
-        } // end if
-        else
-        {
-          // first sleep for d_period_ms milliseconds
-          boost::this_thread::sleep( 
-            boost::posix_time::milliseconds(d_period_ms));
           //d_block->post_timer_msg(d_msg);
           pmt::pmt_t pmt_port = pmt::mp("timer_port");
           pmt::pmt_t pmt_msg = pmt::mp( 
@@ -103,14 +85,20 @@ namespace gr {
           d_mutex.lock();
           d_block->gr::basic_block::_post(pmt_port, pmt_msg);
           d_mutex.unlock();
-
+  
           //std::cout << "   timer message:" << d_msg << 
           //  ", counter: " << d_counter << std::endl;
           //d_block->process_data(d_msg);
+        }  // end if
 
-        } // end else
       } // end while
+
+      std::cout << "    === TIMER FINISHED: " << d_msg <<
+        ", counter: " << d_counter << 
+        ", thread id: " << d_thread->get_id() << std::endl;
+        d_thread->interrupt();  // end thread
       return;
+ 
     } // end run_timer()
 
 
@@ -181,14 +169,14 @@ namespace gr {
       tm_1 = new GWNTimer(this, d_msg_1, d_count_1, d_period_1);
       tm_2 = new GWNTimer(this, d_msg_2, d_count_2, d_period_2);
 
-      tm_1->set_finished(false);
-      tm_2->set_finished(false);
+      //tm_1->set_suspend(false);
+      //tm_2->set_suspend(false);
       //return block::start_timer();
       return true;
     }
 
 
-    /* Where actions happen; no used in this test */
+    /* TODO Where actions happen; no used in this test */
     void
     gwntimer_strobe_impl::process_data(std::string msg)
     {
@@ -197,7 +185,7 @@ namespace gr {
     }
 
 
-    /* Mutually exclusive printing */
+    /* TODO Mutually exclusive printing */
     void
     gwntimer_strobe_impl::mutex_prt(std::string msg)
     {
@@ -210,6 +198,7 @@ namespace gr {
 
 
 
+    // failed attempt to make functions visble in QA
     /* TODO Timer reset, counter back to 0 in indicated timer */
     void
     gwntimer_strobe_impl::timer_reset(int timer_id)
@@ -225,15 +214,16 @@ namespace gr {
     }
 
 
-
+  
+    // failed attempt to make functions visble in QA
     /* TODO Interrupts indicated timer, should allow restart... */
     void
     gwntimer_strobe_impl::timer_interrupt(int timer_id, bool on_off)
     {
       if ( timer_id == 1 ) 
-        tm_1->set_finished(on_off);
+        tm_1->set_suspend(on_off);
       else if ( timer_id == 2 ) 
-        tm_2->set_finished(on_off);
+        tm_2->set_suspend(on_off);
       else
         return;
       std::cout << "    Timer " << timer_id 
