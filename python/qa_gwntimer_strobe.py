@@ -34,16 +34,33 @@ class qa_gwntimer_strobe (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_001_t (self):
-        # set up fg
-        #self.tb.run ()
-
-        tmr = gwncppvgb.gwntimer_strobe ("Timer 1 msg", 1000.0, 9, "Timer 2 msg", 3000.0, 1)
+    def test_2_timers (self):
+        print "\n=== Test 2 timers ===\n"
+        tmr = gwncppvgb.gwntimer_strobe ( \
+          "Timer 1 msg 9 times each 1 sec", 1000.0, 9, \
+          "Timer 2 msg 3 times each 2 secs", 2000.0, 3)
         dst = blocks.message_debug()
         self.tb.msg_connect( (tmr, "strobe"), (dst, "print") )
 
         self.tb.start()
         time.sleep(11)
+        self.tb.stop()
+
+
+    def test_1_timeout (self):
+        print "\n=== Test 1 timer 1 timeout ===\n"
+        tmr = gwncppvgb.gwntimer_strobe ( \
+          "Timer 1 msg, 6 times each 1 sec", 1000.0, 6, \
+          "Timeout 2 msg, 1 time after 3 secs", 3000.0, 1)
+        dst = blocks.message_debug()
+        self.tb.msg_connect( (tmr, "strobe"), (dst, "print") )
+
+        self.tb.start()
+        time.sleep(8)
+        self.tb.stop()
+
+
+        ### cannot test, functions not available from outside: 
         #time.sleep(3)
         #tmr.timer_reset(2)
         #time.sleep(3)
@@ -53,9 +70,6 @@ class qa_gwntimer_strobe (gr_unittest.TestCase):
         #time.sleep(5)
         #tmr.timer_interrupt(1, True)
         #time.sleep(3)
-        self.tb.stop()
-
-        # check data
 
 
 if __name__ == '__main__':
