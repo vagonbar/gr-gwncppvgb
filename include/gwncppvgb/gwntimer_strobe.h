@@ -19,6 +19,7 @@
  */
 
 
+
 #ifndef INCLUDED_GWNCPPVGB_GWNTIMER_STROBE_H
 #define INCLUDED_GWNCPPVGB_GWNTIMER_STROBE_H
 
@@ -32,7 +33,7 @@ namespace gr {
      \brief Emits two series of messages based on two timers.
      \ingroup gwncppvgb
      
-     \detail A proof of concept to implement timers in GNU Radio. The
+     A proof of concept to implement timers in GNU Radio. The
      block defines two timers instantiating a private class. Each timer
      emits a number of message periodically. Each timer emits its own
      message, has its own period and its own number of repeats.

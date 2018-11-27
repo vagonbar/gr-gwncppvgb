@@ -41,13 +41,13 @@ namespace gr {
 
 
     gwntimer_strobe_impl::GWNTimer::GWNTimer(
-      gwntimer_strobe_impl * p_block, 
-      std::string p_msg, int p_count, float p_period_ms)
+      gwntimer_strobe_impl * p_block, int p_id_timer, 
+      pmt::pmt_t p_pmt_msg, int p_count, float p_period_ms)
     {
 
       d_block = p_block;
-      //pmt::pmt_t d_msg;
-      d_msg = p_msg;
+      d_id_timer = p_id_timer;
+      d_pmt_msg = p_pmt_msg;
       d_count = p_count;
       d_counter = 0;
       d_period_ms = p_period_ms;
@@ -67,33 +67,26 @@ namespace gr {
       boost::mutex d_mutex;
 
       while( d_counter < d_count) {
-
         d_counter = d_counter + 1;
         // first sleep for d_period_ms milliseconds
         boost::this_thread::sleep( 
           boost::posix_time::milliseconds(d_period_ms));
-
         if ( d_suspend == false ) // timer is not suspended
         {
           //d_block->post_timer_msg(d_msg);
           pmt::pmt_t pmt_port = pmt::mp("timer_port");
-          pmt::pmt_t pmt_msg = pmt::mp( 
-            d_msg + ", msg nr: " + std::to_string(d_counter) ); // +
-            //", thread id: " + 
-            //std::to_string( boost::this_thread::get_id() ) );
+          pmt::pmt_t pmt_id_timer = pmt::mp(d_id_timer);
+          pmt::pmt_t pmt_id_counter = pmt::mp(d_counter);
+          pmt::pmt_t pmt_tuple_emit = pmt::make_tuple(pmt_port, 
+            pmt_id_timer, pmt_id_counter, d_pmt_msg);
           
           d_mutex.lock();
-          d_block->gr::basic_block::_post(pmt_port, pmt_msg);
+          d_block->gr::basic_block::_post(pmt_port, pmt_tuple_emit);
           d_mutex.unlock();
-  
-          //std::cout << "   timer message:" << d_msg << 
-          //  ", counter: " << d_counter << std::endl;
-          //d_block->process_data(d_msg);
         }  // end if
-
       } // end while
 
-      std::cout << "    === TIMER FINISHED: " << d_msg <<
+      std::cout << "    === TIMER FINISHED: " << d_id_timer <<
         ", counter: " << d_counter << 
         ", thread id: " << d_thread->get_id() << std::endl;
         d_thread->interrupt();  // end thread
@@ -134,9 +127,10 @@ namespace gr {
       // input port, internal, GWNTimer writes here
       message_port_register_in(pmt::mp("timer_port"));
       set_msg_handler(pmt::mp("timer_port"),
-          boost::bind(&gwntimer_strobe_impl::handle_msg, this, _1));
+          boost::bind(&gwntimer_strobe_impl::handle_timer_msg, this, _1));
       start_timer();
     }
+
 
 
     /* Our virtual destructor. */
@@ -147,16 +141,11 @@ namespace gr {
 
     /* Handles message sent by timer threads */
     void
-    gwntimer_strobe_impl::handle_msg(pmt::pmt_t pmt_msg) 
+    gwntimer_strobe_impl::handle_timer_msg(pmt::pmt_t pmt_msg) 
     {
-      //std::string car = pmt::car(pmt_msg);
-      //std::string msg = pmt::cdr(pmt_msg);
-      //std::cout << "  timer1::handle_msg, message: " <<
-      //  pmt::cdr(pmt_msg) << std::endl;
-  
       boost::mutex d_mutex;
       d_mutex.lock();
-      message_port_pub(pmt::mp("strobe"), pmt_msg);
+      process_data(pmt_msg);
       d_mutex.unlock();
     }
 
@@ -166,22 +155,31 @@ namespace gr {
     bool
     gwntimer_strobe_impl::start_timer()
     {
-      tm_1 = new GWNTimer(this, d_msg_1, d_count_1, d_period_1);
-      tm_2 = new GWNTimer(this, d_msg_2, d_count_2, d_period_2);
-
-      //tm_1->set_suspend(false);
-      //tm_2->set_suspend(false);
-      //return block::start_timer();
+      tm_1 = new GWNTimer(this, 
+        1, pmt::mp(d_msg_1), d_count_1, d_period_1);
+      tm_2 = new GWNTimer(this, 
+        2, pmt::mp(d_msg_2), d_count_2, d_period_2);
       return true;
     }
 
 
-    /* TODO Where actions happen; no used in this test */
+    /* Where actions happen */
     void
-    gwntimer_strobe_impl::process_data(std::string msg)
+    gwntimer_strobe_impl::process_data(pmt::pmt_t pmt_tp_msg)
     {
-      std::cout << "  process_data, timer message:" << msg << 
-        std::endl;
+      // unpack timer message: port, id_timer, counter, message
+      std::string port = 
+        pmt::symbol_to_string(pmt::tuple_ref(pmt_tp_msg, 0));
+      long id_timer = 
+        pmt::to_long(pmt::tuple_ref(pmt_tp_msg, 1));
+      long counter = 
+        pmt::to_long(pmt::tuple_ref(pmt_tp_msg, 2));
+      std::string message = 
+        pmt::symbol_to_string(pmt::tuple_ref(pmt_tp_msg, 3));
+      std::cout << "  process_data: port " << port <<
+        ", id_timer " << id_timer << ", counter " << counter <<
+        ", message " << message << std::endl;
+      message_port_pub(pmt::mp("strobe"), pmt_tp_msg);
     }
 
 
