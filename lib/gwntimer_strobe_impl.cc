@@ -42,17 +42,13 @@ namespace gr {
 
     gwntimer_strobe_impl::GWNTimer::GWNTimer(
       gwntimer_strobe_impl * p_block, int p_id_timer, 
-      pmt::pmt_t p_pmt_msg, int p_count, float p_period_ms)
+      pmt::pmt_t p_pmt_msg, int p_count, float p_period_ms) 
+      : d_block(p_block), d_id_timer(p_id_timer),
+        d_pmt_msg(p_pmt_msg), d_count(p_count),
+        d_period_ms(p_period_ms)
     {
-
-      d_block = p_block;
-      d_id_timer = p_id_timer;
-      d_pmt_msg = p_pmt_msg;
-      d_count = p_count;
       d_counter = 0;
-      d_period_ms = p_period_ms;
       d_suspend = false;  // always emits first message
-
       d_thread = boost::shared_ptr<gr::thread::thread>
         (new gr::thread::thread(boost::bind (
             &gwntimer_strobe_impl::GWNTimer::run_timer, this))

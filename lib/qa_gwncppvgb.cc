@@ -28,6 +28,8 @@
 #include "qa_gwncppvgb.h"
 #include "qa_gwnfsm.h"
 #include "qa_gwntimer_strobe.h"
+#include "qa_message_repeat.h"
+#include "qa_message_repeat_pdata.h"
 
 CppUnit::TestSuite *
 qa_gwncppvgb::suite()
@@ -35,6 +37,8 @@ qa_gwncppvgb::suite()
   CppUnit::TestSuite *s = new CppUnit::TestSuite("gwncppvgb");
   s->addTest(gr::gwncppvgb::qa_gwnfsm::suite());
   s->addTest(gr::gwncppvgb::qa_gwntimer_strobe::suite());
+  s->addTest(gr::gwncppvgb::qa_message_repeat::suite());
+  s->addTest(gr::gwncppvgb::qa_message_repeat_pdata::suite());
 
   return s;
 }

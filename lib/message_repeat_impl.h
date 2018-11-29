@@ -18,22 +18,58 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_GWNCPPVGB_GWNTIMER_STROBE_IMPL_H
-#define INCLUDED_GWNCPPVGB_GWNTIMER_STROBE_IMPL_H
+#ifndef INCLUDED_GWNCPPVGB_MESSAGE_REPEAT_IMPL_H
+#define INCLUDED_GWNCPPVGB_MESSAGE_REPEAT_IMPL_H
 
-#include <gwncppvgb/gwntimer_strobe.h>
+#include <gwncppvgb/message_repeat.h>
 
-#include <boost/thread.hpp>
+/*  GWN inclusions */
+#include <vector>
+#include <gwncppvgb/message_repeat_pdata.h>
 
 
 namespace gr {
   namespace gwncppvgb {
 
+    /*
+     * Please consider some comments // and <text thus enclosed>
+     * will be substituted by the gwn_modtool.sh script when
+     * creating a new type of block. DO NOT ALTER, the script
+     * needs those comments for correct substitution.
+     */
 
-    class gwntimer_strobe_impl : public gwntimer_strobe
+
+    /* GWN message_repeat, a template block */
+
+    class message_repeat_impl : public virtual message_repeat
     {
-    // private:  // works well, and desirable
-    public:     // just to make visible Doxygen documentation
+    private:
+
+      /* GWN ports, nested classes */
+      class GWNPort
+      {
+        protected:
+          bool d_debug;
+        public:
+          GWNPort();
+          message_repeat_impl * d_block;
+          std::string d_port;
+          int d_port_nr;
+          std::string __str__();
+      }; 
+      class GWNOutPort: public virtual GWNPort { 
+        public:
+          GWNOutPort(message_repeat_impl *, std::string, int);
+       };
+      class GWNInPort: public virtual GWNPort {
+        public:
+          GWNInPort(message_repeat_impl *, std::string, int);
+      }; 
+
+
+
+      /* GWN timers, nested class */
+
 
       /** GWN Timer, a timer with message, period, and count.
        
@@ -68,21 +104,23 @@ namespace gr {
           @param p_counter The number of times to emit the message.
           @param p_period_ms: Tne period of emission in milliseconds.
           */
-          GWNTimer(gwntimer_strobe_impl * p_block, 
-            int p_id_timer, pmt::pmt_t p_pmt_msg, 
-            int p_counter, float p_period_ms);
+          GWNTimer(message_repeat_impl * p_block, 
+            std::string p_id_timer, pmt::pmt_t p_pmt_msg, 
+            int p_count, float p_period_ms);
 
-            gwntimer_strobe_impl * d_block;
-            int d_id_timer; 
+            message_repeat_impl * d_block;
+            std::string d_id_timer; 
             pmt::pmt_t d_pmt_msg;
             int d_counter;
             int d_count;  /** Counts emitted messages. */
             float d_period_ms;
             bool d_suspend; /** If true timer is suspendend. */
+            pmt::pmt_t d_pmt_timer_port = pmt::mp("timer_port"); /** a port to receive messages from all timers. */
 
             /** The timer thread. */
             boost::shared_ptr<gr::thread::thread> d_thread;
-
+            /** Creates thread, timer starts immediately. */
+            void start_timer();
             /** Suspends or continues emission of messages. */
             void set_suspend(bool on_off)  { d_suspend = on_off; }
             /** Sets or resets the counter, to 0 or other value. */
@@ -93,51 +131,37 @@ namespace gr {
             /** \brief The function to run from the timer thread. */
             void run_timer();
 
-      };   // end GWNTimer
+      };   // end class GWNTimer
 
-
-     //public:   // if GWNTimer is public
-      gwntimer_strobe_impl (
-        std::string msg_1, float period_1, int count_1,
-        std::string msg_2, float period_2, int count_2 );
-      ~gwntimer_strobe_impl();
-
-      // two timers
-      GWNTimer * tm_1;
-      GWNTimer * tm_2;
-
-      //pmt::pmt_t d_pmt_msg;
-      pmt::pmt_t d_out_port;
-      pmt::pmt_t d_timer_port;
-
-
+      /** Handles timer messages */
       void handle_timer_msg (pmt::pmt_t pmt_msg);
-      //void post_timer_msg(std::string msg);
-      
-      bool start_timer();
-      void process_data(pmt::pmt_t pmt_msg);
 
-      /** Mutually exclusive printing.
+      // GWN user arguments declaration
+      std::string d_message;
+      int d_counter;
 
-      @param msg string to print.
-      */
-      //boost::mutex d_mutex;
-      void mutex_prt(std::string msg);
+      /** A pointer to the associated pdata object. */
+      message_repeat_pdata * pdata_obj;
 
-      // failed attempt to make functions visble in QA
-      void timer_reset(int timer_id);
-      void timer_interrupt(int timer_id, bool on_off);
+    public:
+      message_repeat_impl(std::string message, int counter);
+      ~message_repeat_impl();
 
+      /* GWN attributes and functions */
+      std::string d_name;
+      int d_number_in, d_number_out, d_number_timers;
+      std::vector<GWNOutPort *> d_ports_out; 
+      std::vector<GWNInPort *> d_ports_in;
+      std::vector<GWNTimer *> d_timers;
+      bool d_debug;
+      void post_message(pmt::pmt_t, pmt::pmt_t);
+      void handle_msg(pmt::pmt_t);
+      std::string __str__();
 
-    private:
-      std::string d_msg_1, d_msg_2;
-      float d_period_1, d_period_2;
-      int d_count_1, d_count_2;
- 
-    };
+    }; 
 
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_GWNTIMER_STROBE_IMPL_H */
+#endif /* INCLUDED_GWNCPPVGB_MESSAGE_REPEAT_IMPL_H */
 
