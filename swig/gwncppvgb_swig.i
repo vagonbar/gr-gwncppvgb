@@ -14,6 +14,7 @@
 #include "gwncppvgb/gwntimer_strobe.h"
 #include "gwncppvgb/message_repeat.h"
 #include "gwncppvgb/message_repeat_pdata.h"
+#include "gwncppvgb/gwnblock_dev.h"
 %}
 %include "gwncppvgb/message_passer.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_passer);
@@ -25,3 +26,5 @@ GR_SWIG_BLOCK_MAGIC2(gwncppvgb, gwntimer_strobe);
 %include "gwncppvgb/message_repeat.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_repeat);
 %include "gwncppvgb/message_repeat_pdata.h"
+%include "gwncppvgb/gwnblock_dev.h"
+GR_SWIG_BLOCK_MAGIC2(gwncppvgb, gwnblock_dev);

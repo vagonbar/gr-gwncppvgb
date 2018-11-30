@@ -35,5 +35,6 @@ install(FILES
     gwnfsm.h
     gwntimer_strobe.h
     message_repeat.h
-    message_repeat_pdata.h DESTINATION include/gwncppvgb
+    message_repeat_pdata.h
+    gwnblock_dev.h DESTINATION include/gwncppvgb
 )

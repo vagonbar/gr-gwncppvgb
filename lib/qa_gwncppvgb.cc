@@ -30,6 +30,7 @@
 #include "qa_gwntimer_strobe.h"
 #include "qa_message_repeat.h"
 #include "qa_message_repeat_pdata.h"
+#include "qa_gwnblock_dev.h"
 
 CppUnit::TestSuite *
 qa_gwncppvgb::suite()
@@ -39,6 +40,7 @@ qa_gwncppvgb::suite()
   s->addTest(gr::gwncppvgb::qa_gwntimer_strobe::suite());
   s->addTest(gr::gwncppvgb::qa_message_repeat::suite());
   s->addTest(gr::gwncppvgb::qa_message_repeat_pdata::suite());
+  s->addTest(gr::gwncppvgb::qa_gwnblock_dev::suite());
 
   return s;
 }

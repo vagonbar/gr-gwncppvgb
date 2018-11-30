@@ -48,3 +48,4 @@ GR_ADD_TEST(qa_message_passer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/q
 GR_ADD_TEST(qa_message_passer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_message_passer.py)
 GR_ADD_TEST(qa_gwntimer_strobe ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwntimer_strobe.py)
 GR_ADD_TEST(qa_message_repeat ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_message_repeat.py)
+GR_ADD_TEST(qa_gwnblock_dev ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwnblock_dev.py)
