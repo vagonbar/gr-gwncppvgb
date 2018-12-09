@@ -48,11 +48,16 @@ class qa_gwnblock_dev (gr_unittest.TestCase):
         # check data
         pass
 
-    def test_ports (self):
+    def test_ports_timer (self):
         print "\n===\n=== TEST gwnblock_dev input and output ports \n===\n"
         tst_msg = "--- A message from message strobe"
         src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
-        pss = gwncppvgb.gwnblock_dev("GWN test message 2", 10)
+        pss = gwncppvgb.gwnblock_dev( \
+          "TIMER 1 msg AAAA", 1000.0, 6, \
+          "TIMER 2 msg BBBB", 1000.0, 3)
+          #"TIMEOUT 2 CCC", 3000.0, 1)
+        #"GWN test message 2", 10)
+
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )

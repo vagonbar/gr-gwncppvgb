@@ -60,12 +60,12 @@ namespace gr {
       //d_debug = true;
 
       // set timers message, period, etc
-      d_timers[0]->d_count = 5;
-      d_timers[0]->d_period_ms = 1000;
-      d_timers[0]->d_pmt_msg = pmt::mp("--- TIMER 0 AAAA");
-      d_timers[1]->d_count = 3;
-      d_timers[1]->d_period_ms = 1500;
-      d_timers[1]->d_pmt_msg = pmt::mp("--- TIMER 1 BBBB");
+      d_timers[0]->d_count = d_count_1;
+      d_timers[0]->d_period_ms = d_period_1;
+      d_timers[0]->d_pmt_msg = pmt::mp(d_msg_1);
+      d_timers[1]->d_count = d_count_2;
+      d_timers[1]->d_period_ms = d_period_2;
+      d_timers[1]->d_pmt_msg = pmt::mp(d_msg_2);
 
       // start timers
       d_timers[0]->start_timer();
@@ -220,17 +220,19 @@ namespace gr {
         if ( d_suspend == false ) // timer is not suspended
         {
           // make timer message
-          pmt::pmt_t d_pmt_msg = pmt::make_dict();
-          d_pmt_msg = pmt::dict_add(d_pmt_msg, 
+          pmt::pmt_t pmt_timer_dict = pmt::make_dict();
+          pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
             pmt::intern("type"), pmt::intern("Timer")); 
-          d_pmt_msg = pmt::dict_add(d_pmt_msg, 
+          pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
             pmt::intern("subtype"), pmt::intern(d_id_timer));
-          d_pmt_msg = pmt::dict_add(d_pmt_msg, 
+          pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
             pmt::intern("seq_nr"), pmt::from_long(d_counter));
+          pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
+            pmt::intern("message"), d_pmt_msg);
           // mutex lock, post message, unlock
           d_mutex.lock();
           d_block->gr::basic_block::_post(
-            d_pmt_timer_port, d_pmt_msg);
+            d_pmt_timer_port, pmt_timer_dict);
           d_mutex.unlock();
         }  // end if
       } // end while
@@ -320,19 +322,28 @@ namespace gr {
 
     /* GNU Radio defaults for block construction */
     gwnblock_dev::sptr
-    gwnblock_dev::make(std::string message, int counter)
+    //gwnblock_dev::make(std::string message, int counter)
+    gwnblock_dev::make(
+        std::string msg_1, float period_1, int count_1,
+        std::string msg_2, float period_2, int count_2 ) 
     {
       return gnuradio::get_initial_sptr
-        (new gwnblock_dev_impl(message, counter));
+        (new gwnblock_dev_impl (
+          msg_1, period_1, count_1, msg_2, period_2, count_2) );  
     }  // end make
 
 
 
     /* gwnblock_dev: the private constructor */
-    gwnblock_dev_impl::gwnblock_dev_impl(std::string message, int counter)
+    //gwnblock_dev_impl::gwnblock_dev_impl(std::string message, int counter)
+    gwnblock_dev_impl::gwnblock_dev_impl(
+        std::string msg_1, float period_1, int count_1,
+        std::string msg_2, float period_2, int count_2) 
       : gr::block("gwnblock_dev",
               gr::io_signature::make(0, 0, sizeof(int)),
-              gr::io_signature::make(0, 0, sizeof(int)) )
+              gr::io_signature::make(0, 0, sizeof(int)) ),
+          d_msg_1(msg_1), d_period_1(period_1), d_count_1(count_1), 
+          d_msg_2(msg_2), d_period_2(period_2), d_count_2(count_2)
     {
       // GWN block name, ports and timers as block attributes
       d_name = "gwnblock_dev";
@@ -341,8 +352,10 @@ namespace gr {
       d_number_timers = 2;
 
       // GWN user arguments initialization
-      d_message = message;
-      d_counter = counter;
+      //d_message = message;
+      //d_counter = counter;
+
+
       d_debug = true;
 
       if (d_debug) {

@@ -106,23 +106,24 @@ namespace gr {
 
           /** \brief GWNTimer, constructor.
 
-          @param p_block A pointer to the block having the timer.
-          @param p_id_timer An integer identifying the timer.
-          @param p_pmt_msg Custom message to emit, in PMT format.
-          @param p_count The number of times to emit the message.
-          @param p_period_ms: Tne period of emission in milliseconds.
+          @param block A pointer to the block having the timer.
+          @param id_timer An integer identifying the timer.
+          @param pmt_msg Custom message to emit, in PMT format.
+          @param count The number of times to emit the message.
+          @param period_ms: Tne period of emission in milliseconds.
           */
-          GWNTimer(gwnblock_dev_impl * p_block, 
+          GWNTimer(gwnblock_dev_impl * block, 
             std::string id_timer, pmt::pmt_t pmt_msg, 
             int count, float period_ms);
 
             gwnblock_dev_impl * d_block;
             std::string d_id_timer; 
             pmt::pmt_t d_pmt_msg;
-            /** Counts emitted messages. */
-            int d_counter;
             int d_count;
             float d_period_ms;
+
+            /** Counts emitted messages. */
+            int d_counter;
             /** If true timer is suspendend. */
             bool d_suspend;
             /** a port to receive messages from all timers. */
@@ -147,12 +148,16 @@ namespace gr {
       void handle_timer_msg (pmt::pmt_t pmt_msg);
 
       // GWN TAG: user arguments declaration
-      std::string d_message;
-      int d_counter;
+      //std::string d_message;
+      //int d_counter;
 
 
     public:
-      gwnblock_dev_impl(std::string message, int counter);
+      //gwnblock_dev_impl(std::string message, int counter);
+      gwnblock_dev_impl(
+        std::string msg_1, float period_1, int count_1,
+        std::string msg_2, float period_2, int count_2 );
+
       ~gwnblock_dev_impl();
 
       /** Block name. */
@@ -209,6 +214,12 @@ namespace gr {
       */
       void process_data(
         std::string port, pmt::pmt_t pmt_msg);
+
+    private:
+      // GWN TAG 
+      std::string d_msg_1, d_msg_2;
+      float d_period_1, d_period_2;
+      int d_count_1, d_count_2;
 
     }; 
 
