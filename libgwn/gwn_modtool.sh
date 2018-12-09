@@ -99,14 +99,14 @@ echo -e User arguments initialization: "$USER_ARGS_INIT"
 
 ### create block with gr_modtool
 
-echo -n "About to create block $1; proceed(YyNn)? "; read ANSWER
-#ANSWER="N"
+#echo -n "About to create block $1; proceed(YyNn)? "; read ANSWER
+ANSWER="N"
 if [ "$ANSWER" == "y" -o "$ANSWER" == "Y" ]
 then
   echo "Creating block $1..."
 else
   echo "Answer was not y nor Y:" $ANSWER
-#  exit
+  exit
 fi
 
 # sed substitution expressions
@@ -123,8 +123,8 @@ echo ... gr_modtool, creating $BLOCK_NAME
 python $GRMODTOOL add --block-name=$BLOCK_NAME \
   --block-type=general --lang=cpp \
   --argument-list="" --add-python-qa
-echo ...gr_modtool, creating ${BLOCK_NAME}_pdata
-python $GRMODTOOL add --block-name=${BLOCK_NAME}_pdata --block-type=noblock --lang=cpp --argument-list="" 
+#echo ...gr_modtool, creating ${BLOCK_NAME}_pdata
+#python $GRMODTOOL add --block-name=${BLOCK_NAME}_pdata --block-type=noblock --lang=cpp --argument-list="" 
 cd $CURDIR
 echo -en "... returned to module build directory:\n      "; pwd
 

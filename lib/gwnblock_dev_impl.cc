@@ -61,10 +61,10 @@ namespace gr {
 
       // set timers message, period, etc
       d_timers[0]->d_count = 5;
-      d_timers[1]->d_count = 3;
       d_timers[0]->d_period_ms = 1000;
-      d_timers[1]->d_period_ms = 1500;
       d_timers[0]->d_pmt_msg = pmt::mp("--- TIMER 0 AAAA");
+      d_timers[1]->d_count = 3;
+      d_timers[1]->d_period_ms = 1500;
       d_timers[1]->d_pmt_msg = pmt::mp("--- TIMER 1 BBBB");
 
       // start timers
@@ -77,20 +77,20 @@ namespace gr {
     /* Timer and input messages processing, REWRITE as desired. */
     void
     gwnblock_dev_impl::process_data(
-      std::string p_port, pmt::pmt_t p_pmt_msg)
+      std::string port, pmt::pmt_t pmt_msg)
     {
-      std::string d_port = p_port;
+      std::string d_port = port;
 
       // verify if message is dictionary (GWN) or other (GR)
-      if ( pmt::is_dict(p_pmt_msg) )
+      if ( pmt::is_dict(pmt_msg) )
       {
         // GWN message, unpack type, subtype, seq_nr
         std::string type = pmt::symbol_to_string (pmt::dict_ref(
-          p_pmt_msg, pmt::intern("type"), pmt::PMT_NIL));
+          pmt_msg, pmt::intern("type"), pmt::PMT_NIL));
         std::string subtype = pmt::symbol_to_string (pmt::dict_ref(
-          p_pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
+          pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
         int seq_nr = pmt::to_long (pmt::dict_ref(
-          p_pmt_msg, pmt::intern("seq_nr"), pmt::PMT_NIL)); 
+          pmt_msg, pmt::intern("seq_nr"), pmt::PMT_NIL)); 
         
         if ( type == "Timer" )  
         {           // GWN timer message
@@ -100,7 +100,7 @@ namespace gr {
               d_port << std::endl << "   ";
             std::cout << "    type: " << type << ", subtype: " <<
               subtype << ", seq_nr: " << seq_nr << std::endl;
-            pmt::print(p_pmt_msg);
+            pmt::print(pmt_msg);
           }
         } else {    // GWN non-timer message
           // actions on GWN non-timer message
@@ -110,14 +110,14 @@ namespace gr {
         if (d_debug) {
           std::cout << "    process_data, STROBE msg from " <<
             d_port << std::endl << "   ";
-          pmt::print(p_pmt_msg);
+          pmt::print(pmt_msg);
         }
 
       }  // end message is GWN or GR
 
       // emit messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-      post_message(pmt_port, p_pmt_msg);
+      post_message(pmt_port, pmt_msg);
     }
 
 
@@ -143,7 +143,7 @@ namespace gr {
         ", number: " + std::to_string(d_port_nr) + 
         ", in block: " + d_block->d_name + "\n";
       return ss;
-    }
+    } 
 
 
     /* GWNOutPort */
@@ -177,11 +177,11 @@ namespace gr {
 
     /* GWNTimer constructor */
     gwnblock_dev_impl::GWNTimer::GWNTimer(
-      gwnblock_dev_impl * p_block, std::string p_id_timer, 
-      pmt::pmt_t p_pmt_msg, int p_count, float p_period_ms) 
-      : d_block(p_block), d_id_timer(p_id_timer),
-        d_pmt_msg(p_pmt_msg), d_count(p_count),
-        d_period_ms(p_period_ms)
+      gwnblock_dev_impl * block, std::string id_timer, 
+      pmt::pmt_t pmt_msg, int count, float period_ms) 
+      : d_block(block), d_id_timer(id_timer),
+        d_pmt_msg(pmt_msg), d_count(count),
+        d_period_ms(period_ms)
     {
       d_counter = 0;
       d_suspend = false;  // always emits first message
@@ -249,14 +249,14 @@ namespace gr {
 
     /* Handles message sent by timer threads */
     void
-    gwnblock_dev_impl::handle_timer_msg(pmt::pmt_t p_pmt_msg) 
+    gwnblock_dev_impl::handle_timer_msg(pmt::pmt_t pmt_msg) 
     {
       std::string timer_id = pmt::symbol_to_string( pmt::dict_ref (
-        p_pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
+        pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
       // mutex lock, invoke process_data, unlock
       boost::mutex d_mutex;
       d_mutex.lock();
-      process_data(timer_id, p_pmt_msg);
+      process_data(timer_id, pmt_msg);
       d_mutex.unlock();
     }  // end handle_timer_msg
 

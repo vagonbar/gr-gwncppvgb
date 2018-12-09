@@ -39,32 +39,35 @@ namespace gr {
 
 
     /* GWN gwnblock_dev, a template block */
-
     class gwnblock_dev_impl : public virtual gwnblock_dev
     {
     private:
 
-      /* GWN ports, nested classes */
+      /** GWN port, a generic class for input and output messages. */
       class GWNPort
       {
         protected:
           bool d_debug;
         public:
           GWNPort();
+          /** A pointer to the block which contains this port. */ 
           gwnblock_dev_impl * d_block;
+          /** An identifier of this port. */
           std::string d_port;
+          /** A sequential number for this port. */ 
           int d_port_nr;
+          /** Prints message port information. */
           std::string __str__();
       }; 
 
-      /** Output message ports.
+      /** Output message port.
       */
       class GWNOutPort: public virtual GWNPort { 
         public:
           GWNOutPort(gwnblock_dev_impl *, std::string, int);
        };
 
-      /** Input message ports.
+      /** Input message port.
       */
       class GWNInPort: public virtual GWNPort {
         public:
@@ -79,12 +82,12 @@ namespace gr {
       /** GWN Timer, a timer with message, period, and count.
        
       A nested class implementing a timer which can be instantiated
-      in a GWN block to receive internal messages periodically 
-      for a number of times.
+      into an object and associatedto a GWN block. The timer emits
+      internal messages periodically for a number of times.
  
       The block containing the timer receives messages from the timer in an internal port. This internal port, called a timer port, is a message port of the block, but it is not no connected to any external block. All timers in the block send their messages to this unique timer port.
 
-      When started, the timer waits for the indicated period of time before emitting its first message. Then, the timer goes on sending messages after each period of time, until reaching the number of messages indicated as a count parameter. Once the count has been reached, no more messages are sent, and the timer thread is terminated.
+      When started, the timer waits for the indicated period of time before emitting its first message. Then, the timer goes on sending messages after each period of time, until reaching the number of messages indicated as a count parameter. Once the count has been reached, no more messages are sent. However, the timer thread is not finished, and can be restarted.
 
       The timer can be suspended in its emission of messages. When suspended, the timer does not emit messages, and the counter is not incremented, but the timer thread remains alive. When taken out from suspension, messages continue to be emitted and the counter incremented from its last value.
 
@@ -92,7 +95,7 @@ namespace gr {
  
       The timer can be stopped before reaching its assigned number of messages to emit. In this case, no messages are emitted any more, and the timer thread is terminated.
 
-      The message emmited by the timer is a tuple containing the type of emitting port as "timer_port", an integer indicating which timer port is the emitter for cases where a block contains several timers, a counter indicating the sequence number of message emitted, and a custom message defined by the user, in PMT format, which allows a great flexibility for the content to be transmitted. Each message is passed to the main block function process_data, where the tasks defined by the programmer of the block to which the timer is attached are performed. In this way, the programmer of the process_data function can identify unambiguously the message origin (a timer), the particular timer whch emitted the message, the sequence number of the message, and a possibly complex structure of data in the custom PMT message.
+      The message emmited by the timer is GWN message, i.e. a port identifier and a dictionary in PMT format. In a GWN message, the dictionary contains a type, a subtype, and a sequence number, with the optional addition of other entries defined by the user. Each message is passed to the main block function process_data, where the actions defined by the programmer happen.
       */
       class GWNTimer
       {
@@ -106,22 +109,24 @@ namespace gr {
           @param p_block A pointer to the block having the timer.
           @param p_id_timer An integer identifying the timer.
           @param p_pmt_msg Custom message to emit, in PMT format.
-          @param p_counter The number of times to emit the message.
+          @param p_count The number of times to emit the message.
           @param p_period_ms: Tne period of emission in milliseconds.
           */
           GWNTimer(gwnblock_dev_impl * p_block, 
-            std::string p_id_timer, pmt::pmt_t p_pmt_msg, 
-            int p_count, float p_period_ms);
+            std::string id_timer, pmt::pmt_t pmt_msg, 
+            int count, float period_ms);
 
             gwnblock_dev_impl * d_block;
             std::string d_id_timer; 
             pmt::pmt_t d_pmt_msg;
+            /** Counts emitted messages. */
             int d_counter;
-            int d_count;  /** Counts emitted messages. */
+            int d_count;
             float d_period_ms;
-            bool d_suspend; /** If true timer is suspendend. */
-            pmt::pmt_t d_pmt_timer_port = pmt::mp("timer_port"); /** a port to receive messages from all timers. */
-
+            /** If true timer is suspendend. */
+            bool d_suspend;
+            /** a port to receive messages from all timers. */
+            pmt::pmt_t d_pmt_timer_port = pmt::mp("timer_port");
             /** The timer thread. */
             boost::shared_ptr<gr::thread::thread> d_thread;
             /** Creates thread, timer starts immediately. */
@@ -133,7 +138,7 @@ namespace gr {
             /** Stops timer and terminates thread. */
             void timer_stop();
 
-            /** \brief The function to run from the timer thread. */
+            /** The function to run from the timer thread. */
             void run_timer();
 
       };   // end class GWNTimer
@@ -141,7 +146,7 @@ namespace gr {
       /** Handles timer messages */
       void handle_timer_msg (pmt::pmt_t pmt_msg);
 
-      // GWN user arguments declaration
+      // GWN TAG: user arguments declaration
       std::string d_message;
       int d_counter;
 
@@ -150,20 +155,41 @@ namespace gr {
       gwnblock_dev_impl(std::string message, int counter);
       ~gwnblock_dev_impl();
 
-      /* GWN attributes and functions */
+      /** Block name. */
       std::string d_name;
-      int d_number_in, d_number_out, d_number_timers;
-      std::vector<GWNOutPort *> d_ports_out; 
+      /** Number of input ports. */
+      int d_number_in;
+      /** Number of output ports. */
+      int d_number_out;
+      /** Number of timer ports. */
+      int d_number_timers;
+      /** A vector (array) of output ports. */
+      std::vector<GWNOutPort *> d_ports_out;
+      /** A vector (array) of input ports. */
       std::vector<GWNInPort *> d_ports_in;
+      /** A vector (array) of timer ports. */
       std::vector<GWNTimer *> d_timers;
+      /** If true prints debug messages. */
       bool d_debug;
 
-      /** Posts message on PMT formatted output port. */
-      void post_message(pmt::pmt_t, pmt::pmt_t);
-      /** Posts message on string formatted output port. */
+      /** Posts message on PMT formatted output port. 
+
+      @param pmt_port: the port identifier, in PMT format.
+      @param pmt_msg: the message in PMT format, any PMT type.
+      */
+      void post_message(pmt::pmt_t pmt_port, pmt::pmt_t pmt_msg);
+      /** Posts message on string formatted output port. 
+
+      @param pmt_port: the port identifier, in string format.
+      @param pmt_msg: the message in PMT format, any PMT type.
+      */
       void post_message(std::string port, pmt::pmt_t pmt_msg);
-      /** Handles messages received in an input port. */
-      void handle_msg(pmt::pmt_t);
+      /** Handles messages received in an input port.
+
+      @param pmt_msg: the message in PMT format, any PMT type.
+      */
+      void handle_msg(pmt::pmt_t pmt_msg);
+      /** Prints block info. */
       std::string __str__();
 
 
@@ -176,16 +202,13 @@ namespace gr {
 
       /** REWRITE: actions to perform on received message.
 
-      This function receives messages from the input ports and from the timer ports. Origin of messages, i.e. specific input port or timer port, can be recognized in the port parameter. An optional counter can be included, generally used to indicate the sequence number of the message received. 
-      @param p_port The port identifier on which the message was received.
-      @param p_pmt_msg The message, in PMT format.
-      @param p_counter An optional integer number, for individual message identifier through sequence numbers.
-      @return A PMT tuple of (port, message) for the main block to emit.
+      This function receives messages from the input ports and from the timer ports. 
+      The message received may be any PMT formatted message. If it is a GWN message, it is a dictionary in PMT format, which contains a type, a subtype, and a sequence number, with the optional addition of other entries defined by the user. In this function the actions defined by the programmer are executed.
+      @param port The port identifier on which the message was received, in string format.
+      @param pmt_msg The message, in PMT format. It may be 
       */
-      //pmt::pmt_t process_data(
       void process_data(
-        std::string p_port, pmt::pmt_t p_pmt_msg);
-    
+        std::string port, pmt::pmt_t pmt_msg);
 
     }; 
 
