@@ -45,7 +45,12 @@ namespace gr {
     {
     private:
 
+
       /* GWN ports, nested classes */
+
+
+      /** GWN port, a generic class for message ports.
+      */
       class GWNPort
       {
         protected:
@@ -57,10 +62,16 @@ namespace gr {
           int d_port_nr;
           std::string __str__();
       }; 
+
+      /** Output message ports.
+      */
       class GWNOutPort: public virtual GWNPort { 
         public:
           GWNOutPort(message_repeat_impl *, std::string, int);
        };
+
+      /** Input message ports.
+      */
       class GWNInPort: public virtual GWNPort {
         public:
           GWNInPort(message_repeat_impl *, std::string, int);
@@ -154,7 +165,10 @@ namespace gr {
       std::vector<GWNInPort *> d_ports_in;
       std::vector<GWNTimer *> d_timers;
       bool d_debug;
+
+      /** Posts a message on an output port. */
       void post_message(pmt::pmt_t, pmt::pmt_t);
+      /** Handles messages received in an input port. */
       void handle_msg(pmt::pmt_t);
       std::string __str__();
 

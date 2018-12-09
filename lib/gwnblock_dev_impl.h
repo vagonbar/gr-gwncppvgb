@@ -25,7 +25,6 @@
 
 /*  GWN inclusions */
 #include <vector>
-//#include <gwncppvgb/gwnblock_dev_pdata.h>
 
 
 namespace gr {
@@ -57,10 +56,16 @@ namespace gr {
           int d_port_nr;
           std::string __str__();
       }; 
+
+      /** Output message ports.
+      */
       class GWNOutPort: public virtual GWNPort { 
         public:
           GWNOutPort(gwnblock_dev_impl *, std::string, int);
        };
+
+      /** Input message ports.
+      */
       class GWNInPort: public virtual GWNPort {
         public:
           GWNInPort(gwnblock_dev_impl *, std::string, int);
@@ -133,11 +138,6 @@ namespace gr {
 
       };   // end class GWNTimer
 
-
-      /** Block specific actions.
-
-      */
-
       /** Handles timer messages */
       void handle_timer_msg (pmt::pmt_t pmt_msg);
 
@@ -145,8 +145,6 @@ namespace gr {
       std::string d_message;
       int d_counter;
 
-      /** A pointer to the associated pdata object. */
-      //gwnblock_dev_pdata * pdata_obj;
 
     public:
       gwnblock_dev_impl(std::string message, int counter);
@@ -159,7 +157,12 @@ namespace gr {
       std::vector<GWNInPort *> d_ports_in;
       std::vector<GWNTimer *> d_timers;
       bool d_debug;
+
+      /** Posts message on PMT formatted output port. */
       void post_message(pmt::pmt_t, pmt::pmt_t);
+      /** Posts message on string formatted output port. */
+      void post_message(std::string port, pmt::pmt_t pmt_msg);
+      /** Handles messages received in an input port. */
       void handle_msg(pmt::pmt_t);
       std::string __str__();
 
@@ -179,10 +182,10 @@ namespace gr {
       @param p_counter An optional integer number, for individual message identifier through sequence numbers.
       @return A PMT tuple of (port, message) for the main block to emit.
       */
-      pmt::pmt_t process_data(
-        std::string p_port, pmt::pmt_t p_pmt_msg, int p_counter);
+      //pmt::pmt_t process_data(
+      void process_data(
+        std::string p_port, pmt::pmt_t p_pmt_msg);
     
-
 
     }; 
 

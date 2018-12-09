@@ -32,8 +32,6 @@
 #include <pmt/pmt.h>              // for messages
 #include <gnuradio/blocks/pdu.h>  // for messages
 
-//#include <gwncppvgb/gwnblock_dev_pdata.h>  // process_data function
-//#include <stdio.h>   // for printf
 
 
 namespace gr {
@@ -46,17 +44,20 @@ namespace gr {
      * needs those comments for correct substitution.
      */
 
-    /* 
+
+    /* ********************************************** 
      * Block specific code, REWRITE for a new block.
-     */
+     ************************************************/
 
 
+    /* Additional initialization, REWRITE as desired. */
     void
     gwnblock_dev_impl::added_init() 
     {
       std::cout << "Added Initialization" << std::endl;
     
       d_debug = false;
+      //d_debug = true;
 
       // set timers message, period, etc
       d_timers[0]->d_count = 5;
@@ -73,42 +74,59 @@ namespace gr {
 
 
 
-    pmt::pmt_t
+    /* Timer and input messages processing, REWRITE as desired. */
+    void
     gwnblock_dev_impl::process_data(
-      std::string p_port, pmt::pmt_t p_pmt_msg, int p_counter)
+      std::string p_port, pmt::pmt_t p_pmt_msg)
     {
-      //d_block = p_block;
       std::string d_port = p_port;
-      pmt::pmt_t d_pmt_msg = p_pmt_msg;
-      int d_counter = p_counter;
 
-      // alter message from timers, add counter
-      if (d_port == "timer_0" || d_port == "timer_1")
+      // verify if message is dictionary (GWN) or other (GR)
+      if ( pmt::is_dict(p_pmt_msg) )
       {
-        std::string new_msg =  pmt::symbol_to_string(d_pmt_msg)
-          + ", counter " + std::to_string(d_counter);
-        d_pmt_msg = pmt::mp(new_msg);
-      }
+        // GWN message, unpack type, subtype, seq_nr
+        std::string type = pmt::symbol_to_string (pmt::dict_ref(
+          p_pmt_msg, pmt::intern("type"), pmt::PMT_NIL));
+        std::string subtype = pmt::symbol_to_string (pmt::dict_ref(
+          p_pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
+        int seq_nr = pmt::to_long (pmt::dict_ref(
+          p_pmt_msg, pmt::intern("seq_nr"), pmt::PMT_NIL)); 
+        
+        if ( type == "Timer" )  
+        {           // GWN timer message
+          // actions on GWN timer message
+          if (d_debug) {
+            std::cout << "    process_data, TIMER msg from " <<
+              d_port << std::endl << "   ";
+            std::cout << "    type: " << type << ", subtype: " <<
+              subtype << ", seq_nr: " << seq_nr << std::endl;
+            pmt::print(p_pmt_msg);
+          }
+        } else {    // GWN non-timer message
+          // actions on GWN non-timer message
+        }
+      } else {  // non-GWN message
+        // actions on non GWN message
+        if (d_debug) {
+          std::cout << "    process_data, STROBE msg from " <<
+            d_port << std::endl << "   ";
+          pmt::print(p_pmt_msg);
+        }
 
-      if (d_debug) {
-        std::cout << "...process_data, received message on port: " 
-          << d_port << ", counter: " << d_counter << std::endl;
-        std::cout << "...process_data, message: ";
-        pmt::print(d_pmt_msg);
-      }
+      }  // end message is GWN or GR
 
-      // emit message 
+      // emit messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-      //pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev_proc); 
-      return pmt::cons(pmt_port, d_pmt_msg);
+      post_message(pmt_port, p_pmt_msg);
     }
 
 
 
 
-    /* 
+    /* ************************* 
      *  End block specific code.
-     */
+     ***************************/
+
 
 
     /* GWNPort */
@@ -201,20 +219,24 @@ namespace gr {
           boost::posix_time::milliseconds(d_period_ms));
         if ( d_suspend == false ) // timer is not suspended
         {
-          pmt::pmt_t pmt_id_timer = pmt::mp(d_id_timer);
-          pmt::pmt_t pmt_id_counter = pmt::mp(d_counter);
-          pmt::pmt_t pmt_timer_tuple = pmt::make_tuple( 
-            pmt_id_timer, pmt_id_counter, d_pmt_msg);
-          
+          // make timer message
+          pmt::pmt_t d_pmt_msg = pmt::make_dict();
+          d_pmt_msg = pmt::dict_add(d_pmt_msg, 
+            pmt::intern("type"), pmt::intern("Timer")); 
+          d_pmt_msg = pmt::dict_add(d_pmt_msg, 
+            pmt::intern("subtype"), pmt::intern(d_id_timer));
+          d_pmt_msg = pmt::dict_add(d_pmt_msg, 
+            pmt::intern("seq_nr"), pmt::from_long(d_counter));
+          // mutex lock, post message, unlock
           d_mutex.lock();
           d_block->gr::basic_block::_post(
-            d_pmt_timer_port, pmt_timer_tuple);
+            d_pmt_timer_port, d_pmt_msg);
           d_mutex.unlock();
         }  // end if
       } // end while
 
       if (d_debug) {
-        std::cout << "   === TIMER FINISHED: " << d_id_timer <<
+        std::cout << "    === TIMER FINISHED: " << d_id_timer <<
           ", counter: " << d_counter << 
           ", thread id: " << d_thread->get_id() << std::endl;
       }
@@ -227,23 +249,15 @@ namespace gr {
 
     /* Handles message sent by timer threads */
     void
-    gwnblock_dev_impl::handle_timer_msg(pmt::pmt_t p_pmt_timer) 
+    gwnblock_dev_impl::handle_timer_msg(pmt::pmt_t p_pmt_msg) 
     {
-      std::string id_timer = pmt::symbol_to_string(
-        pmt::tuple_ref(p_pmt_timer, 0));
-      int counter = pmt::to_long(pmt::tuple_ref(p_pmt_timer, 1));
-      pmt::pmt_t pmt_msg = pmt::tuple_ref(p_pmt_timer, 2);
-      //std::cout << " In handle_timer_msg" << std::endl;
+      std::string timer_id = pmt::symbol_to_string( pmt::dict_ref (
+        p_pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
+      // mutex lock, invoke process_data, unlock
       boost::mutex d_mutex;
       d_mutex.lock();
-      //pmt::pmt_t pmt_port_msg = pdata_obj->process_data(id_timer, pmt_msg, counter);
-      pmt::pmt_t pmt_port_msg = process_data(id_timer, pmt_msg, counter);
+      process_data(timer_id, p_pmt_msg);
       d_mutex.unlock();
-
-      pmt::pmt_t pmt_port_send = pmt::car(pmt_port_msg);
-      pmt::pmt_t pmt_msg_send = pmt::cdr(pmt_port_msg);
-      post_message(pmt_port_send, pmt_msg_send);
-
     }  // end handle_timer_msg
 
 
@@ -264,32 +278,43 @@ namespace gr {
     {
       std::string in_msg = pmt::symbol_to_string(pmt_msg);
       if (d_debug) { 
-        std::cout << "...handle input msg: " << in_msg << std::endl;
-      }
-
-      pmt::pmt_t pmt_port_msg = 
-        //pdata_obj->process_data("handle_msg", pmt_msg, 0);
-        process_data("handle_msg", pmt_msg, 0);
-
-      pmt::pmt_t pmt_port_send = pmt::car(pmt_port_msg);
-      pmt::pmt_t pmt_msg_send = pmt::cdr(pmt_port_msg);
-      post_message(pmt_port_send, pmt_msg_send);
+        std::cout << "...handle input msg: \n";
+        pmt::print(pmt_msg);
+      } 
+      // mutex lock, invoke process_data, unlock
+      boost::mutex d_mutex;
+      d_mutex.lock();
+        //pmt::pmt_t pmt_port_msg = 
+        process_data("handle_msg", pmt_msg); // 0);
+      d_mutex.unlock();
     }  // end handle_msg
 
 
+
+    /* post_message in PMT formatted port */
     void gwnblock_dev_impl::post_message(pmt::pmt_t pmt_port,
         pmt::pmt_t pmt_msg_send)
     {
       if (d_debug) {
-        std::cout << "...post_message, sent: <" 
-          << pmt::symbol_to_string(pmt_msg_send) << 
-          "> on port: " << pmt::symbol_to_string(pmt_port) << std::endl;
+        std::cout << "...post_message on port: " << 
+          pmt::symbol_to_string(pmt_port) << std::endl;
+        pmt::print(pmt_msg_send);  
       }
       boost::mutex d_mutex;
       d_mutex.lock();
       message_port_pub(pmt_port, pmt_msg_send);
       d_mutex.unlock();
     }  // end post_message
+
+
+
+    /* post_message in string formatted port */
+    void gwnblock_dev_impl::post_message(std::string port,
+        pmt::pmt_t pmt_msg)
+    {
+      pmt::pmt_t pmt_port = pmt::intern(port); 
+      post_message(pmt_port, pmt_msg);
+    }
 
 
 
@@ -319,7 +344,6 @@ namespace gr {
       d_message = message;
       d_counter = counter;
       d_debug = true;
-      //pdata_obj = new gwnblock_dev_pdata(message, counter);
 
       if (d_debug) {
         std::cout << "gwnblock_dev, constructor, name " << 

@@ -53,7 +53,7 @@ namespace gr {
       if (d_debug) {
         std::cout << "GWNPort, default constructor"
         << std::endl; }
-    }  // end GWNPort
+    }  // end GWNPort constructor
 
     std::string message_repeat_impl::GWNPort::__str__() {
       std::string ss = "GWNPort name: " + d_port + 
@@ -74,7 +74,7 @@ namespace gr {
       if (d_debug) {
         std::cout << "GWNOutPort, constructor" << std::endl;
       }
-    }  // end GWNOutPort
+    }  // end GWNOutPort constructor
 
 
     /* GWNInPort */
@@ -88,7 +88,25 @@ namespace gr {
       if (d_debug) {
         std::cout << "GWNInPort, constructor" << std::endl;
       }
-    }  // end GWNInPort
+    }  // end GWNInPort constructor
+
+
+
+    /* Handles messages received on message input ports. */
+    void message_repeat_impl::handle_msg (pmt::pmt_t pmt_msg)
+    {
+      std::string in_msg = pmt::symbol_to_string(pmt_msg);
+      if (d_debug) { 
+        std::cout << "...handle input msg: " << in_msg << std::endl;
+      }
+
+      pmt::pmt_t pmt_port_msg = 
+        pdata_obj->process_data("handle_msg", pmt_msg, 0);
+
+      pmt::pmt_t pmt_port_send = pmt::car(pmt_port_msg);
+      pmt::pmt_t pmt_msg_send = pmt::cdr(pmt_port_msg);
+      post_message(pmt_port_send, pmt_msg_send);
+    }  // end handle_msg
 
 
 
@@ -193,23 +211,7 @@ namespace gr {
     }*/
 
 
-    /* Handles messages received on message input ports. */
-    void message_repeat_impl::handle_msg (pmt::pmt_t pmt_msg)
-    {
-      std::string in_msg = pmt::symbol_to_string(pmt_msg);
-      if (d_debug) { 
-        std::cout << "...handle input msg: " << in_msg << std::endl;
-      }
-
-      pmt::pmt_t pmt_port_msg = 
-        pdata_obj->process_data("handle_msg", pmt_msg, 0);
-
-      pmt::pmt_t pmt_port_send = pmt::car(pmt_port_msg);
-      pmt::pmt_t pmt_msg_send = pmt::cdr(pmt_port_msg);
-      post_message(pmt_port_send, pmt_msg_send);
-    }  // end handle_msg
-
-
+    /* Posts message in an output port. */
     void message_repeat_impl::post_message(pmt::pmt_t pmt_port,
         pmt::pmt_t pmt_msg_send)
     {
