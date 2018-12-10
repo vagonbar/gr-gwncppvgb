@@ -8,9 +8,9 @@ The coding in C++ of the core classes in GWN is expected to improve in performan
 
 To simplify coding of new blocks, a block creation script was written, which includes all necessary code in a new GWN block by modifying a template to include the new block ports, timers and user parameters. The programmer of the new block is expected to rewrite two functions:
 
-    `add_init`, which stands for additional initialization, where custom variables can be defined, timers can be set, etc.
+`add_init`, which stands for additional initialization, where custom variables can be defined, timers can be set, etc.
 
-    `process_data`, where all the actions expected from the new block are coded. This function is invoked when a message is received on a message or timer port, does some processing according to the message received, and optionally outputs another message on any of the available output ports.
+`process_data`, where all the actions expected from the new block are coded. This function is invoked when a message is received on a message or timer port, does some processing according to the message received, and optionally outputs another message on any of the available output ports.
 
 
 ## An example block
