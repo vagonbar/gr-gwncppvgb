@@ -22,19 +22,6 @@
 ########################################################################
 install(FILES
     api.h
-    message_passer.h
-    message_passer_pdata.h
-    message_passer.h
-    message_passer_pdata.h
-    message_passer.h
-    message_passer_pdata.h
-    message_passer.h
-    message_passer_pdata.h
-    message_passer.h
-    message_passer_pdata.h
-    gwnfsm.h
-    gwntimer_strobe.h
-    message_repeat.h
-    message_repeat_pdata.h
-    gwnblock_dev.h DESTINATION include/gwncppvgb
+    message_timer_example.h
+    DESTINATION include/gwncppvgb
 )

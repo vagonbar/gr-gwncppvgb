@@ -41,22 +41,20 @@ SED_TIMERS="s/d_number_timers = $NR_TIMERS/g"
 ### produce user arguments declaration and initialization
 
 # strings to substitute
-MSG_USER_ARGS="<GWN TAG user arguments list>"
-MSG_USER_ARGS_DECL="GWN TAG user arguments declaration"
-MSG_USER_ARGS_INIT="GWN TAG user arguments initialization"
-MSG_USER_PARS="<GWN TAG user parameters list>"
-MSG_USER_ARGS_CONSTR="GWN TAG user arguments constructor init"
+MSG_USER_ARGS="<GWN user arguments list>"
+MSG_USER_ARGS_DECL="GWN user arguments declaration"
+MSG_USER_ARGS_INIT="GWN user arguments initialization"
+MSG_USER_PARS="<GWN user parameters list>"
 
 # user parameters: signature, declaration, initialization
 USER_ARGS=""         # user arguments, signature of function
 USER_ARGS_DECL=""    # user arguments declaration
 USER_ARGS_INIT=""    # user arguments initialization
 USER_PARS=""         # user parameters, for function call
-USER_ARGS_CONSTR="\n      "  # user arguments initialization in constructor
 
 # user arguments list, create array of arguments
 echo -n "Enter argument list: "; read USER_ARGS
-#USER_ARGS="std::string msg_1, float period_1, int count_1"  # for testing
+#USER_ARGS="std::string message, int counter, std::string port"  # for testing
 USER_ARGS_ARRAY=(`echo $USER_ARGS | tr " " "#" | tr "," " "`)
 
 
@@ -74,8 +72,6 @@ do
   ITEM_ARG_DECL=""
   ITEM_ARG_INIT=""
   ITEM_PAR=""
-  ITEM_ARG_CONSTR=""
-
   for I in "${!VAR[@]}"
   do
     if [ $I -eq $VAR_NR_LAST ]
@@ -83,7 +79,6 @@ do
       ITEM_ARG_DECL=$ITEM_ARG_DECL"d_"${VAR[$I]}";"
       ITEM_ARG_INIT=$ITEM_ARG_INIT"d_"${VAR[$I]}" = "${VAR[$I]}";"
       ITEM_PAR=${ITEM_PAR}${VAR[$I]}", "
-      ITEM_ARG_CONSTR=$ITEM_ARG_CONSTR"d_"${VAR[$I]}"("${VAR[$I]}")"
     else
       ITEM_ARG_DECL=$ITEM_ARG_DECL${VAR[$I]}" "
     fi
@@ -93,20 +88,13 @@ do
   USER_ARGS_DECL=$USER_ARGS_DECL"\n      "$ITEM_ARG_DECL
   USER_ARGS_INIT=$USER_ARGS_INIT"\n      "$ITEM_ARG_INIT
   USER_PARS=${USER_PARS}${ITEM_PAR}
-  USER_ARGS_CONSTR=$USER_ARGS_CONSTR", "$ITEM_ARG_CONSTR
 done
 USER_PARS=`echo ${USER_PARS} | sed -E "s/,\$//g"`  # delete last ","
 
-#echo User argument list: "$USER_ARGS"
-#echo User parameter list: "$USER_PARS"
-#echo -e User arguments declaration: "$USER_ARGS_DECL"
-#echo -e User arguments initialization: "$USER_ARGS_INIT"
-#echo -e User arguments constructor initialization: "$USER_ARGS_CONSTR"
-echo "$MSG_USER_ARGS : $USER_ARGS"
-echo "$MSG_USER_PARS : $USER_PARS"
-echo -e "$MSG_USER_ARGS_DECL  : $USER_ARGS_DECL"
-echo -e "$MSG_USER_ARGS_INIT  :  $USER_ARGS_INIT"
-echo -e "$MSG_USER_ARGS_CONSTR  :  $USER_ARGS_CONSTR"
+echo User argument list: "$USER_ARGS"
+echo User parameter list: "$USER_PARS"
+echo -e User arguments declaration: "$USER_ARGS_DECL"
+echo -e User arguments initialization: "$USER_ARGS_INIT"
 
 
 ### create block with gr_modtool
@@ -118,13 +106,12 @@ then
   echo "Creating block $1..."
 else
   echo "Answer was not y nor Y:" $ANSWER
-  exit
+#  exit
 fi
 
 # sed substitution expressions
 BLOCK_NAME_CAPS=`echo $BLOCK_NAME | tr [a-z] [A-Z]`
-#SED_GWNBLOCKC="s/gwnblockc/${BLOCK_NAME}/g"
-SED_GWNBLOCKC="s/gwnblock_dev/${BLOCK_NAME}/g"
+SED_GWNBLOCKC="s/gwnblockc/${BLOCK_NAME}/g"
 SED_GWNBLOCKC_CAPS="s/GWNBLOCKC/${BLOCK_NAME_CAPS}/g"
 #SED_PARAMETERS=\"s/$DEFAULT_PARS/$PARAMETERS/g\"
 
@@ -136,8 +123,8 @@ echo ... gr_modtool, creating $BLOCK_NAME
 python $GRMODTOOL add --block-name=$BLOCK_NAME \
   --block-type=general --lang=cpp \
   --argument-list="" --add-python-qa
-#echo ...gr_modtool, creating ${BLOCK_NAME}_pdata
-#python $GRMODTOOL add --block-name=${BLOCK_NAME}_pdata --block-type=noblock --lang=cpp --argument-list="" 
+echo ...gr_modtool, creating ${BLOCK_NAME}_pdata
+python $GRMODTOOL add --block-name=${BLOCK_NAME}_pdata --block-type=noblock --lang=cpp --argument-list="" 
 cd $CURDIR
 echo -en "... returned to module build directory:\n      "; pwd
 
@@ -148,30 +135,43 @@ echo -en "... returned to module build directory:\n      "; pwd
 echo "... processing ../include/${MODULE_NAME}/${BLOCK_NAME}.h"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
   -e "s/$MSG_USER_ARGS/$USER_ARGS/g" \
-  ../libgwn/gwnblock_dev.h > ../include/${MODULE_NAME}/${BLOCK_NAME}.h
+  ../libgwn/gwnblockc.h > ../include/${MODULE_NAME}/${BLOCK_NAME}.h
 
 echo "... processing ../lib/${BLOCK_NAME}_impl.h"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
   -e "s/${MSG_USER_ARGS}/$USER_ARGS/g" \
   -e "s/${MSG_USER_ARGS_DECL}/&${USER_ARGS_DECL}/g" \
-  ../libgwn/gwnblock_dev_impl.h > ../lib/${BLOCK_NAME}_impl.h
+  ../libgwn/gwnblockc_impl.h > ../lib/${BLOCK_NAME}_impl.h
 
 echo "... processing ../lib/${BLOCK_NAME}_impl.cc"
 sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
   -e "s/${MSG_USER_ARGS}/${USER_ARGS}/g" \
   -e "s/${MSG_USER_PARS}/${USER_PARS}/g" \
-  -e "s/${MSG_USER_ARGS_CONSTR}/&${USER_ARGS_CONSTR}/g" \
+  -e "s/${MSG_USER_ARGS_INIT}/&${USER_ARGS_INIT}/g" \
   -e "s/d_name = \"no_name\"/d_name = \"$BLOCK_NAME\"/g" \
   -e "s/d_number_in = 0/d_number_in = $NR_IN/g" \
   -e "s/d_number_out = 0/d_number_out = $NR_OUT/g" \
   -e "s/d_number_timers = 0/d_number_timers = $NR_TIMERS/g" \
-  ../libgwn/gwnblock_dev_impl.cc > ../lib/${BLOCK_NAME}_impl.cc
-  #-e "s/${MSG_USER_ARGS_INIT}/&${USER_ARGS_INIT}/g" \
+  ../libgwn/gwnblockc_impl.cc > ../lib/${BLOCK_NAME}_impl.cc
 
 # new block QA file
 echo "... processing ../python/qa_${BLOCK_NAME}.py"
 sed -e $SED_GWNBLOCKC \
-  ../libgwn/qa_gwnblock_dev.py > ../python/qa_${BLOCK_NAME}.py
+  ../libgwn/qa_gwnblockc.py > ../python/qa_${BLOCK_NAME}.py
+
+# new block process data files
+echo "... processing ../include/${MODULE_NAME}/${BLOCK_NAME}_pdata.h"
+sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
+  -e "s/${MSG_USER_ARGS}/$USER_ARGS/g" \
+  -e "s/${MSG_USER_ARGS_DECL}/&${USER_ARGS_DECL}/g" \
+  ../libgwn/gwnblockc_pdata.h > ../include/${MODULE_NAME}/${BLOCK_NAME}_pdata.h
+
+echo "... processing ../lib/${BLOCK_NAME}_pdata.cc"
+sed -e $SED_GWNBLOCKC -e $SED_GWNBLOCKC_CAPS \
+  -e "s/${MSG_USER_ARGS}/${USER_ARGS}/g" \
+  -e "s/${MSG_USER_PARS}/${USER_PARS}/g" \
+  -e "s/${MSG_USER_ARGS_INIT}/&${USER_ARGS_INIT}/g" \
+  ../libgwn/gwnblockc_pdata.cc > ../lib/${BLOCK_NAME}_pdata.cc
 
 echo "... block $1 created."
 

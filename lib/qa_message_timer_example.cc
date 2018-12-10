@@ -19,28 +19,20 @@
  */
 
 
-#ifndef INCLUDED_GWNCPPVGB_GWNFSM_H
-#define INCLUDED_GWNCPPVGB_GWNFSM_H
-
-#include <gwncppvgb/api.h>
+#include <gnuradio/attributes.h>
+#include <cppunit/TestAssert.h>
+#include "qa_message_timer_example.h"
+#include <gwncppvgb/message_timer_example.h>
 
 namespace gr {
   namespace gwncppvgb {
 
-    /*!
-     * \brief <+description+>
-     *
-     */
-    class GWNCPPVGB_API gwnfsm
+    void
+    qa_message_timer_example::t1()
     {
-    public:
-      gwnfsm(std::string initial_sate);
-      ~gwnfsm();
-    private:
-    };
+      // Put test here
+    }
 
-  } // namespace gwncppvgb
-} // namespace gr
-
-#endif /* INCLUDED_GWNCPPVGB_GWNFSM_H */
+  } /* namespace gwncppvgb */
+} /* namespace gr */
 

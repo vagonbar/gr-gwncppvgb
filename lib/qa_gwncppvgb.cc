@@ -26,21 +26,16 @@
  */
 
 #include "qa_gwncppvgb.h"
-#include "qa_gwnfsm.h"
-#include "qa_gwntimer_strobe.h"
-#include "qa_message_repeat.h"
-#include "qa_message_repeat_pdata.h"
-#include "qa_gwnblock_dev.h"
+
+
+#include "qa_message_timer_example.h"
 
 CppUnit::TestSuite *
 qa_gwncppvgb::suite()
 {
   CppUnit::TestSuite *s = new CppUnit::TestSuite("gwncppvgb");
-  s->addTest(gr::gwncppvgb::qa_gwnfsm::suite());
-  s->addTest(gr::gwncppvgb::qa_gwntimer_strobe::suite());
-  s->addTest(gr::gwncppvgb::qa_message_repeat::suite());
-  s->addTest(gr::gwncppvgb::qa_message_repeat_pdata::suite());
-  s->addTest(gr::gwncppvgb::qa_gwnblock_dev::suite());
+
+  s->addTest(gr::gwncppvgb::qa_message_timer_example::suite());
 
   return s;
 }

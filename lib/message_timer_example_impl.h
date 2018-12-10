@@ -18,10 +18,10 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_GWNCPPVGB_GWNBLOCK_DEV_IMPL_H
-#define INCLUDED_GWNCPPVGB_GWNBLOCK_DEV_IMPL_H
+#ifndef INCLUDED_GWNCPPVGB_MESSAGE_TIMER_EXAMPLE_IMPL_H
+#define INCLUDED_GWNCPPVGB_MESSAGE_TIMER_EXAMPLE_IMPL_H
 
-#include <gwncppvgb/gwnblock_dev.h>
+#include <gwncppvgb/message_timer_example.h>
 
 /*  GWN inclusions */
 #include <vector>
@@ -38,8 +38,8 @@ namespace gr {
      */
 
 
-    /* GWN gwnblock_dev, a template block */
-    class gwnblock_dev_impl : public virtual gwnblock_dev
+    /* GWN message_timer_example, a template block */
+    class message_timer_example_impl : public virtual message_timer_example
     {
     private:
 
@@ -51,7 +51,7 @@ namespace gr {
         public:
           GWNPort();
           /** A pointer to the block which contains this port. */ 
-          gwnblock_dev_impl * d_block;
+          message_timer_example_impl * d_block;
           /** An identifier of this port. */
           std::string d_port;
           /** A sequential number for this port. */ 
@@ -64,14 +64,14 @@ namespace gr {
       */
       class GWNOutPort: public virtual GWNPort { 
         public:
-          GWNOutPort(gwnblock_dev_impl *, std::string, int);
+          GWNOutPort(message_timer_example_impl *, std::string, int);
        };
 
       /** Input message port.
       */
       class GWNInPort: public virtual GWNPort {
         public:
-          GWNInPort(gwnblock_dev_impl *, std::string, int);
+          GWNInPort(message_timer_example_impl *, std::string, int);
       }; 
 
 
@@ -112,11 +112,11 @@ namespace gr {
           @param count The number of times to emit the message.
           @param period_ms: Tne period of emission in milliseconds.
           */
-          GWNTimer(gwnblock_dev_impl * block, 
+          GWNTimer(message_timer_example_impl * block, 
             std::string id_timer, pmt::pmt_t pmt_msg, 
             int count, float period_ms);
 
-            gwnblock_dev_impl * d_block;
+            message_timer_example_impl * d_block;
             std::string d_id_timer; 
             pmt::pmt_t d_pmt_msg;
             int d_count;
@@ -153,12 +153,12 @@ namespace gr {
 
 
     public:
-      //gwnblock_dev_impl(std::string message, int counter);
-      gwnblock_dev_impl(
+      //message_timer_example_impl(std::string message, int counter);
+      message_timer_example_impl(
         std::string msg_1, float period_1, int count_1,
         std::string msg_2, float period_2, int count_2 );
 
-      ~gwnblock_dev_impl();
+      ~message_timer_example_impl();
 
       /** Block name. */
       std::string d_name;
@@ -226,5 +226,5 @@ namespace gr {
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_GWNBLOCK_DEV_IMPL_H */
+#endif /* INCLUDED_GWNCPPVGB_MESSAGE_TIMER_EXAMPLE_IMPL_H */
 

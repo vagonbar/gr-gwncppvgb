@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-  <name>message_passer_pdata</name>
-  <key>gwncppvgb_message_passer_pdata</key>
+  <name>message_timer_example</name>
+  <key>gwncppvgb_message_timer_example</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>
-  <make>gwncppvgb.message_passer_pdata()</make>
+  <make>gwncppvgb.message_timer_example()</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name

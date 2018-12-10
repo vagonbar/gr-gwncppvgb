@@ -23,7 +23,7 @@
 #endif
 
 #include <gnuradio/io_signature.h>
-#include "gwnblock_dev_impl.h"
+#include "message_timer_example_impl.h"
 
 /* GWN inclusions */
 #include <iostream>  // for string support
@@ -52,7 +52,7 @@ namespace gr {
 
     /* Additional initialization, REWRITE as desired. */
     void
-    gwnblock_dev_impl::added_init() 
+    message_timer_example_impl::added_init() 
     {
       std::cout << "Added Initialization" << std::endl;
     
@@ -76,7 +76,7 @@ namespace gr {
 
     /* Timer and input messages processing, REWRITE as desired. */
     void
-    gwnblock_dev_impl::process_data(
+    message_timer_example_impl::process_data(
       std::string port, pmt::pmt_t pmt_msg)
     {
       std::string d_port = port;
@@ -130,7 +130,7 @@ namespace gr {
 
 
     /* GWNPort */
-    gwnblock_dev_impl::GWNPort::GWNPort() {
+    message_timer_example_impl::GWNPort::GWNPort() {
       d_port = "";      // null port name
       d_port_nr = -1;   // first working port will be 0
       if (d_debug) {
@@ -138,7 +138,7 @@ namespace gr {
         << std::endl; }
     }  // end GWNPort
 
-    std::string gwnblock_dev_impl::GWNPort::__str__() {
+    std::string message_timer_example_impl::GWNPort::__str__() {
       std::string ss = "GWNPort name: " + d_port + 
         ", number: " + std::to_string(d_port_nr) + 
         ", in block: " + d_block->d_name + "\n";
@@ -147,8 +147,8 @@ namespace gr {
 
 
     /* GWNOutPort */
-    gwnblock_dev_impl::GWNOutPort::
-        GWNOutPort(gwnblock_dev_impl * p_block, 
+    message_timer_example_impl::GWNOutPort::
+        GWNOutPort(message_timer_example_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort()
    {
       d_block = p_block;
@@ -161,8 +161,8 @@ namespace gr {
 
 
     /* GWNInPort */
-    gwnblock_dev_impl::GWNInPort::
-        GWNInPort(gwnblock_dev_impl * p_block, 
+    message_timer_example_impl::GWNInPort::
+        GWNInPort(message_timer_example_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort()
     {
       d_block = p_block;
@@ -176,8 +176,8 @@ namespace gr {
 
 
     /* GWNTimer constructor */
-    gwnblock_dev_impl::GWNTimer::GWNTimer(
-      gwnblock_dev_impl * block, std::string id_timer, 
+    message_timer_example_impl::GWNTimer::GWNTimer(
+      message_timer_example_impl * block, std::string id_timer, 
       pmt::pmt_t pmt_msg, int count, float period_ms) 
       : d_block(block), d_id_timer(id_timer),
         d_pmt_msg(pmt_msg), d_count(count),
@@ -191,12 +191,12 @@ namespace gr {
 
     /* GWNTimer, creates thread, timer starts immediately */
     void
-    gwnblock_dev_impl::GWNTimer::start_timer()
+    message_timer_example_impl::GWNTimer::start_timer()
     {
     
       d_thread = boost::shared_ptr<gr::thread::thread>
         (new gr::thread::thread(boost::bind (
-            &gwnblock_dev_impl::GWNTimer::run_timer, this))
+            &message_timer_example_impl::GWNTimer::run_timer, this))
         );
       if (d_debug) {
       std::cout << "    === TIMER STARTED: " << d_id_timer <<
@@ -208,7 +208,7 @@ namespace gr {
 
     /* GWNTimer, runs timer, sleeps and sends message */
     void
-    gwnblock_dev_impl::GWNTimer::run_timer()
+    message_timer_example_impl::GWNTimer::run_timer()
     {
       boost::mutex d_mutex;
 
@@ -251,7 +251,7 @@ namespace gr {
 
     /* Handles message sent by timer threads */
     void
-    gwnblock_dev_impl::handle_timer_msg(pmt::pmt_t pmt_msg) 
+    message_timer_example_impl::handle_timer_msg(pmt::pmt_t pmt_msg) 
     {
       std::string timer_id = pmt::symbol_to_string( pmt::dict_ref (
         pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
@@ -265,18 +265,18 @@ namespace gr {
 
 
 
-    /* *** GWN gwnblock_dev *** */
+    /* *** GWN message_timer_example *** */
 
-    /* GWN gwnblock_dev attributes and functions */
+    /* GWN message_timer_example attributes and functions */
 
-    /*std::string gwnblock_dev_impl::__str__() {
+    /*std::string message_timer_example_impl::__str__() {
       std::string ss = "__str__() Block name: " + this->d_name; 
       return ss;
     }*/
 
 
     /* Handles messages received on message input ports. */
-    void gwnblock_dev_impl::handle_msg (pmt::pmt_t pmt_msg)
+    void message_timer_example_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
       std::string in_msg = pmt::symbol_to_string(pmt_msg);
       if (d_debug) { 
@@ -294,7 +294,7 @@ namespace gr {
 
 
     /* post_message in PMT formatted port */
-    void gwnblock_dev_impl::post_message(pmt::pmt_t pmt_port,
+    void message_timer_example_impl::post_message(pmt::pmt_t pmt_port,
         pmt::pmt_t pmt_msg_send)
     {
       if (d_debug) {
@@ -311,7 +311,7 @@ namespace gr {
 
 
     /* post_message in string formatted port */
-    void gwnblock_dev_impl::post_message(std::string port,
+    void message_timer_example_impl::post_message(std::string port,
         pmt::pmt_t pmt_msg)
     {
       pmt::pmt_t pmt_port = pmt::intern(port); 
@@ -321,32 +321,32 @@ namespace gr {
 
 
     /* GNU Radio defaults for block construction */
-    gwnblock_dev::sptr
-    //gwnblock_dev::make(std::string message, int counter)
-    gwnblock_dev::make(
+    message_timer_example::sptr
+    //message_timer_example::make(std::string message, int counter)
+    message_timer_example::make(
         std::string msg_1, float period_1, int count_1,
         std::string msg_2, float period_2, int count_2 ) 
     {
       return gnuradio::get_initial_sptr
-        (new gwnblock_dev_impl (
+        (new message_timer_example_impl (
           msg_1, period_1, count_1, msg_2, period_2, count_2) );  
     }  // end make
 
 
 
-    /* gwnblock_dev: the private constructor */
-    //gwnblock_dev_impl::gwnblock_dev_impl(std::string message, int counter)
-    gwnblock_dev_impl::gwnblock_dev_impl(
+    /* message_timer_example: the private constructor */
+    //message_timer_example_impl::message_timer_example_impl(std::string message, int counter)
+    message_timer_example_impl::message_timer_example_impl(
         std::string msg_1, float period_1, int count_1,
         std::string msg_2, float period_2, int count_2) 
-      : gr::block("gwnblock_dev",
+      : gr::block("message_timer_example",
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) ),
           d_msg_1(msg_1), d_period_1(period_1), d_count_1(count_1), 
           d_msg_2(msg_2), d_period_2(period_2), d_count_2(count_2)
     {
       // GWN block name, ports and timers as block attributes
-      d_name = "gwnblock_dev";
+      d_name = "message_timer_example";
       d_number_in = 1;
       d_number_out = 1;
       d_number_timers = 2;
@@ -359,12 +359,12 @@ namespace gr {
       d_debug = true;
 
       if (d_debug) {
-        std::cout << "gwnblock_dev, constructor, name " << 
+        std::cout << "message_timer_example, constructor, name " << 
           d_name << ", number_in " << d_number_in << 
           ", number_out " << d_number_out << std::endl;
       }
 
-      // gwnblock_dev, create out ports
+      // message_timer_example, create out ports
       int i;
       d_ports_out.resize(d_number_out);
       std::string out_port;
@@ -379,14 +379,14 @@ namespace gr {
         message_port_register_out(pmt_out_port); 
       }  // end for
       if (d_debug) {    // print items in vector of out ports
-        std::cout << "=== gwnblock_dev, out ports:" << std::endl;
+        std::cout << "=== message_timer_example, out ports:" << std::endl;
         for ( i=0; i < d_number_out; i++) {
           std::cout << "  out port " << i << 
             ": " << d_ports_out[i]->__str__(); // << std::endl; 
         }
       }
 
-      // gwnblock_dev, create in ports
+      // message_timer_example, create in ports
       //int i;                  // already declared
       d_ports_in.resize(d_number_in);
       std::string in_port;  
@@ -401,10 +401,10 @@ namespace gr {
 
         message_port_register_in(pmt_in_port);
         set_msg_handler(pmt_in_port,
-          boost::bind(&gwnblock_dev_impl::handle_msg, this, _1));
+          boost::bind(&message_timer_example_impl::handle_msg, this, _1));
       }  // end for
       if (d_debug) {      // print items in vector of in ports
-        std::cout << "=== gwnblock_dev, in ports:" << std::endl;
+        std::cout << "=== message_timer_example, in ports:" << std::endl;
         for ( i=0; i < d_number_in; i++) {
           std::cout << "  in port " << i << 
             ": " << d_ports_in[i]->__str__(); // << std::endl; 
@@ -415,7 +415,7 @@ namespace gr {
       // register the timer port
       message_port_register_in(pmt::mp("timer_port"));
       set_msg_handler(pmt::mp("timer_port"),
-        boost::bind(&gwnblock_dev_impl::handle_timer_msg, 
+        boost::bind(&message_timer_example_impl::handle_timer_msg, 
         this, _1));
       // create timers
       d_timers.resize(d_number_timers);
@@ -431,14 +431,14 @@ namespace gr {
 
 
       // additional initialization
-      //gwnblock_dev_impl::added_init();
+      //message_timer_example_impl::added_init();
       added_init();
 
     }  // end constructor
 
 
-    /* gwnblock_dev: our virtual destructor */
-    gwnblock_dev_impl::~gwnblock_dev_impl()
+    /* message_timer_example: our virtual destructor */
+    message_timer_example_impl::~message_timer_example_impl()
     { }
 
 

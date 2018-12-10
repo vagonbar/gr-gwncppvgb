@@ -19,8 +19,8 @@
  */
 
 
-#ifndef _QA_MESSAGE_REPEAT_PDATA_H_
-#define _QA_MESSAGE_REPEAT_PDATA_H_
+#ifndef _QA_MESSAGE_TIMER_EXAMPLE_H_
+#define _QA_MESSAGE_TIMER_EXAMPLE_H_
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestCase.h>
@@ -28,10 +28,10 @@
 namespace gr {
   namespace gwncppvgb {
 
-    class qa_message_repeat_pdata : public CppUnit::TestCase
+    class qa_message_timer_example : public CppUnit::TestCase
     {
     public:
-      CPPUNIT_TEST_SUITE(qa_message_repeat_pdata);
+      CPPUNIT_TEST_SUITE(qa_message_timer_example);
       CPPUNIT_TEST(t1);
       CPPUNIT_TEST_SUITE_END();
 
@@ -42,5 +42,5 @@ namespace gr {
   } /* namespace gwncppvgb */
 } /* namespace gr */
 
-#endif /* _QA_MESSAGE_REPEAT_PDATA_H_ */
+#endif /* _QA_MESSAGE_TIMER_EXAMPLE_H_ */
 

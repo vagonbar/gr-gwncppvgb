@@ -19,8 +19,8 @@
  */
 
 
-#ifndef INCLUDED_GWNCPPVGB_MESSAGE_PASSER_H
-#define INCLUDED_GWNCPPVGB_MESSAGE_PASSER_H
+#ifndef INCLUDED_GWNCPPVGB_GWNBLOCK_DEV_H
+#define INCLUDED_GWNCPPVGB_GWNBLOCK_DEV_H
 
 #include <gwncppvgb/api.h>
 #include <gnuradio/block.h>
@@ -28,30 +28,38 @@
 namespace gr {
   namespace gwncppvgb {
 
-    /*!
-     * \brief <+description of block+>
+    /**
+     * \brief GWN template class for new block construction. 
      * \ingroup gwncppvgb
      *
+     * Please consider some comments // and <text thus enclosed>
+     * will be substituted by the gwn_modtool.sh script when
+     * creating a new type of block. DO NOT ALTER, the script
+     * needs those comments for correct substitution.
      */
-    class GWNCPPVGB_API message_passer : virtual public gr::block
+
+
+    class GWNCPPVGB_API gwnblock_dev : virtual public gr::block
     {
      public:
-      typedef boost::shared_ptr<message_passer> sptr;
+      typedef boost::shared_ptr<gwnblock_dev> sptr;
 
       /*!
-       * \brief Return a shared_ptr to a new instance of gwncppvgb::message_passer.
+       * \brief Return a shared_ptr to a new instance of gwncppvgb::gwnblock_dev.
        *
-       * To avoid accidental use of raw pointers, gwncppvgb::message_passer's
+       * To avoid accidental use of raw pointers, gwncppvgb::gwnblock_dev's
        * constructor is in a private implementation
-       * class. gwncppvgb::message_passer::make is the public interface for
+       * class. gwncppvgb::gwnblock_dev::make is the public interface for
        * creating new instances.
        */
-      static sptr make(std::string message, int counter);
+      static sptr make( <GWN TAG user arguments list> );
+        //std::string msg_1, float period_1, int count_1,
+        //std::string msg_2, float period_2, int count_2 );
 
     };
 
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_MESSAGE_PASSER_H */
+#endif /* INCLUDED_GWNCPPVGB_GWNBLOCK_DEV_H */
 

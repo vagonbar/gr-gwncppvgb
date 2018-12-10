@@ -17,19 +17,6 @@
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
 install(FILES
-    gwncppvgb_message_passer.xml
-    gwncppvgb_message_passer_pdata.xml
-    gwncppvgb_message_passer.xml
-    gwncppvgb_message_passer_pdata.xml
-    gwncppvgb_message_passer.xml
-    gwncppvgb_message_passer_pdata.xml
-    gwncppvgb_message_passer.xml
-    gwncppvgb_message_passer_pdata.xml
-    gwncppvgb_message_passer.xml
-    gwncppvgb_message_passer_pdata.xml
-    gwncppvgb_gwnfsm.xml
-    gwncppvgb_gwntimer_strobe.xml
-    gwncppvgb_message_repeat.xml
-    gwncppvgb_message_repeat_pdata.xml
-    gwncppvgb_gwnblock_dev.xml DESTINATION share/gnuradio/grc/blocks
+    gwncppvgb_message_timer_example.xml
+    DESTINATION share/gnuradio/grc/blocks
 )

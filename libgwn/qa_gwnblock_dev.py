@@ -28,7 +28,7 @@ import gwncppvgb.gwncppvgb_swig as gwncppvgb
 import time
 import pmt
 
-class qa_message_repeat (gr_unittest.TestCase):
+class qa_gwnblock_dev (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -37,9 +37,9 @@ class qa_message_repeat (gr_unittest.TestCase):
         self.tb = None
 
     def test_constructor (self):
-        #print "\n===\n=== TEST message_repeat constructor \n===\n"
+        #print "\n===\n=== TEST gwnblock_dev constructor \n===\n"
         #gwncppvgb.set_debug(True)   # does now work as expected
-        #myblock = gwncppvgb.message_repeat("GWN test message 1", 10)
+        #myblock = gwncppvgb.gwnblock_dev("GWN test message 1", 10)
         #print "myblock.__str__()", myblock.__str__()  # not as expected
 
 
@@ -48,11 +48,17 @@ class qa_message_repeat (gr_unittest.TestCase):
         # check data
         pass
 
-    def test_ports (self):
-        print "\n===\n=== TEST message_repeat input and output ports \n===\n"
+    def test_ports_timer (self):
+        print "\n===\n=== TEST gwnblock_dev input and output ports \n===\n"
         tst_msg = "--- A message from message strobe"
         src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
-        pss = gwncppvgb.message_repeat("GWN test message 2", 10)
+        pss = gwncppvgb.gwnblock_dev( \
+          "TIMER 1 msg AAAA", 1000.0, 6)
+          #"TIMER 1 msg AAAA", 1000.0, 6, \
+          #"TIMER 2 msg BBBB", 1000.0, 3)
+          #"TIMEOUT 2 CCC", 3000.0, 1)
+        #"GWN test message 2", 10)
+
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
@@ -65,4 +71,4 @@ class qa_message_repeat (gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_message_repeat, "qa_message_repeat.xml")
+    gr_unittest.run(qa_gwnblock_dev, "qa_gwnblock_dev.xml")

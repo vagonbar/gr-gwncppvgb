@@ -8,23 +8,10 @@
 %include "gwncppvgb_swig_doc.i"
 
 %{
-#include "gwncppvgb/message_passer.h"
-#include "gwncppvgb/message_passer_pdata.h"
-#include "gwncppvgb/gwnfsm.h"
-#include "gwncppvgb/gwntimer_strobe.h"
-#include "gwncppvgb/message_repeat.h"
-#include "gwncppvgb/message_repeat_pdata.h"
-#include "gwncppvgb/gwnblock_dev.h"
+#include "gwncppvgb/message_timer_example.h"
 %}
-%include "gwncppvgb/message_passer.h"
-GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_passer);
-%include "gwncppvgb/message_passer_pdata.h"
-%include "gwncppvgb/gwnfsm.h"
-%include "gwncppvgb/gwntimer_strobe.h"
-GR_SWIG_BLOCK_MAGIC2(gwncppvgb, gwntimer_strobe);
 
-%include "gwncppvgb/message_repeat.h"
-GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_repeat);
-%include "gwncppvgb/message_repeat_pdata.h"
-%include "gwncppvgb/gwnblock_dev.h"
-GR_SWIG_BLOCK_MAGIC2(gwncppvgb, gwnblock_dev);
+
+%include "gwncppvgb/message_timer_example.h"
+GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_timer_example);
+
