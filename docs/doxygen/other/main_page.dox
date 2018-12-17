@@ -2,9 +2,14 @@
 
 Welcome to the GNU Radio GWNCPPVGB Block
 
+This is a testing project to enhance the GWN project (GWN, GNU Wireless Network) by coding the core of GWN in C++ (at present it is coded in Python). Please find the GWN Project at https://github.com/vagonbar/gr-gwn/.
+
 This is the intro page for the Doxygen manual generated for the GWNCPPVGB
 block (docs/doxygen/other/main_page.dox). Edit it to add more detailed
 documentation about the new GNU Radio modules contained in this
 project.
+
+Please see the README.md file.
+
 
 */
