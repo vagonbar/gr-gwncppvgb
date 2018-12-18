@@ -347,9 +347,9 @@ namespace gr {
     {
       // GWN block name, ports and timers as block attributes
       d_name = "gwnblock_dev";
-      d_number_in = 1;
-      d_number_out = 1;
-      d_number_timers = 2;
+      d_number_in = 0;
+      d_number_out = 0;
+      d_number_timers = 0;
 
       d_debug = false; 
 
