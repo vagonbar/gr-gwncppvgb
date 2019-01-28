@@ -59,9 +59,9 @@ namespace gr {
       //d_debug = true;
 
       // set timers message, period, etc
-      d_timers[0]->d_count = d_count_1;
-      d_timers[0]->d_period_ms = d_period_1;
-      d_timers[0]->d_pmt_msg = pmt::mp(d_msg_1);
+      d_timers[0]->d_count = 0;
+      d_timers[0]->d_period_ms = 100;
+      d_timers[0]->d_pmt_msg = pmt::mp("Timer 0 message");
       //d_timers[1]->d_count = d_count_2;
       //d_timers[1]->d_period_ms = d_period_2;
       //d_timers[1]->d_pmt_msg = pmt::mp(d_msg_2);
