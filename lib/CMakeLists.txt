@@ -26,7 +26,8 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 list(APPEND gwncppvgb_sources
     message_timer_example_impl.cc
-    )
+    fsm_test_impl.cc
+    fsmblk.cc )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)
 if(NOT gwncppvgb_sources)

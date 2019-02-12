@@ -23,5 +23,6 @@
 install(FILES
     api.h
     message_timer_example.h
-    DESTINATION include/gwncppvgb
+    fsm_test.h
+    fsmblk.h DESTINATION include/gwncppvgb
 )
