@@ -40,34 +40,33 @@
 namespace gr {
   namespace gwncppvgb {
 
-    //class FSM;  
-    class fsmblk;  // forward declaration, for typedef
+    class fsmblk;  // FSM class name forward declaration, for typedef
 
-    /** action function type definition */
+    /** action function type definition. */
     typedef void (*type_action)(fsmblk &fsm);
-    /** condition function type definition */
+    /** condition function type definition. */
     typedef bool (*type_condition)(fsmblk &fsm);
-    /** from_state : (input symbol, current state) */
+    /** from_state : (input symbol, current state). */
     typedef std::tuple<std::string, std::string> from_state;
-    /** to_state   : (type_action, next state, condition, comment) */
+    /** to_state   : (type_action, next state, condition, comment). */
     typedef std::tuple<type_action, std::string, type_condition, std::string> to_state;
-    /** memory object type definition */
+    /** memory object type definition. */
     typedef std::string mem_type;
 
 
 
-    /** FSM exception class declaration */
+    /** FSM exception class declaration. */
     class ExceptionFSM
       {
         public:
-          /** FSM exception constructor */
+          /** FSM exception constructor. */
           ExceptionFSM(std::string value);
-          /** FSM exception destructor */
+          /** FSM exception destructor. */
           ~ExceptionFSM();
-          /** Get exception message */
+          /** Get exception message. */
           std::string get_value();
         private:
-          std::string d_value;  /** Exception message  */
+          std::string d_value;  /** Exception message. */
       };
 
 
@@ -199,9 +198,12 @@ namespace gr {
       void mem_push(mem_type obj);
       /** Memory, removes element from stack */
       void mem_pop(); 
-      /** Memory, stack is empgy */
+      /** Memory, test if stack is empgy */
       bool mem_empty();
-      /** Memory, size of stack */
+      /** Memory, size of stack
+       *
+       * @return returns true if stack is empty.
+       */
       int mem_size();
       /** Memory, get top element of stack, does not erase
        *
@@ -224,10 +226,6 @@ namespace gr {
       type_action d_action; /** a function to execute on transition */
       std::stack<mem_type> d_memory; /** a LIFO stack */
       bool d_debug; /** If true prints debug messages */
-
-
-
-
 
 
     };
