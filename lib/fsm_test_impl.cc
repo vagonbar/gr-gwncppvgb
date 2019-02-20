@@ -32,7 +32,7 @@
 #include <pmt/pmt.h>              // for messages
 #include <gnuradio/blocks/pdu.h>  // for messages
 
-#include "gwncppvgb/fsmblk.h"
+//#include "gwncppvgb/fsmblk.h"  // included in fsm_test_impl.cc
 
 
 namespace gr {
@@ -50,7 +50,7 @@ namespace gr {
      * Block specific code, REWRITE for a new block.
      ************************************************/
 
-      gwncppvgb::fsmblk * d_fsm = new fsmblk("INIT");
+      //gwncppvgb::fsmblk * d_fsm = new fsmblk("INIT");
 
     /* Additional initialization, REWRITE as desired. */
     void
@@ -79,6 +79,7 @@ namespace gr {
       d_sym_counter = 0;        // to emit one symbol per call
 
       //gwncppvgb::fsmblk * d_fsm = new fsmblk("INIT");
+      d_fsm = new fsmblk("INIT");
       if (d_debug)
       {
         d_fsm->print_transitions();

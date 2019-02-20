@@ -55,21 +55,6 @@ namespace gr {
 
 
 
-    /** FSM exception class declaration. */
-//    class ExceptionFSM
-//      {
-//        public:
-          /** FSM exception constructor. */
-//          ExceptionFSM(std::string value);
-          /** FSM exception destructor. */
-//          ~ExceptionFSM();
-          /** Get exception message. */
-//          std::string get_value();
-//        private:
-//          std::string d_value;  /** Exception message. */
-//      };
-
-
 
     /*!
      * \brief A block implementing an FSM
@@ -216,6 +201,21 @@ namespace gr {
       void add_myfsm_transitions(); /** add user defined fSM transitions */
 
     private:
+
+    /** FSM exception class declaration. */
+    class ExceptionFSM
+      {
+        public:
+          /** FSM exception constructor. */
+          ExceptionFSM(std::string value);
+          /** FSM exception destructor. */
+          ~ExceptionFSM();
+          /** Get exception message. */
+          std::string get_value();
+        private:
+          std::string d_value;  /** Exception message. */
+      };
+
 
       std::multimap<from_state, to_state> d_state_transitions; /** a multimap (from_state, to_state) */
       std::string d_default_transition; /** a transition for a invalid input, optional */

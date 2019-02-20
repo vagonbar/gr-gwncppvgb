@@ -26,7 +26,9 @@
 /*  GWN inclusions */
 #include <vector>
 
-#include<bits/stdc++.h>   // for array of strings
+#include "gwncppvgb/fsmblk.h"   // the FSM engine block
+
+#include<bits/stdc++.h>   // for array of strings in local test
 
 namespace gr {
   namespace gwncppvgb {
@@ -227,6 +229,7 @@ namespace gr {
       int d_sym_len; 
       int d_sym_counter; 
 
+      gwncppvgb::fsmblk * d_fsm;
 
     }; 
 
