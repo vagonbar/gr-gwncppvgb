@@ -98,8 +98,7 @@ namespace gr {
 
 
     /* fsmblk exception functions */
-
-    ExceptionFSM::ExceptionFSM(std::string value) 
+/*    ExceptionFSM::ExceptionFSM(std::string value) 
       {
         d_value = value;
         std::cout << "ExceptionFSM, constructor" << std::endl;
@@ -113,7 +112,7 @@ namespace gr {
         std::cout << "ExceptionFSM, get_value" << std::endl;
         return d_value;
       }
-
+*/
 
     /* Constructor */
     fsmblk::fsmblk(std::string initial_state)
@@ -275,7 +274,7 @@ namespace gr {
       else
       {
         std::cout << "Default transition not found" << std::endl;
-        throw ExceptionFSM("fsmblk EXCEPTION: no valid transitions!");
+        //throw ExceptionFSM("fsmblk EXCEPTION: no valid transitions!");
       }
     }
 

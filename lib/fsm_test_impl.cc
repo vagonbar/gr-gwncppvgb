@@ -50,7 +50,7 @@ namespace gr {
      * Block specific code, REWRITE for a new block.
      ************************************************/
 
-      gwncppvgb::fsmblk d_fsm = fsmblk("INIT");
+      gwncppvgb::fsmblk * d_fsm = new fsmblk("INIT");
 
     /* Additional initialization, REWRITE as desired. */
     void
@@ -78,11 +78,11 @@ namespace gr {
       d_sym_len = 4; //sizeof(d_sym_sequence);
       d_sym_counter = 0;        // to emit one symbol per call
 
-      gwncppvgb::fsmblk d_fsm = fsmblk("INIT");
+      //gwncppvgb::fsmblk * d_fsm = new fsmblk("INIT");
       if (d_debug)
       {
-        d_fsm.print_transitions();
-        d_fsm.print_state();
+        d_fsm->print_transitions();
+        d_fsm->print_state();
       }
 
     }
@@ -147,11 +147,11 @@ namespace gr {
       }
 
       std::string result = "";
-      result = d_fsm.process(symbol, "", "");
+      result = d_fsm->process(symbol, "", "");
       pmt_msg = pmt::mp(result);
       post_message(pmt_port, pmt_msg);
 
-      //result = d_fsm.process("r", "", "");
+      //result = d_fsm->process("r", "", "");
       //std::cout << "ACTION result: " << result << std::endl;
       //pmt_msg = pmt::mp(result);
       //post_message(pmt_port, pmt_msg);
@@ -160,7 +160,7 @@ namespace gr {
       //pmt_msg = pmt::mp(result);
       //post_message(pmt_port, pmt_msg);
 
-      d_fsm.print_state();
+      d_fsm->print_state();
 
     }
 

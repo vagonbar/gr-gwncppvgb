@@ -56,18 +56,18 @@ namespace gr {
 
 
     /** FSM exception class declaration. */
-    class ExceptionFSM
-      {
-        public:
+//    class ExceptionFSM
+//      {
+//        public:
           /** FSM exception constructor. */
-          ExceptionFSM(std::string value);
+//          ExceptionFSM(std::string value);
           /** FSM exception destructor. */
-          ~ExceptionFSM();
+//          ~ExceptionFSM();
           /** Get exception message. */
-          std::string get_value();
-        private:
-          std::string d_value;  /** Exception message. */
-      };
+//          std::string get_value();
+//        private:
+//          std::string d_value;  /** Exception message. */
+//      };
 
 
 
@@ -102,7 +102,7 @@ namespace gr {
        *
        * @param initial_state: the FSM initial state.
        */ 
-        fsmblk(std::string initial_state);
+       fsmblk(std::string initial_state);
 
 
       /**
@@ -111,7 +111,7 @@ namespace gr {
         ~fsmblk();
 
 
-        std::string process(std::string msg);   // preliminary tests
+        //std::string process(std::string msg);   // preliminary tests
 
 
       /** \brief Brings the machine back to its initial state.
