@@ -24,5 +24,6 @@ install(FILES
     api.h
     message_timer_example.h
     fsm_test.h
-    fsmblk.h DESTINATION include/gwncppvgb
+    fsmblk.h
+    symbol_strobe.h DESTINATION include/gwncppvgb
 )
