@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <?grc format='1' created='3.7.12'?>
 <flow_graph>
-  <timestamp>Mon Feb 25 19:09:51 2019</timestamp>
+  <timestamp>Tue Feb 26 12:20:17 2019</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -136,7 +136,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(720, 232)</value>
+      <value>(728, 288)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -145,6 +145,49 @@
     <param>
       <key>id</key>
       <value>blocks_message_debug_0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwncppvgb_fsm_test</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(536, 284)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gwncppvgb_fsm_test_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -163,7 +206,7 @@
     </param>
     <param>
       <key>count</key>
-      <value>8</value>
+      <value>6</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -171,7 +214,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(384, 248)</value>
+      <value>(264, 268)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -195,13 +238,19 @@
     </param>
     <param>
       <key>symbol_seq</key>
-      <value>abcdefgh</value>
+      <value>grgrgr</value>
     </param>
   </block>
   <connection>
-    <source_block_id>gwncppvgb_symbol_strobe_0</source_block_id>
+    <source_block_id>gwncppvgb_fsm_test_0</source_block_id>
     <sink_block_id>blocks_message_debug_0</sink_block_id>
     <source_key>out_port_0</source_key>
     <sink_key>print</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwncppvgb_symbol_strobe_0</source_block_id>
+    <sink_block_id>gwncppvgb_fsm_test_0</sink_block_id>
+    <source_key>out_port_0</source_key>
+    <sink_key>in_port_0</sink_key>
   </connection>
 </flow_graph>
