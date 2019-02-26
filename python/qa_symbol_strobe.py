@@ -39,9 +39,9 @@ class qa_symbol_strobe (gr_unittest.TestCase):
 
     def test_ports_timer (self):
         print "\n===\n=== TEST symbol_strobe output \n===\n"
-        pss = gwncppvgb.symbol_strobe( "abcdefgh", 10, 1000.0)
+        sst = gwncppvgb.symbol_strobe( "abcdefgh", 10, 1000.0)
         dbg = blocks.message_debug() 
-        self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
+        self.tb.msg_connect( (sst, "out_port_0"), (dbg, "print") )
   
         self.tb.start ()
         time.sleep(10)

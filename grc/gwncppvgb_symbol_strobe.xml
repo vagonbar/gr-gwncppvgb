@@ -4,27 +4,29 @@
   <key>gwncppvgb_symbol_strobe</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>
-  <make>gwncppvgb.symbol_strobe()</make>
+  <make>gwncppvgb.symbol_strobe($symbol_seq, $count, $period)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
        * key (makes the value accessible as $keyname, e.g. in the make node)
        * type -->
   <param>
-    <name>...</name>
-    <key>...</key>
-    <type>...</type>
+    <name>Symbol sequence</name>
+    <key>symbol_seq</key>
+    <type>string</type>
   </param>
 
-  <!-- Make one 'sink' node per input. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
-  <sink>
-    <name>in</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
-  </sink>
+  <param>
+    <name>Count</name>
+    <key>count</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Period</name>
+    <key>period</key>
+    <type>float</type>
+  </param>
 
   <!-- Make one 'source' node per output. Sub-nodes:
        * name (an identifier for the GUI)
@@ -32,7 +34,8 @@
        * vlen
        * optional (set to 1 for optional inputs) -->
   <source>
-    <name>out</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <name>out_port_0</name>
+    <type>message</type>
+    <optional>1</optional>
   </source>
 </block>

@@ -157,7 +157,7 @@ namespace gr {
 
     public:
       //fsm_test_impl(std::string message, int counter);
-      fsm_test_impl(  );
+      fsm_test_impl(bool debug);
         //std::string msg_1, float period_1, int count_1,
         //std::string msg_2, float period_2, int count_2 );
 
@@ -177,8 +177,6 @@ namespace gr {
       std::vector<GWNInPort *> d_ports_in;
       /** A vector (array) of timer ports. */
       std::vector<GWNTimer *> d_timers;
-      /** If true prints debug messages. */
-      bool d_debug;
 
       /** Posts message on PMT formatted output port. 
 
@@ -221,11 +219,14 @@ namespace gr {
     private:
       // GWN TAG user arguments declaration
 
+      /** If true prints debug messages. */
+      bool d_debug;
+
       ///std::string d_msg_1, d_msg_2;
       //float d_period_1, d_period_2;
       //int d_count_1, d_count_2;
       //std::string d_sym_sequence [4];
-      std::string d_sym_sequence [4] = {"g", "r", "g", "r"};
+      //std::string d_sym_sequence [4] = {"g", "r", "g", "r"};
       int d_sym_len; 
       int d_sym_counter; 
 

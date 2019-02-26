@@ -57,7 +57,7 @@ namespace gr {
     fsm_test_impl::added_init() 
     {
     
-      d_debug = false;
+      //d_debug = false;
       //d_debug = true;
 
       // set timers message, period, etc
@@ -75,15 +75,16 @@ namespace gr {
       // FSM 
 
       //d_sym_sequence = {"g", "r", "g", "r"};
-      d_sym_len = 4; //sizeof(d_sym_sequence);
-      d_sym_counter = 0;        // to emit one symbol per call
+      //d_sym_len = 4; //sizeof(d_sym_sequence);
+      //d_sym_counter = 0;        // to emit one symbol per call
 
       //gwncppvgb::fsmblk * d_fsm = new fsmblk("INIT");
       d_fsm = new fsmblk("INIT");
       if (d_debug)
       {
+        //std::cout << d_fsm->print_transitions();
         d_fsm->print_transitions();
-        d_fsm->print_state();
+        std::cout << d_fsm->show_state();
       }
 
     }
@@ -123,9 +124,11 @@ namespace gr {
         }
       } else {  // non-GWN message
         // actions on non GWN message
+
         if (d_debug) {
-          std::cout << "    process_data, STROBE msg from " <<
-            d_port << std::endl << "   ";
+          std::cout << "    process_data, msg from " <<
+            //d_port << std::endl << "   ";
+            d_port << ":  ";
           pmt::print(pmt_msg);
         }
 
@@ -135,20 +138,22 @@ namespace gr {
       //pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
       //post_message(pmt_port, pmt_msg);
 
+      std::string fsm_symbol = pmt::symbol_to_string (pmt_msg);
 
       // emit FSM messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
 
-      std::string symbol = d_sym_sequence[d_sym_counter];
-      if (d_sym_counter >= d_sym_len-1) {
-        d_sym_counter = 0;
-      }
-      else {
-        d_sym_counter = d_sym_counter + 1;
-      }
+      //std::string symbol = d_sym_sequence[d_sym_counter];
+      //if (d_sym_counter >= d_sym_len-1) {
+      //  d_sym_counter = 0;
+      //}
+      //else {
+      //  d_sym_counter = d_sym_counter + 1;
+      //}
 
       std::string result = "";
-      result = d_fsm->process(symbol, "", "");
+      //result = d_fsm->process(symbol, "", "");
+      result = d_fsm->process(fsm_symbol, "", "");
       pmt_msg = pmt::mp(result);
       post_message(pmt_port, pmt_msg);
 
@@ -161,7 +166,10 @@ namespace gr {
       //pmt_msg = pmt::mp(result);
       //post_message(pmt_port, pmt_msg);
 
-      d_fsm->print_state();
+      //d_fsm->show_state();
+      if (d_debug) {
+        std::cout << d_fsm->show_state();
+      }
 
     }
 
@@ -327,7 +335,7 @@ namespace gr {
     {
       std::string in_msg = pmt::symbol_to_string(pmt_msg);
       if (d_debug) { 
-        std::cout << "...handle input msg: \n";
+        std::cout << "...handle input msg: ";
         pmt::print(pmt_msg);
       } 
       // mutex lock, invoke process_data, unlock
@@ -370,12 +378,12 @@ namespace gr {
     /* GNU Radio defaults for block construction */
     fsm_test::sptr
     //fsm_test::make(std::string message, int counter)
-    fsm_test::make(  )
+    fsm_test::make(bool debug)
          //std::string msg_1, float period_1, int count_1,
         //std::string msg_2, float period_2, int count_2 ) 
     {
       return gnuradio::get_initial_sptr
-        (new fsm_test_impl () ); 
+        (new fsm_test_impl (debug) ); 
           //msg_1, period_1, count_1, msg_2, period_2, count_2) );  
     }  // end make
 
@@ -384,7 +392,7 @@ namespace gr {
     /* fsm_test: the private constructor */
     //fsm_test_impl::fsm_test_impl(std::string message, int counter)
     fsm_test_impl::fsm_test_impl 
-      (  ) 
+      (bool debug) 
       : gr::block("fsm_test",
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) ) //,
@@ -398,12 +406,13 @@ namespace gr {
       d_number_out = 1;
       d_number_timers = 0;
 
-      d_debug = false; 
+      d_debug = debug; 
 
       if (d_debug) {
         std::cout << "fsm_test, constructor, name " << 
           d_name << ", number_in " << d_number_in << 
-          ", number_out " << d_number_out << std::endl;
+          ", number_out " << d_number_out << 
+          ", debug: " << d_debug << std::endl;
       }
 
       // fsm_test, create out ports

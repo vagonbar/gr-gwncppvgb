@@ -36,7 +36,7 @@ class qa_fsm_test (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_constructor (self):
+    #def test_constructor (self):
         #print "\n===\n=== TEST fsm_test constructor \n===\n"
         #gwncppvgb.set_debug(True)   # does now work as expected
         #myblock = gwncppvgb.fsm_test("GWN test message 1", 10)
@@ -46,30 +46,33 @@ class qa_fsm_test (gr_unittest.TestCase):
         # set up fg
         #self.tb.run ()
         # check data
-        pass
+        #pass
 
-    def test_ports_timer (self):
-        print "\n===\n=== TEST fsm_test input and output ports \n===\n"
-        tst_msg = "--- A message from message strobe"
-        src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
-        pss = gwncppvgb.fsm_test()
-        #pss = gwncppvgb.fsm_test( \
-        #  "TIMER 1 msg AAAA", 1000.0, 6)
-          #"TIMER 1 msg AAAA", 1000.0, 6, \
-          #"TIMER 2 msg BBBB", 1000.0, 3)
-          #"TIMEOUT 2 CCC", 3000.0, 1)
-        #"GWN test message 2", 10)
-
+    def test_fsm_debug (self):
+        print "\n===\n=== TEST 1 FSM with debug \n===\n"
+        src = gwncppvgb.symbol_strobe("grgrgr", 6, 1000)
+        pss = gwncppvgb.fsm_test(True)
         dbg = blocks.message_debug() 
-        self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
+        self.tb.msg_connect( (src, "out_port_0"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
-        #self.tb.msg_connect( (src, "port_out_0"), (dbg, "print") )
-  
 
         self.tb.start ()
         time.sleep(8)
         self.tb.stop()
+        return
 
+    def test_fsm_no_debug (self):
+        print "\n===\n=== TEST 2 FSM no debug \n===\n"
+        src = gwncppvgb.symbol_strobe("grgrgr", 6, 1000)
+        pss = gwncppvgb.fsm_test(False)
+        dbg = blocks.message_debug() 
+        self.tb.msg_connect( (src, "out_port_0"), (pss, "in_port_0") )
+        self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
+
+        self.tb.start ()
+        time.sleep(8)
+        self.tb.stop()
+        return
 
 if __name__ == '__main__':
     gr_unittest.run(qa_fsm_test, "qa_fsm_test.xml")

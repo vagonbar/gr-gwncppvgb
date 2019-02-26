@@ -123,18 +123,23 @@ namespace gr {
         type_condition fn_condition, std::string comment = "");
 
 
-      /** Prints an FSM transition.
+      /** Shows an FSM transition.
 
       Prints a transition, an entry of the transitions table.
       @param frstt: key of multimap.
       @param tostt: value of multimap.
+      @return a string describing a transition.
       */
-      void print_transition(from_state frstt, to_state tostt);
+      std::string show_transition(from_state frstt, to_state tostt);
+      //std::string show_transition(from_state frstt, to_state tostt);
 
 
-      /** Prints FSM current state.
+      /** Shows FSM current state.
+
+      @return a string describing FSM state.
       */
-      void print_state();
+      //void show_state();
+      std::string show_state();
 
 
       /** Prints all the FSM transitions.

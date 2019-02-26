@@ -52,7 +52,7 @@ namespace gr {
        * class. gwncppvgb::fsm_test::make is the public interface for
        * creating new instances.
        */
-      static sptr make(  );
+      static sptr make(bool debug);
         //std::string msg_1, float period_1, int count_1,
         //std::string msg_2, float period_2, int count_2 );
 

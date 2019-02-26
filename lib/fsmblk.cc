@@ -44,16 +44,16 @@ namespace gr {
       //fsm.set_where("B");
       d_fsm.mem_push("A visited!");
       d_fsm.d_action_result = "Result of function fn_goA";
-      std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
+      //std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
       return;
     }
 
     void fn_error(gwncppvgb::fsmblk &d_fsm) {
-      std::cout << "  --- FSM error " << std::endl;
+      //std::cout << "  --- FSM error " << std::endl;
       d_fsm.d_action_result="FSM ERROR";
     }
     void fn_init(gwncppvgb::fsmblk &d_fsm) {
-      std::cout << "  --- FSM fn_init" << std::endl;
+      //std::cout << "  --- FSM fn_init" << std::endl;
       d_fsm.d_action_result = "Result of function fn_init";
       return;
     }
@@ -124,7 +124,8 @@ namespace gr {
       d_next_state = "";
       d_action_result = "No action result";
       add_myfsm_transitions();    // FSM add transitions
-      d_debug = true;
+      //d_debug = true;
+      d_debug = false;
 
     }
 
@@ -164,22 +165,32 @@ namespace gr {
     }
 
 
-    void
-    fsmblk::print_state()
+    std::string 
+    fsmblk::show_state()
     {
-      std::cout << "  fsmblk state: input symbol: " << d_input_symbol <<
-        ", initial state " << d_initial_state << 
-        ",  current state " << d_current_state << std::endl;
+      std::string msg ="  fsmblk state: input symbol: " + d_input_symbol +
+        //", initial state " + d_initial_state + 
+        ",  current state " + d_current_state + "\n";
+      return msg;
     }
 
 
-    void fsmblk::print_transition(from_state frstt, to_state tostt)
+    std::string
+    fsmblk::show_transition(from_state frstt, to_state tostt)
     {
-      std::cout << "  (" <<
+      /*std::cout << "  (" <<
         std::get<0>(frstt) << ", " << std::get<1>(frstt) << 
           ") = (action, " << std::get<1>(tostt) <<
           ", condition, " << std::get<3>(tostt) <<
-          ")" << std::endl;
+          ")" << std::endl;  */
+
+      std::string msg = "  (" +
+        std::get<0>(frstt) + ", " + std::get<1>(frstt) + 
+          ") = (action, " + std::get<1>(tostt) +
+          ", condition, " + std::get<3>(tostt) +
+          ")\n"; 
+      return msg;
+
         // TODO: how to print action and condition functions
         //"action function" << ", " << std::get<1>(frstt) << ") = (" <<
         // ", " << "condition function" << ")" << std::endl;
@@ -197,7 +208,7 @@ namespace gr {
         // print one transition
         from_state frstt = it->first;
         to_state tostt = it->second;
-        print_transition(frstt, tostt);
+        std::cout << show_transition(frstt, tostt);
         ++it;
       } 
       std::cout << std::endl;
@@ -223,7 +234,7 @@ namespace gr {
         {
           from_state frstt = i->first;
           to_state tostt = i->second;
-          print_transition(frstt, tostt);
+          std::cout << show_transition(frstt, tostt);
         }
     }
 
@@ -305,8 +316,8 @@ namespace gr {
             d_current_state = std::get<1>(tostt); // set to next state
             if (d_debug) {
               std::cout << "  Executed transition: "; 
-              print_transition(frstt, tostt);
-              print_state();
+              std::cout << show_transition(frstt, tostt);
+              std::cout << show_state();
             }
             return true;
           }
