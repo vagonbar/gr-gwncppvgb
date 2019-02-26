@@ -333,7 +333,7 @@ namespace gr {
     /* Handles messages received on message input ports. */
     void fsm_test_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
-      std::string in_msg = pmt::symbol_to_string(pmt_msg);
+      //std::string in_msg = pmt::symbol_to_string(pmt_msg);
       if (d_debug) { 
         std::cout << "...handle input msg: ";
         pmt::print(pmt_msg);
