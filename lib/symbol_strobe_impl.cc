@@ -58,7 +58,10 @@ namespace gr {
       d_debug = false;
       //d_debug = true;
 
-      d_count = d_symbol_seq.length(); // stop after last symbol
+      if (d_count > d_symbol_seq.length() )
+      {        // do not exceed symbol length
+        d_count = d_symbol_seq.length();
+      }
 
       // set timers message, period, etc
       d_timers[0]->d_count = d_count;
@@ -78,21 +81,20 @@ namespace gr {
     {
       std::string d_port = port;
       std::string symbol; 
+      int seq_nr;
 
-      // verify if message is dictionary (GWN) or other (GR)
-      if ( pmt::is_dict(pmt_msg) )
+      // verify if message is dictionary (GWN), GR or other
+      if ( pmt::is_dict(pmt_msg) )  
       {
         // GWN message, unpack type, subtype, seq_nr
         std::string type = pmt::symbol_to_string (pmt::dict_ref(
           pmt_msg, pmt::intern("type"), pmt::PMT_NIL));
         std::string subtype = pmt::symbol_to_string (pmt::dict_ref(
           pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
-        int seq_nr = pmt::to_long (pmt::dict_ref(
+        seq_nr = pmt::to_long (pmt::dict_ref(
           pmt_msg, pmt::intern("seq_nr"), pmt::PMT_NIL)); 
         
-        if ( type == "Timer" )  
-        {           // GWN timer message
-          // actions on GWN timer message
+        if ( type == "Timer" )  {   // GWN timer message
           if (d_debug) {
             std::cout << "    process_data, TIMER msg from " <<
               d_port << std::endl << "   ";
@@ -100,28 +102,38 @@ namespace gr {
               subtype << ", seq_nr: " << seq_nr << std::endl;
             pmt::print(pmt_msg);
           }
-          if (seq_nr < d_count) {
+          if (seq_nr < d_count) { 
             symbol = d_symbol_seq[seq_nr];
-            //std::cout << "SYMBOL: " << symbol << ", counter: " << seq_nr << std::endl;  
-            pmt_msg = pmt::intern(symbol);
+            //pmt_msg = pmt::intern(symbol);
           } 
-
-        } else {    // GWN non-timer message
+        } else {                    // GWN non-timer message
           // actions on GWN non-timer message
         }
       } else {  // non-GWN message
         // actions on non GWN message
-        if (d_debug) {
-          std::cout << "    process_data, STROBE msg from " <<
-            d_port << std::endl << "   ";
-          pmt::print(pmt_msg);
-        }
+      }  // end message is GWN, GR or other
+      if (d_debug) {
+        std::cout << "    process_data, msg from " <<
+          d_port << std::endl << "   ";
+        pmt::print(pmt_msg);
+      }
 
-      }  // end message is GWN or GR
+      // make GWN symbol strobe message
+      pmt::pmt_t pmt_symbol_dict = pmt::make_dict();
+      pmt_symbol_dict = pmt::dict_add(pmt_symbol_dict, 
+        pmt::intern("type"), pmt::intern("Symbol")); 
+      pmt_symbol_dict = pmt::dict_add(pmt_symbol_dict, 
+        pmt::intern("subtype"), pmt::intern("character"));
+      pmt_symbol_dict = pmt::dict_add(pmt_symbol_dict, 
+        pmt::intern("seq_nr"), pmt::from_long(seq_nr));
+      pmt_symbol_dict = pmt::dict_add(pmt_symbol_dict, 
+        pmt::intern("symbol"), pmt::intern(symbol));
+
 
       // emit messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-      post_message(pmt_port, pmt_msg);
+      //post_message(pmt_port, pmt_msg);
+      post_message(pmt_port, pmt_symbol_dict);
     }
 
 

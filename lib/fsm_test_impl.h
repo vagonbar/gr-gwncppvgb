@@ -222,11 +222,6 @@ namespace gr {
       /** If true prints debug messages. */
       bool d_debug;
 
-      ///std::string d_msg_1, d_msg_2;
-      //float d_period_1, d_period_2;
-      //int d_count_1, d_count_2;
-      //std::string d_sym_sequence [4];
-      //std::string d_sym_sequence [4] = {"g", "r", "g", "r"};
       int d_sym_len; 
       int d_sym_counter; 
 

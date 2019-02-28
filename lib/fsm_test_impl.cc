@@ -50,35 +50,14 @@ namespace gr {
      * Block specific code, REWRITE for a new block.
      ************************************************/
 
-      //gwncppvgb::fsmblk * d_fsm = new fsmblk("INIT");
-
     /* Additional initialization, REWRITE as desired. */
     void
     fsm_test_impl::added_init() 
     {
     
-      //d_debug = false;
-      //d_debug = true;
-
       // set timers message, period, etc
-      //d_timers[0]->d_count = 0;
-      //d_timers[0]->d_period_ms = 100;
-      //d_timers[0]->d_pmt_msg = pmt::mp("Timer 0 message");
-      //d_timers[1]->d_count = d_count_2;
-      //d_timers[1]->d_period_ms = d_period_2;
-      //d_timers[1]->d_pmt_msg = pmt::mp(d_msg_2);
-
-      // start timers
-      //d_timers[0]->start_timer();
-      //d_timers[1]->start_timer();
 
       // FSM 
-
-      //d_sym_sequence = {"g", "r", "g", "r"};
-      //d_sym_len = 4; //sizeof(d_sym_sequence);
-      //d_sym_counter = 0;        // to emit one symbol per call
-
-      //gwncppvgb::fsmblk * d_fsm = new fsmblk("INIT");
       d_fsm = new fsmblk("INIT");
       if (d_debug)
       {
@@ -86,9 +65,7 @@ namespace gr {
         d_fsm->print_transitions();
         std::cout << d_fsm->show_state();
       }
-
     }
-
 
 
     /* Timer and input messages processing, REWRITE as desired. */
@@ -97,26 +74,29 @@ namespace gr {
       std::string port, pmt::pmt_t pmt_msg)
     {
       std::string d_port = port;
+      std::string fsm_symbol;
 
       // verify if message is dictionary (GWN) or other (GR)
       if ( pmt::is_dict(pmt_msg) )
       {
-        // GWN message, unpack type, subtype, seq_nr
+        // GWN message, unpack type, subtype, seq_nr, FSM symbol
         std::string type = pmt::symbol_to_string (pmt::dict_ref(
           pmt_msg, pmt::intern("type"), pmt::PMT_NIL));
         std::string subtype = pmt::symbol_to_string (pmt::dict_ref(
           pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
         int seq_nr = pmt::to_long (pmt::dict_ref(
           pmt_msg, pmt::intern("seq_nr"), pmt::PMT_NIL)); 
+        fsm_symbol = pmt::symbol_to_string (pmt::dict_ref(
+          pmt_msg, pmt::intern("symbol"), pmt::PMT_NIL));
         
-        if ( type == "Timer" )  
-        {           // GWN timer message
-          // actions on GWN timer message
+        if ( type == "Symbol" )  
+        {           // GWN message
           if (d_debug) {
-            std::cout << "    process_data, TIMER msg from " <<
+            std::cout << "...process_data, SYMBOL msg from " <<
               d_port << std::endl << "   ";
             std::cout << "    type: " << type << ", subtype: " <<
-              subtype << ", seq_nr: " << seq_nr << std::endl;
+              subtype << ", seq_nr: " << seq_nr <<
+              ", symbol: " << fsm_symbol <<  std::endl;
             pmt::print(pmt_msg);
           }
         } else {    // GWN non-timer message
@@ -134,46 +114,18 @@ namespace gr {
 
       }  // end message is GWN or GR
 
-      // emit messages on output port
-      //pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-      //post_message(pmt_port, pmt_msg);
-
-      std::string fsm_symbol = pmt::symbol_to_string (pmt_msg);
-
+      // invoke FSM with symbol
+      std::string result = "";
+      result = d_fsm->process(fsm_symbol, "", "");
       // emit FSM messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-
-      //std::string symbol = d_sym_sequence[d_sym_counter];
-      //if (d_sym_counter >= d_sym_len-1) {
-      //  d_sym_counter = 0;
-      //}
-      //else {
-      //  d_sym_counter = d_sym_counter + 1;
-      //}
-
-      std::string result = "";
-      //result = d_fsm->process(symbol, "", "");
-      result = d_fsm->process(fsm_symbol, "", "");
       pmt_msg = pmt::mp(result);
       post_message(pmt_port, pmt_msg);
 
-      //result = d_fsm->process("r", "", "");
-      //std::cout << "ACTION result: " << result << std::endl;
-      //pmt_msg = pmt::mp(result);
-      //post_message(pmt_port, pmt_msg);
-
-      //post_message(pmt_port, pmt_msg);
-      //pmt_msg = pmt::mp(result);
-      //post_message(pmt_port, pmt_msg);
-
-      //d_fsm->show_state();
       if (d_debug) {
         std::cout << d_fsm->show_state();
       }
-
     }
-
-
 
 
     /* ************************* 

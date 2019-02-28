@@ -168,7 +168,7 @@ namespace gr {
     std::string 
     fsmblk::show_state()
     {
-      std::string msg ="  fsmblk state: input symbol: " + d_input_symbol +
+      std::string msg ="...fsmblk state: input symbol: " + d_input_symbol +
         //", initial state " + d_initial_state + 
         ",  current state " + d_current_state + "\n";
       return msg;
@@ -200,7 +200,7 @@ namespace gr {
     void
     fsmblk::print_transitions()
     {
-      std::cout << "fsmblk transitions:" << std::endl;
+      std::cout << "...fsmblk transitions:" << std::endl;
       std::map<from_state, to_state>::const_iterator it; 
       it = d_state_transitions.begin();
       while (it != d_state_transitions.end()) 

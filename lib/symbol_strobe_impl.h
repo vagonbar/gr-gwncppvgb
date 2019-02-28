@@ -225,7 +225,6 @@ namespace gr {
       int d_count;
       float d_period;
 
-
     }; 
 
   } // namespace gwncppvgb

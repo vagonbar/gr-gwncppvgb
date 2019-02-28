@@ -138,6 +138,11 @@ python $GRMODTOOL add --block-name=$BLOCK_NAME \
   --argument-list="" --add-python-qa
 #echo ...gr_modtool, creating ${BLOCK_NAME}_pdata
 #python $GRMODTOOL add --block-name=${BLOCK_NAME}_pdata --block-type=noblock --lang=cpp --argument-list="" 
+
+# optionally create FSM block
+
+#
+
 cd $CURDIR
 echo -en "... returned to module build directory:\n      "; pwd
 
