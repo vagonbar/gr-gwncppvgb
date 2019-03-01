@@ -24,7 +24,7 @@
 
 #include <gwncppvgb/api.h>
 
-
+/* GWN inclusions */
 #include <iostream>     // for cin cout support
 #include <string>       // for string concatenation
 #include <sstream>      // for to_string
@@ -34,7 +34,6 @@
 #include <tuple>
 #include <map>
 #include <stack>
-
 
 
 namespace gr {
@@ -52,8 +51,6 @@ namespace gr {
     typedef std::tuple<type_action, std::string, type_condition, std::string> to_state;
     /** memory object type definition. */
     typedef std::string mem_type;
-
-
 
 
     /*!

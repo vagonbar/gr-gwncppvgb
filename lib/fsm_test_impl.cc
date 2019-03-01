@@ -32,7 +32,6 @@
 #include <pmt/pmt.h>              // for messages
 #include <gnuradio/blocks/pdu.h>  // for messages
 
-//#include "gwncppvgb/fsmblk.h"  // included in fsm_test_impl.cc
 
 
 namespace gr {
@@ -55,16 +54,17 @@ namespace gr {
     fsm_test_impl::added_init() 
     {
     
-      // set timers message, period, etc
-
       // FSM 
       d_fsm = new fsmblk("INIT");
       if (d_debug)
       {
-        //std::cout << d_fsm->print_transitions();
         d_fsm->print_transitions();
         std::cout << d_fsm->show_state();
       }
+
+      // set timers message, period, etc
+      // no timers in this block
+
     }
 
 
@@ -99,23 +99,20 @@ namespace gr {
               ", symbol: " << fsm_symbol <<  std::endl;
             pmt::print(pmt_msg);
           }
-        } else {    // GWN non-timer message
-          // actions on GWN non-timer message
+        } else {
+          // actions on other message type
         }
-      } else {  // non-GWN message
+      } else {
         // actions on non GWN message
-
         if (d_debug) {
           std::cout << "    process_data, msg from " <<
-            //d_port << std::endl << "   ";
             d_port << ":  ";
           pmt::print(pmt_msg);
         }
-
-      }  // end message is GWN or GR
+      }  // end message type
 
       // invoke FSM with symbol
-      std::string result = "";
+      std::string result = "";    // FSM action function result
       result = d_fsm->process(fsm_symbol, "", "");
       // emit FSM messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
@@ -271,21 +268,9 @@ namespace gr {
 
 
 
-
-    /* *** GWN fsm_test *** */
-
-    /* GWN fsm_test attributes and functions */
-
-    /*std::string fsm_test_impl::__str__() {
-      std::string ss = "__str__() Block name: " + this->d_name; 
-      return ss;
-    }*/
-
-
     /* Handles messages received on message input ports. */
     void fsm_test_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
-      //std::string in_msg = pmt::symbol_to_string(pmt_msg);
       if (d_debug) { 
         std::cout << "...handle input msg: ";
         pmt::print(pmt_msg);
@@ -293,7 +278,6 @@ namespace gr {
       // mutex lock, invoke process_data, unlock
       boost::mutex d_mutex;
       d_mutex.lock();
-        //pmt::pmt_t pmt_port_msg = 
         process_data("handle_msg", pmt_msg); // 0);
       d_mutex.unlock();
     }  // end handle_msg
@@ -329,20 +313,15 @@ namespace gr {
 
     /* GNU Radio defaults for block construction */
     fsm_test::sptr
-    //fsm_test::make(std::string message, int counter)
     fsm_test::make(bool debug)
-         //std::string msg_1, float period_1, int count_1,
-        //std::string msg_2, float period_2, int count_2 ) 
     {
       return gnuradio::get_initial_sptr
         (new fsm_test_impl (debug) ); 
-          //msg_1, period_1, count_1, msg_2, period_2, count_2) );  
     }  // end make
 
 
 
     /* fsm_test: the private constructor */
-    //fsm_test_impl::fsm_test_impl(std::string message, int counter)
     fsm_test_impl::fsm_test_impl 
       (bool debug) 
       : gr::block("fsm_test",
@@ -358,6 +337,7 @@ namespace gr {
       d_number_out = 1;
       d_number_timers = 0;
 
+      // GWN user arguments initialization
       d_debug = debug; 
 
       if (d_debug) {
@@ -427,14 +407,11 @@ namespace gr {
         timer_new = new GWNTimer(this, 
           "timer_" + std::to_string(i), 
           pmt::mp("--- An internal TIMER message"), 0, 10000);
-          //pmt::mp("--- An internal TIMER message"), 5, 1000);
         d_timers[i] = timer_new;
-        //timer_new->start_timer();  // moved to added_init
       }  // end for
 
 
       // additional initialization
-      //fsm_test_impl::added_init();
       added_init();
 
     }  // end constructor

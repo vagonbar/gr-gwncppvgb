@@ -49,7 +49,6 @@ namespace gr {
      * Block specific code, REWRITE for a new block.
      ************************************************/
 
-
     /* Additional initialization, REWRITE as desired. */
     void
     gwnblock_dev_impl::added_init() 
@@ -57,6 +56,9 @@ namespace gr {
     
       d_debug = false;
       //d_debug = true;
+
+      // GWN TAG include optional FSM 
+      //d_fsm = new fsmblk("INIT");
 
       // set timers message, period, etc
       d_timers[0]->d_count = 0;
@@ -111,15 +113,12 @@ namespace gr {
             d_port << std::endl << "   ";
           pmt::print(pmt_msg);
         }
-
-      }  // end message is GWN or GR
+      }  // end message type
 
       // emit messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
       post_message(pmt_port, pmt_msg);
     }
-
-
 
 
     /* ************************* 
@@ -265,17 +264,6 @@ namespace gr {
 
 
 
-
-    /* *** GWN gwnblock_dev *** */
-
-    /* GWN gwnblock_dev attributes and functions */
-
-    /*std::string gwnblock_dev_impl::__str__() {
-      std::string ss = "__str__() Block name: " + this->d_name; 
-      return ss;
-    }*/
-
-
     /* Handles messages received on message input ports. */
     void gwnblock_dev_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
@@ -286,7 +274,6 @@ namespace gr {
       // mutex lock, invoke process_data, unlock
       boost::mutex d_mutex;
       d_mutex.lock();
-        //pmt::pmt_t pmt_port_msg = 
         process_data("handle_msg", pmt_msg); // 0);
       d_mutex.unlock();
     }  // end handle_msg
@@ -322,14 +309,10 @@ namespace gr {
 
     /* GNU Radio defaults for block construction */
     gwnblock_dev::sptr
-    //gwnblock_dev::make(std::string message, int counter)
     gwnblock_dev::make( <GWN TAG user arguments list> )
-         //std::string msg_1, float period_1, int count_1,
-        //std::string msg_2, float period_2, int count_2 ) 
     {
       return gnuradio::get_initial_sptr
         (new gwnblock_dev_impl (<GWN TAG user parameters list>) ); 
-          //msg_1, period_1, count_1, msg_2, period_2, count_2) );  
     }  // end make
 
 
@@ -342,6 +325,7 @@ namespace gr {
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) ) //,
       // GWN TAG user arguments constructor init
+
 
     {
       // GWN block name, ports and timers as block attributes
@@ -418,14 +402,11 @@ namespace gr {
         timer_new = new GWNTimer(this, 
           "timer_" + std::to_string(i), 
           pmt::mp("--- An internal TIMER message"), 0, 10000);
-          //pmt::mp("--- An internal TIMER message"), 5, 1000);
         d_timers[i] = timer_new;
-        //timer_new->start_timer();  // moved to added_init
       }  // end for
 
 
       // additional initialization
-      //gwnblock_dev_impl::added_init();
       added_init();
 
     }  // end constructor

@@ -28,8 +28,6 @@
 
 #include "gwncppvgb/fsmblk.h"   // the FSM engine block
 
-#include<bits/stdc++.h>   // for array of strings in local test
-
 namespace gr {
   namespace gwncppvgb {
 
@@ -41,7 +39,7 @@ namespace gr {
      */
 
 
-    /* GWN fsm_test, a template block */
+    /* GWN fsm_test block */
     class fsm_test_impl : public virtual fsm_test
     {
     private:
@@ -158,8 +156,6 @@ namespace gr {
     public:
       //fsm_test_impl(std::string message, int counter);
       fsm_test_impl(bool debug);
-        //std::string msg_1, float period_1, int count_1,
-        //std::string msg_2, float period_2, int count_2 );
 
       ~fsm_test_impl();
 
@@ -218,10 +214,7 @@ namespace gr {
 
     private:
       // GWN TAG user arguments declaration
-
-      /** If true prints debug messages. */
       bool d_debug;
-
       int d_sym_len; 
       int d_sym_counter; 
 

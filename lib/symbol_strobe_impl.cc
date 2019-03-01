@@ -104,7 +104,6 @@ namespace gr {
           }
           if (seq_nr < d_count) { 
             symbol = d_symbol_seq[seq_nr];
-            //pmt_msg = pmt::intern(symbol);
           } 
         } else {                    // GWN non-timer message
           // actions on GWN non-timer message
@@ -132,7 +131,6 @@ namespace gr {
 
       // emit messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-      //post_message(pmt_port, pmt_msg);
       post_message(pmt_port, pmt_symbol_dict);
     }
 
@@ -282,17 +280,6 @@ namespace gr {
 
 
 
-
-    /* *** GWN symbol_strobe *** */
-
-    /* GWN symbol_strobe attributes and functions */
-
-    /*std::string symbol_strobe_impl::__str__() {
-      std::string ss = "__str__() Block name: " + this->d_name; 
-      return ss;
-    }*/
-
-
     /* Handles messages received on message input ports. */
     void symbol_strobe_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
@@ -349,7 +336,6 @@ namespace gr {
 
 
     /* symbol_strobe: the private constructor */
-    //symbol_strobe_impl::symbol_strobe_impl(std::string message, int counter)
     symbol_strobe_impl::symbol_strobe_impl 
       ( std::string symbol_seq, int count, float period ) 
       : gr::block("symbol_strobe",

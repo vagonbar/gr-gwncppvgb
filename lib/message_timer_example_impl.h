@@ -174,8 +174,6 @@ namespace gr {
       std::vector<GWNInPort *> d_ports_in;
       /** A vector (array) of timer ports. */
       std::vector<GWNTimer *> d_timers;
-      /** If true prints debug messages. */
-      bool d_debug;
 
       /** Posts message on PMT formatted output port. 
 
@@ -217,6 +215,7 @@ namespace gr {
 
     private:
       // GWN TAG 
+      bool d_debug;
       std::string d_msg_1, d_msg_2;
       float d_period_1, d_period_2;
       int d_count_1, d_count_2;

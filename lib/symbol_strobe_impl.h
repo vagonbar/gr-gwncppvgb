@@ -38,7 +38,7 @@ namespace gr {
      */
 
 
-    /* GWN symbol_strobe, a template block */
+    /* GWN symbol_strobe block */
     class symbol_strobe_impl : public virtual symbol_strobe
     {
     private:

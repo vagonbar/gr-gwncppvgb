@@ -49,13 +49,11 @@ namespace gr {
      * Block specific code, REWRITE for a new block.
      ************************************************/
 
-
     /* Additional initialization, REWRITE as desired. */
     void
     message_timer_example_impl::added_init() 
     {
       std::cout << "Added Initialization" << std::endl;
-    
       d_debug = false;
       //d_debug = true;
 
@@ -199,8 +197,8 @@ namespace gr {
             &message_timer_example_impl::GWNTimer::run_timer, this))
         );
       if (d_debug) {
-      std::cout << "    === TIMER STARTED: " << d_id_timer <<
-        ", count: " << d_count << std::endl;
+        std::cout << "    === TIMER STARTED: " << d_id_timer <<
+          ", count: " << d_count << std::endl;
       }
     }  // end GWNTimer::start_timer
 
@@ -264,21 +262,9 @@ namespace gr {
 
 
 
-
-    /* *** GWN message_timer_example *** */
-
-    /* GWN message_timer_example attributes and functions */
-
-    /*std::string message_timer_example_impl::__str__() {
-      std::string ss = "__str__() Block name: " + this->d_name; 
-      return ss;
-    }*/
-
-
     /* Handles messages received on message input ports. */
     void message_timer_example_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
-      //std::string in_msg = pmt::symbol_to_string(pmt_msg);
       if (d_debug) { 
         std::cout << "...handle input msg: \n";
         pmt::print(pmt_msg);
@@ -286,7 +272,6 @@ namespace gr {
       // mutex lock, invoke process_data, unlock
       boost::mutex d_mutex;
       d_mutex.lock();
-        //pmt::pmt_t pmt_port_msg = 
         process_data("handle_msg", pmt_msg); // 0);
       d_mutex.unlock();
     }  // end handle_msg
@@ -352,10 +337,6 @@ namespace gr {
       d_number_timers = 2;
 
       // GWN user arguments initialization
-      //d_message = message;
-      //d_counter = counter;
-
-
       d_debug = true;
 
       if (d_debug) {
@@ -424,14 +405,11 @@ namespace gr {
         timer_new = new GWNTimer(this, 
           "timer_" + std::to_string(i), 
           pmt::mp("--- An internal TIMER message"), 0, 10000);
-          //pmt::mp("--- An internal TIMER message"), 5, 1000);
         d_timers[i] = timer_new;
-        //timer_new->start_timer();  // moved to added_init
       }  // end for
 
 
       // additional initialization
-      //message_timer_example_impl::added_init();
       added_init();
 
     }  // end constructor
