@@ -38,11 +38,7 @@ class qa_gwnblock_dev (gr_unittest.TestCase):
 
     def test_constructor (self):
         #print "\n===\n=== TEST gwnblock_dev constructor \n===\n"
-        #gwncppvgb.set_debug(True)   # does now work as expected
         #myblock = gwncppvgb.gwnblock_dev("GWN test message 1", 10)
-        #print "myblock.__str__()", myblock.__str__()  # not as expected
-
-
         # set up fg
         #self.tb.run ()
         # check data
@@ -52,21 +48,14 @@ class qa_gwnblock_dev (gr_unittest.TestCase):
         print "\n===\n=== TEST gwnblock_dev input and output ports \n===\n"
         tst_msg = "--- A message from message strobe"
         src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
-        pss = gwncppvgb.gwnblock_dev( \
-          "TIMER 1 msg AAAA", 1000.0, 6)
-          #"TIMER 1 msg AAAA", 1000.0, 6, \
-          #"TIMER 2 msg BBBB", 1000.0, 3)
-          #"TIMEOUT 2 CCC", 3000.0, 1)
-        #"GWN test message 2", 10)
+        pss = gwncppvgb.prueba("AAAA", 1000, 6, "BBBB", 500, 6 )
 
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
-        #self.tb.msg_connect( (src, "port_out_0"), (dbg, "print") )
-  
 
         self.tb.start ()
-        time.sleep(6)
+        time.sleep(8)
         self.tb.stop()
 
 

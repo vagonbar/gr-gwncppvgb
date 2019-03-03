@@ -55,24 +55,22 @@ namespace gr {
     {
     
       d_debug = false;
-      //d_debug = true;
 
-      // GWN TAG include optional FSM 
-      //d_fsm = new fsmblk("INIT");
+      // GWN TAG initialize pointer attribute to optional FSM block 
+      //d_fsm = new <block_name>_fsm("INIT");
 
       // set timers message, period, etc
-      d_timers[0]->d_count = 0;
-      d_timers[0]->d_period_ms = 100;
-      d_timers[0]->d_pmt_msg = pmt::mp("Timer 0 message");
-      //d_timers[1]->d_count = d_count_2;
-      //d_timers[1]->d_period_ms = d_period_2;
-      //d_timers[1]->d_pmt_msg = pmt::mp(d_msg_2);
+      d_timers[0]->d_count = d_count_1;
+      d_timers[0]->d_period_ms = d_period_1;
+      d_timers[0]->d_pmt_msg = pmt::mp(d_msg_1);
+      d_timers[1]->d_count = d_count_2;
+      d_timers[1]->d_period_ms = d_period_2;
+      d_timers[1]->d_pmt_msg = pmt::mp(d_msg_2);
 
       // start timers
       d_timers[0]->start_timer();
-      //d_timers[1]->start_timer();
+      d_timers[1]->start_timer();
     }
-
 
 
     /* Timer and input messages processing, REWRITE as desired. */
@@ -333,8 +331,6 @@ namespace gr {
       d_number_in = 0;
       d_number_out = 0;
       d_number_timers = 0;
-
-      d_debug = false; 
 
       if (d_debug) {
         std::cout << "gwnblock_dev, constructor, name " << 

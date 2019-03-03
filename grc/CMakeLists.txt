@@ -20,5 +20,6 @@ install(FILES
     gwncppvgb_message_timer_example.xml
     gwncppvgb_fsm_test.xml
     gwncppvgb_fsmblk.xml
-    gwncppvgb_symbol_strobe.xml DESTINATION share/gnuradio/grc/blocks
+    gwncppvgb_symbol_strobe.xml
+    DESTINATION share/gnuradio/grc/blocks
 )

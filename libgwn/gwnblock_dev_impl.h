@@ -26,6 +26,7 @@
 /*  GWN inclusions */
 #include <vector>
 
+// GWN TAG include FSM block
 
 namespace gr {
   namespace gwncppvgb {
@@ -153,7 +154,6 @@ namespace gr {
 
 
     public:
-      //gwnblock_dev_impl(std::string message, int counter);
       gwnblock_dev_impl( <GWN TAG user arguments list> );
 
       ~gwnblock_dev_impl();
@@ -212,9 +212,12 @@ namespace gr {
         std::string port, pmt::pmt_t pmt_msg);
 
     private:
+      bool d_debug;
+
       // GWN TAG user arguments declaration
 
-
+      // GWN TAG declare pointer attribute to optional FSM block
+      // gwncppvgb::<block_name>_fsm * d_fsm;
     }; 
 
   } // namespace gwncppvgb

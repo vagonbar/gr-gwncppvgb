@@ -23,3 +23,4 @@ GR_SWIG_BLOCK_MAGIC2(gwncppvgb, fsm_test);
 %include "gwncppvgb/fsmblk.h"
 %include "gwncppvgb/symbol_strobe.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, symbol_strobe);
+

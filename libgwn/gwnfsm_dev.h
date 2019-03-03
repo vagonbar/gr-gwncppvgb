@@ -19,8 +19,8 @@
  */
 
 
-#ifndef INCLUDED_GWNCPPVGB_FSMBLK_H
-#define INCLUDED_GWNCPPVGB_FSMBLK_H
+#ifndef INCLUDED_GWNCPPVGB_GWNFSM_DEV_H
+#define INCLUDED_GWNCPPVGB_GWNFSM_DEV_H
 
 #include <gwncppvgb/api.h>
 
@@ -39,26 +39,26 @@
 namespace gr {
   namespace gwncppvgb {
 
-    class fsmblk;  // FSM class name forward declaration, for typedef
+    class gwnfsm_dev;  // FSM class name forward declaration, for typedef
 
     /*!
      * \brief A block implementing an FSM
      *
      */
-    class GWNCPPVGB_API fsmblk
+    class GWNCPPVGB_API gwnfsm_dev
     {
     public:
 
-    /** action function type definition. */
-    typedef void (*type_action)(fsmblk &fsm);
-    /** condition function type definition. */
-    typedef bool (*type_condition)(fsmblk &fsm);
-    /** from_state : (input symbol, current state). */
-    typedef std::tuple<std::string, std::string> from_state;
-    /** to_state   : (type_action, next state, condition, comment). */
-    typedef std::tuple<type_action, std::string, type_condition, std::string> to_state;
-    /** memory object type definition. */
-    typedef std::string mem_type;
+      /** action function type definition. */
+      typedef void (*type_action)(gwnfsm_dev &fsm);
+      /** condition function type definition. */
+      typedef bool (*type_condition)(gwnfsm_dev &fsm);
+      /** from_state : (input symbol, current state). */
+      typedef std::tuple<std::string, std::string> from_state;
+      /** to_state   : (type_action, next state, condition, comment). */
+      typedef std::tuple<type_action, std::string, type_condition, std::string> to_state;
+      /** memory object type definition. */
+      typedef std::string mem_type;
 
 
       ///////////////////////////////////
@@ -84,13 +84,13 @@ namespace gr {
        *
        * @param initial_state: the FSM initial state.
        */ 
-       fsmblk(std::string initial_state);
+       gwnfsm_dev(std::string initial_state);
 
 
       /**
        * \brief GWN FSM destructor.
        */  
-        ~fsmblk();
+        ~gwnfsm_dev();
 
 
         //std::string process(std::string msg);   // preliminary tests
@@ -172,10 +172,10 @@ namespace gr {
       void set_debug(bool dbg);
 
       /** A null action function, when no action is required */
-      void null_action(fsmblk fsm);
+      void null_action(gwnfsm_dev fsm);
 
       /** A null condition function, when no action is required */
-      bool null_condition(fsmblk fsm);
+      bool null_condition(gwnfsm_dev fsm);
 
 
       /** Memory, push element into stack 
@@ -235,5 +235,5 @@ namespace gr {
   } // namespace gwncppvgb
 } // namespace gr
 
-#endif /* INCLUDED_GWNCPPVGB_FSMBLK_H */
+#endif /* INCLUDED_GWNCPPVGB_GWNFSM_DEV_H */
 

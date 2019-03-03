@@ -38,11 +38,7 @@ class qa_message_timer_example (gr_unittest.TestCase):
 
     def test_constructor (self):
         #print "\n===\n=== TEST message_timer_example constructor \n===\n"
-        #gwncppvgb.set_debug(True)   # does now work as expected
         #myblock = gwncppvgb.message_timer_example("GWN test message 1", 10)
-        #print "myblock.__str__()", myblock.__str__()  # not as expected
-
-
         # set up fg
         #self.tb.run ()
         # check data
@@ -55,8 +51,6 @@ class qa_message_timer_example (gr_unittest.TestCase):
         pss = gwncppvgb.message_timer_example( \
           "TIMER 1 msg AAAA", 1000.0, 6, \
           "TIMER 2 msg BBBB", 1000.0, 3)
-          #"TIMEOUT 2 CCC", 3000.0, 1)
-        #"GWN test message 2", 10)
 
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )

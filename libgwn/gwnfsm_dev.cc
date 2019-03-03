@@ -23,7 +23,7 @@
 #endif
 
 #include <gnuradio/io_signature.h>
-#include <gwncppvgb/fsmblk.h>
+#include <gwncppvgb/gwnfsm_dev.h>
 
 
 
@@ -39,7 +39,7 @@ namespace gr {
 
     // action functions definitions
 
-    void fn_goA(gwncppvgb::fsmblk &d_fsm) {
+    void fn_goA(gwncppvgb::gwnfsm_dev &d_fsm) {
       //fsm.where = "B";
       //fsm.set_where("B");
       d_fsm.mem_push("A visited!");
@@ -48,11 +48,11 @@ namespace gr {
       return;
     }
 
-    void fn_error(gwncppvgb::fsmblk &d_fsm) {
+    void fn_error(gwncppvgb::gwnfsm_dev &d_fsm) {
       //std::cout << "  --- FSM error " << std::endl;
       d_fsm.d_action_result="FSM ERROR";
     }
-    void fn_init(gwncppvgb::fsmblk &d_fsm) {
+    void fn_init(gwncppvgb::gwnfsm_dev &d_fsm) {
       //std::cout << "  --- FSM fn_init" << std::endl;
       d_fsm.d_action_result = "Result of function fn_init";
       return;
@@ -61,10 +61,10 @@ namespace gr {
 
     // condition function definitions
 
-    bool cnd_A(gwncppvgb::fsmblk &d_fsm) {
+    bool cnd_A(gwncppvgb::gwnfsm_dev &d_fsm) {
       return d_fsm.where == "A";
     }
-    bool cnd_true(gwncppvgb::fsmblk &d_fsm) {
+    bool cnd_true(gwncppvgb::gwnfsm_dev &d_fsm) {
       return true;
     }
 
@@ -72,7 +72,7 @@ namespace gr {
     // other user defined functions */
 
     void
-    fsmblk::set_where(std::string value)
+    gwnfsm_dev::set_where(std::string value)
     {
       where = value;
     }
@@ -80,8 +80,8 @@ namespace gr {
 
     // user transitions
 
-    //void fsmblk::add_myfsm_transitions(gwncppvgb::fsmblk &d_fsm)
-    void fsmblk::add_myfsm_transitions()
+    void 
+    gwnfsm_dev::add_myfsm_transitions()
     {
       add_transition ("g", "INIT", fn_goA, "STATE_A", cnd_A, "where==A");
       add_transition ("r", "STATE_A", fn_init, "INIT", cnd_true);
@@ -97,17 +97,17 @@ namespace gr {
 
 
 
-    /* fsmblk exception functions */
-    fsmblk::ExceptionFSM::ExceptionFSM(std::string value) 
+    /* gwnfsm_dev exception functions */
+    gwnfsm_dev::ExceptionFSM::ExceptionFSM(std::string value) 
       {
         d_value = value;
         std::cout << "ExceptionFSM, constructor" << std::endl;
       } 
 
-    fsmblk::ExceptionFSM::~ExceptionFSM() {}
+    gwnfsm_dev::ExceptionFSM::~ExceptionFSM() {}
 
     std::string
-    fsmblk::ExceptionFSM::get_value()
+    gwnfsm_dev::ExceptionFSM::get_value()
       {
         std::cout << "ExceptionFSM, get_value" << std::endl;
         return d_value;
@@ -115,7 +115,7 @@ namespace gr {
 
 
     /* Constructor */
-    fsmblk::fsmblk(std::string initial_state)
+    gwnfsm_dev::gwnfsm_dev(std::string initial_state)
     {
       d_default_transition =  "";
       d_input_symbol = "";
@@ -131,7 +131,7 @@ namespace gr {
 
 
     /* Destructor */
-    fsmblk::~fsmblk()
+    gwnfsm_dev::~gwnfsm_dev()
     {
     }
 
@@ -139,14 +139,14 @@ namespace gr {
 
 
     void
-    fsmblk::null_action(fsmblk fsm) {}
+    gwnfsm_dev::null_action(gwnfsm_dev fsm) {}
 
     bool
-    fsmblk::null_condition(fsmblk fsm) {return true;}
+    gwnfsm_dev::null_condition(gwnfsm_dev fsm) {return true;}
 
 
     void
-    fsmblk::reset()
+    gwnfsm_dev::reset()
     {
         d_current_state = d_initial_state;
         d_input_symbol = "";
@@ -154,8 +154,8 @@ namespace gr {
 
 
     void 
-    fsmblk::add_transition(std::string input_symbol, std::string state,
-        fsmblk::type_action fn_action, std::string next_state, 
+    gwnfsm_dev::add_transition(std::string input_symbol, std::string state,
+        gwnfsm_dev::type_action fn_action, std::string next_state, 
         type_condition fn_cond, std::string comment)
     {
       from_state frstt = make_tuple(input_symbol, state); 
@@ -166,9 +166,9 @@ namespace gr {
 
 
     std::string 
-    fsmblk::show_state()
+    gwnfsm_dev::show_state()
     {
-      std::string msg ="...fsmblk state: input symbol: " + d_input_symbol +
+      std::string msg ="...gwnfsm_dev state: input symbol: " + d_input_symbol +
         //", initial state " + d_initial_state + 
         ",  current state " + d_current_state + "\n";
       return msg;
@@ -176,7 +176,7 @@ namespace gr {
 
 
     std::string
-    fsmblk::show_transition(from_state frstt, to_state tostt)
+    gwnfsm_dev::show_transition(from_state frstt, to_state tostt)
     {
       /*std::cout << "  (" <<
         std::get<0>(frstt) << ", " << std::get<1>(frstt) << 
@@ -198,9 +198,9 @@ namespace gr {
 
 
     void
-    fsmblk::print_transitions()
+    gwnfsm_dev::print_transitions()
     {
-      std::cout << "...fsmblk transitions:" << std::endl;
+      std::cout << "...gwnfsm_dev transitions:" << std::endl;
       std::map<from_state, to_state>::const_iterator it; 
       it = d_state_transitions.begin();
       while (it != d_state_transitions.end()) 
@@ -216,7 +216,7 @@ namespace gr {
 
 
     void
-    fsmblk::search_trans_print(from_state stt_search)
+    gwnfsm_dev::search_trans_print(from_state stt_search)
     {
       auto range_end = d_state_transitions.end();
       auto range = d_state_transitions.equal_range(stt_search);
@@ -248,7 +248,7 @@ namespace gr {
      * @return FSM transition action result.
      */
     std::string
-    fsmblk::process(std::string input_symbol, std::string message,
+    gwnfsm_dev::process(std::string input_symbol, std::string message,
       std::string block)
     {
       d_input_symbol = input_symbol;  // only for printing
@@ -285,13 +285,13 @@ namespace gr {
       else
       {
         std::cout << "Default transition not found" << std::endl;
-        throw ExceptionFSM("fsmblk EXCEPTION: no valid transitions!");
+        throw ExceptionFSM("gwnfsm_dev EXCEPTION: no valid transitions!");
       }
     }
 
 
     bool
-    fsmblk::exec_transition(from_state stt_search)
+    gwnfsm_dev::exec_transition(from_state stt_search)
     {
       auto range_end = d_state_transitions.end();
 
@@ -310,7 +310,7 @@ namespace gr {
           {
             //std::cout << "exec debug, where=" << where <<
             //  " this->where=" << this->where << std::endl;
-            fsmblk::type_action fn_action = std::get<0>(tostt);
+            gwnfsm_dev::type_action fn_action = std::get<0>(tostt);
             fn_action( *this);  // execute action
 
             d_current_state = std::get<1>(tostt); // set to next state
@@ -328,37 +328,37 @@ namespace gr {
 
 
     void
-    fsmblk::set_debug(bool dbg)
+    gwnfsm_dev::set_debug(bool dbg)
     {
       d_debug = dbg;
     }
 
 
 
-    /* fsmblk memory */
+    /* gwnfsm_dev memory */
 
     void
-    fsmblk::mem_push(mem_type obj) {
+    gwnfsm_dev::mem_push(mem_type obj) {
       d_memory.push(obj); 
     }
 
     void
-    fsmblk::mem_pop() {
+    gwnfsm_dev::mem_pop() {
       d_memory.pop(); 
     } 
 
     bool
-    fsmblk::mem_empty() {
+    gwnfsm_dev::mem_empty() {
       return d_memory.empty();
     }
 
     int
-    fsmblk::mem_size() {
+    gwnfsm_dev::mem_size() {
       return d_memory.size();
     }
 
-    fsmblk::mem_type
-    fsmblk::mem_top() {
+    gwnfsm_dev::mem_type
+    gwnfsm_dev::mem_top() {
       return d_memory.top();
     }
 

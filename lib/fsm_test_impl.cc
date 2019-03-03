@@ -54,7 +54,8 @@ namespace gr {
     fsm_test_impl::added_init() 
     {
     
-      // FSM 
+      // GWN TAG include optional FSM 
+      //d_fsm = new gwnfsm_dev("INIT");
       d_fsm = new fsmblk("INIT");
       if (d_debug)
       {
@@ -328,6 +329,7 @@ namespace gr {
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) ) //,
       // GWN TAG user arguments constructor init
+      , d_debug(debug)
       
 
     {

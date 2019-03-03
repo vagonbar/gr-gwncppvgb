@@ -26,6 +26,7 @@
 /*  GWN inclusions */
 #include <vector>
 
+// GWN TAG include FSM block
 #include "gwncppvgb/fsmblk.h"   // the FSM engine block
 
 namespace gr {
@@ -154,7 +155,6 @@ namespace gr {
 
 
     public:
-      //fsm_test_impl(std::string message, int counter);
       fsm_test_impl(bool debug);
 
       ~fsm_test_impl();
@@ -213,8 +213,9 @@ namespace gr {
         std::string port, pmt::pmt_t pmt_msg);
 
     private:
-      // GWN TAG user arguments declaration
       bool d_debug;
+
+      // GWN TAG user arguments declaration
       int d_sym_len; 
       int d_sym_counter; 
 

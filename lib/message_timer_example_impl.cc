@@ -53,9 +53,11 @@ namespace gr {
     void
     message_timer_example_impl::added_init() 
     {
-      std::cout << "Added Initialization" << std::endl;
+
       d_debug = false;
-      //d_debug = true;
+
+      // GWN TAG initialize pointer attribute to optional FSM block 
+      //d_fsm = new <block_name>_fsm("INIT");
 
       // set timers message, period, etc
       d_timers[0]->d_count = d_count_1;
@@ -69,7 +71,6 @@ namespace gr {
       d_timers[0]->start_timer();
       d_timers[1]->start_timer();
     }
-
 
 
     /* Timer and input messages processing, REWRITE as desired. */
@@ -110,15 +111,12 @@ namespace gr {
             d_port << std::endl << "   ";
           pmt::print(pmt_msg);
         }
-
-      }  // end message is GWN or GR
+      }  // end message type
 
       // emit messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
       post_message(pmt_port, pmt_msg);
     }
-
-
 
 
     /* ************************* 
@@ -131,6 +129,7 @@ namespace gr {
     message_timer_example_impl::GWNPort::GWNPort() {
       d_port = "";      // null port name
       d_port_nr = -1;   // first working port will be 0
+      d_debug = false;
       if (d_debug) {
         std::cout << "GWNPort, default constructor"
         << std::endl; }
@@ -183,6 +182,7 @@ namespace gr {
     {
       d_counter = 0;
       d_suspend = false;  // always emits first message
+      d_debug = false;
     }  // end GWNTimer::GWNTimer
 
 
@@ -307,7 +307,6 @@ namespace gr {
 
     /* GNU Radio defaults for block construction */
     message_timer_example::sptr
-    //message_timer_example::make(std::string message, int counter)
     message_timer_example::make(
         std::string msg_1, float period_1, int count_1,
         std::string msg_2, float period_2, int count_2 ) 
@@ -335,9 +334,6 @@ namespace gr {
       d_number_in = 1;
       d_number_out = 1;
       d_number_timers = 2;
-
-      // GWN user arguments initialization
-      d_debug = true;
 
       if (d_debug) {
         std::cout << "message_timer_example, constructor, name " << 
