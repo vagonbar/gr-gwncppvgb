@@ -169,7 +169,7 @@ The example FSM symbols are characters. The example block `symbol_strobe` receiv
 
 The test FSM blocks implement the following FSM:
 
-![FSM test](libgwn/Images/gwnfsm_test.png)
+![FSM test](/libgwn/Images/gwnfsm_test.png)
 
 A descriptions of the GWN FSM as autonomous code can be found in the [gwnfsm](https://github.com/vagonbar/gwnfsm) project.
 
