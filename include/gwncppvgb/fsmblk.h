@@ -135,7 +135,6 @@ namespace gr {
 
       @return a string describing FSM state.
       */
-      //void show_state();
       std::string show_state();
 
 

@@ -167,5 +167,9 @@ Please see the following example files for a block with an associated FSM block:
 
 The example FSM symbols are characters. The example block `symbol_strobe` receives a string as a parameter and emits one character at a time. The example flowgraph `grc/symbol_strobe_test.grc` shows how it works.
 
+The test FSM blocks implement the following FSM:
+
+[FSM test](libgwn/Images/gwnfsm_test.png)
+
 A descriptions of the GWN FSM as autonomous code can be found in the [gwnfsm](https://github.com/vagonbar/gwnfsm) project.
 

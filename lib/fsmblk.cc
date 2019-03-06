@@ -38,6 +38,25 @@ namespace gr {
 
 
     // action functions definitions
+    void fn_none(gwncppvgb::fsmblk &d_fsm) {
+        std::cout << "  --- FSM none, nothing done" << std::endl;
+        return;
+    }
+
+
+    void fn_show(gwncppvgb::fsmblk &d_fsm) {
+        std::cout << "  --- FSM memory show and erase, INIT state" << std::endl;
+        std::cout << "      Memory size: " << d_fsm.mem_size() <<
+          ", contents:" << std::endl;
+      while (!d_fsm.mem_empty())
+      {
+         std::cout << " : " << d_fsm.mem_top();
+         d_fsm.mem_pop();
+      }
+      std::cout << std::endl;
+        return;
+    }
+
 
     void fn_goA(gwncppvgb::fsmblk &d_fsm) {
       //fsm.where = "B";
@@ -47,6 +66,48 @@ namespace gr {
       //std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
       return;
     }
+
+    void fn_goB(gwncppvgb::fsmblk &d_fsm) {
+        //fsm.where = "C";
+        d_fsm.mem_push("B visited!");
+        std::cout << "  --- FSM fn_goB" << std::endl;
+        return;
+    }
+
+    void fn_goC(gwncppvgb::fsmblk &d_fsm) {
+        //fsm.where = "A";
+        d_fsm.mem_push("C visited!");
+        std::cout << "  --- FSM fn_goC" << d_fsm.where << std::endl;
+        return;
+    }
+
+    void fn_goAB(gwncppvgb::fsmblk &d_fsm) {
+      fn_goA(d_fsm);
+      fn_goB(d_fsm);
+      d_fsm.mem_push("C visited!");
+    }
+
+
+    void fn_chgtoC(gwncppvgb::fsmblk &d_fsm) {
+        if (d_fsm.to_c == true )
+          d_fsm.to_c = false; 
+        else
+          d_fsm.to_c = true;
+        std::cout << "  --- FSM fn_toC" << ", to_c set to " << d_fsm.to_c << std::endl;
+        return;
+    }
+
+    void fn_chgwhr(gwncppvgb::fsmblk &d_fsm) {
+      if (d_fsm.where == "A")
+          d_fsm.where = "B";
+      else if (d_fsm.where == "B")
+          d_fsm.where = "C";
+      else
+          d_fsm.where = "A";
+      std::cout << "  --- FSM fn_chgwhr, fsm.where set to " << d_fsm.where << std::endl;
+      return;
+   }
+
 
     void fn_error(gwncppvgb::fsmblk &d_fsm) {
       //std::cout << "  --- FSM error " << std::endl;
@@ -61,11 +122,23 @@ namespace gr {
 
     // condition function definitions
 
+    bool cnd_true(gwncppvgb::fsmblk &d_fsm) {
+      return true;
+    }
+    bool cnd_false(gwncppvgb::fsmblk &d_fsm) {
+      return false;
+    }
     bool cnd_A(gwncppvgb::fsmblk &d_fsm) {
       return d_fsm.where == "A";
     }
-    bool cnd_true(gwncppvgb::fsmblk &d_fsm) {
-      return true;
+    bool cnd_B(gwncppvgb::fsmblk &d_fsm) {
+      return d_fsm.where == "B";
+    }
+    bool cnd_C(gwncppvgb::fsmblk &d_fsm) {
+      return d_fsm.where == "C";
+    }
+    bool cnd_C_to_c(gwncppvgb::fsmblk &d_fsm) {
+      return d_fsm.where == "C" && d_fsm.to_c == true;
     }
 
 
@@ -83,10 +156,32 @@ namespace gr {
     //void fsmblk::add_myfsm_transitions(gwncppvgb::fsmblk &d_fsm)
     void fsmblk::add_myfsm_transitions()
     {
-      add_transition ("g", "INIT", fn_goA, "STATE_A", cnd_A, "where==A");
-      add_transition ("r", "STATE_A", fn_init, "INIT", cnd_true);
+
+
+
+
       // default transition
       add_transition ("", "", fn_error, "INIT", cnd_true, "default transition");
+
+      // transitions for any input symbol
+      add_transition ("", "INIT", fn_none, "INIT", cnd_true,
+          "any symbol");
+      add_transition ("", "STATE_A", fn_none, "STATE_A", cnd_true,
+          "any symbol");
+
+      // add ordinary transitions
+      add_transition ("s", "INIT", fn_show, "INIT", cnd_true);
+      add_transition ("g", "INIT", fn_goA, "STATE_A", cnd_A, "where==A");
+      add_transition ("g", "INIT", fn_goB, "STATE_B", cnd_B, "where==B");
+      add_transition ("g", "INIT", fn_goAB, "STATE_C", cnd_C_to_c, "where==C && to_c" ); 
+      add_transition ("r", "STATE_A", fn_init, "INIT", cnd_true);
+      add_transition ("r", "STATE_B", fn_init, "INIT", cnd_true);
+      add_transition ("r", "STATE_C", fn_init, "INIT", cnd_true);
+      add_transition ("w", "INIT", fn_chgwhr, "CHG_WHERE", cnd_true);
+      add_transition ("c", "INIT", fn_chgtoC, "CHG_TOC", cnd_true);
+      add_transition ("r", "CHG_WHERE", fn_init, "INIT", cnd_true);
+      add_transition ("r", "CHG_TOC", fn_init, "INIT", cnd_true);
+
       
     }
 
@@ -253,13 +348,15 @@ namespace gr {
     {
       d_input_symbol = input_symbol;  // only for printing
       from_state stt_search;
+      d_action_result = "";           // for fresh result
 
       // search for ordinary transitions
       stt_search = std::make_tuple(input_symbol, d_current_state);
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
           std::cout << 
-            "  Executed (symbol, state) transition" << std::endl;
+            "  Executed (symbol, state) transition: (" << 
+            d_input_symbol << ", " << d_current_state << ")\n";
         }
       return d_action_result;
       }
@@ -269,7 +366,8 @@ namespace gr {
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
           std::cout << 
-            "  Executed (any symbol, state) transition" << std::endl;
+            "  Executed (any symbol, state) transition" << 
+            d_input_symbol << ", " << d_current_state << ")\n";
          }
         return d_action_result;
       }
@@ -278,7 +376,8 @@ namespace gr {
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
           std::cout << 
-            "  Executed (any symbol, any state) transition" << std::endl;
+            "  Executed (any symbol, any state) transition" <<
+            d_input_symbol << ", " << d_current_state << ")\n";
         return d_action_result;
         }
       }
