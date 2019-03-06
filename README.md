@@ -15,7 +15,7 @@ To simplify coding of new blocks, a block creation script was written, which inc
 
 ## An example block
 
-An example block called `message_timer_example` is already created, and can be tested by running its corresponding QA test, `qa_message_timer_example.py`. 
+An example block called `message_timer_example` is already created, and can be tested by running its corresponding QA test, `python/qa_message_timer_example.py`. 
 
 This block receives a message on an input port and outputs the same message on an output port, as well as messages produced by two internal timers, also sent through the output port. In this flowgraph:
 
@@ -35,11 +35,11 @@ The creation of a new block similar to the example block described can be done w
 
 The script `gwn_modtool.sh` takes the code from a template GWN block available in the `../libgwn` directory, and modifies the argument list according to the argumets given to `gwn_modtool.sh` as positional parameters: block name, number of input ports, number of output ports, and number of timers.
 
-When running the script, the programmer will be asked to enter a user argument list of its own, such as `std::string message, float period, int count`; this list may be empty. 
+When running the script, the programmer will be asked to enter a user argument list of his own, such as `std::string message, float period, int count`; this list may be empty. 
 
-`gwn_modtool.sh` is a bash script which uses GNU Radio `gr_modtool` to create the new block, which inherits from GNU Radio general `gr::block`; all the GWN facilities for communicating with other blocks are copied into the new block from the template GWN block. Once created, the programmer will find clearly indicated in the code the functions to rewrite, i.e. `add_init` and `process_data`. The new block includes local attributes to capture the user parameters. More specifically, for an argument called `arg_name` in the user parameters list, the script declares an attribute `d_arg_name` of the corresponding type, and inserts an assignment `d_arg_name(arg_name)` in the constructor to capture the argument value (parameter) in the attribute variable.
+`gwn_modtool.sh` is a bash script which uses GNU Radio `gr_modtool` to create the new block, which inherits from GNU Radio general `gr::block`; all the GWN facilities for communicating with other blocks are copied into the new block from the template GWN block. Once created, the programmer will find clearly indicated in the code the functions to rewrite, i.e. `add_init()` and `process_data()`. The new block includes local attributes to capture the user parameters. More specifically, for an argument called `arg_name` in the user parameters list, the script declares an attribute `d_arg_name` of the corresponding type, and inserts an assignment `d_arg_name(arg_name)` in the constructor to capture the argument value (parameter) in the attribute variable.
 
-When creating a new block, an optional FSM (Finite State Machine) can be created. To this purpose, the script `gwn_modtool.sh` asks whether to create the FSM associated block or not. If the answer is `y`, the FSM block is created. Please see later instructions on how to customize the FSM for specific purposes. 
+When creating a new block, an optional FSM (Finite State Machine) can be attached to the block. To this purpose, the script `gwn_modtool.sh` asks whether to create the FSM associated block or not. If the answer is `y`, the FSM block is created. Please see later instructions on how to customize the FSM for specific purposes. 
 
 ## A new block creation test
 
@@ -127,7 +127,7 @@ In the general case, a different number of input and output ports may be given, 
 
 ## Optional FSM block
 
-An optional FSM (Finite State Machine) block can be created to act as an associated block to the new block under creation. The FSM is instanciated as a class accessible from the new block through a pointer in the new block. The FSM is ordered to execute a transition through its function `process(input_symbol, message_to_function, "")`. This FSM function is typically invoked in the process_data function of the new block to which the FSM is associated. The symbol may be any type of data, according to the way the FSM is coded. When receiving the symbol, the FSM machine looks for a transaction which includes the received symbol, the current state, and a condition which must evaluate to true. If such a transaction is found, an action function is executed, and a new state is made the current state. The action function may produce a result which is returned to the caller, i.e. the `process_data` function in the new block.
+An optional FSM (Finite State Machine) block can be created. The FSM is included in its own block, which can be associated to the new block under creation. The FSM is instanciated as a class accessible from the new block through a pointer in the new block. The FSM is ordered to execute a transition through its function `process(input_symbol, message_to_function, "")`. This FSM function is typically invoked in the `process_data()` function of the new block to which the FSM is associated. The symbol may be any type of data, according to the way the FSM is coded. When receiving the symbol, the FSM machine looks for a transaction which includes the received symbol, the current state, and a condition which must evaluate to true. If such a transaction is found, an action function is executed, and a new state is made the current state of the FSM. The action function may produce a result which is returned to the caller, i.e. the `process_data()` function in the new block.
 
 To customize the FSM block, the following sections must be rewritten:
 
@@ -144,6 +144,20 @@ In the `lib/<fsm_block>.cc` file :
 `// other user defined functions`
 
 `// user transitions`
+
+In the new block to which the FSM is associated, these sections must be rewritten:
+
+`added_init()` function, for additional initialization, in particular the lines
+ 
+    `  // GWN TAG include optional FSM`
+    `  //d_fsm = new gwnfsm_dev("INIT");`
+
+`/* Timer and input messages processing, REWRITE as desired. */`
+
+`// invoke FSM with symbol`
+
+`/* Additional initialization, REWRITE as desired. */`
+
 
 Please see the following example files for a block with an associated FSM block:
 * example block: files `include/gwncppvgb/fsm_test.h, lib/fsm_test_impl.h, lib/fsm_test_impl.cc`. This is the example block to which the FSM block is associated.
