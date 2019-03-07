@@ -39,7 +39,8 @@ namespace gr {
 
     // action functions definitions
     void fn_none(gwncppvgb::fsmblk &d_fsm) {
-        d_fsm.d_action_result = "Result of function fn_none";
+        d_fsm.d_action_result += "Result of function fn_none. ";
+      return;
     }
 
 
@@ -61,7 +62,7 @@ namespace gr {
       //fsm.where = "B";
       //fsm.set_where("B");
       d_fsm.mem_push("A visited!");
-      d_fsm.d_action_result = "Result of function fn_goA";
+      d_fsm.d_action_result += "Result of function fn_goA. ";
       //std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
       return;
     }
@@ -69,21 +70,21 @@ namespace gr {
     void fn_goB(gwncppvgb::fsmblk &d_fsm) {
         //fsm.where = "C";
         d_fsm.mem_push("B visited!");
-        d_fsm.d_action_result = "Result of function fn_goB";
+        d_fsm.d_action_result += "Result of function fn_goB. ";
         return;
     }
 
     void fn_goC(gwncppvgb::fsmblk &d_fsm) {
         //fsm.where = "A";
         d_fsm.mem_push("C visited!");
-        d_fsm.d_action_result = "Result of function fn_goC; where=" + d_fsm.where;
+        d_fsm.d_action_result += "Result of function fn_goC; where=" + d_fsm.where + ". ";
         return;
     }
 
     void fn_goAB(gwncppvgb::fsmblk &d_fsm) {
       fn_goA(d_fsm);
       fn_goB(d_fsm);
-      d_fsm.mem_push("C visited!");
+      d_fsm.mem_push("C visited! ");
     }
 
 
@@ -92,7 +93,8 @@ namespace gr {
           d_fsm.to_c = false; 
         else
           d_fsm.to_c = true;
-        std::cout << "  --- FSM fn_toC" << ", to_c set to " << d_fsm.to_c << std::endl;
+        d_fsm.d_action_result += "Result of fn_toC, to_c=" +
+          std::to_string(d_fsm.to_c) + ". ";
         return;
     }
 
@@ -103,18 +105,18 @@ namespace gr {
           d_fsm.where = "C";
       else
           d_fsm.where = "A";
-      std::cout << "  --- FSM fn_chgwhr, fsm.where set to " << d_fsm.where << std::endl;
+      d_fsm.d_action_result += "Result of fn_chgwhr, where=" + d_fsm.where + ". ";
       return;
    }
 
 
     void fn_error(gwncppvgb::fsmblk &d_fsm) {
       //std::cout << "  --- FSM error " << std::endl;
-      d_fsm.d_action_result="FSM ERROR";
+      d_fsm.d_action_result += "FSM ERROR. ";
     }
     void fn_init(gwncppvgb::fsmblk &d_fsm) {
       //std::cout << "  --- FSM fn_init" << std::endl;
-      d_fsm.d_action_result = "Result of function fn_init";
+      d_fsm.d_action_result += "Result of function fn_init. ";
       return;
     }
 
@@ -216,7 +218,7 @@ namespace gr {
       d_initial_state = initial_state;
       d_current_state = initial_state;
       d_next_state = "";
-      d_action_result = "No action result";
+      d_action_result = "";
       add_myfsm_transitions();    // FSM add transitions
       //d_debug = true;
       d_debug = false;
@@ -262,7 +264,7 @@ namespace gr {
     std::string 
     fsmblk::get_state()
     {
-      std::string msg ="...fsmblk state: input symbol: " + d_input_symbol +
+      std::string msg ="...FSM state: input symbol: " + d_input_symbol +
         //", initial state " + d_initial_state + 
         ",  current state " + d_current_state + "\n";
       return msg;
@@ -351,6 +353,7 @@ namespace gr {
 
       // search for ordinary transitions
       stt_search = std::make_tuple(input_symbol, d_current_state);
+
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
           std::cout << 
@@ -399,8 +402,11 @@ namespace gr {
       {
         for (auto i = range.first; i != range.second; ++i)
         {
+
           from_state frstt = i->first;
           to_state tostt = i->second;
+          //std::cout << "frstt " << std::get<0>(frstt) << ", " << std::get<1>(frstt) << std::endl; 
+          //std::cout << "tostt " << std::get<0>(tostt) << ", " << std::get<1>(tostt) << std::endl; 
 
           // evalutate condition
           type_condition fn_cond = std::get<2>(tostt); 
@@ -418,10 +424,11 @@ namespace gr {
               std::cout << get_state();
             }
             return true;
-          }
-        }
+          }  // end evaluate condition
+        }  // end for
         return false;
       }
+      return false;
     }
 
 

@@ -48,12 +48,11 @@ class qa_fsm_test (gr_unittest.TestCase):
         # check data
         #pass
 
-    #"""
     def test_fsm_debug (self):
         print "\n===\n=== TEST 1 FSM with debug \n===\n"
-        #src = gwncppvgb.symbol_strobe("gxrxgrx", 7, 1000)
-        src = gwncppvgb.symbol_strobe("gxyrwrgrwrcrgrxys", 19, 1000)
+        #src = gwncppvgb.symbol_strobe("gxryg", 5, 1000)
         # full graph testing "gxyrwrgrwrcrgrxys"
+        src = gwncppvgb.symbol_strobe("gxyrwrgrwrcrgrxys", 19, 1000)
         pss = gwncppvgb.fsm_test(False)
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "out_port_0"), (pss, "in_port_0") )
@@ -63,8 +62,8 @@ class qa_fsm_test (gr_unittest.TestCase):
         time.sleep(20)
         self.tb.stop()
         return
-    #"""
-    """
+
+    '''
     def test_fsm_no_debug (self):
         print "\n===\n=== TEST 2 FSM no debug \n===\n"
         src = gwncppvgb.symbol_strobe("gxrgrgr", 6, 1000)
@@ -77,6 +76,6 @@ class qa_fsm_test (gr_unittest.TestCase):
         time.sleep(8)
         self.tb.stop()
         return
-    """
+    '''
 if __name__ == '__main__':
     gr_unittest.run(qa_fsm_test, "qa_fsm_test.xml")
