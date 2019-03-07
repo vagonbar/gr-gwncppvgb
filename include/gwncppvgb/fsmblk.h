@@ -127,15 +127,15 @@ namespace gr {
       @param tostt: value of multimap.
       @return a string describing a transition.
       */
-      std::string show_transition(from_state frstt, to_state tostt);
-      //std::string show_transition(from_state frstt, to_state tostt);
+      std::string get_transition(from_state frstt, to_state tostt);
+      //std::string get_transition(from_state frstt, to_state tostt);
 
 
       /** Shows FSM current state.
 
       @return a string describing FSM state.
       */
-      std::string show_state();
+      std::string get_state();
 
 
       /** Prints all the FSM transitions.

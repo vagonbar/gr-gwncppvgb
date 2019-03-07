@@ -39,8 +39,7 @@ namespace gr {
 
     // action functions definitions
     void fn_none(gwncppvgb::fsmblk &d_fsm) {
-        std::cout << "  --- FSM none, nothing done" << std::endl;
-        return;
+        d_fsm.d_action_result = "Result of function fn_none";
     }
 
 
@@ -70,14 +69,14 @@ namespace gr {
     void fn_goB(gwncppvgb::fsmblk &d_fsm) {
         //fsm.where = "C";
         d_fsm.mem_push("B visited!");
-        std::cout << "  --- FSM fn_goB" << std::endl;
+        d_fsm.d_action_result = "Result of function fn_goB";
         return;
     }
 
     void fn_goC(gwncppvgb::fsmblk &d_fsm) {
         //fsm.where = "A";
         d_fsm.mem_push("C visited!");
-        std::cout << "  --- FSM fn_goC" << d_fsm.where << std::endl;
+        d_fsm.d_action_result = "Result of function fn_goC; where=" + d_fsm.where;
         return;
     }
 
@@ -261,7 +260,7 @@ namespace gr {
 
 
     std::string 
-    fsmblk::show_state()
+    fsmblk::get_state()
     {
       std::string msg ="...fsmblk state: input symbol: " + d_input_symbol +
         //", initial state " + d_initial_state + 
@@ -271,7 +270,7 @@ namespace gr {
 
 
     std::string
-    fsmblk::show_transition(from_state frstt, to_state tostt)
+    fsmblk::get_transition(from_state frstt, to_state tostt)
     {
       /*std::cout << "  (" <<
         std::get<0>(frstt) << ", " << std::get<1>(frstt) << 
@@ -303,7 +302,7 @@ namespace gr {
         // print one transition
         from_state frstt = it->first;
         to_state tostt = it->second;
-        std::cout << show_transition(frstt, tostt);
+        std::cout << get_transition(frstt, tostt);
         ++it;
       } 
       std::cout << std::endl;
@@ -329,7 +328,7 @@ namespace gr {
         {
           from_state frstt = i->first;
           to_state tostt = i->second;
-          std::cout << show_transition(frstt, tostt);
+          std::cout << get_transition(frstt, tostt);
         }
     }
 
@@ -415,8 +414,8 @@ namespace gr {
             d_current_state = std::get<1>(tostt); // set to next state
             if (d_debug) {
               std::cout << "  Executed transition: "; 
-              std::cout << show_transition(frstt, tostt);
-              std::cout << show_state();
+              std::cout << get_transition(frstt, tostt);
+              std::cout << get_state();
             }
             return true;
           }

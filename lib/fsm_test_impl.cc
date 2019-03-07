@@ -60,7 +60,7 @@ namespace gr {
       if (d_debug)
       {
         d_fsm->print_transitions();
-        std::cout << d_fsm->show_state();
+        std::cout << d_fsm->get_state();
       }
 
       // set timers message, period, etc
@@ -91,7 +91,7 @@ namespace gr {
         fsm_symbol = pmt::symbol_to_string (pmt::dict_ref(
           pmt_msg, pmt::intern("symbol"), pmt::PMT_NIL));
         
-        fsm_msg = d_fsm->show_state();
+        fsm_msg = d_fsm->get_state();
 
         if ( type == "Symbol" )  
         {           // GWN message
@@ -120,13 +120,13 @@ namespace gr {
       result = d_fsm->process(fsm_symbol, "", "");
       // emit FSM messages on output port
       pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-      fsm_msg = fsm_msg + result + "\n" + d_fsm->show_state();
+      fsm_msg = fsm_msg + result + "\n" + d_fsm->get_state();
       //pmt_msg = pmt::mp(result);
       pmt_msg = pmt::mp(fsm_msg);
       post_message(pmt_port, pmt_msg);
 
       if (d_debug) {
-        std::cout << d_fsm->show_state();
+        std::cout << d_fsm->get_state();
       }
     }
 
