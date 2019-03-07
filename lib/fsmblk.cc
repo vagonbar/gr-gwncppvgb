@@ -43,6 +43,16 @@ namespace gr {
       return;
     }
 
+    void fn_error(gwncppvgb::fsmblk &d_fsm) {
+      //std::cout << "  --- FSM error " << std::endl;
+      d_fsm.d_action_result += "FSM ERROR. ";
+    }
+    void fn_init(gwncppvgb::fsmblk &d_fsm) {
+      //std::cout << "  --- FSM fn_init" << std::endl;
+      d_fsm.d_action_result += "Result of function fn_init. ";
+      return;
+    }
+
 
     void fn_show(gwncppvgb::fsmblk &d_fsm) {
         std::string fsm_vars = "...FSM variables: where=" +
@@ -114,16 +124,6 @@ namespace gr {
    }
 
 
-    void fn_error(gwncppvgb::fsmblk &d_fsm) {
-      //std::cout << "  --- FSM error " << std::endl;
-      d_fsm.d_action_result += "FSM ERROR. ";
-    }
-    void fn_init(gwncppvgb::fsmblk &d_fsm) {
-      //std::cout << "  --- FSM fn_init" << std::endl;
-      d_fsm.d_action_result += "Result of function fn_init. ";
-      return;
-    }
-
 
     // condition function definitions
 
@@ -162,9 +162,6 @@ namespace gr {
     void fsmblk::add_myfsm_transitions()
     {
 
-
-
-
       // default transition
       add_transition ("", "", fn_error, "INIT", cnd_true, "default transition");
 
@@ -186,7 +183,6 @@ namespace gr {
       add_transition ("c", "INIT", fn_chgtoC, "CHG_TOC", cnd_true);
       add_transition ("r", "CHG_WHERE", fn_init, "INIT", cnd_true);
       add_transition ("r", "CHG_TOC", fn_init, "INIT", cnd_true);
-
       
     }
 
@@ -234,8 +230,6 @@ namespace gr {
     fsmblk::~fsmblk()
     {
     }
-
-
 
 
     void
@@ -342,7 +336,7 @@ namespace gr {
     /** Receives symbol, executes transition, moves machine.
      *
      * Receives a symbol, looks for a transition valid for the current state, verifies condition, executes action and returns result.
-     *  @param input_symbol the received symbol.
+     * @param input_symbol the received symbol.
      * @param message a string message.
      * @param block a pointer to the main block to which the FSM is attached.
      * @return FSM transition action result.
@@ -357,7 +351,6 @@ namespace gr {
 
       // search for ordinary transitions
       stt_search = std::make_tuple(input_symbol, d_current_state);
-
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
           std::cout << 
@@ -406,18 +399,13 @@ namespace gr {
       {
         for (auto i = range.first; i != range.second; ++i)
         {
-
           from_state frstt = i->first;
           to_state tostt = i->second;
-          //std::cout << "frstt " << std::get<0>(frstt) << ", " << std::get<1>(frstt) << std::endl; 
-          //std::cout << "tostt " << std::get<0>(tostt) << ", " << std::get<1>(tostt) << std::endl; 
 
           // evalutate condition
           type_condition fn_cond = std::get<2>(tostt); 
           if ( fn_cond( *this ) )                 // eval condition
           {
-            //std::cout << "exec debug, where=" << where <<
-            //  " this->where=" << this->where << std::endl;
             fsmblk::type_action fn_action = std::get<0>(tostt);
             fn_action( *this);  // execute action
 

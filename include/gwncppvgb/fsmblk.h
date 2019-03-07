@@ -49,16 +49,16 @@ namespace gr {
     {
     public:
 
-    /** action function type definition. */
-    typedef void (*type_action)(fsmblk &fsm);
-    /** condition function type definition. */
-    typedef bool (*type_condition)(fsmblk &fsm);
-    /** from_state : (input symbol, current state). */
-    typedef std::tuple<std::string, std::string> from_state;
-    /** to_state   : (type_action, next state, condition, comment). */
-    typedef std::tuple<type_action, std::string, type_condition, std::string> to_state;
-    /** memory object type definition. */
-    typedef std::string mem_type;
+      /** action function type definition. */
+      typedef void (*type_action)(fsmblk &fsm);
+      /** condition function type definition. */
+      typedef bool (*type_condition)(fsmblk &fsm);
+      /** from_state : (input symbol, current state). */
+      typedef std::tuple<std::string, std::string> from_state;
+      /** to_state   : (type_action, next state, condition, comment). */
+      typedef std::tuple<type_action, std::string, type_condition, std::string> to_state;
+      /** memory object type definition. */
+      typedef std::string mem_type;
 
 
       ///////////////////////////////////

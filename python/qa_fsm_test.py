@@ -49,11 +49,10 @@ class qa_fsm_test (gr_unittest.TestCase):
         #pass
 
     def test_fsm_debug (self):
-        print "\n===\n=== TEST 1 FSM with debug \n===\n"
-        #src = gwncppvgb.symbol_strobe("gxryg", 5, 1000)
-        # full graph testing "gxyrwrgrwrcrgrxys"
+        print "\n===\n=== TEST 1 FSM \n===\n"
+        # full example FSM graph testing "gxyrwrgrwrcrgrxys"
         src = gwncppvgb.symbol_strobe("sgxyrwrgrwrcrgrxys", 19, 1000)
-        pss = gwncppvgb.fsm_test(False)
+        pss = gwncppvgb.fsm_test(False)  # change to True for debug
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "out_port_0"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
@@ -63,19 +62,5 @@ class qa_fsm_test (gr_unittest.TestCase):
         self.tb.stop()
         return
 
-    '''
-    def test_fsm_no_debug (self):
-        print "\n===\n=== TEST 2 FSM no debug \n===\n"
-        src = gwncppvgb.symbol_strobe("gxrgrgr", 6, 1000)
-        pss = gwncppvgb.fsm_test(False)
-        dbg = blocks.message_debug() 
-        self.tb.msg_connect( (src, "out_port_0"), (pss, "in_port_0") )
-        self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
-
-        self.tb.start ()
-        time.sleep(8)
-        self.tb.stop()
-        return
-    '''
 if __name__ == '__main__':
     gr_unittest.run(qa_fsm_test, "qa_fsm_test.xml")

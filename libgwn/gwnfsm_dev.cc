@@ -38,13 +38,8 @@ namespace gr {
 
 
     // action functions definitions
-
-    void fn_goA(gwncppvgb::gwnfsm_dev &d_fsm) {
-      //fsm.where = "B";
-      //fsm.set_where("B");
-      d_fsm.mem_push("A visited!");
-      d_fsm.d_action_result = "Result of function fn_goA";
-      //std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
+    void fn_none(gwncppvgb::fsmblk &d_fsm) {
+        d_fsm.d_action_result += "Result of function fn_none. ";
       return;
     }
 
@@ -59,13 +54,96 @@ namespace gr {
     }
 
 
+    void fn_show(gwncppvgb::fsmblk &d_fsm) {
+        std::string fsm_vars = "...FSM variables: where=" +
+          d_fsm.where + ", to_c=" +
+          std::to_string(d_fsm.to_c) + ". "; 
+        std::cout << fsm_vars << std::endl;
+        std::cout << "...FSM memory show and erase, INIT state" << std::endl;
+        std::cout << "   Memory size: " << d_fsm.mem_size() <<
+          ", contents:" << std::endl;
+      while (!d_fsm.mem_empty())
+      {
+         std::cout << " : " << d_fsm.mem_top();
+         d_fsm.mem_pop();
+      }
+      std::cout << std::endl;
+        return;
+    }
+
+
+    void fn_goA(gwncppvgb::gwnfsm_dev &d_fsm) {
+      //fsm.where = "B";
+      //fsm.set_where("B");
+      d_fsm.mem_push("A visited!");
+      d_fsm.d_action_result += "Result of function fn_goA. ";
+      //std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
+      return;
+    }
+
+    void fn_goB(gwncppvgb::fsmblk &d_fsm) {
+        //fsm.where = "C";
+        d_fsm.mem_push("B visited!");
+        d_fsm.d_action_result += "Result of function fn_goB. ";
+        return;
+    }
+
+    void fn_goC(gwncppvgb::fsmblk &d_fsm) {
+        //fsm.where = "A";
+        d_fsm.mem_push("C visited!");
+        d_fsm.d_action_result += "Result of function fn_goC; where=" + d_fsm.where + ". ";
+        return;
+    }
+
+    void fn_goAB(gwncppvgb::fsmblk &d_fsm) {
+      fn_goA(d_fsm);
+      fn_goB(d_fsm);
+      d_fsm.mem_push("C visited! ");
+    }
+
+
+    void fn_chgtoC(gwncppvgb::fsmblk &d_fsm) {
+        if (d_fsm.to_c == true )
+          d_fsm.to_c = false; 
+        else
+          d_fsm.to_c = true;
+        d_fsm.d_action_result += "Result of fn_toC, to_c=" +
+          std::to_string(d_fsm.to_c) + ". ";
+        return;
+    }
+
+    void fn_chgwhr(gwncppvgb::fsmblk &d_fsm) {
+      if (d_fsm.where == "A")
+          d_fsm.where = "B";
+      else if (d_fsm.where == "B")
+          d_fsm.where = "C";
+      else
+          d_fsm.where = "A";
+      d_fsm.d_action_result += "Result of fn_chgwhr, where=" + d_fsm.where + ". ";
+      return;
+   }
+
+
+
     // condition function definitions
 
+    bool cnd_true(gwncppvgb::gwnfsm_dev &d_fsm) {
+      return true;
+    }
+    bool cnd_false(gwncppvgb::fsmblk &d_fsm) {
+      return false;
+    }
     bool cnd_A(gwncppvgb::gwnfsm_dev &d_fsm) {
       return d_fsm.where == "A";
     }
-    bool cnd_true(gwncppvgb::gwnfsm_dev &d_fsm) {
-      return true;
+    bool cnd_B(gwncppvgb::fsmblk &d_fsm) {
+      return d_fsm.where == "B";
+    }
+    bool cnd_C(gwncppvgb::fsmblk &d_fsm) {
+      return d_fsm.where == "C";
+    }
+    bool cnd_C_to_c(gwncppvgb::fsmblk &d_fsm) {
+      return d_fsm.where == "C" && d_fsm.to_c == true;
     }
 
 
@@ -83,10 +161,28 @@ namespace gr {
     void 
     gwnfsm_dev::add_myfsm_transitions()
     {
-      add_transition ("g", "INIT", fn_goA, "STATE_A", cnd_A, "where==A");
-      add_transition ("r", "STATE_A", fn_init, "INIT", cnd_true);
+
       // default transition
       add_transition ("", "", fn_error, "INIT", cnd_true, "default transition");
+
+      // transitions for any input symbol
+      add_transition ("", "INIT", fn_none, "INIT", cnd_true,
+          "any symbol");
+      add_transition ("", "STATE_A", fn_none, "STATE_A", cnd_true,
+          "any symbol");
+
+      // add ordinary transitions
+      add_transition ("s", "INIT", fn_show, "INIT", cnd_true);
+      add_transition ("g", "INIT", fn_goA, "STATE_A", cnd_A, "where==A");
+      add_transition ("g", "INIT", fn_goB, "STATE_B", cnd_B, "where==B");
+      add_transition ("g", "INIT", fn_goAB, "STATE_C", cnd_C_to_c, "where==C && to_c" ); 
+      add_transition ("r", "STATE_A", fn_init, "INIT", cnd_true);
+      add_transition ("r", "STATE_B", fn_init, "INIT", cnd_true);
+      add_transition ("r", "STATE_C", fn_init, "INIT", cnd_true);
+      add_transition ("w", "INIT", fn_chgwhr, "CHG_WHERE", cnd_true);
+      add_transition ("c", "INIT", fn_chgtoC, "CHG_TOC", cnd_true);
+      add_transition ("r", "CHG_WHERE", fn_init, "INIT", cnd_true);
+      add_transition ("r", "CHG_TOC", fn_init, "INIT", cnd_true);
       
     }
 
@@ -122,7 +218,7 @@ namespace gr {
       d_initial_state = initial_state;
       d_current_state = initial_state;
       d_next_state = "";
-      d_action_result = "No action result";
+      d_action_result = "";
       add_myfsm_transitions();    // FSM add transitions
       //d_debug = true;
       d_debug = false;
@@ -134,8 +230,6 @@ namespace gr {
     gwnfsm_dev::~gwnfsm_dev()
     {
     }
-
-
 
 
     void
@@ -242,7 +336,7 @@ namespace gr {
     /** Receives symbol, executes transition, moves machine.
      *
      * Receives a symbol, looks for a transition valid for the current state, verifies condition, executes action and returns result.
-     *  @param input_symbol the received symbol.
+     * @param input_symbol the received symbol.
      * @param message a string message.
      * @param block a pointer to the main block to which the FSM is attached.
      * @return FSM transition action result.
@@ -253,13 +347,15 @@ namespace gr {
     {
       d_input_symbol = input_symbol;  // only for printing
       from_state stt_search;
+      d_action_result = "";           // for fresh result
 
       // search for ordinary transitions
       stt_search = std::make_tuple(input_symbol, d_current_state);
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
           std::cout << 
-            "  Executed (symbol, state) transition" << std::endl;
+            "  Executed (symbol, state) transition: (" << 
+            d_input_symbol << ", " << d_current_state << ")\n";
         }
       return d_action_result;
       }
@@ -269,7 +365,8 @@ namespace gr {
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
           std::cout << 
-            "  Executed (any symbol, state) transition" << std::endl;
+            "  Executed (any symbol, state) transition" << 
+            d_input_symbol << ", " << d_current_state << ")\n";
          }
         return d_action_result;
       }
@@ -278,7 +375,8 @@ namespace gr {
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
           std::cout << 
-            "  Executed (any symbol, any state) transition" << std::endl;
+            "  Executed (any symbol, any state) transition" <<
+            d_input_symbol << ", " << d_current_state << ")\n";
         return d_action_result;
         }
       }
@@ -308,8 +406,6 @@ namespace gr {
           type_condition fn_cond = std::get<2>(tostt); 
           if ( fn_cond( *this ) )                 // eval condition
           {
-            //std::cout << "exec debug, where=" << where <<
-            //  " this->where=" << this->where << std::endl;
             gwnfsm_dev::type_action fn_action = std::get<0>(tostt);
             fn_action( *this);  // execute action
 
@@ -320,8 +416,8 @@ namespace gr {
               std::cout << get_state();
             }
             return true;
-          }
-        }
+          }  // end evaluate condition
+        }  // end for
         return false;
       }
       return false;
