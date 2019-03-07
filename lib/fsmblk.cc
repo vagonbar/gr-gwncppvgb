@@ -45,8 +45,12 @@ namespace gr {
 
 
     void fn_show(gwncppvgb::fsmblk &d_fsm) {
-        std::cout << "  --- FSM memory show and erase, INIT state" << std::endl;
-        std::cout << "      Memory size: " << d_fsm.mem_size() <<
+        std::string fsm_vars = "...FSM variables: where=" +
+          d_fsm.where + ", to_c=" +
+          std::to_string(d_fsm.to_c) + ". "; 
+        std::cout << fsm_vars << std::endl;
+        std::cout << "...FSM memory show and erase, INIT state" << std::endl;
+        std::cout << "   Memory size: " << d_fsm.mem_size() <<
           ", contents:" << std::endl;
       while (!d_fsm.mem_empty())
       {
