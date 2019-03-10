@@ -20,7 +20,7 @@ the example block `symbol_strobe` receives a string as a parameter and emits one
 
 An optional FSM (Finite State Machine) block can be created. The FSM is included in its own block, which can be associated to the new block under creation. The FSM is instanciated as a class accessible from the new block through a pointer in the new block. The FSM is ordered to execute a transition through its function `process(input_symbol, message_to_function, "")`. This FSM function is typically invoked in the `process_data()` function of the new block to which the FSM is associated. The symbol may be any type of data, according to the way the FSM is coded. When receiving the symbol, the FSM machine looks for a transaction which includes the received symbol, the current state, and a condition which must evaluate to true. If such a transaction is found, an action function is executed, and a new state is made the current state of the FSM. The action function may produce a result which is returned to the caller, i.e. the `process_data()` function in the new block.
 
-The following commands clone the `fsm_example` block described in the [README page](../README-md). To account for the parameteres needed for the example to run as created, the user argument list must be:
+The following commands clone the `fsm_example` block described in the [README page](../../README.md). To account for the parameteres needed for the example to run as created, the user argument list must be:
 
   `bool debug`
 
@@ -209,5 +209,5 @@ In the new block to which the FSM is associated, these sections must be rewritte
 
 `/* Additional initialization, REWRITE as desired. */`
 
-
+[Back to README](../../README.md)
 
