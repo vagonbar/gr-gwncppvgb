@@ -48,6 +48,6 @@ The two example blocks can be cloned to run immediately under the block name cho
 
 [The gwn_modtool.sh script](libgwn/Docs/GWN_modtool.md)
 
-[Cloning of the timer example block](libgwn/Docs/Block_example.md)
+[Cloning the timer example block](libgwn/Docs/Block_example.md)
 
-[Cloning ot the FSM example block](libgwn/Docs/FSM_example.md)
+[Cloning the FSM example block](libgwn/Docs/FSM_example.md)
