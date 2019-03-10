@@ -29,7 +29,11 @@ These parameters allow to test the block including optional debug messages. The 
 ```
   cd <project_root_directory>/build
   ../libgwn/gwn_modtool.sh my_fsm_example 1 1 0
-  (answer questions: enter argument list, confirm creation say "y", optional FSM block say "y", add C++ QA code as preferred)
+  (answer questions:
+     enter argument list,
+     confirm creation say "y",
+     optional FSM block say "y",
+     add C++ QA code as preferred)
   make
   make install
   python ../python/qa_my_fsm_example.py

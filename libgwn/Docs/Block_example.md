@@ -1,4 +1,4 @@
-# GNU : An examplo GWN block with timers
+# GNU : An example GWN block with timers
 
 This document describes the creation (cloning) of a block similar to the timer message block example.
 
@@ -14,7 +14,11 @@ These parameters indicate the message, period, and quantity (count) of messages 
 ```
   cd <project_root_directory>/build
   ../libgwn/gwn_modtool.sh my_timer_example 1 1 2
-  (answer questions: enter argument list, confirm creation say "y", optional FSM block say "n", add C++ QA code as preferred)
+  (answer questions:
+     enter argument list,
+     confirm creation say "y",
+     optional FSM block say "n",
+     add C++ QA code as preferred)
   make
   make install
   python ../python/qa_my_timer_example.py
