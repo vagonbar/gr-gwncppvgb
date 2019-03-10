@@ -18,7 +18,6 @@
 # Boston, MA 02110-1301, USA.
 install(FILES
     gwncppvgb_message_timer_example.xml
-    gwncppvgb_fsmblk.xml
     gwncppvgb_symbol_strobe.xml
     gwncppvgb_fsm_example.xml
     gwncppvgb_fsm_example_fsm.xml DESTINATION share/gnuradio/grc/blocks
