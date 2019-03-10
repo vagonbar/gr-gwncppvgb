@@ -9,7 +9,6 @@
 
 %{
 #include "gwncppvgb/message_timer_example.h"
-#include "gwncppvgb/fsm_test.h"
 #include "gwncppvgb/fsmblk.h"
 #include "gwncppvgb/symbol_strobe.h"
 #include "gwncppvgb/fsm_example.h"
@@ -20,8 +19,6 @@
 %include "gwncppvgb/message_timer_example.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_timer_example);
 
-%include "gwncppvgb/fsm_test.h"
-GR_SWIG_BLOCK_MAGIC2(gwncppvgb, fsm_test);
 %include "gwncppvgb/fsmblk.h"
 %include "gwncppvgb/symbol_strobe.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, symbol_strobe);

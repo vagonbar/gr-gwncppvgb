@@ -23,7 +23,6 @@
 install(FILES
     api.h
     message_timer_example.h
-    fsm_test.h
     fsmblk.h
     symbol_strobe.h
     fsm_example.h
