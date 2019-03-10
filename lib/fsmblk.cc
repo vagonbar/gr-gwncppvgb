@@ -75,7 +75,7 @@ namespace gr {
     void fn_goA(gwncppvgb::fsmblk &d_fsm) {
       //fsm.where = "B";
       //fsm.set_where("B");
-      d_fsm.mem_push("A visited!");
+      d_fsm.mem_push( pmt::mp("A visited!") );
       d_fsm.d_action_result += "Result of function fn_goA. ";
       //std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
       return;
@@ -83,14 +83,14 @@ namespace gr {
 
     void fn_goB(gwncppvgb::fsmblk &d_fsm) {
         //fsm.where = "C";
-        d_fsm.mem_push("B visited!");
+        d_fsm.mem_push( pmt::mp("B visited!") );
         d_fsm.d_action_result += "Result of function fn_goB. ";
         return;
     }
 
     void fn_goC(gwncppvgb::fsmblk &d_fsm) {
         //fsm.where = "A";
-        d_fsm.mem_push("C visited!");
+        d_fsm.mem_push( pmt::mp("C visited!") );
         d_fsm.d_action_result += "Result of function fn_goC; where=" + d_fsm.where + ". ";
         return;
     }
@@ -98,7 +98,7 @@ namespace gr {
     void fn_goAB(gwncppvgb::fsmblk &d_fsm) {
       fn_goA(d_fsm);
       fn_goB(d_fsm);
-      d_fsm.mem_push("C visited! ");
+      d_fsm.mem_push( pmt::mp("C visited! ") );
     }
 
 

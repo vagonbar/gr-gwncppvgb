@@ -58,7 +58,7 @@ namespace gr {
       /** to_state   : (type_action, next state, condition, comment). */
       typedef std::tuple<type_action, std::string, type_condition, std::string> to_state;
       /** memory object type definition. */
-      typedef std::string mem_type;
+      typedef pmt::pmt_t mem_type;
 
 
       ///////////////////////////////////

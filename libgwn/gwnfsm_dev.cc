@@ -38,23 +38,23 @@ namespace gr {
 
 
     // action functions definitions
-    void fn_none(gwncppvgb::fsmblk &d_fsm) {
+    void fn_none(gwncppvgb::gwnfsm_dev &d_fsm) {
         d_fsm.d_action_result += "Result of function fn_none. ";
       return;
     }
 
     void fn_error(gwncppvgb::gwnfsm_dev &d_fsm) {
       //std::cout << "  --- FSM error " << std::endl;
-      d_fsm.d_action_result="FSM ERROR";
+      d_fsm.d_action_result += "FSM ERROR";
     }
     void fn_init(gwncppvgb::gwnfsm_dev &d_fsm) {
       //std::cout << "  --- FSM fn_init" << std::endl;
-      d_fsm.d_action_result = "Result of function fn_init";
+      d_fsm.d_action_result += "Result of function fn_init. ";
       return;
     }
 
 
-    void fn_show(gwncppvgb::fsmblk &d_fsm) {
+    void fn_show(gwncppvgb::gwnfsm_dev &d_fsm) {
         std::string fsm_vars = "...FSM variables: where=" +
           d_fsm.where + ", to_c=" +
           std::to_string(d_fsm.to_c) + ". "; 
@@ -75,34 +75,34 @@ namespace gr {
     void fn_goA(gwncppvgb::gwnfsm_dev &d_fsm) {
       //fsm.where = "B";
       //fsm.set_where("B");
-      d_fsm.mem_push("A visited!");
+      d_fsm.mem_push( pmt::mp("A visited!") );
       d_fsm.d_action_result += "Result of function fn_goA. ";
       //std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
       return;
     }
 
-    void fn_goB(gwncppvgb::fsmblk &d_fsm) {
+    void fn_goB(gwncppvgb::gwnfsm_dev &d_fsm) {
         //fsm.where = "C";
-        d_fsm.mem_push("B visited!");
+        d_fsm.mem_push( pmt::mp("B visited!") );
         d_fsm.d_action_result += "Result of function fn_goB. ";
         return;
     }
 
-    void fn_goC(gwncppvgb::fsmblk &d_fsm) {
+    void fn_goC(gwncppvgb::gwnfsm_dev &d_fsm) {
         //fsm.where = "A";
-        d_fsm.mem_push("C visited!");
+        d_fsm.mem_push( pmt::mp("C visited!") );
         d_fsm.d_action_result += "Result of function fn_goC; where=" + d_fsm.where + ". ";
         return;
     }
 
-    void fn_goAB(gwncppvgb::fsmblk &d_fsm) {
+    void fn_goAB(gwncppvgb::gwnfsm_dev &d_fsm) {
       fn_goA(d_fsm);
       fn_goB(d_fsm);
-      d_fsm.mem_push("C visited! ");
+      d_fsm.mem_push( pmt::mp("C visited! ") );
     }
 
 
-    void fn_chgtoC(gwncppvgb::fsmblk &d_fsm) {
+    void fn_chgtoC(gwncppvgb::gwnfsm_dev &d_fsm) {
         if (d_fsm.to_c == true )
           d_fsm.to_c = false; 
         else
@@ -112,7 +112,7 @@ namespace gr {
         return;
     }
 
-    void fn_chgwhr(gwncppvgb::fsmblk &d_fsm) {
+    void fn_chgwhr(gwncppvgb::gwnfsm_dev &d_fsm) {
       if (d_fsm.where == "A")
           d_fsm.where = "B";
       else if (d_fsm.where == "B")
@@ -130,19 +130,19 @@ namespace gr {
     bool cnd_true(gwncppvgb::gwnfsm_dev &d_fsm) {
       return true;
     }
-    bool cnd_false(gwncppvgb::fsmblk &d_fsm) {
+    bool cnd_false(gwncppvgb::gwnfsm_dev &d_fsm) {
       return false;
     }
     bool cnd_A(gwncppvgb::gwnfsm_dev &d_fsm) {
       return d_fsm.where == "A";
     }
-    bool cnd_B(gwncppvgb::fsmblk &d_fsm) {
+    bool cnd_B(gwncppvgb::gwnfsm_dev &d_fsm) {
       return d_fsm.where == "B";
     }
-    bool cnd_C(gwncppvgb::fsmblk &d_fsm) {
+    bool cnd_C(gwncppvgb::gwnfsm_dev &d_fsm) {
       return d_fsm.where == "C";
     }
-    bool cnd_C_to_c(gwncppvgb::fsmblk &d_fsm) {
+    bool cnd_C_to_c(gwncppvgb::gwnfsm_dev &d_fsm) {
       return d_fsm.where == "C" && d_fsm.to_c == true;
     }
 

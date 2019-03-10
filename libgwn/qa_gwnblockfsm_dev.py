@@ -28,7 +28,7 @@ import gwncppvgb.gwncppvgb_swig as gwncppvgb
 import time
 import pmt
 
-class qa_gwnblock_dev (gr_unittest.TestCase):
+class qa_gwnblockfsm_dev (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -36,28 +36,31 @@ class qa_gwnblock_dev (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_constructor (self):
-        #print "\n===\n=== TEST gwnblock_dev constructor \n===\n"
-        #myblock = gwncppvgb.gwnblock_dev("GWN test message 1", 10)
+    #def test_constructor (self):
+        #print "\n===\n=== TEST gwnblockfsm_dev constructor \n===\n"
+        #gwncppvgb.set_debug(True)   # does now work as expected
+        #myblock = gwncppvgb.gwnblockfsm_dev("GWN test message 1", 10)
+        #print "myblock.__str__()", myblock.__str__()  # not as expected
+
+
         # set up fg
         #self.tb.run ()
         # check data
-        pass
+        #pass
 
-    def test_ports_timer (self):
-        print "\n===\n=== TEST gwnblock_dev input and output ports \n===\n"
-        tst_msg = "--- A message from message strobe"
-        src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
-        pss = gwncppvgb.gwnblock_dev("AAAA", 1000, 6, "BBBB", 500, 6 )
-
+    def test_fsm_debug (self):
+        print "\n===\n=== TEST 1 FSM \n===\n"
+        # full example FSM graph testing "gxyrwrgrwrcrgrxys"
+        src = gwncppvgb.symbol_strobe("sgxyrwrgrwrcrgrxys", 19, 1000)
+        pss = gwncppvgb.gwnblockfsm_dev(False)  # change to True for debug
         dbg = blocks.message_debug() 
-        self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
+        self.tb.msg_connect( (src, "out_port_0"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
 
         self.tb.start ()
-        time.sleep(8)
+        time.sleep(20)
         self.tb.stop()
-
+        return
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_gwnblock_dev, "qa_gwnblock_dev.xml")
+    gr_unittest.run(qa_gwnblockfsm_dev, "qa_gwnblockfsm_dev.xml")

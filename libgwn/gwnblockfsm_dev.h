@@ -18,22 +18,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
-#include <gnuradio/io_signature.h>
-#include <gwncppvgb/gwnblockc_pdata.h>
+#ifndef INCLUDED_GWNCPPVGB_GWNBLOCKFSM_DEV_H
+#define INCLUDED_GWNCPPVGB_GWNBLOCKFSM_DEV_H
 
-/* GWN inclusions */
-#include <stdio.h>
-#include <iostream>
-#include "gwnblockc_impl.h"
+#include <gwncppvgb/api.h>
+#include <gnuradio/block.h>
 
 namespace gr {
   namespace gwncppvgb {
 
-    /*
+    /**
+     * \brief GWN template class for new block construction. 
+     * \ingroup gwncppvgb
+     *
      * Please consider some comments // and <text thus enclosed>
      * will be substituted by the gwn_modtool.sh script when
      * creating a new type of block. DO NOT ALTER, the script
@@ -41,26 +39,25 @@ namespace gr {
      */
 
 
-    /* GWN process_data function, rewrite for a new block */
-
-    pmt::pmt_t gwnblockc_pdata::process_data(std::string ev)
+    class GWNCPPVGB_API gwnblockfsm_dev : virtual public gr::block
     {
-      std::string ev_proc = "...process_data, received: " + ev 
-        + "   \n"; 
-      pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-      pmt::pmt_t pmt_msg = pmt::string_to_symbol(ev_proc); 
-      return pmt::cons(pmt_port, pmt_msg);
-    }
+     public:
+      typedef boost::shared_ptr<gwnblockfsm_dev> sptr;
 
+      /*!
+       * \brief Return a shared_ptr to a new instance of gwncppvgb::gwnblockfsm_dev.
+       *
+       * To avoid accidental use of raw pointers, gwncppvgb::gwnblockfsm_dev's
+       * constructor is in a private implementation
+       * class. gwncppvgb::gwnblockfsm_dev::make is the public interface for
+       * creating new instances.
+       */
+      static sptr make(bool debug);
 
-    /* GWN process_data class, leave as it is in a new block */
-    gwnblockc_pdata::gwnblockc_pdata(<GWN user arguments list>)
-    {
-      // GWN user arguments initialization
+    };
 
-    }
-    gwnblockc_pdata::~gwnblockc_pdata() { }
+  } // namespace gwncppvgb
+} // namespace gr
 
-  } /* namespace gwncppvgb */
-} /* namespace gr */
+#endif /* INCLUDED_GWNCPPVGB_GWNBLOCKFSM_DEV_H */
 
