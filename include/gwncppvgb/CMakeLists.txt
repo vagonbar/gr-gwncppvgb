@@ -26,5 +26,6 @@ install(FILES
     fsm_test.h
     fsmblk.h
     symbol_strobe.h
-    DESTINATION include/gwncppvgb
+    fsm_example.h
+    fsm_example_fsm.h DESTINATION include/gwncppvgb
 )

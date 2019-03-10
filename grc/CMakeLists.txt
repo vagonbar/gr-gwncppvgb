@@ -21,5 +21,6 @@ install(FILES
     gwncppvgb_fsm_test.xml
     gwncppvgb_fsmblk.xml
     gwncppvgb_symbol_strobe.xml
-    DESTINATION share/gnuradio/grc/blocks
+    gwncppvgb_fsm_example.xml
+    gwncppvgb_fsm_example_fsm.xml DESTINATION share/gnuradio/grc/blocks
 )

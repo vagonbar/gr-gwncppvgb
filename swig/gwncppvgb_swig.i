@@ -12,6 +12,8 @@
 #include "gwncppvgb/fsm_test.h"
 #include "gwncppvgb/fsmblk.h"
 #include "gwncppvgb/symbol_strobe.h"
+#include "gwncppvgb/fsm_example.h"
+#include "gwncppvgb/fsm_example_fsm.h"
 %}
 
 
@@ -24,3 +26,6 @@ GR_SWIG_BLOCK_MAGIC2(gwncppvgb, fsm_test);
 %include "gwncppvgb/symbol_strobe.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, symbol_strobe);
 
+%include "gwncppvgb/fsm_example.h"
+GR_SWIG_BLOCK_MAGIC2(gwncppvgb, fsm_example);
+%include "gwncppvgb/fsm_example_fsm.h"

@@ -29,7 +29,8 @@ list(APPEND gwncppvgb_sources
     fsm_test_impl.cc
     fsmblk.cc
     symbol_strobe_impl.cc
-    )
+    fsm_example_impl.cc
+    fsm_example_fsm.cc )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)
 if(NOT gwncppvgb_sources)
