@@ -8,5 +8,5 @@ When running the script, the programmer will be asked to enter a user argument l
 
 When creating a new block, an optional FSM (Finite State Machine) can be attached to the block. To this purpose, the script `gwn_modtool.sh` asks whether to create the FSM associated block or not. If the answer is `y`, the FSM block is created.
 
-Please see the documents referred to in the [README page](../README.md) to clone the example blocks or create your own. It is strongly suggested to start cloning the example blocks, since this allows to start with a running block which can then be customized to specific needs.
+Please see the documents referred to in the [README page](../../README.md) to clone the example blocks or create your own. It is strongly suggested to start cloning the example blocks, since this allows to start with a running block which can then be customized to specific needs.
 
