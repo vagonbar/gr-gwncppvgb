@@ -10,3 +10,5 @@ When creating a new block, an optional FSM (Finite State Machine) can be attache
 
 Please see the documents referred to in the [README page](../../README.md) to clone the example blocks or create your own. It is strongly suggested to start cloning the example blocks, since this allows to start with a running block which can then be customized to specific needs.
 
+[Back to README](../../README.md)
+
