@@ -47,5 +47,7 @@ Once the blocks are created, the user is responsible for reflecting in the code 
 The two example blocks can be cloned to run immediately under the block name chosen by the user. This allows to start with a running block which can then be altered to reflect specific needs. To clone the example blocks, pleas see the following documents:
 
 [The gwn_modtool.sh script](libgwn/Docs/GWN_modtool.md)
+
 [Cloning of the timer example block](ibgwn/Docs/Block_example.md)
+
 [Cloning ot the FSM example block](libgwn/Docs/FSM_example.md)
