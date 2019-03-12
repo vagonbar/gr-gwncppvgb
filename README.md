@@ -1,6 +1,10 @@
 # GWN : GNU Wireless Network
 
-This is a testing project to enhance the GWN project (GWN, GNU Wireless Network) by coding the core of GWN in C++ (at present it is coded in Python). Please find the GWN Project at https://github.com/vagonbar/gr-gwn/.
+This project is an enhancement of the GWN project (GWN, GNU Wireless Network) now coded in C++. The original GWN project was coded in Python; it can be found at https://github.com/vagonbar/gr-gwn/.
+
+GWN, the GNU Wireless Network, is a network development toolkit compatible with GNU Radio.
+
+The GNU Wireless Network project (GWN) is a toolkit to allow teaching and experimentation in wireless data networks. It is conceived as an out-of-tree module of GNU Radio, a popular Software Defined Radio (SDR) implementation. GWN is based on the tagged streams and messages of GNU Radio which allow asynchronous item transfer among blocks, and message passing to blocks upstream in the flowgraph. GWN adds some other features essential to data network protocol implementation, such as timers on each block, and access to a finite state machine. GWN provides a template block class which implements a variable number of inputs, outputs, and inner timers. An additional template block with a Finite State Machine (FSM) can be used to create a complementary block and associate it to the new block. This allows for an easy way to extend GWN with new blocks apt for data network communications. Besides these templates to create new blocks, the GWN toolkit comprises some blocks which implement atomic functions frequently used in data network protocol implementation. The toolkit was tested in real world communication among computers using USRP hardware devices.
 
 ## Purpose, difficulties, workarounds
 
