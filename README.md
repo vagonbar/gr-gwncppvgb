@@ -33,7 +33,9 @@ The `message_debug` block also receives timer messages generated in the block's 
 An example block called `fsm_test` is already created, and can be tested by runningits corresponding QA test `python ../qa_fsm_example.py`.
 
 This block receives a message on its input port, passes it to its associated FSM engine for it to execute a transition, and outps the result produced by the FSM on its output port. In this flowgraph:
-    `symbol_strobe --> fsm_example --> message_debug`
+```
+symbol_strobe --> fsm_example --> message_debug
+```
 The `message_debug` block receives the result of the FSM action, plus some information on symbol received and current state of the FSM engine. At the end, the contents of the FSM associated memory is displayed.
 
 ## Creation of a new block
