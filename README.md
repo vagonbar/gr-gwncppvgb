@@ -39,10 +39,12 @@ The `message_debug` block receives the result of the FSM action, plus some infor
 ## Creation of a new block
 
 A new block can be easily created with the script `gwn_modtool.sh`, similar to the GNU Radio `gr_modtool`. This script must be run from the `build` with the following syntax:
+
     ```
     cd <project_root_directory>/build
     ../libgwn/gwn_modtool <block_name> <nr_inputs> <nr_outputs> <nr_timers
     ```
+
 All parameters must be given; any of them can be 0. In the course of the script run, the user is asked to provide a list of parameters in C++ format, such as `std::string message, int count, bool debug`; this list may be empty. The user will then be asked if an FSM engine is to be created and associated to the main block. The script creates the blocks with the names, inputs, outputs, timers, and parameters given, and an associated block with the FSM engine if one has been asked for.
 
 Once the blocks are created, the user is responsible for reflecting in the code her selections of ports and parameters. To this purpose, the corresponding sections in the code are identified for the user to alter.
