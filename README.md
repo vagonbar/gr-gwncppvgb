@@ -1,21 +1,18 @@
 # GWN : GNU Wireless Network
 
-This project is an enhancement of the GWN project (GWN, GNU Wireless Network) now coded in C++. The original GWN project was coded in Python; it can be found at https://github.com/vagonbar/gr-gwn/.
-
 GWN, the GNU Wireless Network, is a network development toolkit compatible with GNU Radio.
 
 The GNU Wireless Network project (GWN) is a toolkit to allow teaching and experimentation in wireless data networks. It is conceived as an out-of-tree module of GNU Radio, a popular Software Defined Radio (SDR) implementation. GWN is based on the tagged streams and messages of GNU Radio which allow asynchronous item transfer among blocks, and message passing to blocks upstream in the flowgraph. GWN adds some other features essential to data network protocol implementation, such as timers on each block, and access to a finite state machine. GWN provides a template block class which implements a variable number of inputs, outputs, and inner timers. An additional template block with a Finite State Machine (FSM) can be used to create a complementary block and associate it to the new block. This allows for an easy way to extend GWN with new blocks apt for data network communications. Besides these templates to create new blocks, the GWN toolkit comprises some blocks which implement atomic functions frequently used in data network protocol implementation. The toolkit was tested in real world communication among computers using USRP hardware devices.
+
+This project is an enhancement of the GWN project (GWN, GNU Wireless Network) now coded in C++. The original GWN project was coded in Python; it can be found at https://github.com/vagonbar/gr-gwn/.
 
 ## Purpose, difficulties, workarounds
 
 The coding in C++ of the core classes in GWN is expected to improve in performance and become closer to the general design of GNU Radio. Since GWN is implemented as an OOT (Out Of Tree) module in GNU Radio, and GNU Radio does not allow inheritance from user blocks, but only from GNU Radio blocks, the implementation in C++ of the core classes of GWN could not follow the straightforward way of inheriting from a GWN basic block, called gwnblock in GWN. This restriction was not found in Python coded blocks, where inheritance from gwnblock did not show any restrictions. Hence, in a new C++ block, all GWN facilities must be included in the new block. 
 
 To simplify coding of new blocks, a block creation script was written, which includes all necessary code in a new GWN block by modifying a template to include the new block ports, timers and user parameters. The programmer of the new block is expected to rewrite two functions:
-
-`add_init`, which stands for additional initialization, where custom variables can be defined, timers can be set, etc.
-
-`process_data`, where all the actions expected from the new block are coded. This function is invoked when a message is received on a message or timer port, does some processing according to the message received, and optionally outputs another message on any of the available output ports.
-
+- `add_init`, which stands for additional initialization, where custom variables can be defined, timers can be set, etc.
+- `process_data`, where all the actions expected from the new block are coded. This function is invoked when a message is received on a message or timer port, does some processing according to the message received, and optionally outputs another message on any of the available output ports.
 
 ## Example blocks
 
@@ -26,7 +23,9 @@ The main funcionalities of GWN can be appreciated through two example blocks wit
 An example block called `message_timer_example` is already created, and can be tested by running its corresponding QA test, `python/qa_message_timer_example.py`. 
 
 This block receives a message on an input port and outputs the same message on an output port, as well as messages produced by two internal timers, also sent through the output port. In this flowgraph:
+
     `message_strobe --> message_timer_example --> message_debug`
+
 The `message_debug` block also receives timer messages generated in the block's internal timer.
 
 ### FSM example block.
