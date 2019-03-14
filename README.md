@@ -23,7 +23,9 @@ The main funcionalities of GWN can be appreciated through two example blocks wit
 An example block called `message_timer_example` is already created, and can be tested by running its corresponding QA test, `python/qa_message_timer_example.py`. 
 
 This block receives a message on an input port and outputs the same message on an output port, as well as messages produced by two internal timers, also sent through the output port. In this flowgraph:
-`message_strobe --> message_timer_example --> message_debug`
+```
+message_strobe --> message_timer_example --> message_debug
+```
 The `message_debug` block also receives timer messages generated in the block's internal timer.
 
 ### FSM example block.
