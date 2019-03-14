@@ -1,4 +1,4 @@
-# GNU : The gwn_modtool.sh script
+# GNU : The `gwn_modtool.sh` script
 
 The script `gwn_modtool.sh` takes the code from a template GWN block available in the `../libgwn` directory, and modifies the argument list according to the argumets given to `gwn_modtool.sh` as positional parameters: block name, number of input ports, number of output ports, and number of timers.
 
