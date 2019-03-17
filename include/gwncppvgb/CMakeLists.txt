@@ -22,8 +22,8 @@
 ########################################################################
 install(FILES
     api.h
-    message_timer_example.h
     symbol_strobe.h
+    message_timer_example.h
     fsm_example.h
     fsm_example_fsm.h DESTINATION include/gwncppvgb
 )

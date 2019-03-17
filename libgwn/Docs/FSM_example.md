@@ -22,7 +22,7 @@ An optional FSM (Finite State Machine) block can be created. The FSM is included
 
 The following commands clone the `fsm_example` block described in the [README page](../../README.md). To account for the parameteres needed for the example to run as created, the user argument list must be:
 
-  `bool debug`
+  `bool fsm_debug`
 
 These parameters allow to test the block including optional debug messages. The complete sequence of commands to create a block named `my_fsm_example` follows.
 

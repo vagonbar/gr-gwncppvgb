@@ -52,9 +52,7 @@ namespace gr {
        * class. gwncppvgb::message_timer_example::make is the public interface for
        * creating new instances.
        */
-      static sptr make(
-        std::string msg_1, float period_1, int count_1,
-        std::string msg_2, float period_2, int count_2 );
+      static sptr make( std::string msg_1, float period_1, int count_1, std::string msg_2, float period_2, int count_2 );
 
     };
 

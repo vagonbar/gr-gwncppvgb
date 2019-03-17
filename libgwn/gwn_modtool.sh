@@ -79,7 +79,7 @@ echo "=== User arguments list."
 echo "For an example block with no FSM indicate"
 echo "   std::string msg_1, float period_1, int count_1, std::string msg_2, float period_2, int count_2"
 echo "For an example block with FSM indicate"
-echo "   bool::debug"
+echo "   bool fsm_debug"
 echo -n "Enter argument list: "; read USER_ARGS
 #USER_ARGS="std::string msg_1, float period_1, int count_1, std::string msg_2, float period_2, int count_2"  # for testing
 USER_ARGS_ARRAY=(`echo $USER_ARGS | tr " " "#" | tr "," " "`)

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<block>
+  <name>Message timer example</name>
+  <key>gwncppvgb_message_timer_example</key>
+  <category>[gwncppvgb]</category>
+  <import>import gwncppvgb</import>
+  <make>gwncppvgb.message_timer_example (
+    $msg_1, $period_1, $count_1, $msg_2, $period_2, $count_2)
+  </make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+
+
+  <param>
+    <name>Timer Msg 1</name>
+    <key>msg_1</key>
+    <value>"Timer Message ONE"</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Timer Period 1</name>
+    <key>period_1</key>
+    <value>1000.0</value>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Timer Count 1</name>
+    <key>count_1</key>
+    <value>10</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Timer Msg 2</name>
+    <key>msg_2</key>
+    <value>"Timer Message TWO"</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Timer Period 2</name>
+    <key>period_2</key>
+    <value>1000.0</value>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Timer Count 2</name>
+    <key>count_2</key>
+    <value>10</value>
+    <type>int</type>
+  </param>
+
+
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in_port_0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out_port_0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

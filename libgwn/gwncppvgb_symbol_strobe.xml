@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<block>
+  <name>symbol_strobe</name>
+  <key>gwncppvgb_symbol_strobe</key>
+  <category>[gwncppvgb]</category>
+  <import>import gwncppvgb</import>
+  <make>gwncppvgb.symbol_strobe($symbol_seq, $count, $period)</make>
+
+  <param>
+    <name>Symbol sequence</name>
+    <key>symbol_seq</key>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Count</name>
+    <key>count</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Period</name>
+    <key>period</key>
+    <type>float</type>
+  </param>
+
+  <source>
+    <name>out_port_0</name>
+    <type>message</type>
+    <optional>0</optional>
+  </source>
+
+</block>

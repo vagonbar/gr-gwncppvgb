@@ -56,8 +56,6 @@ namespace gr {
     
       d_debug = false;
 
-      // GWN TAG initialize pointer attribute to optional FSM block 
-      //d_fsm = new <block_name>_fsm("INIT");
 
       // set timers message, period, etc
       d_timers[0]->d_count = d_count_1;
@@ -316,7 +314,6 @@ namespace gr {
 
 
     /* gwnblock_dev: the private constructor */
-    //gwnblock_dev_impl::gwnblock_dev_impl(std::string message, int counter)
     gwnblock_dev_impl::gwnblock_dev_impl 
       ( <GWN TAG user arguments list> ) 
       : gr::block("gwnblock_dev",

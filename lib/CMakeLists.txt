@@ -25,8 +25,8 @@ include(GrPlatform) #define LIB_SUFFIX
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 list(APPEND gwncppvgb_sources
-    message_timer_example_impl.cc
     symbol_strobe_impl.cc
+    message_timer_example_impl.cc
     fsm_example_impl.cc
     fsm_example_fsm.cc )
 
@@ -61,7 +61,6 @@ include_directories(${CPPUNIT_INCLUDE_DIRS})
 list(APPEND test_gwncppvgb_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/test_gwncppvgb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwncppvgb.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/qa_message_timer_example.cc
     )
 
 add_executable(test-gwncppvgb ${test_gwncppvgb_sources})

@@ -28,14 +28,11 @@
 #include "qa_gwncppvgb.h"
 
 
-#include "qa_message_timer_example.h"
 
 CppUnit::TestSuite *
 qa_gwncppvgb::suite()
 {
   CppUnit::TestSuite *s = new CppUnit::TestSuite("gwncppvgb");
-
-  s->addTest(gr::gwncppvgb::qa_message_timer_example::suite());
 
   return s;
 }

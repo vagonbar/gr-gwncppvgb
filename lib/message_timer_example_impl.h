@@ -26,6 +26,7 @@
 /*  GWN inclusions */
 #include <vector>
 
+// GWN TAG include FSM block
 
 namespace gr {
   namespace gwncppvgb {
@@ -82,14 +83,14 @@ namespace gr {
       /** GWN Timer, a timer with message, period, and count.
        
       A nested class implementing a timer which can be instantiated
-      into an object and associatedto a GWN block. The timer emits
+      into an object and associated to a GWN block. The timer emits
       internal messages periodically for a number of times.
  
       The block containing the timer receives messages from the timer in an internal port. This internal port, called a timer port, is a message port of the block, but it is not no connected to any external block. All timers in the block send their messages to this unique timer port.
 
       When started, the timer waits for the indicated period of time before emitting its first message. Then, the timer goes on sending messages after each period of time, until reaching the number of messages indicated as a count parameter. Once the count has been reached, no more messages are sent. However, the timer thread is not finished, and can be restarted.
 
-      The timer can be suspended in its emission of messages. When suspended, the timer does not emit messages, and the counter is not incremented, but the timer thread remains alive. When taken out from suspension, messages continue to be emitted and the counter incremented from its last value.
+      The timer can be suspended in its emission of messages. When suspended, the timer does not emit messages, and the counter is not incremented, but the timer thread remains alive. When taken out from suspension, messages continue to be emitted and the counter is incremented from its last value.
 
       The counter can be resetted, thus starting to emit messages as if it was recently started.
  
@@ -144,7 +145,11 @@ namespace gr {
 
       };   // end class GWNTimer
 
-      /** Handles timer messages */
+      /** Handles timer messages.
+
+      @param pmt_msg: a message in PMT format.
+      */
+
       void handle_timer_msg (pmt::pmt_t pmt_msg);
 
       // GWN TAG: user arguments declaration
@@ -153,10 +158,10 @@ namespace gr {
 
 
     public:
-      message_timer_example_impl(
-        std::string msg_1, float period_1, int count_1,
-        std::string msg_2, float period_2, int count_2 );
+      /** Constructor. */
+      message_timer_example_impl( std::string msg_1, float period_1, int count_1, std::string msg_2, float period_2, int count_2 );
 
+      /** Destructor. */
       ~message_timer_example_impl();
 
       /** Block name. */
@@ -206,8 +211,8 @@ namespace gr {
 
       This function receives messages from the input ports and from the timer ports. 
       The message received may be any PMT formatted message. If it is a GWN message, it is a dictionary in PMT format, which contains a type, a subtype, and a sequence number, with the optional addition of other entries defined by the user. In this function the actions defined by the programmer are executed.
-      @param port The port identifier on which the message was received, in string format.
-      @param pmt_msg The message, in PMT format. It may be 
+      @param port The port identifier on which the message was received.
+      @param pmt_msg The message, in PMT format.
       */
       void process_data(
         std::string port, pmt::pmt_t pmt_msg);
@@ -216,10 +221,15 @@ namespace gr {
       bool d_debug;
 
       // GWN TAG user arguments declaration
-      std::string d_msg_1, d_msg_2;
-      float d_period_1, d_period_2;
-      int d_count_1, d_count_2;
+      std::string d_msg_1;
+      float d_period_1;
+      int d_count_1;
+      std::string d_msg_2;
+      float d_period_2;
+      int d_count_2;
 
+      // GWN TAG declare pointer attribute to optional FSM block
+      // gwncppvgb::<block_name>_fsm * d_fsm;
     }; 
 
   } // namespace gwncppvgb

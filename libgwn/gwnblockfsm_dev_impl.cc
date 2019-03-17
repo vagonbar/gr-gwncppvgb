@@ -328,7 +328,7 @@ namespace gr {
 
     /* gwnblockfsm: the private constructor */
     gwnblockfsm_dev_impl::gwnblockfsm_dev_impl 
-      (bool debug) 
+      (bool fsm_debug) 
       : gr::block("gwnblockfsm",
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) ) //,
@@ -341,9 +341,6 @@ namespace gr {
       d_number_in = 1;
       d_number_out = 1;
       d_number_timers = 0;
-
-      // GWN user arguments initialization
-      d_debug = debug; 
 
       if (d_debug) {
         std::cout << "gwnblockfsm, constructor, name " << 

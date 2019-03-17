@@ -48,18 +48,14 @@ class qa_message_timer_example (gr_unittest.TestCase):
         print "\n===\n=== TEST message_timer_example input and output ports \n===\n"
         tst_msg = "--- A message from message strobe"
         src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
-        pss = gwncppvgb.message_timer_example( \
-          "TIMER 1 msg AAAA", 1000.0, 6, \
-          "TIMER 2 msg BBBB", 1000.0, 3)
+        pss = gwncppvgb.message_timer_example("AAAA", 1000, 6, "BBBB", 500, 6 )
 
         dbg = blocks.message_debug() 
         self.tb.msg_connect( (src, "strobe"), (pss, "in_port_0") )
         self.tb.msg_connect( (pss, "out_port_0"), (dbg, "print") )
-        #self.tb.msg_connect( (src, "port_out_0"), (dbg, "print") )
-  
 
         self.tb.start ()
-        time.sleep(6)
+        time.sleep(8)
         self.tb.stop()
 
 

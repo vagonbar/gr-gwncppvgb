@@ -53,7 +53,7 @@ namespace gr {
     void
     message_timer_example_impl::added_init() 
     {
-
+    
       d_debug = false;
 
       // GWN TAG initialize pointer attribute to optional FSM block 
@@ -307,27 +307,24 @@ namespace gr {
 
     /* GNU Radio defaults for block construction */
     message_timer_example::sptr
-    message_timer_example::make(
-        std::string msg_1, float period_1, int count_1,
-        std::string msg_2, float period_2, int count_2 ) 
+    message_timer_example::make( std::string msg_1, float period_1, int count_1, std::string msg_2, float period_2, int count_2 )
     {
       return gnuradio::get_initial_sptr
-        (new message_timer_example_impl (
-          msg_1, period_1, count_1, msg_2, period_2, count_2) );  
+        (new message_timer_example_impl (msg_1, period_1, count_1, msg_2, period_2, count_2) ); 
     }  // end make
 
 
 
     /* message_timer_example: the private constructor */
-    //message_timer_example_impl::message_timer_example_impl(std::string message, int counter)
-    message_timer_example_impl::message_timer_example_impl(
-        std::string msg_1, float period_1, int count_1,
-        std::string msg_2, float period_2, int count_2) 
+    message_timer_example_impl::message_timer_example_impl 
+      ( std::string msg_1, float period_1, int count_1, std::string msg_2, float period_2, int count_2 ) 
       : gr::block("message_timer_example",
               gr::io_signature::make(0, 0, sizeof(int)),
-              gr::io_signature::make(0, 0, sizeof(int)) ),
-          d_msg_1(msg_1), d_period_1(period_1), d_count_1(count_1), 
-          d_msg_2(msg_2), d_period_2(period_2), d_count_2(count_2)
+              gr::io_signature::make(0, 0, sizeof(int)) ) //,
+      // GWN TAG user arguments constructor init
+      , d_msg_1(msg_1), d_period_1(period_1), d_count_1(count_1), d_msg_2(msg_2), d_period_2(period_2), d_count_2(count_2)
+
+
     {
       // GWN block name, ports and timers as block attributes
       d_name = "message_timer_example";
