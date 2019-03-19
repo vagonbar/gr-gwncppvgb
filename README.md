@@ -53,6 +53,8 @@ The two example blocks can be cloned to run immediately under the block name cho
 
 [The gwn_modtool.sh script](libgwn/Docs/GWN_modtool.md)
 
+[Messages and ports](libgwn/Docs/Messages_and_ports.md)
+
 [GWN Timers](libgwn/Docs/GWN_timers.md)
 
 [Cloning the timer example block](libgwn/Docs/Block_example.md)
