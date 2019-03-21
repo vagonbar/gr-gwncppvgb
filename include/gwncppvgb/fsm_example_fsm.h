@@ -93,9 +93,6 @@ namespace gr {
         ~fsm_example_fsm();
 
 
-        //std::string process(std::string msg);   // preliminary tests
-
-
       /** \brief Brings the machine back to its initial state.
        *
        * Sets the current state to the initial state and sets the input symbol to null. WARNING: memory is left untouched.
@@ -167,39 +164,20 @@ namespace gr {
       bool exec_transition(from_state stt_search); 
 
 
-      /** Sets variable for debug messages */
+      /** Sets variable for debug messages. */
       void set_debug(bool dbg);
 
-      /** A null action function, when no action is required */
+      /** A null action function, when no action is required. */
       void null_action(fsm_example_fsm fsm);
 
-      /** A null condition function, when no action is required */
+      /** A null condition function, when no action is required. */
       bool null_condition(fsm_example_fsm fsm);
 
 
-      /** Memory, push element into stack 
-       *
-       * @param obj  object to push into stack.
-       */
-      void mem_push(mem_type obj);
-      /** Memory, removes element from stack */
-      void mem_pop(); 
-      /** Memory, test if stack is empgy */
-      bool mem_empty();
-      /** Memory, size of stack
-       *
-       * @return returns true if stack is empty.
-       */
-      int mem_size();
-      /** Memory, get top element of stack, does not erase
-       *
-       * @return number of objects in stack.
-       */
-      mem_type mem_top();
+      std::deque<mem_type> d_memory; /** Memory, a deque. */
 
-
-      std::string d_action_result; /** action function result */
-      void add_myfsm_transitions(); /** add user defined fSM transitions */
+      std::string d_action_result; /** action function result. */
+      void add_myfsm_transitions(); /** add user defined fSM transitions. */
 
     private:
 
@@ -225,7 +203,7 @@ namespace gr {
       std::string d_current_state; /** the current state */
       std::string d_next_state; /** the state to go in a transition */
       type_action d_action; /** a function to execute on transition */
-      std::stack<mem_type> d_memory; /** a LIFO stack */
+
       bool d_debug; /** If true prints debug messages */
 
 

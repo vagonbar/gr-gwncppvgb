@@ -60,12 +60,12 @@ namespace gr {
           std::to_string(d_fsm.to_c) + ". "; 
         std::cout << fsm_vars << std::endl;
         std::cout << "...FSM memory show and erase, INIT state" << std::endl;
-        std::cout << "   Memory size: " << d_fsm.mem_size() <<
+        std::cout << "   Memory size: " << d_fsm.d_memory.size() <<
           ", contents:" << std::endl;
-      while (!d_fsm.mem_empty())
+      while (!d_fsm.d_memory.empty())
       {
-         std::cout << " : " << d_fsm.mem_top();
-         d_fsm.mem_pop();
+         std::cout << " : " << d_fsm.d_memory.front();
+         d_fsm.d_memory.pop_front();
       }
       std::cout << std::endl;
         return;
@@ -75,7 +75,7 @@ namespace gr {
     void fn_goA(gwncppvgb::fsm_example_fsm &d_fsm) {
       //fsm.where = "B";
       //fsm.set_where("B");
-      d_fsm.mem_push( pmt::mp("A visited!") );
+      d_fsm.d_memory.push_front( pmt::mp("A visited!") );
       d_fsm.d_action_result += "Result of function fn_goA. ";
       //std::cout << "  --- FSM fn_goA" << d_fsm.where << std::endl;
       return;
@@ -83,14 +83,14 @@ namespace gr {
 
     void fn_goB(gwncppvgb::fsm_example_fsm &d_fsm) {
         //fsm.where = "C";
-        d_fsm.mem_push( pmt::mp("B visited!") );
+        d_fsm.d_memory.push_front( pmt::mp("B visited!") );
         d_fsm.d_action_result += "Result of function fn_goB. ";
         return;
     }
 
     void fn_goC(gwncppvgb::fsm_example_fsm &d_fsm) {
         //fsm.where = "A";
-        d_fsm.mem_push( pmt::mp("C visited!") );
+        d_fsm.d_memory.push_front( pmt::mp("C visited!") );
         d_fsm.d_action_result += "Result of function fn_goC; where=" + d_fsm.where + ". ";
         return;
     }
@@ -98,7 +98,7 @@ namespace gr {
     void fn_goAB(gwncppvgb::fsm_example_fsm &d_fsm) {
       fn_goA(d_fsm);
       fn_goB(d_fsm);
-      d_fsm.mem_push( pmt::mp("C visited! ") );
+      d_fsm.d_memory.push_front( pmt::mp("C visited! ") );
     }
 
 
@@ -429,36 +429,6 @@ namespace gr {
     {
       d_debug = dbg;
     }
-
-
-
-    /* fsm_example_fsm memory */
-
-    void
-    fsm_example_fsm::mem_push(mem_type obj) {
-      d_memory.push(obj); 
-    }
-
-    void
-    fsm_example_fsm::mem_pop() {
-      d_memory.pop(); 
-    } 
-
-    bool
-    fsm_example_fsm::mem_empty() {
-      return d_memory.empty();
-    }
-
-    int
-    fsm_example_fsm::mem_size() {
-      return d_memory.size();
-    }
-
-    fsm_example_fsm::mem_type
-    fsm_example_fsm::mem_top() {
-      return d_memory.top();
-    }
-
 
 
   } /* namespace gwncppvgb */
