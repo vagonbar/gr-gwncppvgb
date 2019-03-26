@@ -13,6 +13,7 @@
 #include "gwncppvgb/fsm_example.h"
 #include "gwncppvgb/fsm_example_fsm.h"
 #include "gwncppvgb/data_source.h"
+#include "gwncppvgb/stop_wait_ack.h"
 %}
 
 %include "gwncppvgb/symbol_strobe.h"
@@ -25,3 +26,5 @@ GR_SWIG_BLOCK_MAGIC2(gwncppvgb, fsm_example);
 
 %include "gwncppvgb/data_source.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, data_source);
+%include "gwncppvgb/stop_wait_ack.h"
+GR_SWIG_BLOCK_MAGIC2(gwncppvgb, stop_wait_ack);

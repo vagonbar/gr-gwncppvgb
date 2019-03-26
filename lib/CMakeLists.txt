@@ -29,7 +29,8 @@ list(APPEND gwncppvgb_sources
     message_timer_example_impl.cc
     fsm_example_impl.cc
     fsm_example_fsm.cc
-    data_source_impl.cc )
+    data_source_impl.cc
+    stop_wait_ack_impl.cc )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)
 if(NOT gwncppvgb_sources)

@@ -26,5 +26,6 @@ install(FILES
     message_timer_example.h
     fsm_example.h
     fsm_example_fsm.h
-    data_source.h DESTINATION include/gwncppvgb
+    data_source.h
+    stop_wait_ack.h DESTINATION include/gwncppvgb
 )

@@ -1,48 +1,25 @@
 <?xml version="1.0"?>
 <block>
-  <name>Data source</name>
-  <key>gwncppvgb_data_source</key>
+  <name>Stop and Wait ACK</name>
+  <key>gwncppvgb_stop_wait_ack</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>
-  <make>gwncppvgb.data_source($type, $subtype, $payload, $period, $count)</make>
+  <make>gwncppvgb.stop_wait_ack()</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
        * key (makes the value accessible as $keyname, e.g. in the make node)
        * type -->
-  <param>
-    <name>Type</name>
-    <key>type</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>Subtype</name>
-    <key>subtype</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>Payload</name>
-    <key>payload</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>Period</name>
-    <key>period</key>
-    <value>1000.0</value>
-    <type>float</type>
-  </param>
-  <param>
-    <name>Count</name>
-    <key>count</key>
-    <value>10</value>
-    <type>int</type>
-  </param>
 
   <!-- Make one 'sink' node per input. Sub-nodes:
        * name (an identifier for the GUI)
        * type
        * vlen
        * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in_port_0</name>
+    <type>message</type>
+  </sink>
 
   <!-- Make one 'source' node per output. Sub-nodes:
        * name (an identifier for the GUI)
@@ -53,4 +30,10 @@
     <name>out_port_0</name>
     <type>message</type>
   </source>
+  <source>
+    <name>out_port_1</name>
+    <type>message</type>
+  </source>
+
+
 </block>
