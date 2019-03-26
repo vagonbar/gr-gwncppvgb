@@ -12,6 +12,7 @@
 #include "gwncppvgb/message_timer_example.h"
 #include "gwncppvgb/fsm_example.h"
 #include "gwncppvgb/fsm_example_fsm.h"
+#include "gwncppvgb/data_source.h"
 %}
 
 %include "gwncppvgb/symbol_strobe.h"
@@ -21,3 +22,6 @@ GR_SWIG_BLOCK_MAGIC2(gwncppvgb, message_timer_example);
 %include "gwncppvgb/fsm_example.h"
 GR_SWIG_BLOCK_MAGIC2(gwncppvgb, fsm_example);
 %include "gwncppvgb/fsm_example_fsm.h"
+
+%include "gwncppvgb/data_source.h"
+GR_SWIG_BLOCK_MAGIC2(gwncppvgb, data_source);
