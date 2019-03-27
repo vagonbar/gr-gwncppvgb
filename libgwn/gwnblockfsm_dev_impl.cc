@@ -342,6 +342,8 @@ namespace gr {
       d_number_out = 1;
       d_number_timers = 0;
 
+      d_debug = false; // can be altered in additional initialization
+
       if (d_debug) {
         std::cout << "gwnblockfsm, constructor, name " << 
           d_name << ", number_in " << d_number_in << 

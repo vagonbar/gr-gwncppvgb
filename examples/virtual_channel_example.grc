@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <?grc format='1' created='3.7.12'?>
 <flow_graph>
-  <timestamp>Sun Mar 10 17:32:16 2019</timestamp>
+  <timestamp>Tue Mar 26 21:05:20 2019</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -136,7 +136,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 136)</value>
+      <value>(704, 136)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -148,50 +148,7 @@
     </param>
   </block>
   <block>
-    <key>gwncppvgb_fsm_example</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(440, 164)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gwncppvgb_fsm_example_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwncppvgb_symbol_strobe</key>
+    <key>gwncppvgb_data_source</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -206,7 +163,7 @@
     </param>
     <param>
       <key>count</key>
-      <value>19</value>
+      <value>12</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -214,7 +171,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 148)</value>
+      <value>(168, 104)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -222,7 +179,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>gwncppvgb_symbol_strobe_0</value>
+      <value>gwncppvgb_data_source_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -233,24 +190,75 @@
       <value>0</value>
     </param>
     <param>
-      <key>period</key>
-      <value>1000</value>
+      <key>payload</key>
+      <value>Data source payload</value>
     </param>
     <param>
-      <key>symbol_seq</key>
-      <value>sgxyrwrgrwrcrgrxys</value>
+      <key>period</key>
+      <value>500.0</value>
+    </param>
+    <param>
+      <key>subtype</key>
+      <value>Data</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>Data</value>
+    </param>
+  </block>
+  <block>
+    <key>gwncppvgb_virtual_channel</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(432, 132)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gwncppvgb_virtual_channel_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>prob_loss</key>
+      <value>0.5</value>
     </param>
   </block>
   <connection>
-    <source_block_id>gwncppvgb_fsm_example_0</source_block_id>
+    <source_block_id>gwncppvgb_data_source_0</source_block_id>
+    <sink_block_id>gwncppvgb_virtual_channel_0</sink_block_id>
+    <source_key>out_port_0</source_key>
+    <sink_key>in_port_0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwncppvgb_virtual_channel_0</source_block_id>
     <sink_block_id>blocks_message_debug_0</sink_block_id>
     <source_key>out_port_0</source_key>
     <sink_key>print</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gwncppvgb_symbol_strobe_0</source_block_id>
-    <sink_block_id>gwncppvgb_fsm_example_0</sink_block_id>
-    <source_key>out_port_0</source_key>
-    <sink_key>in_port_0</sink_key>
   </connection>
 </flow_graph>

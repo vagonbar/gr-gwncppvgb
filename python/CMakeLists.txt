@@ -50,3 +50,4 @@ GR_ADD_TEST(qa_message_timer_example ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE
 GR_ADD_TEST(qa_fsm_example ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fsm_example.py)
 GR_ADD_TEST(qa_data_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_data_source.py)
 GR_ADD_TEST(qa_stop_wait_ack ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stop_wait_ack.py)
+GR_ADD_TEST(qa_virtual_channel ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_virtual_channel.py)

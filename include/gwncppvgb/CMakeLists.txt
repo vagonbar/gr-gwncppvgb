@@ -27,5 +27,6 @@ install(FILES
     fsm_example.h
     fsm_example_fsm.h
     data_source.h
-    stop_wait_ack.h DESTINATION include/gwncppvgb
+    stop_wait_ack.h
+    virtual_channel.h DESTINATION include/gwncppvgb
 )

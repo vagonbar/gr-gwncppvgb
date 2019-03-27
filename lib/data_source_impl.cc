@@ -76,6 +76,13 @@ namespace gr {
 
       // start timers
       d_timers[0]->start_timer();
+
+      if (d_debug) {
+        std::cout << "data_source, constructor, name " << 
+          d_name << ", number_in " << d_number_in << 
+          ", number_out " << d_number_out << std::endl;
+      }
+
     }
 
 
@@ -305,17 +312,14 @@ namespace gr {
 
 
     {
+
       // GWN block name, ports and timers as block attributes
       d_name = "data_source";
       d_number_in = 0;
       d_number_out = 1;
       d_number_timers = 1;
 
-      if (d_debug) {
-        std::cout << "data_source, constructor, name " << 
-          d_name << ", number_in " << d_number_in << 
-          ", number_out " << d_number_out << std::endl;
-      }
+      d_debug = false; // can be altered in additional initialization
 
       // data_source, create out ports
       int i;
@@ -380,9 +384,9 @@ namespace gr {
         d_timers[i] = timer_new;
       }  // end for
 
-
       // additional initialization
       added_init();
+
 
     }  // end constructor
 
