@@ -23,5 +23,7 @@ install(FILES
     gwncppvgb_fsm_example_fsm.xml
     gwncppvgb_data_source.xml
     gwncppvgb_stop_wait_ack.xml
-    gwncppvgb_virtual_channel.xml DESTINATION share/gnuradio/grc/blocks
+    gwncppvgb_virtual_channel.xml
+    gwncppvgb_stop_wait_send.xml
+    gwncppvgb_stop_wait_send_fsm.xml DESTINATION share/gnuradio/grc/blocks
 )

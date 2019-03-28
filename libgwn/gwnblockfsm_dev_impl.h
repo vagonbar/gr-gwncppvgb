@@ -159,7 +159,7 @@ namespace gr {
 
     public:
       /** Constructor. */
-      gwnblockfsm_dev_impl(bool debug);
+      gwnblock_dev_impl( <GWN TAG user arguments list> );
 
       /** Destructor. */
       ~gwnblockfsm_dev_impl();

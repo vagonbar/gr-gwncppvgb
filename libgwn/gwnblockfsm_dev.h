@@ -52,7 +52,7 @@ namespace gr {
        * class. gwncppvgb::gwnblockfsm_dev::make is the public interface for
        * creating new instances.
        */
-      static sptr make(bool debug);
+      static sptr make( <GWN TAG user arguments list> );
 
     };
 
