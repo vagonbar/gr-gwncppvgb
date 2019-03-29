@@ -32,8 +32,7 @@ list(APPEND gwncppvgb_sources
     data_source_impl.cc
     stop_wait_ack_impl.cc
     virtual_channel_impl.cc
-    stop_wait_send_impl.cc
-    stop_wait_send_fsm.cc )
+    )
 
 set(gwncppvgb_sources "${gwncppvgb_sources}" PARENT_SCOPE)
 if(NOT gwncppvgb_sources)

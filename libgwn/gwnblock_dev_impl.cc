@@ -321,7 +321,6 @@ namespace gr {
               gr::io_signature::make(0, 0, sizeof(int)) ) //,
       // GWN TAG user arguments constructor init
 
-
     {
       // GWN block name, ports and timers as block attributes
       d_name = "gwnblock_dev";

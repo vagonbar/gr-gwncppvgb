@@ -39,7 +39,7 @@ namespace gr {
      */
 
 
-    /* GWN gwnblock_dev, a template block */
+    /* GWN gwnblock_dev block */
     class gwnblock_dev_impl : public virtual gwnblock_dev
     {
     private:

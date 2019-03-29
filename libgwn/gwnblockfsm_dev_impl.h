@@ -159,7 +159,7 @@ namespace gr {
 
     public:
       /** Constructor. */
-      gwnblock_dev_impl( <GWN TAG user arguments list> );
+      gwnblockfsm_dev_impl( <GWN TAG user arguments list> );
 
       /** Destructor. */
       ~gwnblockfsm_dev_impl();
@@ -211,7 +211,7 @@ namespace gr {
 
       This function receives messages from the input ports and from the timer ports. 
       The message received may be any PMT formatted message. If it is a GWN message, it is a dictionary in PMT format, which contains a type, a subtype, and a sequence number, with the optional addition of other entries defined by the user. In this function the actions defined by the programmer are executed.
-      @param port The port identifier on which the message was received, in string format.
+      @param port The port identifier on which the message was received.
       @param pmt_msg The message, in PMT format.
       */
       void process_data(

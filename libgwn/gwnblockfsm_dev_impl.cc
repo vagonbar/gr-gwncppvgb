@@ -277,7 +277,7 @@ namespace gr {
     void gwnblockfsm_dev_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
       if (d_debug) { 
-        std::cout << "...handle input msg: ";
+        std::cout << "...handle input msg: \n";
         pmt::print(pmt_msg);
       } 
       // mutex lock, invoke process_data, unlock
@@ -318,22 +318,21 @@ namespace gr {
 
     /* GNU Radio defaults for block construction */
     gwnblockfsm_dev::sptr
-    gwnblockfsm_dev::make(bool debug)
+    gwnblockfsm_dev::make( <GWN TAG user arguments list> )
     {
       return gnuradio::get_initial_sptr
-        (new gwnblockfsm_dev_impl (debug) ); 
+        (new gwnblockfsm_dev_impl (<GWN TAG user parameters list>) ); 
     }  // end make
 
 
 
     /* gwnblockfsm: the private constructor */
     gwnblockfsm_dev_impl::gwnblockfsm_dev_impl 
-      (bool fsm_debug) 
-      : gr::block("gwnblockfsm",
+      ( <GWN TAG user arguments list> ) 
+      : gr::block("gwnblockfsm_dev",
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) ) //,
       // GWN TAG user arguments constructor init
-      
 
     {
       // GWN block name, ports and timers as block attributes
@@ -347,8 +346,7 @@ namespace gr {
       if (d_debug) {
         std::cout << "gwnblockfsm, constructor, name " << 
           d_name << ", number_in " << d_number_in << 
-          ", number_out " << d_number_out << 
-          ", debug: " << d_debug << std::endl;
+          ", number_out " << d_number_out << std::endl;
       }
 
       // gwnblockfsm, create out ports
