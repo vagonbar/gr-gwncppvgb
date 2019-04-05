@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<block>
+  <name>Stop and wait send</name>
+  <key>gwncppvgb_stop_wait_send</key>
+  <category>[gwncppvgb]</category>
+  <import>import gwncppvgb</import>
+  <make>gwncppvgb.stop_wait_send($retries, $timeout, $buf_len, $fsm_debug)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Retries</name>
+    <key>retries</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Timeout</name>
+    <key>timeout</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Buffer size</name>
+    <key>buf_len</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Debug</name>
+    <key>fsm_debug</key>
+    <type>bool</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in_port_0</name>
+    <type>message</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out_port_0</name>
+    <type>message</type>
+  </source>
+</block>
