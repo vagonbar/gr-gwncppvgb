@@ -60,6 +60,7 @@ namespace gr {
           int d_port_nr;
           /** Prints message port information. */
           std::string __str__();
+          boost::mutex d_mutex;   // for mutex printing
       }; 
 
       /** Output message port.
@@ -118,6 +119,7 @@ namespace gr {
             std::string id_timer, pmt::pmt_t pmt_msg, 
             int count, float period_ms);
 
+            boost::mutex d_mutex;   // for mutex printing
             stop_wait_send_impl * d_block;
             std::string d_id_timer; 
             pmt::pmt_t d_pmt_msg;
@@ -223,6 +225,7 @@ namespace gr {
 
     private:
       bool d_debug;
+      boost::mutex d_mutex;   // for mutex printing
 
       // GWN TAG user arguments declaration
       int d_retries;

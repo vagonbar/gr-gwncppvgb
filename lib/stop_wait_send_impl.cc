@@ -59,10 +59,11 @@ namespace gr {
         d_timeout, d_buf_len, d_fsm_debug);
 
       d_debug = d_fsm_debug;
-      if (d_debug)
-      {
+      if (d_debug) {
+        d_mutex.lock();
         d_fsm->print_transitions();
         std::cout << d_fsm->get_state();
+        d_mutex.unlock();
       }
 
       // set timer message, period, etc
@@ -86,8 +87,10 @@ namespace gr {
 
       std::string d_port = port;
       if (d_debug) {
+        d_mutex.lock();
         std::cout << "MESSAGE_RECEIVED ";
         pmt::print(pmt_msg);
+        d_mutex.unlock();
       }
 
       // unpack message, a PMT dictionary, may be timer or data
@@ -108,20 +111,21 @@ namespace gr {
       std::string command = pmt::symbol_to_string(pmt_command);
 
       if (d_debug) {
+        d_mutex.lock();
         std::cout << "TUPLE_RESULT ";
         pmt::print(pmt_tuple_result);
         //std::cout << "COMMAND " << command << std::endl;
         //std::cout << "PMT_OUT_MSG " << pmt_out_msg << std::endl;
+        d_mutex.unlock();
       }
-        boost::mutex mutex;
-        mutex.lock();
+        d_mutex.lock();
         std::cout << "FSM" <<
           " buf size: " << d_fsm->d_memory.size() <<
           ", retries: " << d_fsm->d_retries << // std::endl << 
           " REC: " << type << ", " << subtype <<
           ", " << seq_nr << "; FSM cmd: " <<
           command << std::endl;
-        mutex.unlock();
+        d_mutex.unlock();
 
       if (command == "Transmit")  // transmit FSM returned message
       {  
@@ -139,11 +143,15 @@ namespace gr {
           command == "StopNoRetriesLeft") {
         d_fsm_stopped = true;
         //d_timers[0]->timer_stop();   // not impmlemented
+        d_mutex.lock();
         std::cout << "FSM STOPPED: " << command << std::endl;
         std::cout << "  buffer size: " << d_fsm->d_memory.size() <<
           ", retries: " << d_fsm->d_retries << std::endl;
+        d_mutex.unlock();
       } else {
+        d_mutex.lock();
         std::cout << "FSM UNKNOWN: " << command << std::endl;
+        d_mutex.unlock();
         d_fsm_stopped = true;
       } // end if-else returned command
 
@@ -162,8 +170,10 @@ namespace gr {
       d_port_nr = -1;   // first working port will be 0
       d_debug = false;
       if (d_debug) {
-        std::cout << "GWNPort, default constructor"
-        << std::endl; }
+        d_mutex.lock();
+        std::cout << "GWNPort, default constructor" << std::endl;
+        d_mutex.unlock();
+       }
     }  // end GWNPort
 
     std::string stop_wait_send_impl::GWNPort::__str__() {
@@ -183,7 +193,9 @@ namespace gr {
       d_port = p_port;
       d_port_nr = p_port_nr;
       if (d_debug) {
+        d_mutex.lock();
         std::cout << "GWNOutPort, constructor" << std::endl;
+        d_mutex.unlock();
       }
     }  // end GWNOutPort
 
@@ -197,7 +209,9 @@ namespace gr {
       d_port = p_port;
       d_port_nr = p_port_nr;
       if (d_debug) {
+        d_mutex.lock();
         std::cout << "GWNInPort, constructor" << std::endl;
+        d_mutex.unlock();
       }
     }  // end GWNInPort
 
@@ -229,8 +243,10 @@ namespace gr {
             &stop_wait_send_impl::GWNTimer::run_timer, this))
         );
       if (d_debug) {
+        d_mutex.lock();
         std::cout << "    === TIMER STARTED: " << d_id_timer <<
           ", count: " << d_count << std::endl;
+        d_mutex.unlock();
       }
     }  // end GWNTimer::start_timer
 
@@ -267,9 +283,11 @@ namespace gr {
       } // end while
 
       if (d_debug) {
+        d_mutex.lock();
         std::cout << "    === TIMER FINISHED: " << d_id_timer <<
           ", counter: " << d_counter << 
           ", thread id: " << d_thread->get_id() << std::endl;
+        d_mutex.unlock();
       }
       d_thread->interrupt();  // end thread
       return;
@@ -297,8 +315,10 @@ namespace gr {
     void stop_wait_send_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
       if (d_debug) { 
+        d_mutex.lock();
         std::cout << "...handle input msg: \n";
         pmt::print(pmt_msg);
+        d_mutex.unlock();
       } 
       // mutex lock, invoke process_data, unlock
       boost::mutex d_mutex;
@@ -314,11 +334,12 @@ namespace gr {
         pmt::pmt_t pmt_msg_send)
     {
       if (d_debug) {
+        d_mutex.lock();
         std::cout << "...post_message on port: " << 
           pmt::symbol_to_string(pmt_port) << std::endl;
         pmt::print(pmt_msg_send);  
+        d_mutex.unlock();
       }
-      boost::mutex d_mutex;
       d_mutex.lock();
       message_port_pub(pmt_port, pmt_msg_send);
       d_mutex.unlock();
@@ -365,9 +386,11 @@ namespace gr {
       d_debug = false; // can be altered in additional initialization
 
       if (d_debug) {
+        d_mutex.lock();
         std::cout << "gwnblockfsm, constructor, name " << 
           d_name << ", number_in " << d_number_in << 
           ", number_out " << d_number_out << std::endl;
+        d_mutex.unlock();
       }
 
       // gwnblockfsm, create out ports
@@ -385,10 +408,12 @@ namespace gr {
         message_port_register_out(pmt_out_port); 
       }  // end for
       if (d_debug) {    // print items in vector of out ports
+        d_mutex.lock();
         std::cout << "=== gwnblockfsm, out ports:" << std::endl;
         for ( i=0; i < d_number_out; i++) {
           std::cout << "  out port " << i << 
             ": " << d_ports_out[i]->__str__(); // << std::endl; 
+        d_mutex.unlock();
         }
       }
 
@@ -410,10 +435,12 @@ namespace gr {
           boost::bind(&stop_wait_send_impl::handle_msg, this, _1));
       }  // end for
       if (d_debug) {      // print items in vector of in ports
+        d_mutex.lock();
         std::cout << "=== gwnblockfsm, in ports:" << std::endl;
         for ( i=0; i < d_number_in; i++) {
           std::cout << "  in port " << i << 
             ": " << d_ports_in[i]->__str__(); // << std::endl; 
+        d_mutex.unlock();
         }
       }    // end if
 

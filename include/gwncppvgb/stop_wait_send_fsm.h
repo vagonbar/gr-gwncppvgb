@@ -30,6 +30,9 @@
 #include <sstream>      // for to_string
 #include <pmt/pmt.h>    // for messages
 
+//#include <boost/thread/mutex.hpp>  // not included in noblock
+//#include <boost/thread/pthread/mutex.hpp>
+
 #include <exception>
 #include <tuple>
 #include <map>
@@ -60,6 +63,7 @@ namespace gr {
       /** memory object type definition. */
       typedef pmt::pmt_t mem_type;
 
+      //boost::mutex d_mutex;    // for mutex printing
 
       ///////////////////////////////////
       // user defined variables and functions

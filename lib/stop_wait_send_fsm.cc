@@ -140,8 +140,10 @@ namespace gr {
       return;
     }
     void fn_error(gwncppvgb::stop_wait_send_fsm &d_fsm) {
+      //d_fsm.d_mutex.lock();
       std::cout << "  --- FSM error " << std::endl;
       //d_fsm.d_action_result += "FSM ERROR";
+      //d_fsm.d_mutex.unlock();
       return;
     }
     void fn_init(gwncppvgb::stop_wait_send_fsm &d_fsm) {
@@ -226,9 +228,11 @@ namespace gr {
       stt_search = std::make_tuple("", d_current_state);
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
+          //d_mutex.lock();
           std::cout << 
             "  Executed (any symbol, state) transition" << 
             d_input_symbol << ", " << d_current_state << ")\n";
+          //d_mutex.unlock();
          }
         d_command = "AnySymbolTransition";
         pmt::pmt_t pmt_return_tuple = pmt::make_tuple( 
@@ -239,20 +243,24 @@ namespace gr {
       stt_search = std::make_tuple("", "");
       if ( exec_transition(stt_search) ) {
         if ( d_debug ) {
+          //d_mutex.lock();
           std::cout << 
             "  Executed (any symbol, any state) transition" <<
             d_input_symbol << ", " << d_current_state << ")\n";
+          //d_mutex.unlock();
+        }
         //return pmt::mp(d_action_result);
         // return 2-tuple, a command and message (diccionary)
         d_command = "DefaultTransition";
         pmt::pmt_t pmt_return_tuple = pmt::make_tuple( 
           pmt::mp(d_command), d_msg_to_send);
         return pmt_return_tuple;
-        }
       }
       else
       {
+        //d_mutex.lock();
         std::cout << "Default transition not found" << std::endl;
+        //d_mutex.unlock();
         throw ExceptionFSM("stop_wait_send_fsm EXCEPTION: no valid transitions!");
       }
     }
@@ -366,6 +374,7 @@ namespace gr {
     void
     stop_wait_send_fsm::print_transitions()
     {
+      //d_mutex.lock();
       std::cout << "...stop_wait_send_fsm transitions:" << std::endl;
       std::map<from_state, to_state>::const_iterator it; 
       it = d_state_transitions.begin();
@@ -378,6 +387,7 @@ namespace gr {
         ++it;
       } 
       std::cout << std::endl;
+      //d_mutex.unlock();
     } 
 
 
@@ -400,7 +410,9 @@ namespace gr {
         {
           from_state frstt = i->first;
           to_state tostt = i->second;
+          //d_mutex.lock();
           std::cout << get_transition(frstt, tostt);
+          //d_mutex.unlock();
         }
     }
 
@@ -427,9 +439,11 @@ namespace gr {
 
             d_current_state = std::get<1>(tostt); // set to next state
             if (d_debug) {
+              //d_mutex.lock();
               std::cout << "  Executed transition: "; 
               std::cout << get_transition(frstt, tostt);
               //std::cout << get_state();
+              //d_mutex.unlock();
             }
             return true;
           }  // end evaluate condition
