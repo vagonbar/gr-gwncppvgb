@@ -113,13 +113,15 @@ namespace gr {
         //std::cout << "COMMAND " << command << std::endl;
         //std::cout << "PMT_OUT_MSG " << pmt_out_msg << std::endl;
       }
-
+        boost::mutex mutex;
+        mutex.lock();
         std::cout << "FSM" <<
           " buf size: " << d_fsm->d_memory.size() <<
           ", retries: " << d_fsm->d_retries << // std::endl << 
           " REC: " << type << ", " << subtype <<
-          ", " << seq_nr << ", FSM cmd: " <<
+          ", " << seq_nr << "; FSM cmd: " <<
           command << std::endl;
+        mutex.unlock();
 
       if (command == "Transmit")  // transmit FSM returned message
       {  
