@@ -32,7 +32,7 @@ All handling of ports and timers is done in the main block, which has access to 
 The FSM receives a message from the main block, unpacks it and determines its Type, which acts as an input symbol for the FSM. The FSM searches for a transition corresponding to the input symbol and present state of the FSM. If one is found, and the conditions for this transition are met, an action function is executed. The action function produces a command, and inserts in a local atribute the message to send. The FSM returns the command and message to the main block.
 
 The following output shows transmit and receive of 5 messages with a probability loss of 0.5 in the virtual channel block, 3 retries and a max buffer size of 5. Please note retries and buffer size, which account for losses, but finally all 5 messages are received.
-
+```
 FSM buf size: 0, retries: 0 REC: Data, Data, 1; FSM cmd: Transmit
 FSM buf size: 0, retries: 1 REC: Timer, timer_0, 0; FSM cmd: Transmit
 FSM buf size: 0, retries: 2 REC: Timer, timer_0, 0; FSM cmd: Transmit
@@ -65,8 +65,7 @@ FSM buf size: 0, retries: 0 REC: Control, Ack, 4; FSM cmd: Transmit
 ((seq_nr . 5) (payload . Data payload) (subtype . Data) (type . Data))
 FSM buf size: ************************************
 0, retries: 0 REC: Control, Ack, 5; FSM cmd: AckReceived
-
-
+```
 
 [Back to README](../../README.md)
 
