@@ -83,7 +83,11 @@ namespace gr {
     {
       // if no retries left, buffer full, or other, FSM stopped
       //   do nothing and return
-      if (d_fsm_stopped) { return; }
+      if (d_fsm_stopped) {
+        d_timers[0]->d_suspend = true;
+        d_timers[0]->d_counter = d_timers[0]->d_count + 1;
+        return;
+      }
 
       std::string d_port = port;
       if (d_debug) {

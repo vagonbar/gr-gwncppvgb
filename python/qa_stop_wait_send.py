@@ -50,9 +50,12 @@ class qa_stop_wait_send (gr_unittest.TestCase):
 
     def test_fsm_debug (self):
         print "\n===\n=== TEST 1 FSM \n===\n"
-        blk_src = gwncppvgb.data_source("Data", "Data", "Data payload", 1000, 10 )
+        # normal test: loss at 0.5, retries 3, buffer 3
+        # retries test: loss at 0.8, retries 2, buffer 5
+        # buffer test: loss at 0.8, retries 5, buffer 2
+        blk_src = gwncppvgb.data_source("Data", "Data", "Data payload", 500, 10 )
         # stop_wait_send(retries, timeout, buf_len, fsm_debug)
-        blk_snd = gwncppvgb.stop_wait_send(10, 300.0, 5, False)  # change to True for debug
+        blk_snd = gwncppvgb.stop_wait_send(5, 300.0, 5, False)  # change to True for debug
         blk_vchan = gwncppvgb.virtual_channel(0.5)
         blk_ack = gwncppvgb.stop_wait_ack()
         blk_dbg = blocks.message_debug() 

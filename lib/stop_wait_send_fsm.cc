@@ -65,12 +65,16 @@ namespace gr {
       d_fsm.d_memory.push_front(d_fsm.d_msg_received);  // store msg
     }
     void fn_stop(gwncppvgb::stop_wait_send_fsm &d_fsm) {
-      if (d_fsm.d_memory.size() > d_fsm.d_buf_len) 
+      if (d_fsm.d_memory.size() > d_fsm.d_buf_len) {
         d_fsm.d_command = "StopBufferFull"; // abort execution
-      else if (d_fsm.d_retries > d_fsm.d_max_retries) 
+        return;
+      } else if (d_fsm.d_retries > d_fsm.d_max_retries) { 
         d_fsm.d_command = "StopNoRetriesLeft";
-      else
+        return;
+      } else {
         d_fsm.d_command = "StopOther";
+        return;
+      }
     }
 
 
@@ -118,10 +122,10 @@ namespace gr {
       }
     }
     bool cnd_msg_buffer(gwncppvgb::stop_wait_send_fsm &d_fsm) {
-      if ( ! d_fsm.d_memory.empty() ) {
-       return true;
-      } else {
-        return false;
+      if ( d_fsm.d_memory.empty() ) {  // no message in buffer
+       return false;
+      } else {                         // message in buffer
+        return true;
       }
     }
     //bool ack_waited_buffer_empty(gwncppvgb::stop_wait_send_fsm &d_fsm) {
@@ -181,8 +185,8 @@ namespace gr {
         cnd_not_buffer_full, "WaitAck, Data, push buffer, to WaitAck"); 
       add_transition("Data", "WaitAck", fn_stop, "Stop", 
         cnd_buffer_full, "WaitAck, Data, buffer full, to Stop"); 
-      add_transition("Timer", "WaitAck", fn_stop, "WaitAck", 
-        cnd_no_retries_left, "Idle, timeout, send message, to WaitAck"); 
+      add_transition("Timer", "WaitAck", fn_stop, "Stop", 
+        cnd_no_retries_left, "Idle, timeout, no retries, to Stop"); 
 
       // default transition
       add_transition ("", "", fn_error, "Idle", cnd_true, "default transition");
