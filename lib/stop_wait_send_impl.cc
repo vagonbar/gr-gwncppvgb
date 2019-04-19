@@ -135,7 +135,7 @@ namespace gr {
       {  
         // start timer to wait for ACK
         d_timers[0]->d_pmt_msg = pmt::mp(seq_nr);
-        d_timers[0]->d_counter = 0;
+        d_timers[0]->d_counter = 1;   // for decimated counter
         d_timers[0]->d_suspend = false;
 
         // emit FSM messages on output port
@@ -229,7 +229,7 @@ namespace gr {
         d_pmt_msg(pmt_msg), d_count(count),
         d_period_ms(period_ms)
     {
-      d_counter = 0;
+      d_counter = 1;      // for decimated counter
       d_suspend = false;  // always emits first message
       d_debug = false;
     }  // end GWNTimer::GWNTimer
@@ -263,11 +263,17 @@ namespace gr {
 
       while( d_counter < d_count) {
         d_counter = d_counter + 1;
-        // first sleep for d_period_ms milliseconds
+        // first sleep for d_period_ms / 10 milliseconds
+        // timer decimated to reduce error on timeout use
         boost::this_thread::sleep( 
-          boost::posix_time::milliseconds(d_period_ms));
-        if ( d_suspend == false ) // timer is not suspended
+          boost::posix_time::milliseconds(d_period_ms / 10));
+
+        if ( ! d_counter % 10 )  // counter decimated
+          return;
+ 
+        if ( d_suspend == false)
         {
+          int d_seq_nr = d_counter / 10;  // is a multiple of 10
           // make timer message
           pmt::pmt_t pmt_timer_dict = pmt::make_dict();
           pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
@@ -275,7 +281,7 @@ namespace gr {
           pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
             pmt::intern("subtype"), pmt::intern(d_id_timer));
           pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
-            pmt::intern("seq_nr"), pmt::from_long(d_counter));
+            pmt::intern("seq_nr"), pmt::from_long(d_seq_nr));
           pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
             pmt::intern("message"), d_pmt_msg);
           // mutex lock, post message, unlock
