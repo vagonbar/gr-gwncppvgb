@@ -54,6 +54,7 @@ namespace gr {
       d_fsm.d_command = "Transmit"; // to output message
       d_fsm.d_msg_to_send = d_fsm.d_memory.back();  // oldest msg
       d_fsm.d_memory.pop_back();                    // delete oldest msg
+      //std::cout << "BUFFER pop " << d_fsm.d_memory.size() << std::endl;
     }
     void fn_resend(gwncppvgb::stop_wait_send_fsm &d_fsm) {
       // d_ack_waited remains true
@@ -63,6 +64,7 @@ namespace gr {
     }
     void fn_push(gwncppvgb::stop_wait_send_fsm &d_fsm) {
       d_fsm.d_memory.push_front(d_fsm.d_msg_received);  // store msg
+      //std::cout << "BUFFER push " << d_fsm.d_memory.size() << std::endl;
     }
     void fn_stop(gwncppvgb::stop_wait_send_fsm &d_fsm) {
       if (d_fsm.d_memory.size() > d_fsm.d_buf_len) {
@@ -346,9 +348,8 @@ namespace gr {
     std::string 
     stop_wait_send_fsm::get_state()
     {
-      std::string msg ="...stop_wait_send_fsm state: input symbol: " + d_input_symbol +
-        //", initial state " + d_initial_state + 
-        ",  current state " + d_current_state + "\n";
+      std::string msg =" FSM input: " + d_input_symbol +
+        ",  state " + d_current_state + "\n";
       return msg;
     }
 

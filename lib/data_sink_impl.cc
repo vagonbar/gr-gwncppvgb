@@ -23,7 +23,7 @@
 #endif
 
 #include <gnuradio/io_signature.h>
-#include "gwnblock_dev_impl.h"
+#include "data_sink_impl.h"
 
 /* GWN inclusions */
 #include <iostream>  // for string support
@@ -51,69 +51,29 @@ namespace gr {
 
     /* Additional initialization, REWRITE as desired. */
     void
-    gwnblock_dev_impl::added_init() 
+    data_sink_impl::added_init() 
     {
-    
       d_debug = false;
-
-
-      // set timers message, period, etc
-      d_timers[0]->d_count = d_count_1;
-      d_timers[0]->d_period_ms = d_period_1;
-      d_timers[0]->d_pmt_msg = pmt::mp(d_msg_1);
-      d_timers[1]->d_count = d_count_2;
-      d_timers[1]->d_period_ms = d_period_2;
-      d_timers[1]->d_pmt_msg = pmt::mp(d_msg_2);
-
-      // start timers
-      d_timers[0]->start_timer();
-      d_timers[1]->start_timer();
     }
-
 
     /* Timer and input messages processing, REWRITE as desired. */
     void
-    gwnblock_dev_impl::process_data(
+    data_sink_impl::process_data(
       std::string port, pmt::pmt_t pmt_msg)
     {
-      std::string d_port = port;
+/*
+      d_mutex.lock();
+      std::cout << "***** GWN Data Message sink *****\n";
+      pmt::print(pmt_msg);
+      std::cout << "*********************************\n";
+      d_mutex.unlock();
+*/
+      d_mutex.lock();
+      std::cout << "***** GWN Data Message sink *****\n" <<
+      pmt_msg <<
+      "\n*********************************\n";
+      d_mutex.unlock();
 
-      // verify if message is dictionary (GWN) or other (GR)
-      if ( pmt::is_dict(pmt_msg) )
-      {
-        // GWN message, unpack type, subtype, seq_nr
-        std::string type = pmt::symbol_to_string (pmt::dict_ref(
-          pmt_msg, pmt::intern("type"), pmt::PMT_NIL));
-        std::string subtype = pmt::symbol_to_string (pmt::dict_ref(
-          pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
-        int seq_nr = pmt::to_long (pmt::dict_ref(
-          pmt_msg, pmt::intern("seq_nr"), pmt::PMT_NIL)); 
-        
-        if ( type == "Timer" )  
-        {           // GWN timer message
-          // actions on GWN timer message
-          if (d_debug) {
-            std::cout << "    process_data, TIMER msg from " <<
-              d_port << std::endl << "   ";
-            std::cout << "    type: " << type << ", subtype: " <<
-              subtype << ", seq_nr: " << seq_nr << std::endl;
-            pmt::print(pmt_msg);
-          }
-        } else {    // GWN non-timer message
-          // actions on GWN non-timer message
-        }
-      } else {  // non-GWN message
-        // actions on non GWN message
-        if (d_debug) {
-          std::cout << "    process_data, STROBE msg from " <<
-            d_port << std::endl << "   ";
-          pmt::print(pmt_msg);
-        }
-      }  // end message type
-
-      // emit messages on output port
-      pmt::pmt_t pmt_port = pmt::string_to_symbol("out_port_0");
-      post_message(pmt_port, pmt_msg);
     }
 
 
@@ -124,18 +84,16 @@ namespace gr {
 
 
     /* GWNPort */
-    gwnblock_dev_impl::GWNPort::GWNPort() {
+    data_sink_impl::GWNPort::GWNPort() {
       d_port = "";      // null port name
       d_port_nr = -1;   // first working port will be 0
       d_debug = false;
       if (d_debug) {
-        d_mutex.lock();
-        std::cout << "GWNPort, default constructor" << std::endl; }
-        d_mutex.unlock();
-       }
+        std::cout << "GWNPort, default constructor"
+        << std::endl; }
     }  // end GWNPort
 
-    std::string gwnblock_dev_impl::GWNPort::__str__() {
+    std::string data_sink_impl::GWNPort::__str__() {
       std::string ss = "GWNPort name: " + d_port + 
         ", number: " + std::to_string(d_port_nr) + 
         ", in block: " + d_block->d_name + "\n";
@@ -144,41 +102,37 @@ namespace gr {
 
 
     /* GWNOutPort */
-    gwnblock_dev_impl::GWNOutPort::
-        GWNOutPort(gwnblock_dev_impl * p_block, 
+    data_sink_impl::GWNOutPort::
+        GWNOutPort(data_sink_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort()
    {
       d_block = p_block;
       d_port = p_port;
       d_port_nr = p_port_nr;
       if (d_debug) {
-        d_mutex.lock();
         std::cout << "GWNOutPort, constructor" << std::endl;
-        d_mutex.unlock();
       }
     }  // end GWNOutPort
 
 
     /* GWNInPort */
-    gwnblock_dev_impl::GWNInPort::
-        GWNInPort(gwnblock_dev_impl * p_block, 
+    data_sink_impl::GWNInPort::
+        GWNInPort(data_sink_impl * p_block, 
         std::string p_port, int p_port_nr) : GWNPort()
     {
       d_block = p_block;
       d_port = p_port;
       d_port_nr = p_port_nr;
       if (d_debug) {
-        d_mutex.lock();
         std::cout << "GWNInPort, constructor" << std::endl;
-        d_mutex.unlock();
       }
     }  // end GWNInPort
 
 
 
     /* GWNTimer constructor */
-    gwnblock_dev_impl::GWNTimer::GWNTimer(
-      gwnblock_dev_impl * block, std::string id_timer, 
+    data_sink_impl::GWNTimer::GWNTimer(
+      data_sink_impl * block, std::string id_timer, 
       pmt::pmt_t pmt_msg, int count, float period_ms) 
       : d_block(block), d_id_timer(id_timer),
         d_pmt_msg(pmt_msg), d_count(count),
@@ -193,18 +147,16 @@ namespace gr {
 
     /* GWNTimer, creates thread, timer starts immediately */
     void
-    gwnblock_dev_impl::GWNTimer::start_timer()
+    data_sink_impl::GWNTimer::start_timer()
     {
     
       d_thread = boost::shared_ptr<gr::thread::thread>
         (new gr::thread::thread(boost::bind (
-            &gwnblock_dev_impl::GWNTimer::run_timer, this))
+            &data_sink_impl::GWNTimer::run_timer, this))
         );
       if (d_debug) {
-        d_mutex.lock();
         std::cout << "    === TIMER STARTED: " << d_id_timer <<
           ", count: " << d_count << std::endl;
-        d_mutex.unlock();
       }
     }  // end GWNTimer::start_timer
 
@@ -212,7 +164,7 @@ namespace gr {
 
     /* GWNTimer, runs timer, sleeps and sends message */
     void
-    gwnblock_dev_impl::GWNTimer::run_timer()
+    data_sink_impl::GWNTimer::run_timer()
     {
       boost::mutex d_mutex;
 
@@ -242,11 +194,9 @@ namespace gr {
       } // end while
 
       if (d_debug) {
-        d_mutex.lock();
         std::cout << "    === TIMER FINISHED: " << d_id_timer <<
           ", counter: " << d_counter << 
           ", thread id: " << d_thread->get_id() << std::endl;
-        d_mutex.unlock();
       }
       d_thread->interrupt();  // end thread
       return;
@@ -257,7 +207,7 @@ namespace gr {
 
     /* Handles message sent by timer threads */
     void
-    gwnblock_dev_impl::handle_timer_msg(pmt::pmt_t pmt_msg) 
+    data_sink_impl::handle_timer_msg(pmt::pmt_t pmt_msg) 
     {
       std::string timer_id = pmt::symbol_to_string( pmt::dict_ref (
         pmt_msg, pmt::intern("subtype"), pmt::PMT_NIL));
@@ -271,7 +221,7 @@ namespace gr {
 
 
     /* Handles messages received on message input ports. */
-    void gwnblock_dev_impl::handle_msg (pmt::pmt_t pmt_msg)
+    void data_sink_impl::handle_msg (pmt::pmt_t pmt_msg)
     {
       if (d_debug) { 
         std::cout << "...handle input msg: \n";
@@ -287,7 +237,7 @@ namespace gr {
 
 
     /* post_message in PMT formatted port */
-    void gwnblock_dev_impl::post_message(pmt::pmt_t pmt_port,
+    void data_sink_impl::post_message(pmt::pmt_t pmt_port,
         pmt::pmt_t pmt_msg_send)
     {
       if (d_debug) {
@@ -304,7 +254,7 @@ namespace gr {
 
 
     /* post_message in string formatted port */
-    void gwnblock_dev_impl::post_message(std::string port,
+    void data_sink_impl::post_message(std::string port,
         pmt::pmt_t pmt_msg)
     {
       pmt::pmt_t pmt_port = pmt::intern(port); 
@@ -314,39 +264,40 @@ namespace gr {
 
 
     /* GNU Radio defaults for block construction */
-    gwnblock_dev::sptr
-    gwnblock_dev::make( <GWN TAG user arguments list> )
+    data_sink::sptr
+    data_sink::make(  )
     {
       return gnuradio::get_initial_sptr
-        (new gwnblock_dev_impl (<GWN TAG user parameters list>) ); 
+        (new data_sink_impl () ); 
     }  // end make
 
 
 
-    /* gwnblock_dev: the private constructor */
-    gwnblock_dev_impl::gwnblock_dev_impl 
-      ( <GWN TAG user arguments list> ) 
-      : gr::block("gwnblock_dev",
+    /* data_sink: the private constructor */
+    data_sink_impl::data_sink_impl 
+      (  ) 
+      : gr::block("data_sink",
               gr::io_signature::make(0, 0, sizeof(int)),
               gr::io_signature::make(0, 0, sizeof(int)) ) //,
       // GWN TAG user arguments constructor init
+      
 
     {
       // GWN block name, ports and timers as block attributes
-      d_name = "gwnblock_dev";
-      d_number_in = 0;
+      d_name = "data_sink";
+      d_number_in = 1;
       d_number_out = 0;
       d_number_timers = 0;
 
       d_debug = false; // can be altered in additional initialization
 
       if (d_debug) {
-        std::cout << "gwnblock_dev, constructor, name " << 
+        std::cout << "data_sink, constructor, name " << 
           d_name << ", number_in " << d_number_in << 
           ", number_out " << d_number_out << std::endl;
       }
 
-      // gwnblock_dev, create out ports
+      // data_sink, create out ports
       int i;
       d_ports_out.resize(d_number_out);
       std::string out_port;
@@ -361,14 +312,14 @@ namespace gr {
         message_port_register_out(pmt_out_port); 
       }  // end for
       if (d_debug) {    // print items in vector of out ports
-        std::cout << "=== gwnblock_dev, out ports:" << std::endl;
+        std::cout << "=== data_sink, out ports:" << std::endl;
         for ( i=0; i < d_number_out; i++) {
           std::cout << "  out port " << i << 
             ": " << d_ports_out[i]->__str__(); // << std::endl; 
         }
       }
 
-      // gwnblock_dev, create in ports
+      // data_sink, create in ports
       //int i;                  // already declared
       d_ports_in.resize(d_number_in);
       std::string in_port;  
@@ -383,10 +334,10 @@ namespace gr {
 
         message_port_register_in(pmt_in_port);
         set_msg_handler(pmt_in_port,
-          boost::bind(&gwnblock_dev_impl::handle_msg, this, _1));
+          boost::bind(&data_sink_impl::handle_msg, this, _1));
       }  // end for
       if (d_debug) {      // print items in vector of in ports
-        std::cout << "=== gwnblock_dev, in ports:" << std::endl;
+        std::cout << "=== data_sink, in ports:" << std::endl;
         for ( i=0; i < d_number_in; i++) {
           std::cout << "  in port " << i << 
             ": " << d_ports_in[i]->__str__(); // << std::endl; 
@@ -397,7 +348,7 @@ namespace gr {
       // register the timer port
       message_port_register_in(pmt::mp("timer_port"));
       set_msg_handler(pmt::mp("timer_port"),
-        boost::bind(&gwnblock_dev_impl::handle_timer_msg, 
+        boost::bind(&data_sink_impl::handle_timer_msg, 
         this, _1));
       // create timers
       d_timers.resize(d_number_timers);
@@ -416,8 +367,8 @@ namespace gr {
     }  // end constructor
 
 
-    /* gwnblock_dev: our virtual destructor */
-    gwnblock_dev_impl::~gwnblock_dev_impl()
+    /* data_sink: our virtual destructor */
+    data_sink_impl::~data_sink_impl()
     { }
 
 

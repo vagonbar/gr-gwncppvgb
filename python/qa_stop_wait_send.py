@@ -50,21 +50,30 @@ class qa_stop_wait_send (gr_unittest.TestCase):
 
     def test_fsm_debug (self):
         print "\n===\n=== TEST 1 FSM \n===\n"
+
+        # data_source, ack block, data_sink
+        blk_src = gwncppvgb.data_source("Data", "Data", "Data payload", 500.0, 10 )
+        blk_ack = gwncppvgb.stop_wait_ack()
+        #blk_dbg = blocks.message_debug() 
+        blk_snk = gwncppvgb.data_sink() 
+
+        ### Values for different tests
         # normal test: loss at 0.5, retries 3, buffer 3
         # retries test: loss at 0.8, retries 2, buffer 5
         # buffer test: loss at 0.8, retries 5, buffer 2
-        blk_src = gwncppvgb.data_source("Data", "Data", "Data payload", 500, 10 )
+
         # stop_wait_send(retries, timeout, buf_len, fsm_debug)
-        blk_snd = gwncppvgb.stop_wait_send(5, 300.0, 5, False)  # change to True for debug
+        blk_snd = gwncppvgb.stop_wait_send(3, 300.0, 3, False)  # change to True for debug
+        # virtual channel 
         blk_vchan = gwncppvgb.virtual_channel(0.5)
-        blk_ack = gwncppvgb.stop_wait_ack()
-        blk_dbg = blocks.message_debug() 
 
 
         self.tb.msg_connect( (blk_src, "out_port_0"), (blk_snd, "in_port_0") )
         self.tb.msg_connect( (blk_snd, "out_port_0"), (blk_vchan, "in_port_0") )
         self.tb.msg_connect( (blk_vchan, "out_port_0"), (blk_ack, "in_port_0") )
-        self.tb.msg_connect( (blk_ack, "out_port_0"), (blk_dbg, "print") )
+        #self.tb.msg_connect( (blk_ack, "out_port_0"), (blk_dbg, "print") )
+        self.tb.msg_connect( (blk_ack, "out_port_0"), (blk_snk, "in_port_0") )
+
         self.tb.msg_connect( (blk_ack, "out_port_1"), (blk_snd, "in_port_0") )
 
         self.tb.start ()

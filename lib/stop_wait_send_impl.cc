@@ -69,7 +69,7 @@ namespace gr {
       // set timer message, period, etc
       d_timers[0]->d_count = 1000;
       d_timers[0]->d_period_ms = d_timeout;
-      d_timers[0]->d_pmt_msg = pmt::mp("SeqNrAckWaited");
+      d_timers[0]->d_pmt_msg = pmt::mp("AckWaited");
       d_timers[0]->d_suspend = true;
       d_timers[0]->start_timer();     // start timers
 
@@ -92,8 +92,9 @@ namespace gr {
       std::string d_port = port;
       if (d_debug) {
         d_mutex.lock();
-        std::cout << "MESSAGE_RECEIVED ";
+        std::cout << "MSG REC ";
         pmt::print(pmt_msg);
+        std::cout << "FSM State " << d_fsm->get_state() << std::endl;
         d_mutex.unlock();
       }
 
@@ -124,10 +125,10 @@ namespace gr {
       }
         d_mutex.lock();
         std::cout << "FSM" <<
-          " buf size: " << d_fsm->d_memory.size() <<
-          ", retries: " << d_fsm->d_retries << // std::endl << 
-          " REC: " << type << ", " << subtype <<
-          ", " << seq_nr << "; FSM cmd: " <<
+          " buf:" << d_fsm->d_memory.size() <<
+          " retries:" << d_fsm->d_retries << // std::endl << 
+          " type:" << type << // ", " << subtype <<
+          " nr:" << seq_nr << " FSM cmd:" <<
           command << std::endl;
         d_mutex.unlock();
 
@@ -229,13 +230,12 @@ namespace gr {
         d_pmt_msg(pmt_msg), d_count(count),
         d_period_ms(period_ms)
     {
-      d_counter = 1;      // for decimated counter
+      d_counter = 0;
       d_suspend = false;  // always emits first message
       d_debug = false;
     }  // end GWNTimer::GWNTimer
 
-    // destructor
-    //stop_wait_send_impl::GWNTimer::~GWNTimer() {}
+
 
     /* GWNTimer, creates thread, timer starts immediately */
     void
@@ -255,6 +255,7 @@ namespace gr {
     }  // end GWNTimer::start_timer
 
 
+
     /* GWNTimer, runs timer, sleeps and sends message */
     void
     stop_wait_send_impl::GWNTimer::run_timer()
@@ -263,17 +264,11 @@ namespace gr {
 
       while( d_counter < d_count) {
         d_counter = d_counter + 1;
-        // first sleep for d_period_ms / 10 milliseconds
-        // timer decimated to reduce error on timeout use
+        // first sleep for d_period_ms milliseconds
         boost::this_thread::sleep( 
-          boost::posix_time::milliseconds(d_period_ms / 10));
-
-        if ( ! d_counter % 10 )  // counter decimated
-          return;
- 
-        if ( d_suspend == false)
+          boost::posix_time::milliseconds(d_period_ms));
+        if ( d_suspend == false ) // timer is not suspended
         {
-          int d_seq_nr = d_counter / 10;  // is a multiple of 10
           // make timer message
           pmt::pmt_t pmt_timer_dict = pmt::make_dict();
           pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
@@ -281,7 +276,7 @@ namespace gr {
           pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
             pmt::intern("subtype"), pmt::intern(d_id_timer));
           pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
-            pmt::intern("seq_nr"), pmt::from_long(d_seq_nr));
+            pmt::intern("seq_nr"), pmt::from_long(d_counter));
           pmt_timer_dict = pmt::dict_add(pmt_timer_dict, 
             pmt::intern("message"), d_pmt_msg);
           // mutex lock, post message, unlock
@@ -484,4 +479,3 @@ namespace gr {
 
   } /* namespace gwncppvgb */
 } /* namespace gr */
-
