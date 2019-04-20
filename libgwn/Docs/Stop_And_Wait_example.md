@@ -67,5 +67,66 @@ FSM buf size: ************************************
 0, retries: 0 REC: Control, Ack, 5; FSM cmd: AckReceived
 ```
 
+
+A test showing exhaustion of retries, with probability loss of 0.8, 2 retries and buffer length of 5:
+```
+FSM buf:0 retries:0 type:Data nr:1 FSM cmd:Transmit
+FSM buf:0 retries:1 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:0 retries:2 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:1 retries:2 type:Data nr:2 FSM cmd:Transmit
+FSM buf:1 retries:3 type:Timer nr:1 FSM cmd:Transmit
+***** GWN Data Message sink *****
+((seq_nr . FSM buf:10 retries:0 type:Control nr:)1 FSM cmd: Transmit(
+payload . Data payload) (subtype . Data) (type . Data))
+*********************************
+FSM buf:1 retries:0 type:Data nr:3 FSM cmd:Transmit
+FSM buf:1 retries:1 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:1 retries:2 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:2 retries:2 type:Data nr:4 FSM cmd:Transmit
+***** GWN Data Message sink *****
+((seq_nr . 2) (payload . Data payload) (subtype . Data) (type . Data))
+*********************************
+FSM buf:1 retries:0 type:Control nr:2 FSM cmd:Transmit
+FSM buf:1 retries:1 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:1 retries:2 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:2 retries:2 type:Data nr:5 FSM cmd:Transmit
+FSM buf:2 retries:3 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:3 retries:3 type:Data nr:6 FSM cmd:Transmit
+FSM buf:3 retries:3 type:Timer nr:1 FSM cmd:StopNoRetriesLeft
+FSM STOPPED: StopNoRetriesLeft
+  buffer size: 3, retries: 3
+```
+
+A test showing exhaustion of buffer capacity, with probability loss of 0.8, 5 retries and buffer length of 2:
+```
+FSM buf:0 retries:0 type:Data nr:1 FSM cmd:Transmit
+FSM buf:0 retries:1 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:0 retries:2 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:1 retries:2 type:Data nr:2 FSM cmd:Transmit
+FSM buf:1 retries:3 type:Timer nr:1 FSM cmd:Transmit
+***** GWN Data Message sink *****
+((seq_nr . 1) FSM buf:0 retries:0 type:Control nr:1 FSM cmd:Transmit(
+payload . Data payload) (subtype . Data) (type . Data))
+*********************************
+FSM buf:1 retries:0 type:Data nr:3 FSM cmd:Transmit
+FSM buf:1 retries:1 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:1 retries:2 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:2 retries:2 type:Data nr:4 FSM cmd:Transmit
+FSM buf:2 retries:3 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:2 retries:4 type:Timer nr:1 FSM cmd:Transmit
+***** GWN Data Message sink *****
+((seq_nr . 2FSM) buf: (1payload retries: . 0 type:Data payloadControl) nr: 2 FSM cmd:Transmit
+(subtype . Data) (type . Data))
+*********************************
+FSM buf:2 retries:0 type:Data nr:5 FSM cmd:Transmit
+FSM buf:2 retries:1 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:3 retries:1 type:Data nr:6 FSM cmd:Transmit
+FSM buf:3 retries:2 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:3 retries:3 type:Timer nr:1 FSM cmd:Transmit
+FSM buf:3 retries:3 type:Data nr:7 FSM cmd:StopBufferFull
+FSM STOPPED: StopBufferFull
+  buffer size: 3, retries: 3
+```
+
 [Back to README](../../README.md)
 
