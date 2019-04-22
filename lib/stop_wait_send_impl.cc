@@ -67,8 +67,9 @@ namespace gr {
       }
 
       // set timer message, period, etc
-      d_timers[0]->d_count = 1000;
+      d_timers[0]->d_count = 10000;
       d_timers[0]->d_period_ms = d_timeout;
+      //d_timers[0]->d_period_ms = d_timeout / 10;  // decimating
       d_timers[0]->d_pmt_msg = pmt::mp("AckWaited");
       d_timers[0]->d_suspend = true;
       d_timers[0]->start_timer();     // start timers
@@ -109,6 +110,17 @@ namespace gr {
       seq_nr = pmt::to_long (pmt::dict_ref(
         pmt_msg, pmt::intern("seq_nr"), pmt::PMT_NIL)); 
 
+      // timer decimation for timeout precision
+      //if (type == "Timer") {
+      //  std::cout << "=========== TIMER " << seq_nr <<
+      //    ", period " << d_timers[0]->d_period_ms << 
+      //    ", counter " << d_timers[0]->d_counter <<
+      //    std::endl;
+      //  if (seq_nr == 0) return;
+      //  if (! (seq_nr % 10)) return;
+      //}
+
+
       // invoke FSM with symbol, aka message received, get result
       pmt::pmt_t pmt_tuple_result = d_fsm->process(port, pmt_msg);
       pmt::pmt_t pmt_command = pmt::tuple_ref(pmt_tuple_result, 0);
@@ -136,7 +148,7 @@ namespace gr {
       {  
         // start timer to wait for ACK
         d_timers[0]->d_pmt_msg = pmt::mp(seq_nr);
-        d_timers[0]->d_counter = 1;   // for decimated counter
+        d_timers[0]->d_counter = 1;
         d_timers[0]->d_suspend = false;
 
         // emit FSM messages on output port

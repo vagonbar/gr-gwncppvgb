@@ -65,7 +65,7 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         # stop_wait_send(retries, timeout, buf_len, fsm_debug)
         blk_snd = gwncppvgb.stop_wait_send(3, 300.0, 3, False)  # change to True for debug
         # virtual channel 
-        blk_vchan = gwncppvgb.virtual_channel(0.5)
+        blk_vchan = gwncppvgb.virtual_channel(0.6)
 
 
         self.tb.msg_connect( (blk_src, "out_port_0"), (blk_snd, "in_port_0") )
