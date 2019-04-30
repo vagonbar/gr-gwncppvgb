@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>Stop and wait send</name>
+  <name>Stop and Wait Send</name>
   <key>gwncppvgb_stop_wait_send</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>

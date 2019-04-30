@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>FSM symbol strobe</name>
+  <name>FSM Symbol Strobe</name>
   <key>gwncppvgb_symbol_strobe</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>

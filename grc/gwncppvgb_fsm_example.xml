@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>FSM example</name>
+  <name>FSM Example</name>
   <key>gwncppvgb_fsm_example</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>

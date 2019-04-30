@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>Data source</name>
+  <name>Data Source</name>
   <key>gwncppvgb_data_source</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>

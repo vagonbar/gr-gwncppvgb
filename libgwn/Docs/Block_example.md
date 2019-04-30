@@ -4,7 +4,7 @@ This document describes the creation (cloning) of a block similar to the timer m
 
 ## A new timer block creation
 
-The following commands clone the `message_timer_repeat` block described in the [README page](../../README.md). To account for the parameteres needed for the example to run as created, the user argument list must be:
+The following commands clone the `message_timer_example` block described in the [README page](../../README.md). To account for the parameteres needed for the example to run as created, the user argument list must be:
 
   `std::string msg_1, float period_1, int count_1, std::string msg_2, float period_2, int count_2`
 

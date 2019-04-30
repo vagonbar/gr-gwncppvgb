@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <?grc format='1' created='3.7.12'?>
 <flow_graph>
-  <timestamp>Tue Mar 26 10:35:04 2019</timestamp>
+  <timestamp>Tue Apr 30 18:45:33 2019</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -117,7 +117,7 @@
     </param>
   </block>
   <block>
-    <key>blocks_message_debug</key>
+    <key>gwncppvgb_data_sink</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -136,7 +136,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(680, 56)</value>
+      <value>(448, 128)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -144,38 +144,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_message_debug_0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_message_debug</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(680, 200)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_message_debug_1</value>
+      <value>gwncppvgb_data_sink_0</value>
     </param>
   </block>
   <block>
@@ -202,7 +171,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 96)</value>
+      <value>(184, 96)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -222,7 +191,7 @@
     </param>
     <param>
       <key>payload</key>
-      <value>Data payload</value>
+      <value>A data payload</value>
     </param>
     <param>
       <key>period</key>
@@ -237,61 +206,10 @@
       <value>Data</value>
     </param>
   </block>
-  <block>
-    <key>gwncppvgb_stop_wait_ack</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(392, 112)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gwncppvgb_stop_wait_ack_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
   <connection>
     <source_block_id>gwncppvgb_data_source_0</source_block_id>
-    <sink_block_id>gwncppvgb_stop_wait_ack_0</sink_block_id>
+    <sink_block_id>gwncppvgb_data_sink_0</sink_block_id>
     <source_key>out_port_0</source_key>
     <sink_key>in_port_0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gwncppvgb_stop_wait_ack_0</source_block_id>
-    <sink_block_id>blocks_message_debug_0</sink_block_id>
-    <source_key>out_port_0</source_key>
-    <sink_key>print</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gwncppvgb_stop_wait_ack_0</source_block_id>
-    <sink_block_id>blocks_message_debug_1</sink_block_id>
-    <source_key>out_port_1</source_key>
-    <sink_key>print</sink_key>
   </connection>
 </flow_graph>

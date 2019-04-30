@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>Message timer example</name>
+  <name>Message Timer Example</name>
   <key>gwncppvgb_message_timer_example</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>

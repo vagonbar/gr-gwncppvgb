@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>Virtual channel</name>
+  <name>Virtual Channel</name>
   <key>gwncppvgb_virtual_channel</key>
   <category>[gwncppvgb]</category>
   <import>import gwncppvgb</import>
