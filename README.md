@@ -62,3 +62,7 @@ The two example blocks can be cloned to run immediately under the block name cho
 [Cloning the FSM example block](libgwn/Docs/FSM_example.md)
 
 [Stop and Wait example](libgwn/Docs/Stop_And_Wait_example.md)
+
+### Acknowledgements
+
+This project was partially funded by program CSIC-Grupos, Universidad de la Republica (UdelaR), Uruguay.
