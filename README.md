@@ -63,6 +63,9 @@ The two example blocks can be cloned to run immediately under the block name cho
 
 [Stop and Wait example](libgwn/Docs/Stop_And_Wait_example.md)
 
+## Publications
+* GWN : A framework for packet radio and medium access control in GNU radio. Víctor González Barbone, Pablo Belzarena, Federico Larroca, Martín Randall, Paola Romero, Mariana Gelós. Wireless Innovation Forum Conference on Wireless Communications Technologies and Software Defined Radio (WInnComm 17), San Diego, CA, USA, 13-17 nov, page 1--10 - 2017 [PDF](https://iie.fing.edu.uy/publicaciones/2017/GBLRRG17/GBLRRG17.pdf)
+
 ### Acknowledgements
 
 This project was partially funded by program CSIC-Grupos, Universidad de la Republica (UdelaR), Uruguay.
