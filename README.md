@@ -4,64 +4,40 @@ GWN, the GNU Wireless Network, is a network development toolkit compatible with 
 
 The GNU Wireless Network project (GWN) is a toolkit to allow teaching and experimentation in wireless data networks. It is conceived as an out-of-tree module of GNU Radio, a popular Software Defined Radio (SDR) implementation. GWN is based on the tagged streams and messages of GNU Radio which allow asynchronous item transfer among blocks, and message passing to blocks upstream in the flowgraph. GWN adds some other features essential to data network protocol implementation, such as timers on each block, and access to a finite state machine. GWN provides a template block class which implements a variable number of inputs, outputs, and inner timers. An additional template block with a Finite State Machine (FSM) can be used to create a complementary block and associate it to the new block. This allows for an easy way to extend GWN with new blocks apt for data network communications. Besides these templates to create new blocks, the GWN toolkit comprises some blocks which implement atomic functions frequently used in data network protocol implementation. The toolkit was tested in real world communication among computers using USRP hardware devices.
 
-This project is an enhancement of the GWN project (GWN, GNU Wireless Network) now coded in C++. The original GWN project was coded in Python; it can be found at https://github.com/vagonbar/gr-gwn/.
 
-## Purpose, difficulties, workarounds
+## GWN messages and ports
 
-The coding in C++ of the core classes in GWN is expected to improve in performance and become closer to the general design of GNU Radio. Since GWN is implemented as an OOT (Out Of Tree) module in GNU Radio, and GNU Radio does not allow inheritance from user blocks, but only from GNU Radio blocks, the implementation in C++ of the core classes of GWN could not follow the straightforward way of inheriting from a GWN basic block, called gwnblock in GWN. This restriction was not found in Python coded blocks, where inheritance from gwnblock did not show any restrictions. Hence, in a new C++ block, all GWN facilities must be included in the new block. 
+Each GWN block may contain 0, 1 or more input ports, and 0, 1 or more output ports. Input and output ports are message ports. A message is a GNU Radio PMT ([PolyMorphic data Type](https://www.gnuradio.org/doc/doxygen/page_pmt.html)). GNU Radio provides a very complete set of functions to convert to and from a number of data types into PMT data types.
 
-To simplify coding of new blocks, a block creation script was written, which includes all necessary code in a new GWN block by modifying a template to include the new block ports, timers and user parameters. The programmer of the new block is expected to rewrite two functions:
-- `add_init`, which stands for additional initialization, where custom variables can be defined, timers can be set, etc.
-- `process_data`, where all the actions expected from the new block are coded. This function is invoked when a message is received on a message or timer port, does some processing according to the message received, and optionally outputs another message on any of the available output ports.
+Messages are just a PMT dictionary type. This allows the user to insert any data type identified by a name. GWN suggests to use Type and Subtype as keys in the message dictionary, since these pieces of information are commonly used in data networks. However, the user may interchange between her blocks messages of any PMT type.
 
-## Example blocks
 
-The main funcionalities of GWN can be appreciated through two example blocks with their corresponding QA tests and GRC flowgraphs. One of them illustrates the use of timers, and the other the inclusion of a Finite State Machine (FSM).
+## GWN Timers
 
-### Timers example block
+A GWN timer is defined in a class nested in the GWN block. For each timer used in the block, a new instance of this class is created and associated with the GWN block. Each timer emits internal messages periodically for a number of times. A timer can be given as parameters the message to emit, the period of time between messages, and the total number of messages to emit.
+ 
+The block containing the timer receives messages from the timer in an internal input port. This internal port, called a timer port, is a message port of the block, but it is not connected to any external block. All timers in the block send their messages to this unique timer input port.
+When started, the timer waits for the indicated period of time before emitting its first message. Then, the timer goes on sending messages after each period of time, until reaching the number of messages indicated as a count parameter. Once the count has been reached, no more messages are sent. However, the timer thread is not finished, and can be restarted.
+The timer can be suspended in its emission of messages. When suspended, the timer does not emit messages, and the counter is not incremented, but the timer thread remains alive. When taken out from suspension, messages continue to be emitted and the counter is incremented from its last value.
+The counter can be resetted, thus starting to emit messages as if it was recently started.
+The timer can be stopped before reaching its assigned number of messages to emit. In this case, no messages are emitted any more, and the timer thread is terminated.
+The message emmited by the timer is a GWN message, i.e. a port identifier and a dictionary in PMT format. In a GWN message, the dictionary contains a type, a subtype, and a sequence number, with the optional addition of other entries defined by the user. Each message is passed to the main block function `process_data`, where the actions defined by the programmer happen.
 
-An example block called `message_timer_example` is already created, and can be tested by running its corresponding QA test, `python/qa_message_timer_example.py`. 
 
-This block receives a message on an input port and outputs the same message on an output port, as well as messages produced by two internal timers, also sent through the output port. In this flowgraph:
-```
-message_strobe --> message_timer_example --> message_debug
-```
-The `message_debug` block also receives timer messages generated in the block's internal timer.
+## Framework in Python or C++?
 
-### FSM example block.
+The project was originally coded in Python. When it was reasonably stable and several applications were successfully tested, an attempt was made to rebuild the project core in C++. Ideally this would allow to inherit from a generic GWN block in Python or C++. This could not be: the structure of GNU Radio does not allow for second time inheritance: the generic GWN block inherits from GNU Radio `basic_block`, and a new block GWN block is expected to inherit from the generic GWN block. This is so in Python, but is not allowed in C++. The only way to achieve this second time inheritance is to code the generic GWN block in Python, and descendans can only be coded in Python. In other words: 
+- if the generic GWN block is coded in Python, a user block can be written in Python and can inherit from the generic GWN block. Successive inheritance is also possible.
+- if the generic GWN block is coded in C++, a user block cannot inherit from the generic GWN block.
 
-An example block called `fsm_test` is already created, and can be tested by runningits corresponding QA test `python ../qa_fsm_example.py`.
+In C++, a workaround was to avoid inheritance and use the generic GWN block as a template, thus including all necessary code for ports, timers and FSM in any new block, clearly indicating the sections where the programmer was to write his own code. This was an obviously cumbersome solution, but it worked. Some example blocks and a simple Stop and Wait network protocol application were successfully tested. Since most programmers interested in GNU Radio applied to data networks would be experimenting and prototyping, GWN in C++ may easily discourage its use, the development team considered a return to Python. It was also decided to keep the C++ version, in case it would be of interest for some particular project, or more hopefully to find a practical way to circumvent GNU Radio C++ limitations and allow for normal C++ inheritance. 
 
-This block receives a message on its input port, passes it to its associated FSM engine for it to execute a transition, and outps the result produced by the FSM on its output port. In this flowgraph:
-```
-symbol_strobe --> fsm_example --> message_debug
-```
-The `message_debug` block receives the result of the FSM action, plus some information on symbol received and current state of the FSM engine. At the end, the contents of the FSM associated memory is displayed.
+Since development in C++ or Python are intrinsecally different, documentation has been written for both situations.
 
-## Creation of a new block
+[GWN in Python](libgwn/DocsPy/README_python.md)
 
-A new block can be easily created with the script `gwn_modtool.sh`, similar to the GNU Radio `gr_modtool`. This script must be run from the `build` with the following syntax:
-```
-  cd <project_root_directory>/build
-  ../libgwn/gwn_modtool <block_name> <nr_inputs> <nr_outputs> <nr_timers
-```
-All parameters must be given; any of them can be 0. In the course of the script run, the user is asked to provide a list of parameters in C++ format, such as `std::string message, int count, bool debug`; this list may be empty. The user will then be asked if an FSM engine is to be created and associated to the main block. The script creates the blocks with the names, inputs, outputs, timers, and parameters given, and an associated block with the FSM engine if one has been asked for.
+[GWN in C++](libgwn/DocsGCC/README_cc.md)
 
-Once the blocks are created, the user is responsible for reflecting in the code her selections of ports and parameters. To this purpose, the corresponding sections in the code are identified for the user to alter.
-
-The two example blocks can be cloned to run immediately under the block name chosen by the user. This allows to start with a running block which can then be altered to reflect specific needs. To clone the example blocks, pleas see the following documents:
-
-[The gwn_modtool.sh script](libgwn/Docs/GWN_modtool.md)
-
-[Messages and ports](libgwn/Docs/Messages_and_ports.md)
-
-[GWN Timers](libgwn/Docs/GWN_timers.md)
-
-[Cloning the timer example block](libgwn/Docs/Block_example.md)
-
-[Cloning the FSM example block](libgwn/Docs/FSM_example.md)
-
-[Stop and Wait example](libgwn/Docs/Stop_And_Wait_example.md)
 
 ## Publications
 * _GWN : A framework for packet radio and medium access control in GNU radio_. Víctor González Barbone, Pablo Belzarena, Federico Larroca, Martín Randall, Paola Romero, Mariana Gelós. Wireless Innovation Forum Conference on Wireless Communications Technologies and Software Defined Radio (WInnComm 17), San Diego, CA, USA, 13-17 nov, page 1--10 - 2017 [PDF](https://iie.fing.edu.uy/publicaciones/2017/GBLRRG17/GBLRRG17.pdf)
@@ -69,3 +45,4 @@ The two example blocks can be cloned to run immediately under the block name cho
 ### Acknowledgements
 
 This project was partially funded by program CSIC-Grupos, Universidad de la Republica (UdelaR), Uruguay.
+

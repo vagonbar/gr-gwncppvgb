@@ -31,7 +31,11 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    DESTINATION ${GR_PYTHON_DIR}/gwncppvgb
+    gwnblock_py.py
+    msg_passer.py
+    gwnblock_py_new.py
+    msg_sink.py
+    msg_source.py DESTINATION ${GR_PYTHON_DIR}/gwncppvgb
 )
 
 ########################################################################
@@ -54,3 +58,8 @@ GR_ADD_TEST(qa_virtual_channel ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/
 GR_ADD_TEST(qa_prueba ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_prueba.py)
 GR_ADD_TEST(qa_stop_wait_send ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stop_wait_send.py)
 GR_ADD_TEST(qa_data_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_data_sink.py)
+GR_ADD_TEST(qa_gwnblock_py ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwnblock_py.py)
+GR_ADD_TEST(qa_msg_passer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_msg_passer.py)
+GR_ADD_TEST(qa_gwnblock_py_new ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwnblock_py_new.py)
+GR_ADD_TEST(qa_msg_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_msg_sink.py)
+GR_ADD_TEST(qa_msg_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_msg_source.py)

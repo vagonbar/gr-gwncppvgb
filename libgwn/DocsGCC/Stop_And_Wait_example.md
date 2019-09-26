@@ -32,6 +32,7 @@ All handling of ports and timers is done in the main block, which has access to 
 The FSM receives a message from the main block, unpacks it and determines its Type, which acts as an input symbol for the FSM. The FSM searches for a transition corresponding to the input symbol and present state of the FSM. If one is found, and the conditions for this transition are met, an action function is executed. The action function produces a command, and inserts in a local atribute the message to send. The FSM returns the command and message to the main block.
 
 The following output shows transmit and receive of 5 messages with a probability loss of 0.5 in the virtual channel block, 3 retries and a max buffer size of 5. Please note retries and buffer size, which account for losses, but finally all 5 messages are received.
+
 ```
 FSM buf:0 retries:0 type:Data nr:1 FSM cmd:Transmit
 FSM buf:0 retries:1 type:Timer nr:1 FSM cmd:Transmit
@@ -64,7 +65,9 @@ FSM buf:0 retries:1 type:Timer nr:1 FSM cmd:Transmit
 ((seq_nr . 5) (payload . Data payload) (subtype . Data) (type . Data))
 *********************************
 ```
+
 A test showing exhaustion of retries, with probability loss of 0.8, 2 retries and buffer length of 5:
+
 ```
 FSM buf:0 retries:0 type:Data nr:1 FSM cmd:Transmit
 FSM buf:0 retries:1 type:Timer nr:1 FSM cmd:Transmit
@@ -91,8 +94,11 @@ FSM buf:3 retries:3 type:Data nr:6 FSM cmd:Transmit
 FSM buf:3 retries:3 type:Timer nr:1 FSM cmd:StopNoRetriesLeft
 FSM STOPPED: StopNoRetriesLeft
   buffer size: 3, retries: 3
+
 ```
+
 A test showing exhaustion of buffer capacity, with probability loss of 0.8, 5 retries and buffer length of 2:
+
 ```
 FSM buf:0 retries:0 type:Data nr:1 FSM cmd:Transmit
 FSM buf:0 retries:1 type:Timer nr:1 FSM cmd:Transmit
@@ -122,6 +128,8 @@ FSM buf:3 retries:3 type:Data nr:7 FSM cmd:StopBufferFull
 FSM STOPPED: StopBufferFull
   buffer size: 3, retries: 3
 ```
+
+[Back to README GCC](README_cc.md)
 
 [Back to README](../../README.md)
 

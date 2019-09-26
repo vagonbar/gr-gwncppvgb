@@ -94,4 +94,6 @@ terminate called after throwing an instance of 'boost::thread_interrupted'
 
 In the general case, a different number of input and output ports may be given, and proper customization of the `add_init` and `process_data` functions is required.
 
+[Back to README GCC](README_cc.md)
+
 [Back to README](../../README.md)

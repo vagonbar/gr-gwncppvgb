@@ -26,5 +26,10 @@ install(FILES
     gwncppvgb_virtual_channel.xml
     gwncppvgb_stop_wait_send.xml
     gwncppvgb_stop_wait_send_fsm.xml
-    gwncppvgb_data_sink.xml DESTINATION share/gnuradio/grc/blocks
+    gwncppvgb_data_sink.xml
+    gwncppvgb_gwnblock_py.xml
+    gwncppvgb_msg_passer.xml
+    gwncppvgb_gwnblock_py_new.xml
+    gwncppvgb_msg_sink.xml
+    gwncppvgb_msg_source.xml DESTINATION share/gnuradio/grc/blocks
 )
