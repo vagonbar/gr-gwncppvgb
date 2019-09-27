@@ -40,7 +40,8 @@ class qa_msg_source (gr_unittest.TestCase):
         self.tb = None
 
     def test_msg_source(self):
-        blk_src = msg_source(msg_count=4, interval=1.0)
+        blk_src = msg_source(msg_count=4, interval=1.0, \
+          payload='An exampla payload')
         blk_src.timers[0].debug = False     # True
         #blk_src.timers[0].start()
         blk_dbg = blocks.message_debug()

@@ -474,7 +474,7 @@ class gwnblock_py(gr.basic_block):
         @param number_in: the number of input message connections.
         '''
         for i in xrange(0, number_in):
-            in_port = 'in' + str(i)
+            in_port = 'in_port_' + str(i)
             myport = GWNInPort(self, in_port, i)
             self.ports_in.append(myport)
             if self.debug:
@@ -491,7 +491,7 @@ class gwnblock_py(gr.basic_block):
         @param number_out: the number of output message connections.
         '''
         for i in xrange(0, number_out):
-            out_port = 'out' + str(i)
+            out_port = 'out_port_' + str(i)
             myport = GWNOutPort(self, out_port, i)
             self.ports_out.append(myport)
             if self.debug:

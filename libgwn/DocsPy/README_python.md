@@ -7,6 +7,7 @@ This version is the GWN project (GWN, GNU Wireless Network) coded in Python.
 
 ## Example blocks
   To be written.
+  Please see `examples/msg_passer_py_example.grc`
 
 ### Timers example block
   To be written.

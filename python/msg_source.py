@@ -33,11 +33,12 @@ class msg_source(gwnblock_py):
     '''Emits a number of messages at regular intervals.
 
     '''
-    def __init__(self, msg_count=10, interval=1.0):
+    def __init__(self, msg_count=10, interval=1.0, payload=""):
       '''Message source constructor.
 
       @param msg_count: the number of messages to emit.
-      @param msg_text: a string to include in message.
+      @param interval: the lapse of time between messages.
+      @param payload: a string to include in message.
       '''
       gwnblock_py.__init__(self, name='msg_source', number_in=0, number_out=1, number_timers=1, number_timeouts=0)
 
@@ -54,6 +55,8 @@ class msg_source(gwnblock_py):
       #self.timers[0].interrupt = False
       self.timers[0].msg_dc_1['Final'] = 'False'
       self.timers[0].msg_dc_2['Final'] = 'True'
+      self.timers[0].msg_dc_1['payload'] = payload
+      self.timers[0].msg_dc_2['payload'] = payload
       #self.timers[0].start()
       self.start_timers()
 
