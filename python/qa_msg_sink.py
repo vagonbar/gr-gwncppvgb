@@ -41,7 +41,7 @@ class qa_msg_sink (gr_unittest.TestCase):
         self.tb = None
 
     def test_msg_strobe(self):
-        print "Testing with GNU Radio message_strobe"
+        print "\n===  Test with GNU Radio message_strobe\n"
         tst_msg = "--- FROM message strobe TO msg_sink"
         src = blocks.message_strobe(pmt.intern(tst_msg), 1000)
         blk_sink = msg_sink()
@@ -59,7 +59,7 @@ class qa_msg_sink (gr_unittest.TestCase):
         return
 
     def test_msg_source(self):
-        print "Testing with GWN msg_source"
+        print "\n===  Test with GWN msg_source\n"
         tst_msg = "--- FROM message source TO msg_sink"
         blk_src = msg_source(msg_count=4, interval=1.0)
         blk_sink = msg_sink()

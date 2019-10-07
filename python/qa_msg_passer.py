@@ -43,6 +43,7 @@ class qa_msg_passer (gr_unittest.TestCase):
         self.tb = None
 
     def test_msg_passer(self):
+        print "\n=== Test message passing, interrupt, continue\n"
         blk_src = msg_source(msg_count=12, interval=1.0)
         blk_src.timers[0].debug = False     # True
 

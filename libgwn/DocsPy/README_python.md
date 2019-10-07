@@ -4,17 +4,11 @@ GWN, the GNU Wireless Network, is a network development toolkit compatible with 
 
 This version is the GWN project (GWN, GNU Wireless Network) coded in Python.
 
-
 ## Example blocks
-  To be written.
   Please see `examples/msg_passer_py_example.grc`
 
-### Timers example block
-  To be written.
-
 ### FSM example block.
-  To be written.
-
+  FSM in Python not yet available.
 
 ## Creation of a new block
 
@@ -37,9 +31,6 @@ Next, the script will ask for the new block's own parameters, a list of Python p
     msg_count, interval=100, payload="an example payload"
 After confirmation, the script will create the new block with all parameters included for the programmer to customize.
 
-
-
-
 On execution, the user will be asked to indicate the characteristics of the new block:
 ```
     Block_name: 
@@ -49,10 +40,5 @@ On execution, the user will be asked to indicate the characteristics of the new 
     Number of timeouts:
     New block parameter list: <Python format parameter list>
 ```
-
-
-TODO: The two example blocks can be cloned to run immediately under the block name chosen by the user. This allows to start with a running block which can then be altered to reflect specific needs. To clone the example blocks, please see the following documents:
-
-
 
 [Back to README](../../README.md)

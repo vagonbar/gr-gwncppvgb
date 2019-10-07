@@ -210,7 +210,7 @@
     </param>
     <param>
       <key>msg_count</key>
-      <value>10</value>
+      <value>12</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -242,7 +242,7 @@
     </param>
     <param>
       <key>payload</key>
-      <value></value>
+      <value>'Payload in message'</value>
     </param>
   </block>
   <connection>
