@@ -33,8 +33,10 @@ The following optional positional parameters may be given:
 These indicate the new block name, and the numbers of input ports, output ports, timers and timeouts.
 If invoked with no positional parameters, the script will ask for them.
 These parameters define the new block construction; they are not visible to block users. 
-Next, the script will ask for the new block's own parameters, a list of Python parameters such as 
+Next, the script will ask for the new block's own parameters, a list of Python parameters such as
+```
     msg_count, interval=100, payload="an example payload"
+```
 After confirmation, the script will create the new block with all parameters included for the programmer to customize.
 
 On execution, the user will be asked to indicate the characteristics of the new block:
