@@ -18,15 +18,15 @@ A new block can be easily created with the script `gwn_modtool_py.py`, similar t
   ../libgwn/gwn_modtool_py.py 
 ```
 
-Example invocation code:
+Example invocation code with optional parameters:
 ```
   cd my_project/build
   ../libgwn/gwn_modtool_py.py my_new_block 1 1 0 0
 ```
-Creates a new block with 1 input port, 1 output port, 0 timers, 0 timeouts.
+Creates a new block with 1 input port, 1 output port, 0 timers, 0 timeouts. Alternatively, the script may be invoked with no optional parameters, and they will be asked by the script.
 
 The script must be executed from the 'build' directory.
-The following positional parameters may be given:
+The following optional positional parameters may be given:
 ```
   <new_block_name> <nr_in> <nr_out> <nr_timers> <nr_timeouts>
 ```
