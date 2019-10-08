@@ -37,7 +37,7 @@ class msg_source(gwnblock_py):
       '''Message source constructor.
 
       @param msg_count: the number of messages to emit.
-      @param interval: the lapse of time between messages.
+      @param interval: the lapse of time between messages, in seconds.
       @param payload: a string to include in message.
       '''
       gwnblock_py.__init__(self, name='msg_source', number_in=0, number_out=1, number_timers=1, number_timeouts=0)

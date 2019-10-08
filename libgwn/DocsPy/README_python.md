@@ -5,7 +5,49 @@ GWN, the GNU Wireless Network, is a network development toolkit compatible with 
 This version is the GWN project (GWN, GNU Wireless Network) coded in Python.
 
 ## Example blocks
-  Please see `examples/msg_passer_py_example.grc`
+
+The use of input and output ports, timers and timeouts, is shown in the following blocks:
+
+`Message source`: produces a number of messages at regular intervals.
+
+`Message sink`: receives messages and shows their content.
+
+`Message passer`: receives a message on its input port and resends it on its output port until a first timeout expires; when a second timeout expires resending is restarted.
+
+A flowgraph including these blocks may be found in `examples/msg_passer_py_example.grc`. A sample output follows. The sequence numbers (`seq_nr` field) show interruption of resending after message 4, and restarting of sending at message 8. The `Final` field indicates if it is the last message sent by the `Message source` block. These messages are Python dictionaries produced by the internal timer of the `Message source` block, plus a payload field added by the `Message source` block itself.
+
+```
+=== Test message passing, interrupt, continue
+
+*** Message received ***
+{'seq_nr': 1, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'False', 'Type': 'Internal', 'payload': ''}
+************************
+*** Message received ***
+{'seq_nr': 2, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'False', 'Type': 'Internal', 'payload': ''}
+************************
+*** Message received ***
+{'seq_nr': 3, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'False', 'Type': 'Internal', 'payload': ''}
+************************
+*** Message received ***
+{'seq_nr': 4, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'False', 'Type': 'Internal', 'payload': ''}
+************************
+*** Message received ***
+{'seq_nr': 8, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'False', 'Type': 'Internal', 'payload': ''}
+************************
+*** Message received ***
+{'seq_nr': 9, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'False', 'Type': 'Internal', 'payload': ''}
+************************
+*** Message received ***
+{'seq_nr': 10, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'False', 'Type': 'Internal', 'payload': ''}
+************************
+*** Message received ***
+{'seq_nr': 11, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'False', 'Type': 'Internal', 'payload': ''}
+************************
+*** Message received ***
+{'seq_nr': 12, 'port': 'timer0', 'Subtype': 'Timer', 'Final': 'True', 'Type': 'Internal', 'payload': ''}
+************************
+```
+
 
 ### FSM example block.
   FSM in Python not yet available.

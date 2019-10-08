@@ -30,10 +30,16 @@ from gwnblock_py import mutex_prt          # for tests
 
 
 class msg_passer(gwnblock_py):
-    '''New GWN block in Python, created from template.
+    '''Receives and sends messages with two timeouts.
 
+    This block receives a message on its input port, and resends it on its output port. It starts resending this messages until a first timeout expires, on which it suspends resending; when a second timeout expires, resending continues.
     '''
     def __init__(self, tout_stop=5.0, tout_restart=8.0):
+      '''Message passer constructor.
+
+      @param tout_stop: a timeout to stop resending, in seconds.
+      @param tout_restart_ a timeout to restart resending, in seconds.
+      '''
       gwnblock_py.__init__(self, name='msg_passer', number_in=1, number_out=1, number_timers=0, number_timeouts=2)
 
       ## initialize timeouts, start
